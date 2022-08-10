@@ -1,39 +1,39 @@
-Service;Nom_Clé_Partagée;Nom_commercial;Nom technique;URL d'accès
-WFS;agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
-WMS Raster;fonds_carto;Carte de l'état-major 1 : 40 000 (1820-1866);GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+Service;Nom_ClÃ©_PartagÃ©e;Nom_commercial;Nom technique;URL d'accÃ¨s
+WFS;agriculture;Carte des cours dâ€™eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
+WMS Raster;fonds_carto;Carte de l'Ã©tat-major 1 : 40 000 (1820-1866);GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;fonds_carto;Plan IGN;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;fonds_carto;SCAN 1000®;SCAN1000_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;fonds_carto;SCAN 50® 1950;GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN50.1950;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;fonds_carto;SCAN Départemental®;SCANDEP_PYR-JPEG_FXX_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;fonds_carto;SCAN Régional®;SCANREG_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;clc;Corine Land Cover 2018 - France Métropolitaine ;LANDCOVER.CLC18_FR;https://wxs.ign.fr/clc/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;fonds_carto;SCAN 1000Â®;SCAN1000_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;fonds_carto;SCAN 50Â® 1950;GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN50.1950;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;fonds_carto;SCAN DÃ©partementalÂ®;SCANDEP_PYR-JPEG_FXX_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;fonds_carto;SCAN RÃ©gionalÂ®;SCANREG_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;clc;Corine Land Cover 2018 - France MÃ©tropolitaine ;LANDCOVER.CLC18_FR;https://wxs.ign.fr/clc/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;ortho;ORTHO Express 2021;ORTHOIMAGERY.ORTHOPHOTOS.ORTHO-EXPRESS.2021;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;ortho;ORTHO HR® ;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;ortho;ORTHO HRÂ® ;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;ortho;ORTHO IRC;ORTHOIMAGERY.ORTHOPHOTOS.IRC;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;ortho;Zones interdites à la prise de vue aérienne;ORTHOIMAGERY.ORTHOPHOS.RESTRICTEDAREAS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;BD ORTHO®  1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2000;ORTHOIMAGERY.ORTHOPHOTOS2000;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2001;ORTHOIMAGERY.ORTHOPHOTOS2001;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2002;ORTHOIMAGERY.ORTHOPHOTOS2002;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2003;ORTHOIMAGERY.ORTHOPHOTOS2003;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2004;ORTHOIMAGERY.ORTHOPHOTOS2004;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2005;ORTHOIMAGERY.ORTHOPHOTOS2005;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2006;ORTHOIMAGERY.ORTHOPHOTOS2006;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2007;ORTHOIMAGERY.ORTHOPHOTOS2007;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2008;ORTHOIMAGERY.ORTHOPHOTOS2008;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2009;ORTHOIMAGERY.ORTHOPHOTOS2009;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2010;ORTHOIMAGERY.ORTHOPHOTOS2010;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2011;ORTHOIMAGERY.ORTHOPHOTOS2011;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2012;ORTHOIMAGERY.ORTHOPHOTOS2012;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2013;ORTHOIMAGERY.ORTHOPHOTOS2013;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2014;ORTHOIMAGERY.ORTHOPHOTOS2014;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2015;ORTHOIMAGERY.ORTHOPHOTOS2015;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2016;ORTHOIMAGERY.ORTHOPHOTOS2016;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2017;ORTHOIMAGERY.ORTHOPHOTOS2017;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2018;ORTHOIMAGERY.ORTHOPHOTOS2018;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;orthohisto;Photographies aériennes 2019;ORTHOIMAGERY.ORTHOPHOTOS2019;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;satellite;Pléiades 2021;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-WMS Raster;satellite;Pléiades 2022;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2022;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;ortho;Zones interdites Ã  la prise de vue aÃ©rienne;ORTHOIMAGERY.ORTHOPHOS.RESTRICTEDAREAS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;BD ORTHOÂ®  1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2000;ORTHOIMAGERY.ORTHOPHOTOS2000;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2001;ORTHOIMAGERY.ORTHOPHOTOS2001;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2002;ORTHOIMAGERY.ORTHOPHOTOS2002;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2003;ORTHOIMAGERY.ORTHOPHOTOS2003;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2004;ORTHOIMAGERY.ORTHOPHOTOS2004;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2005;ORTHOIMAGERY.ORTHOPHOTOS2005;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2006;ORTHOIMAGERY.ORTHOPHOTOS2006;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2007;ORTHOIMAGERY.ORTHOPHOTOS2007;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2008;ORTHOIMAGERY.ORTHOPHOTOS2008;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2009;ORTHOIMAGERY.ORTHOPHOTOS2009;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2010;ORTHOIMAGERY.ORTHOPHOTOS2010;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2011;ORTHOIMAGERY.ORTHOPHOTOS2011;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2012;ORTHOIMAGERY.ORTHOPHOTOS2012;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2013;ORTHOIMAGERY.ORTHOPHOTOS2013;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2014;ORTHOIMAGERY.ORTHOPHOTOS2014;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2015;ORTHOIMAGERY.ORTHOPHOTOS2015;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2016;ORTHOIMAGERY.ORTHOPHOTOS2016;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2017;ORTHOIMAGERY.ORTHOPHOTOS2017;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2018;ORTHOIMAGERY.ORTHOPHOTOS2018;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;orthohisto;Photographies aÃ©riennes 2019;ORTHOIMAGERY.ORTHOPHOTOS2019;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;satellite;PlÃ©iades 2021;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+WMS Raster;satellite;PlÃ©iades 2022;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2022;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;satellite;SPOT 2020;ORTHOIMAGERY.ORTHO-SAT.SPOT.2020;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;satellite;SPOT 2021;ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;transports;Restrictions pour drones de loisir;TRANSPORTS.DRONES.RESTRICTIONS;https://wxs.ign.fr/transports/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
@@ -62,16 +62,16 @@ WFS;agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata
 WFS;agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;perimetres_ecologiques;ens_zones_de_preemption_parcelles_Parcelles_-_ZPENS;perimetres_ecologiques:ens_zones_de_preemption_parcelles_Parcelles_-_ZPENS;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
-WFS;perimetres_ecologiques;Parcs Naturels Régionaux;perimetres_ecologiques:pnr;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
-WFS;perimetres_ecologiques;Réserves Naturelles Nationales;perimetres_ecologiques:rnn;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
-WFS;perimetres_ecologiques;Réserves Naturelles Régionales;perimetres_ecologiques:rnr;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
+WFS;perimetres_ecologiques;Parcs Naturels RÃ©gionaux;perimetres_ecologiques:pnr;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
+WFS;perimetres_ecologiques;RÃ©serves Naturelles Nationales;perimetres_ecologiques:rnn;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
+WFS;perimetres_ecologiques;RÃ©serves Naturelles RÃ©gionales;perimetres_ecologiques:rnr;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;perimetres_ecologiques;Sites d'importance Communautaire;perimetres_ecologiques:sic;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;perimetres_ecologiques;ZNIEFF 1;perimetres_ecologiques:znieff1;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;perimetres_ecologiques;ZNIEFF 2;perimetres_ecologiques:znieff2;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;perimetres_33;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer?request=GetCapabilities&service=WFS
 WMS Raster;administratif;Strates administratives Nouvelle-Aquitaine ;foncier_agg;https://opendata.cen-nouvelle-aquitaine.org/administratif/wms
 WFS;administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities
-WFS;administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities
+WFS;administratif;DÃ©partement;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;administratif;parcelle;administratif:parcelle;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities
 WFS;administratif;parcelle_16;administratif:parcelle_16;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities
@@ -137,7 +137,7 @@ WMS Raster;orthohisto;87039_chateau_chervix_1989;87039_chateau_chervix_1989;http
 WMS Raster;orthohisto;87039_chateau_chervix_1998;87039_chateau_chervix_1998;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 WMS Raster;drone;AGG_TMM;AGG_TMM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;16-014_Brandes_de_Soyaux_2020-05;16-014_Brandes_de_Soyaux_2020-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
-WMS Raster;drone;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
+WMS Raster;drone;17IMERIS_Bois-Charles_VallÃ©e-du-Larry_2022_01;17IMERIS_Bois-Charles_VallÃ©e-du-Larry_2022_01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;17IMERIS_Grand-Champ_2022-01;17IMERIS_Grand-Champ_2022-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;19PTOR_MNS_filtre_futurs_travaux_2021-10_L93;19PTOR_MNS_filtre_futurs_travaux_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;19PTOR_MNS_filtre_travaux_realises_2021-10_L93;19PTOR_MNS_filtre_travaux_realises_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
@@ -148,9 +148,9 @@ WMS Raster;drone;23DIAB_lande_du_pont_du_diable_nord_2021-10_L93;23DIAB_lande_du
 WMS Raster;drone;23DIAB_lande_du_pont_du_diable_sud_2021-10_L93;23DIAB_lande_du_pont_du_diable_sud_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;23LAND_RNN_etang_des_landes_2020-08_L93;23LAND_RNN_etang_des_landes_2020-08_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;33_Lagune-108-2021-08;33_Lagune-108-2021-08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
-WMS Raster;drone;79BLVI_Blanchère-de-Viennay_2021-10;79BLVI_Blanchère-de-Viennay_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
-WMS Raster;drone;79VGAT_Vallée-du-Gâteau_Pressigny_2020-02;79VGAT_Vallée-du-Gâteau_Pressigny_2020-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
-WMS Raster;drone;79VGAT_Vallée-du-Gâteau_Pressigny_2021-10;79VGAT_Vallée-du-Gâteau_Pressigny_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
+WMS Raster;drone;79BLVI_BlanchÃ¨re-de-Viennay_2021-10;79BLVI_BlanchÃ¨re-de-Viennay_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
+WMS Raster;drone;79VGAT_VallÃ©e-du-GÃ¢teau_Pressigny_2020-02;79VGAT_VallÃ©e-du-GÃ¢teau_Pressigny_2020-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
+WMS Raster;drone;79VGAT_VallÃ©e-du-GÃ¢teau_Pressigny_2021-10;79VGAT_VallÃ©e-du-GÃ¢teau_Pressigny_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;86-001_TMM_CA-CD_2020-07;86-001_TMM_CA-CD_2020-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;86-500_Clain-sud_Etang-du-Pin;86-500_Clain-sud_Etang-du-Pin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
 WMS Raster;drone;86_AT_Chalandray_2021-10;86_AT_Chalandray_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms
@@ -253,7 +253,7 @@ WFS;fonciercen;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;ht
 WFS;fonciercen;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs
 WFS;fonciercen;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs
 WFS;fonciercen;aire_fonciere_cenna;fonciercen:aire_fonciere_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises commune;MESURES_COMPENSATOIRES:emprises_commune;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_linéaires;MESURES_COMPENSATOIRES:emprises_lineaires;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_ponctuelles;MESURES_COMPENSATOIRES:emprises_ponctuelles;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
+WFS;environnement;Mesures compensatoires des atteintes Ã  la biodiversitÃ© _emprises commune;MESURES_COMPENSATOIRES:emprises_commune;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
+WFS;environnement;Mesures compensatoires des atteintes Ã  la biodiversitÃ© _emprises_linÃ©aires;MESURES_COMPENSATOIRES:emprises_lineaires;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
+WFS;environnement;Mesures compensatoires des atteintes Ã  la biodiversitÃ© _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
+WFS;environnement;Mesures compensatoires des atteintes Ã  la biodiversitÃ© _emprises_ponctuelles;MESURES_COMPENSATOIRES:emprises_ponctuelles;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities
