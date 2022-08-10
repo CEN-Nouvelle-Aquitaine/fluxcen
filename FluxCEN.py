@@ -112,8 +112,8 @@ class FluxCEN:
         self.dlg.commandLinkButton_3.clicked.connect(self.option_OSM)
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
-        url_open = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/flux.csv")
-        colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='latin1'), delimiter=';')
+        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+        colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
 
         mots_cles = [row["Nom_Clé_Partagée"] for row in colonnes_flux if row["Nom_Clé_Partagée"]]
         categories = list(set(mots_cles))
