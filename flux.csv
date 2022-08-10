@@ -257,3 +257,4 @@ WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _empr
 WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN
 WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_ponctuelles;MESURES_COMPENSATOIRES:emprises_ponctuelles;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN
 WMS Raster;drone;17CHSB_Chaumes-de-Sèchebec_2022-05;drone:17CHSB_Chaumes-de-Sèchebec_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17CSPR_Court-si-Peu-Les-Roches_2022-05;drone:17CSPR_Court-si-Peu-Les-Roches_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
