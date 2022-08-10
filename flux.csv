@@ -258,3 +258,20 @@ WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _empr
 WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_ponctuelles;MESURES_COMPENSATOIRES:emprises_ponctuelles;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN
 WMS Raster;drone;17CHSB_Chaumes-de-Sèchebec_2022-05;drone:17CHSB_Chaumes-de-Sèchebec_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
 WMS Raster;drone;17CSPR_Court-si-Peu-Les-Roches_2022-05;drone:17CSPR_Court-si-Peu-Les-Roches_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17IMERIS_Grande-Nauve_C_2022-06;drone:17IMERIS_Grande-Nauve_C_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17IMERIS_La-Vergne_A_2022-06;drone:17IMERIS_La-Vergne_A_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17IMERIS_La-Vergne_B1_2022-06;drone:17IMERIS_La-Vergne_B1_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17IMERIS_La-Vergne_B2_2022-06;drone:17IMERIS_La-Vergne_B2_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-1_2022-02;drone:17LDMT_Landes-de-Montendre-1_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-2_2022-02;drone:17LDMT_Landes-de-Montendre-2_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-3_2022-02;drone:17LDMT_Landes-de-Montendre-3_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-4_2022-02;drone:17LDMT_Landes-de-Montendre-4_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-5_2022-02;drone:17LDMT_Landes-de-Montendre-5_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-Calcia-1_2022-02;drone:17LDMT_Landes-de-Montendre-Calcia-1_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;17LDMT_Landes-de-Montendre-Calcia-2_2022-02;drone:17LDMT_Landes-de-Montendre-Calcia-2_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;79VCPE_Vallée-et-Coteaux-du-Puits-d'Enfer_2022-05;drone:79VCPE_Vallée-et-Coteaux-du-Puits-d'Enfer_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;79WPD_Croix-Maran_2022-07;drone:79WPD_Croix-Maran_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;79WPD_La-Villédé-Nord-ZT-029_2022-07;drone:79WPD_La-Villédé-Nord-ZT-029_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;79WPD_La-Villédé-Nord-ZT-035_2022-07;drone:79WPD_La-Villédé-Nord-ZT-035_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;79WPD_La-Villédé-Nord_2022-07;drone:79WPD_La-Villédé-Nord_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
+WMS Raster;drone;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;drone:86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA
