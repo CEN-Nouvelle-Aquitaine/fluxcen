@@ -286,7 +286,7 @@ class FluxCEN:
 
         def csv_import(url):
             url_open = urllib.request.urlopen(url)
-            csvfile = csv.reader(io.TextIOWrapper(url_open, encoding='latin-1'), delimiter=';')
+            csvfile = csv.reader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
             return csvfile;
 
         data = []
