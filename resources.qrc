@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/plugins/FluxCEN" >
+        <file>icon.png</file>
+		<file>arrow-right.png</file>
+        <file>arrow-up.png</file>
+        <file>logo.jpg</file>
+		<file>globe.png</file>
+    </qresource>
+</RCC>
