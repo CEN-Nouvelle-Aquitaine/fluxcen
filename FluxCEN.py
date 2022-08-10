@@ -294,7 +294,7 @@ class FluxCEN:
         model = QStandardItemModel()
 
         raw = csv_import(
-            "https://sig.dsi-cen.org/qgis/downloads/flux.csv")
+            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
 
         for row in raw:
             data.append(row)
@@ -308,13 +308,12 @@ class FluxCEN:
 
             model.appendRow(items)
 
-        if self.dlg.comboBox.currentText() == 'Sélectionner une catégorie':
-            self.QMBquestion = QMessageBox.question(iface.mainWindow(), u"Pas de flux !", "Aucun flux correspondant aux critères de recherche selectionnés. Relancer la recherche sur la base d'autres critères de recherche.", QMessageBox.Ok)
-            #Pour éviter les erreurs de clic
-        elif self.dlg.comboBox.currentText() == 'toutes les catégories':
+        if self.dlg.comboBox.currentText() == 'toutes les catégories':
+            QgsMessageLog.logMessage(str(data2[0]), "5sdf", level=Qgis.Info)
             del data2[0]
             nb_row = len(data2)
             nb_col = len(data2[0])
+
             self.dlg.tableWidget.setRowCount(nb_row)
             self.dlg.tableWidget.setColumnCount(nb_col)
             for row in range(nb_row):
@@ -338,13 +337,14 @@ class FluxCEN:
         #     reader = csv.reader(flux_list, delimiter=";")
         #     self.header = next(reader)
         #     self.dlg.tableWidget.setHorizontalHeaderLabels(self.header)
-        self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Nom commercial", "Nom technique", "Url d'accès"])
+        self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux", "Nom technique", "Url d'accès", "Source"])
 
         self.dlg.tableWidget.setColumnWidth(0, 80)
         self.dlg.tableWidget.setColumnWidth(1, 0)
-        self.dlg.tableWidget.setColumnWidth(2, 600)
+        self.dlg.tableWidget.setColumnWidth(2, 629)
         self.dlg.tableWidget.setColumnWidth(3, 0)
         self.dlg.tableWidget.setColumnWidth(4, 0)
+        self.dlg.tableWidget.setColumnWidth(5, 100)
 
         self.dlg.tableWidget.selectRow(0)
 
@@ -355,15 +355,16 @@ class FluxCEN:
         for column in range(self.dlg.tableWidget.columnCount()):
             for a in [self.dlg.tableWidget.selectedItems()[column]]:
                 cloned_item = a.clone()
-                self.dlg.tableWidget_2.setHorizontalHeaderLabels(["", "", "Flux sélectionné"])
-                self.dlg.tableWidget_2.setColumnCount(5)
+                self.dlg.tableWidget_2.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux sélectionné", "Nom technique", "Url d'accès", "Source"])
+                self.dlg.tableWidget_2.setColumnCount(6)
                 self.dlg.tableWidget_2.setItem(0,column,cloned_item)
 
-        self.dlg.tableWidget_2.setColumnWidth(0,0)
+        self.dlg.tableWidget_2.setColumnWidth(0,80)
         self.dlg.tableWidget_2.setColumnWidth(1,0)
-        self.dlg.tableWidget_2.setColumnWidth(2,500)
+        self.dlg.tableWidget_2.setColumnWidth(2,640)
         self.dlg.tableWidget_2.setColumnWidth(3,0)
         self.dlg.tableWidget_2.setColumnWidth(4,0)
+        self.dlg.tableWidget_2.setColumnWidth(5,100)
 
     def limite_flux(self):
 
@@ -556,6 +557,7 @@ class FluxCEN:
 
                     else:
                         print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
+
 
 
     def filtre_dynamique(self, filter_text):

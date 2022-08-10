@@ -9,20 +9,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1167</width>
-    <height>473</height>
+    <width>910</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1167</width>
-    <height>473</height>
+    <width>910</width>
+    <height>800</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1167</width>
-    <height>473</height>
+    <width>910</width>
+    <height>800</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>260</x>
      <y>130</y>
      <width>171</width>
      <height>22</height>
@@ -47,7 +47,7 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>350</x>
      <y>20</y>
      <width>221</width>
      <height>71</height>
@@ -66,8 +66,8 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>790</x>
-     <y>130</y>
+     <x>370</x>
+     <y>750</y>
      <width>171</width>
      <height>23</height>
     </rect>
@@ -83,9 +83,9 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>161</y>
-     <width>511</width>
-     <height>261</height>
+     <y>170</y>
+     <width>850</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="selectionMode">
@@ -98,10 +98,10 @@
   <widget class="QTableWidget" name="tableWidget_2">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>160</y>
-     <width>511</width>
-     <height>261</height>
+     <x>30</x>
+     <y>550</y>
+     <width>850</width>
+     <height>181</height>
     </rect>
    </property>
    <property name="selectionMode">
@@ -111,8 +111,8 @@
   <widget class="QCommandLinkButton" name="commandLinkButton">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>220</y>
+     <x>400</x>
+     <y>470</y>
      <width>61</width>
      <height>61</height>
     </rect>
@@ -122,7 +122,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/arrow-right.png</normaloff>:/plugins/FluxCEN/arrow-right.png</iconset>
+     <normaloff>:/plugins/FluxCEN/arrow-bottom.png</normaloff>:/plugins/FluxCEN/arrow-bottom.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -134,8 +134,8 @@
   <widget class="QCommandLinkButton" name="commandLinkButton_2">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>280</y>
+     <x>460</x>
+     <y>470</y>
      <width>61</width>
      <height>61</height>
     </rect>
@@ -160,7 +160,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>480</x>
      <y>130</y>
      <width>171</width>
      <height>21</height>
@@ -182,7 +182,7 @@
   <widget class="QCommandLinkButton" name="commandLinkButton_3">
    <property name="geometry">
     <rect>
-     <x>930</x>
+     <x>680</x>
      <y>30</y>
      <width>201</width>
      <height>41</height>
@@ -206,6 +206,46 @@
      <width>20</width>
      <height>20</height>
     </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>150</y>
+     <width>161</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+     <italic>false</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>Liste des flux disponibles :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>530</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+     <italic>false</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>Flux sélectionné(s) à charger :</string>
    </property>
   </widget>
  </widget>
