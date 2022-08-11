@@ -235,7 +235,7 @@ WMS Raster;drone;a_86_Le_Cormier_2021_05;a_86_Le_Cormier_2021_05;https://opendat
 WFS;fonciercen;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;fonciercen:parcelles_af_87
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af_87
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 64);fonciercen:parcelles_af_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
