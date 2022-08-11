@@ -233,21 +233,21 @@ WMS Raster;drone;a_86_058_Carriere_de_Puy_Herve_2021_02_25;a_86_058_Carriere_de_
 WMS Raster;drone;a_86_060_Bocage_de_la_Geoffronniere_2020_11;a_86_060_Bocage_de_la_Geoffronniere_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA
 WMS Raster;drone;a_86_Le_Cormier_2021_05;a_86_Le_Cormier_2021_05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA
 WFS;fonciercen;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;site_gere_poly;fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;site_gere_point;fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_87;fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_86;fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_79;fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_64;fonciercen:parcelles_af_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_47;fonciercen:parcelles_af_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_40;fonciercen:parcelles_af_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_33;fonciercen:parcelles_af_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_24;fonciercen:parcelles_af_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_19;fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_17;fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;parcelles_AF_16;fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;mfu_cenna_2020;fonciercen:mfu_cenna_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;mfu_cenna;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 64);fonciercen:parcelles_af_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 47);fonciercen:parcelles_af_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 40);fonciercen:parcelles_af_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 33);fonciercen:parcelles_af_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 24);fonciercen:parcelles_af_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
