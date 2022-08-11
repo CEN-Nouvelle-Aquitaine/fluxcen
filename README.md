@@ -6,4 +6,11 @@
   * données en opendata des acteurs publics (IGN, INPN, BRGM, etc.)
   * données avec authentification de flux techniques (données foncières du CEN NA par exemple)
   
-  Ils sont classés par catégorie. 
+  
+  ## Composition du fichier .csv
+  
+  * Service : type de service utilisé (WFS ou WMS)
+  * Nom_Clé_Partagée : nom de la couche qui s'affichera dans le plugin
+  * Nom_commercial : nom technique qui sert pour l'accès à la couche (caché dans le plugin)
+  * URL d'accès : URL pour accéder à la donnée
+  * Source : Source de la donnée
