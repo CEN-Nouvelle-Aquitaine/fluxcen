@@ -2,7 +2,7 @@
  
  Plugin QGIS permettant la centralisation des flux WMS/WFS les plus couramment utilisés au Conservatoire d'Espaces Naturels de Nouvelle-Aquitaine.
 
- Ces flux sont centralisés dans le fichier flux.csv qui permet de mixer les sources :
+ Ces flux sont centralisés dans le fichier *flux.csv* qui permet de mixer les sources :
   * données en opendata des acteurs publics (IGN, INPN, BRGM, etc.)
   * données avec authentification de flux techniques (données foncières du CEN NA par exemple)
  
