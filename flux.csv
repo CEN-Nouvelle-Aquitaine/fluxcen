@@ -1,4 +1,4 @@
-Service;Nom_Clé_Partagée;Nom_commercial;Nom technique;URL d'accès;Source
+Service;Nom_Clé_Partagée;Nom_commercial;Nom technique;URL d'accès;Source;Style
 WFS;agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN
 WMS Raster;fonds_carto;Carte de l'état-major 1 : 40 000 (1820-1866);GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN
 WMS Raster;fonds_carto;Plan IGN;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN
@@ -235,7 +235,7 @@ WMS Raster;drone;a_86_Le_Cormier_2021_05;a_86_Le_Cormier_2021_05;https://opendat
 WFS;fonciercen;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;fonciercen:parcelles_af_87
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 64);fonciercen:parcelles_af_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA
