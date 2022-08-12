@@ -129,11 +129,9 @@ class FluxCEN:
 
         metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
         infos_metadonnees = metadonnees_plugin.readlines()
-        print("Version de votre plugin: ", infos_metadonnees[8])
 
-        derniere_version = open(self.plugin_path + '/last_version.txt')
+        derniere_version = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/last_version.txt")
         num_last_version = derniere_version.readlines()
-        print("Version la plus riche en fonctionnalités du plugin: ", num_last_version[0])
 
         if infos_metadonnees[8] == num_last_version[0]:
             iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN est à jour ! :)", level=Qgis.Success)
