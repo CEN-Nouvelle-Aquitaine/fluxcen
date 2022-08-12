@@ -17,7 +17,7 @@ Il rend également plus facile la gestion des styles par défaut pour les donné
  
 ## Style des couches
  
- Le dossier *styles_couches* stocke les styles QGIS au format .qml (nommés par le nom technique) afin d'appliquer par défaut ce style à l'ouverture de la couche dans QGIS.
+ Le dossier *styles_couches* stocke les styles QGIS au format .qml afin d'appliquer par défaut ce style à l'ouverture de la couche dans QGIS. L'ajout d'un style dans ce dossier nécessite de reporter le nom du fichier qml dans le champs "Style" du csv.
  
   
 
