@@ -69,7 +69,7 @@ WFS;perimetres_ecologiques;Sites d'importance Communautaire;perimetres_ecologiqu
 WFS;perimetres_ecologiques;ZNIEFF 1;perimetres_ecologiques:znieff1;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN
 WFS;perimetres_ecologiques;ZNIEFF 2;perimetres_ecologiques:znieff2;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN
 WMS Raster;administratif;Strates administratives Nouvelle-Aquitaine ;foncier_agg;https://opendata.cen-nouvelle-aquitaine.org/administratif/wms;IGN
-WFS;administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN
+WFS;administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;test
 WFS;administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN
 WFS;administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN
 WFS;administratif;parcelle;administratif:parcelle;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN
