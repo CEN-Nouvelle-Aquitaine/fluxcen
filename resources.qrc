@@ -7,5 +7,7 @@
 	    <file>arrow-remove.png</file>
         <file>logo.jpg</file>
 		<file>globe.png</file>
+		<file>orthos.png</file>
+		<file>scan25.png</file>
     </qresource>
 </RCC>

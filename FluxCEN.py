@@ -309,7 +309,7 @@ class FluxCEN:
             model.appendRow(items)
 
         if self.dlg.comboBox.currentText() == 'toutes les catégories':
-            QgsMessageLog.logMessage(str(data2[0]), "5sdf", level=Qgis.Info)
+            # QgsMessageLog.logMessage(str(data2[0]), "5sdf", level=Qgis.Info)
             del data2[0]
             nb_row = len(data2)
             nb_col = len(data2[0])
@@ -331,13 +331,7 @@ class FluxCEN:
                     item = QTableWidgetItem(str(data[row][col]))
                     self.dlg.tableWidget.setItem(row, col, item)
 
-
-
-        # with open('C:/Users/Romain/AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins/fluxcen/fluxwfs.csv', 'r', encoding='latin-1') as flux_list:
-        #     reader = csv.reader(flux_list, delimiter=";")
-        #     self.header = next(reader)
-        #     self.dlg.tableWidget.setHorizontalHeaderLabels(self.header)
-        self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux", "Nom technique", "Url d'accès", "Source"])
+        self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux", "Nom technique", "Url d'accès", "Source", "Style"])
 
         self.dlg.tableWidget.setColumnWidth(0, 80)
         self.dlg.tableWidget.setColumnWidth(1, 0)
@@ -345,6 +339,7 @@ class FluxCEN:
         self.dlg.tableWidget.setColumnWidth(3, 0)
         self.dlg.tableWidget.setColumnWidth(4, 0)
         self.dlg.tableWidget.setColumnWidth(5, 100)
+        self.dlg.tableWidget.setColumnWidth(6, 0)
 
         self.dlg.tableWidget.selectRow(0)
 
@@ -355,8 +350,8 @@ class FluxCEN:
         for column in range(self.dlg.tableWidget.columnCount()):
             for a in [self.dlg.tableWidget.selectedItems()[column]]:
                 cloned_item = a.clone()
-                self.dlg.tableWidget_2.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux sélectionné", "Nom technique", "Url d'accès", "Source"])
-                self.dlg.tableWidget_2.setColumnCount(6)
+                self.dlg.tableWidget_2.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux sélectionné", "Nom technique", "Url d'accès", "Source", "Style"])
+                self.dlg.tableWidget_2.setColumnCount(7)
                 self.dlg.tableWidget_2.setItem(0,column,cloned_item)
 
         self.dlg.tableWidget_2.setColumnWidth(0,80)
@@ -365,6 +360,7 @@ class FluxCEN:
         self.dlg.tableWidget_2.setColumnWidth(3,0)
         self.dlg.tableWidget_2.setColumnWidth(4,0)
         self.dlg.tableWidget_2.setColumnWidth(5,100)
+        self.dlg.tableWidget_2.setColumnWidth(6, 0)
 
     def limite_flux(self):
 
@@ -411,17 +407,20 @@ class FluxCEN:
                     QgsProject.instance().addMapLayer(vlayer)
                     vlayer.loadNamedStyle(self.plugin_path + '/styles_couches/' + vlayer.name() + '.qml')
                     vlayer.triggerRepaint()
-                    # vlayer.setMinimumScale(600000.0)
 
-                    # layer2 = QgsProject.instance().mapLayersByName("region")[0]
-                    # rect = layer2.extent()
-                    # request = QgsFeatureRequest().setFilterRect(rect)
-                    # selected_feats = vlayer.getFeatures(request)
-                    # ids = [f["id"] for f in selected_feats]
-                    # print(ids)
-                    # where_clause = '"id" IN{0}'.format(tuple(ids))
-                    # vlayer.setSubsetString(where_clause)
-                    # QgsProject.instance().addMapLayer(vlayer)
+                    layers = QgsProject.instance().mapLayers()  # dictionary
+
+                    # rowCount() This property holds the number of rows in the table
+                    for row in range(self.dlg.tableWidget_2.rowCount()):
+                        # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
+                        _item = self.dlg.tableWidget_2.item(row, 2).text()
+                        _legend = self.dlg.tableWidget_2.item(row, 6).text()
+                        # print(_item)
+                        # print(_legend)
+
+                        for layer in layers.values():
+                            if layer.name() == _item:
+                                layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
 
 
                 elif type == 'WMS' or type == 'WMS Raster' or type == 'WMS Vecteur' or type == 'WMTS':
