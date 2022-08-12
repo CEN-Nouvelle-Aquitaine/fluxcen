@@ -1,5 +1,3 @@
-# derniere version fluxcen disponible
-[info]
 version=1.7
 
 
