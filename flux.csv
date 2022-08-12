@@ -24,7 +24,6 @@ WFS;agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata
 WFS;agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 79
 WFS;agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 86
 WFS;agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 87
-WFS;perimetres_ecologiques;ens_zones_de_preemption_parcelles_Parcelles_-_ZPENS;perimetres_ecologiques:ens_zones_de_preemption_parcelles_Parcelles_-_ZPENS;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;perimetres_ecologiques;Parcs Naturels Régionaux;perimetres_ecologiques:pnr;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;perimetres_ecologiques;Réserves Naturelles Nationales;perimetres_ecologiques:rnn;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;perimetres_ecologiques;Réserves Naturelles Régionales;perimetres_ecologiques:rnr;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
