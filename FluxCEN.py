@@ -110,12 +110,14 @@ class FluxCEN:
         self.dlg.tableWidget_2.itemDoubleClicked.connect(self.suppression_flux)
         self.dlg.comboBox.addItem("toutes les catégories")
         self.dlg.commandLinkButton_3.clicked.connect(self.option_OSM)
+        self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
+
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
         url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
         colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
 
-        mots_cles = [row["Nom_Clé_Partagée"] for row in colonnes_flux if row["Nom_Clé_Partagée"]]
+        mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
         categories = list(set(mots_cles))
         categories.sort()
 
@@ -281,6 +283,49 @@ class FluxCEN:
         parent = OSM_layer.parent()
         parent.insertChildNode(-1, myClone)
         parent.removeChildNode(OSM_layer)
+
+
+    def option_OSM(self):
+        tms = 'type=xyz&url=https://tile.openstreetmap.org/{z}/{x}/{y}.png&zmax=19&zmin=0'
+        layer = QgsRasterLayer(tms, 'OSM', 'wms')
+
+        if not QgsProject.instance().mapLayersByName("OSM"):
+            QgsProject.instance().addMapLayer(layer)
+        else:
+            QMessageBox.question(iface.mainWindow(), u"Fond OSM déjà chargé !", "Le fond de carte OSM est déjà chargé", QMessageBox.Ok)
+
+        OSM_layer = QgsProject.instance().mapLayersByName("OSM")[0]
+
+        root = QgsProject.instance().layerTreeRoot()
+
+        # Move Layer
+        OSM_layer = root.findLayer(OSM_layer.id())
+        myClone = OSM_layer.clone()
+        parent = OSM_layer.parent()
+        parent.insertChildNode(-1, myClone)
+        parent.removeChildNode(OSM_layer)
+
+
+    def option_google_maps(self):
+        tms = 'type=xyz&zmin=0&zmax=20&url=https://mt1.google.com/vt/lyrs%3Ds%26x%3D{x}%26y%3D{y}%26z%3D{z}'
+        layer = QgsRasterLayer(tms, 'Google Satelitte', 'wms')
+
+        if not QgsProject.instance().mapLayersByName("Google Satelitte"):
+            QgsProject.instance().addMapLayer(layer)
+        else:
+            QMessageBox.question(iface.mainWindow(), u"Fond Google Sat' déjà chargé !", "Le fond de carte Google Satelitte est déjà chargé", QMessageBox.Ok)
+
+        google_layer = QgsProject.instance().mapLayersByName("Google Satelitte")[0]
+
+        root = QgsProject.instance().layerTreeRoot()
+
+        # Move Layer
+        google_layer = root.findLayer(google_layer.id())
+        myClone = google_layer.clone()
+        parent = google_layer.parent()
+        parent.insertChildNode(-1, myClone)
+        parent.removeChildNode(google_layer)
+
 
     def initialisation_flux(self):
 

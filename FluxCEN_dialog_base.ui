@@ -182,8 +182,8 @@
   <widget class="QCommandLinkButton" name="commandLinkButton_3">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>30</y>
+     <x>690</x>
+     <y>20</y>
      <width>201</width>
      <height>41</height>
     </rect>
@@ -248,8 +248,38 @@
     <string>Flux sélectionné(s) à charger :</string>
    </property>
   </widget>
+  <widget class="QCommandLinkButton" name="commandLinkButton_4">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>60</y>
+     <width>201</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Ajouter Ortho (Google sat')</string>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/plugins/FluxCEN/orthos.png</normaloff>:/plugins/FluxCEN/orthos.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+  </widget>
  </widget>
  <resources>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
