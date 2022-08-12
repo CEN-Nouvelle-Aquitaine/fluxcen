@@ -127,20 +127,20 @@ class FluxCEN:
         layout.addWidget(self.dlg.lineEdit)
         self.dlg.lineEdit.mousePressEvent = self._mousePressEvent
 
-        metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
-        infos_metadonnees = metadonnees_plugin.readlines()
-
-        derniere_version = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt")
-        num_last_version = derniere_version.readlines()
+        # metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
+        # infos_metadonnees = metadonnees_plugin.readlines()
+        #
+        # derniere_version = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt")
+        # num_last_version = derniere_version.readlines()
 
         # num_last_version_ok = str(num_last_version[0])[str(num_last_version[0]).index("b'") + len("b'"):str(num_last_version[0]).index("\\n'")]
         # print(num_last_version_ok)
         # print(infos_metadonnees)[8]
-
-        if infos_metadonnees[8] == num_last_version[0]:
-            iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN est à jour ! :)", level=Qgis.Success)
-        else:
-            iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
+        #
+        # if infos_metadonnees[8] == num_last_version[0]:
+        #     iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN est à jour ! :)", level=Qgis.Success)
+        # else:
+        #     iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
 
 
     def _mousePressEvent(self, event):
