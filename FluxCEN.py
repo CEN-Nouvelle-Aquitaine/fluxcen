@@ -134,9 +134,9 @@ class FluxCEN:
         num_last_version = derniere_version.readlines()
 
         print(infos_metadonnees[8])
-        print(num_last_version[0])
+        print(num_last_version[2])
 
-        if infos_metadonnees[8] == num_last_version[0]:
+        if infos_metadonnees[8] == num_last_version[2]:
             iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN est à jour ! :)", level=Qgis.Success)
         else:
             iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
