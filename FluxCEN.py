@@ -539,7 +539,7 @@ class FluxCEN:
                         p.append(a)
 
                         uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        print(uri)
+                        # print(uri)
                         # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
                         if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                             displayOnWindows(p[row].type, uri, p[row].nom_commercial)
@@ -564,7 +564,7 @@ class FluxCEN:
                         p.append(a)
 
                         uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        print(uri)
+                        # print(uri)
                         # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
                         if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                             displayOnWindows(p[row].type, uri, p[row].nom_commercial)
@@ -606,7 +606,7 @@ class FluxCEN:
                         p.append(a)
 
                         uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        print(uri)
+                        # print(uri)
 
                         if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                             displayOnWindows(p[row].type, uri, p[row].nom_commercial)
