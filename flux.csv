@@ -32,25 +32,25 @@ WFS;perimetres_ecologiques;ZNIEFF 1;perimetres_ecologiques:znieff1;https://opend
 WFS;perimetres_ecologiques;ZNIEFF 2;perimetres_ecologiques:znieff2;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle;administratif:parcelle;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_16;administratif:parcelle_16;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_17;administratif:parcelle_17;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_19;administratif:parcelle_19;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_23;administratif:parcelle_23;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_24;administratif:parcelle_24;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_33;administratif:parcelle_33;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_40;administratif:parcelle_40;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_47;administratif:parcelle_47;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_64;administratif:parcelle_64;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_79;administratif:parcelle_79;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_86;administratif:parcelle_86;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_87;administratif:parcelle_87;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_ajout_19;administratif:parcelle_ajout_19;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_ajout_23;administratif:parcelle_ajout_23;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_ajout_24;administratif:parcelle_ajout_24;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;parcelle_ajout_87;administratif:parcelle_ajout_87;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle;administratif:parcelle;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_16;administratif:parcelle_16;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_17;administratif:parcelle_17;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_19;administratif:parcelle_19;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_23;administratif:parcelle_23;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_24;administratif:parcelle_24;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_33;administratif:parcelle_33;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_40;administratif:parcelle_40;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_47;administratif:parcelle_47;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_64;administratif:parcelle_64;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_79;administratif:parcelle_79;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_86;administratif:parcelle_86;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_87;administratif:parcelle_87;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;administratif;parcelle_ajout_19;administratif:parcelle_ajout_19;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;CEN NA;
+WFS;administratif;parcelle_ajout_23;administratif:parcelle_ajout_23;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;CEN NA;
+WFS;administratif;parcelle_ajout_24;administratif:parcelle_ajout_24;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;CEN NA;
+WFS;administratif;parcelle_ajout_87;administratif:parcelle_ajout_87;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;CEN NA;
+WFS;administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
 WFS;hydro;bd_topage_bassin_hydrographique;hydrographie:bd_topage_bassin_hydrographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
 WFS;hydro;bd_topage_bv_topographique;hydrographie:bd_topage_bv_topographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
 WFS;hydro;bd_topage_cours_eau;hydrographie:bd_topage_cours_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
@@ -94,7 +94,7 @@ WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 19);foncierc
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
-WFS;fonciercen;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;fonciercen;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;fonciercen;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
@@ -278,4 +278,4 @@ WMS Raster;drone;19VIET_vietheil_lande_2022-08-01;19VIET_vietheil_lande_2022-08-
 WMS Raster;drone;19VIET_vietheil_tourbiere_2022-08-01;19VIET_vietheil_tourbiere_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WMS Raster;geologie;IDPR - Indice de Développement et de Persistance des Réseaux;IDPR;contextualWMSLegend=0&crs=EPSG:4326&dpiMode=7&featureCount=10&format=image/png&layers=IDPR&styles&url=http://geoservices.brgm.fr/geologie;BRGM;
 WFS;perimetres_ecologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
-WFS;perimetres_ecologiques;Arrêtés de protection de biotope;ms:Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
+WFS;perimetres_ecologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
