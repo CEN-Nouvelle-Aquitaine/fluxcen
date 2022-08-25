@@ -300,27 +300,6 @@ class FluxCEN:
         parent.removeChildNode(OSM_layer)
 
 
-    def option_OSM(self):
-        tms = 'type=xyz&url=https://tile.openstreetmap.org/{z}/{x}/{y}.png&zmax=19&zmin=0'
-        layer = QgsRasterLayer(tms, 'OSM', 'wms')
-
-        if not QgsProject.instance().mapLayersByName("OSM"):
-            QgsProject.instance().addMapLayer(layer)
-        else:
-            QMessageBox.question(iface.mainWindow(), u"Fond OSM déjà chargé !", "Le fond de carte OSM est déjà chargé", QMessageBox.Ok)
-
-        OSM_layer = QgsProject.instance().mapLayersByName("OSM")[0]
-
-        root = QgsProject.instance().layerTreeRoot()
-
-        # Move Layer
-        OSM_layer = root.findLayer(OSM_layer.id())
-        myClone = OSM_layer.clone()
-        parent = OSM_layer.parent()
-        parent.insertChildNode(-1, myClone)
-        parent.removeChildNode(OSM_layer)
-
-
     def option_google_maps(self):
         tms = 'type=xyz&zmin=0&zmax=20&url=https://mt1.google.com/vt/lyrs%3Ds%26x%3D{x}%26y%3D{y}%26z%3D{z}'
         layer = QgsRasterLayer(tms, 'Google Satelitte', 'wms')
@@ -347,6 +326,8 @@ class FluxCEN:
         def csv_import(url):
             url_open = urllib.request.urlopen(url)
             csvfile = csv.reader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
+            #on ne lit pas la première ligne correspondant aux noms des colonnes avec next()
+            next(csvfile)
             return csvfile;
 
         data = []
@@ -369,8 +350,9 @@ class FluxCEN:
             model.appendRow(items)
 
         if self.dlg.comboBox.currentText() == 'toutes les catégories':
-            # QgsMessageLog.logMessage(str(data2[0]), "5sdf", level=Qgis.Info)
-            del data2[0]
+            # print(str(data2[0]))
+            # del data2[0]
+            # print(str(data2[0]))
             nb_row = len(data2)
             nb_col = len(data2[0])
 
@@ -381,7 +363,6 @@ class FluxCEN:
                     item = QTableWidgetItem(str(data2[row][col]))
                     self.dlg.tableWidget.setItem(row, col, item)
         else:
-            # #remove first element from list data:
             nb_row = len(data)
             nb_col = len(data[0])
             self.dlg.tableWidget.setRowCount(nb_row)
