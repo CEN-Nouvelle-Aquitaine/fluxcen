@@ -94,7 +94,7 @@ WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 19);foncierc
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
-WFS;fonciercen;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;fonciercen;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;fonciercen;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
