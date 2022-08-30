@@ -150,7 +150,8 @@ WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO;ORTHOIMAGERY.ORTHOPHOTOS.BDOR
 WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS2000-2005;ORTHOIMAGERY.ORTHOPHOTOS2000-2005;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS2006-2010;ORTHOIMAGERY.ORTHOPHOTOS2006-2010;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS2011-2015;ORTHOIMAGERY.ORTHOPHOTOS2011-2015;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;SCAN25TOUR_PYR-JPEG_WLD_WM;SCAN25TOUR_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;cartes;SCAN 25® IGN;SCAN25TOUR_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;cartes;SCAN 100® IGN;SCAN100_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;cartes;TRANSPORTS.DRONES.RESTRICTIONS;TRANSPORTS.DRONES.RESTRICTIONS;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;cartes;fond_carto_alti_aquitaine;fond_carto_alti_aquitaine;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;cartes;fond_carto_alti_limousin;fond_carto_alti_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
