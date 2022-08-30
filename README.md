@@ -8,7 +8,7 @@ Il rend également plus facile la gestion des styles par défaut pour les donné
  
 ## Composition du fichier .csv
   
-  * Service : type de service utilisé (WFS ou WMS)
+  * service : type de service utilisé (WFS ou WMS)
   * categorie : categorie de la couche pour affichage et recherche dans le plugin
   * Nom_couche_plugin : nom de la couche qui s'affichera dans le plugin
   * nom_technique : nom technique de la couche utilisé sur le serveur source (caché dans le plugin)
