@@ -299,3 +299,16 @@ WMS Raster;geologie;Base géologie marine;BGM;http://geoservices.brgm.fr/geologi
 WMS Raster;geologie;Modèle d'épaisseur des Altérites;EPAISSEUR_ALTERITES;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Gisements, gîtes, indices;GITES;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Mines;Mines;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;risques;GéoServices: risques naturels et industriels;RISQUES;BRGM;
+WMS Raster;risques;Carte nationale des remontées de nappes;REMNAPPE_FR;BRGM;
+WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG;BRGM;
+WMS Raster;risques;Déformations récentes et paléoséismes - Failles;NEOPAL_FAILLE;BRGM;
+WMS Raster;risques;Déformations récentes et paléoséismes - Indices validés;NEOPAL_VALIDE;BRGM;
+WMS Raster;risques;Déformations récentes et paléoséismes - Indices non validés;NEOPAL_NON_VALIDE;BRGM;
+WMS Raster;risques;Cavités souterraines abandonnées d'origine non minière;CAVITE_LOCALISEE;BRGM;
+WMS Raster;risques;Cavités souterraines non minières abandonnées non localisée;SAVITE_COMMUNE;BRGM;
+WMS Raster;risques;Mouvements de Terrain;MVT_LOCALISE;BRGM;
+WMS Raster;risques;Mouvements de Terrain non localisés;MVT_COMMUNE;BRGM;
+WMS Raster;risques;Anciens sites industriels et activités de service;BASIAS_LOCALISE;BRGM;
+WMS Raster;risques;Anciens sites industriels et activités de service - Adresse;BASIAS_ADRESSE;BRGM;
+WMS Raster;risques;Communes avec anciens sites industriels non localisés;BASIA_COMMUNE;BRGM;
