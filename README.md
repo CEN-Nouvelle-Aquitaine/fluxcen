@@ -8,16 +8,18 @@ Il rend également plus facile la gestion des styles par défaut pour les donné
  
 ## Composition du fichier .csv
   
-  * Service : type de service utilisé (WFS ou WMS)
-  * Nom_Clé_Partagée : nom de la couche qui s'affichera dans le plugin
-  * Nom_commercial : nom technique qui sert pour l'accès à la couche (caché dans le plugin)
-  * URL d'accès : URL pour accéder à la donnée
-  * Source : Source de la donnée
+  * service : type de service utilisé (WFS ou WMS)
+  * categorie : categorie de la couche pour affichage et recherche dans le plugin
+  * Nom_couche_plugin : nom de la couche qui s'affichera dans le plugin
+  * nom_technique : nom technique de la couche utilisé sur le serveur source (caché dans le plugin)
+  * url : URL du serveur pour accéder à la couche
+  * source : Source de la donnée
+  * style : nom du fichier de style pour affichage à l'ouverture dans QGIS
  
  
 ## Style des couches
  
- Le dossier *styles_couches* stocke les styles QGIS au format .qml afin d'appliquer par défaut ce style à l'ouverture de la couche dans QGIS. L'ajout d'un style dans ce dossier nécessite de reporter le nom du fichier qml dans le champ "Style" du csv.
+ Le dossier *styles_couches* stocke les styles QGIS au format .qml afin d'appliquer par défaut ce style à l'ouverture de la couche dans QGIS. L'ajout d'un style dans ce dossier nécessite de reporter le nom du fichier .qml dans le champ "style" du csv.
  
   
 
