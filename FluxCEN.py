@@ -133,14 +133,19 @@ class FluxCEN:
         derniere_version = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt")
         num_last_version = derniere_version.readlines()[0].decode("utf-8")
 
-        # print(num_last_version)
-        # print(infos_metadonnees[8])
+        print(num_last_version)
+        print(infos_metadonnees[8])
+
+        print(type(num_last_version))
+        print(type(infos_metadonnees[8]))
+
+        print(len(num_last_version))
+        print(len(infos_metadonnees[8]))
 
         if infos_metadonnees[8] == num_last_version:
-            iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN est à jour ! :)", level=Qgis.Success)
+            iface.messageBar().pushMessage("Plugin à jour", "Votre version (%s) de FluxCEN est à jour ! :)" %infos_metadonnees[8], level=Qgis.Success)
         else:
             iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
-
 
     def _mousePressEvent(self, event):
         self.dlg.lineEdit.setText("")
@@ -473,7 +478,7 @@ class FluxCEN:
             p = []
 
             for row in range(0, self.dlg.tableWidget_2.rowCount()):
-
+                    ## supression de la partie de l'url après le point d'interrogation
                     url = self.dlg.tableWidget_2.item(row,4).text().split("?", 1)[0]
                     try:
                         service = re.search('SERVICE=(.+?)&VERSION', self.dlg.tableWidget_2.item(row,4).text()).group(1)
@@ -519,7 +524,7 @@ class FluxCEN:
                             )
                         p.append(a)
 
-                        uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                        uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
                         # print(uri)
                         # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
                         if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
@@ -544,7 +549,7 @@ class FluxCEN:
 
                         p.append(a)
 
-                        uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                        uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
                         # print(uri)
                         # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
                         if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
