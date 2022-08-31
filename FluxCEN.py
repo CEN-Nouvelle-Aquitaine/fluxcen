@@ -133,19 +133,22 @@ class FluxCEN:
         derniere_version = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt")
         num_last_version = derniere_version.readlines()[0].decode("utf-8")
 
-        print(num_last_version)
-        print(infos_metadonnees[8])
+        # print(":"+num_last_version+":")
+        # print(":"+infos_metadonnees[8]+":")
+        #
+        # print(type(num_last_version))
+        # print(type(infos_metadonnees[8]))
+        #
+        # print(len(num_last_version))
+        # print(len(infos_metadonnees[8]))
 
-        print(type(num_last_version))
-        print(type(infos_metadonnees[8]))
+        version_utilisateur = infos_metadonnees[8]
 
-        print(len(num_last_version))
-        print(len(infos_metadonnees[8]))
-
-        if infos_metadonnees[8] == num_last_version:
-            iface.messageBar().pushMessage("Plugin à jour", "Votre version (%s) de FluxCEN est à jour ! :)" %infos_metadonnees[8], level=Qgis.Success)
+        if infos_metadonnees[8].splitlines() == num_last_version.splitlines():
+            iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN (%s) est à jour !" %version_utilisateur, level=Qgis.Success, duration=10)
         else:
             iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
+
 
     def _mousePressEvent(self, event):
         self.dlg.lineEdit.setText("")
