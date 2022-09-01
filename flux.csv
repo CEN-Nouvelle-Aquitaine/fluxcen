@@ -399,7 +399,6 @@ WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETABLI
 WMS Raster;risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Potentiel radon à la commune;RADON;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Carte nationale des remontées de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Masque étude spécifique en cours;MASQ_AFFLEUR;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
