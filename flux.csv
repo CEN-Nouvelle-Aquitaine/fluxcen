@@ -396,8 +396,6 @@ WMS Raster;risques;Canalisations de transport de matières dangereuses : Gaz nat
 WMS Raster;risques;Canalisations de transport de matières dangereuses : Hydrocarbures;C_HYDROCARBURES;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Canalisations de transport de matières dangereuses : Produits chimiques;C_PRODUITS_CHIM;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIFICATION_SIS;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Cluster Secteurs d'information sur les sols (SIS - 250k au 50k);SSP_CLASSIF_SIS_PE_POINT_2;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIF_SIS_GE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Secteur d'Information sur les Sols (SIS) - Etat d'avancement par département;ETAT_SIS;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Servitudes d'utilité publique (SUP);SSP_CLASSIFICATION_SUP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;BRGM;
