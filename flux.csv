@@ -307,8 +307,6 @@ WMS Raster;risques;Sismicité - Nombre d'évenements par communes (Intensités i
 WMS Raster;risques;Sismicité - Nombre d'évenements par communes (Intensités interpolées);SIS_INTENSITE_NBEVT;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Sismicité - Intensité interpolée - Nombre d'évènements par communes;SIS_INTENSITE_NBEVTCOM;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Installations classées;INSTALLATIONS_CLASSEES_SIMPLIFIE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Installations classées (Petite échelle);INSTALLATIONS_CLASSEES_SIMPLIFIE_PE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Installations classées (Grande échelle);INSTALLATIONS_CLASSEES_SIMPLIFIE_GE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Etablissements Pollueurs;ETABLISSEMENTS_POLLUEURS;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Communes concernées par un PPR naturel;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Communes concernées par un PPR Avalanche approuvé;PPRN_COMMUNE_AVALANCHE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
@@ -400,14 +398,9 @@ WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETABLI
 WMS Raster;risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Potentiel radon à la commune;RADON;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Carte nationale des remontées de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zones sensibles aux remontées de nappes;REMNAPPE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zones sensibles aux remontées de nappes avec prise en compte du niveau de fiabilité;REMNAPPE_FIAB;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Masque étude spécifique en cours;MASQ_AFFLEUR;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Localisation des parcs éoliens (15M au 25k);parc_pe_500k_sup;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Parcs éoliens terrestres;parc_ge_500k;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Eoliennes;eolienne;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Postes de livraison;poste_livraison_ge_500k;https://www.georisques.gouv.fr/services;BRGM;
