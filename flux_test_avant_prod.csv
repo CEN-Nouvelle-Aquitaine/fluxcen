@@ -540,7 +540,6 @@ WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'e
 WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Localisation des parcs éoliens (15M au 25k);parc_pe_500k_sup;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Parcs éoliens terrestres;parc_ge_500k;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Aérogénérateurs;eolienne;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Aérogénérateurs;eolienne_ge_500k;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Eoliennes;eolienne;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison_ge_500k;https://www.georisques.gouv.fr/services;BRGM;
