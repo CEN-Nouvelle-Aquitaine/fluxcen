@@ -296,5 +296,19 @@ WMS Raster;geologie;Cartes géologiques;GEOLOGIE;http://geoservices.brgm.fr/geol
 WMS Raster;geologie;Base géologie marine;BGM;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Gisements, gîtes, indices;GITES;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Mines;MINES;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;risques;GéoServices: risques naturels et industriels;RISQUES;http://geoservices.brgm.fr/risques;BRGM;
-
+WMS Raster;risques;Cavités souterraines abandonnées d'origine non minière;RISQUES;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Installations classées;INSTALLATIONS_CLASSEES_SIMPLIFIE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Etablissements pollueurs;ETABLISSEMENTS_POLLUEURS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Communes concernées par un PPR naturel;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Communes concernées par un PPR technologiques;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Limites de commune concernée par un TRI - France métropolitaine - Rapportage 2020;COMMUNE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Réseaux - France métropolitaine - Rapportage 2020;ENJEUX_RESEAUX_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Etablissements sensibles - France métropolitaine - Rapportage 2020;ENJEUX_ETS_SENSIBLES_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Limite de zones de protection naturelle - France métropolitaine - Rapportage 2020;ENJEUX_ZONENATURELLE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Etablissements classés IED - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Patrimoine culturel - France métropolitaine - Rapportage 2020;ENJEUX_CULT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Station d'épuration supérieure à 2000 Equivalent Habitant - France métropolitaine - Rapportage 2020;ENJEUX_STEP_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
