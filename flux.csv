@@ -286,6 +286,7 @@ WMS Raster;geologie;Carte d'assemblage des cartes géologiques au 1/250 000e;SCA
 WMS Raster;geologie;Carte géologique 50 000e - harmonisé;SCAN_H_GEOL50;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Carte géologique 50 000e - MNT harmonisé;SCAN_H_RELIEF_GEOL50;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Carte lithologique simplifiée au 1/1 000 000;LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
+WFS;geologie;Carte lithologique simplifiée au 1/1 000 000;ms:LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Ouvrages de la banque du sous-sol;BSS;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Référentiel des points d'eau BSS EAU;BSS_EAU;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Référentiel des points d'eau BSS EAU - Points d'eau avec des mesures de niveau d'eau;BSS_EAU_QT;http://geoservices.brgm.fr/geologie;BRGM;
