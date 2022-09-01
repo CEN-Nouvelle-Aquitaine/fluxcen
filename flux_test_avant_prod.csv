@@ -557,4 +557,3 @@ WMS Raster;risques;Aérogénérateurs;eolienne;http://geoservices.brgm.fr/risque
 WMS Raster;risques;Aérogénérateurs;eolienne_ge_500k;http://geoservices.brgm.fr/risques;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;http://geoservices.brgm.fr/risques;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison_ge_500k;http://geoservices.brgm.fr/risques;BRGM;
-
