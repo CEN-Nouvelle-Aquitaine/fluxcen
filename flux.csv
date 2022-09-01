@@ -402,5 +402,4 @@ WMS Raster;risques;Masque étude spécifique en cours;MASQ_AFFLEUR;https://www.g
 WMS Raster;risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Eoliennes;eolienne;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
