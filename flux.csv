@@ -300,8 +300,6 @@ WMS Raster;risques;Services cartographiques de diffusion des données GéoRisque
 WMS Raster;risques;Cavités souterraines abandonnées d'origine non minière;CAVITE_LOCALISEE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Mouvements de Terrain;MVT_LOCALISE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Exposition au retrait-gonflement des argiles (Petite échelle);ALEARG_REALISE_PE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG_REALISE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Séismes historiques potentiellement ressentis;SIS_INTENSITE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Sismicité - Intensité interpolée maximale possiblement ressentie par communes;SIS_INTENSITE_MAXCOM;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Sismicité - Intensité interpolée - Nombre d'évènements par communes;SIS_INTENSITE_EVTCOM;https://www.georisques.gouv.fr/services;BRGM;
