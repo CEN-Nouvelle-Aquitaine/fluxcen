@@ -302,9 +302,6 @@ WMS Raster;risques;Mouvements de Terrain;MVT_LOCALISE;https://www.georisques.gou
 WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Exposition au retrait-gonflement des argiles (Petite échelle);ALEARG_REALISE_PE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG_REALISE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service;BASIAS_LOCALISE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service - Adresse;BASIAS_ADRESSE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes avec anciens sites industriels non localisés;BASIAS_COMMUNE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Séismes historiques potentiellement ressentis;SIS_INTENSITE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Sismicité - Intensité interpolée maximale possiblement ressentie par communes;SIS_INTENSITE_MAXCOM;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Sismicité - Intensité interpolée - Nombre d'évènements par communes;SIS_INTENSITE_EVTCOM;https://www.georisques.gouv.fr/services;BRGM;
@@ -527,13 +524,6 @@ WMS Raster;risques;Cluster Servitudes d'utilité publique (SUP - 250k au 50k);SS
 WMS Raster;risques;Cluster Servitudes d'utilité publique (SUP - 50k au 25k);SSP_CLASSIF_SUP_PE_POINT_3;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Servitudes d'utilité publique (SUP);SSP_CLASSIF_SUP_GE;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service (15M au 250k);SSP_ETS_PE_POINT_1;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service (15M au 250k);SSP_ETS_PE_POINT_2;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service (15M au 250k);SSP_ETS_PE_POINT_3;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Cluster Anciens sites industriels et activités de service (250k au 50k);SSP_ETS_PE_POINT_4;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Cluster Anciens sites industriels et activités de service (50k au 25k);SSP_ETS_PE_POINT_5;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETS_GE_POLYGON;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETS_GE_POINT;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Cluster Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL - 15M au 250k);https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Cluster Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL - 250k au 50k);https://www.georisques.gouv.fr/services;BRGM;
