@@ -426,3 +426,4 @@ WMS Raster;risques;Parcs éoliens terrestres;parc_ge_500k;https://www.georisques
 WMS Raster;risques;Eoliennes;eolienne;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison_ge_500k;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;fonds_carto;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
