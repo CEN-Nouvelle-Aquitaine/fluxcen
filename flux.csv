@@ -403,3 +403,4 @@ WMS Raster;risques;Entités hydrogéologiques imperméables à l'affleurement;MA
 WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;fonds_carto;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
