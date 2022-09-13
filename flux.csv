@@ -278,7 +278,7 @@ WMS Raster;drone;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;86VLCL_Val-de-Clou
 WMS Raster;drone;19VIET_vietheil_lande_2022-08-01;19VIET_vietheil_lande_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WMS Raster;drone;19VIET_vietheil_tourbiere_2022-08-01;19VIET_vietheil_tourbiere_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WFS;perimetres_ecologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
-WFS;perimetres_ecologiques;Arrêtés de protection de biotope;ms:Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;perimetres_ecologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WMS Raster;geologie;IDPR - Indice de Développement et de Persistance des Réseaux;IDPR;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;GéoServices : géologie, hydrogéologie et gravimétrie;GEOSERVICES_GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;geologie;Carte d'assemblage des cartes géologiques au 1/50 000e;SCAN_F_GEOL50_CATALOG;http://geoservices.brgm.fr/geologie;BRGM;
@@ -403,3 +403,4 @@ WMS Raster;risques;Entités hydrogéologiques imperméables à l'affleurement;MA
 WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;fonds_carto;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
