@@ -544,7 +544,7 @@ class FluxCEN:
                             {
                                 'service': self.dlg.tableWidget_2.item(row,0).text(),
                                 'version': version,
-                                'crs': "EPSG:4326",
+                                'crs': "EPSG:2154",
                                 'format' : "image/png",
                                 'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
                             }
@@ -570,7 +570,7 @@ class FluxCEN:
                                 {
                                     'VERSION': version,
                                     'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                    'SRSNAME': "EPSG:4326",
+                                    'SRSNAME': "EPSG:2154",
                                     'authcfg': list(k)[0],
                                     'request': "GetFeature",
 
@@ -586,7 +586,7 @@ class FluxCEN:
                             {
                                 'VERSION': version,
                                 'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                'SRSNAME': "EPSG:4326",
+                                'SRSNAME': "EPSG:2154",
                                 'request': "GetFeature",
 
                             }
