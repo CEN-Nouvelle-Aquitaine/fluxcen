@@ -22,4 +22,8 @@ Il rend également plus facile la gestion des styles par défaut pour les donné
  Le dossier *styles_couches* stocke les styles QGIS au format .qml afin d'appliquer par défaut ce style à l'ouverture de la couche dans QGIS. L'ajout d'un style dans ce dossier nécessite de reporter le nom du fichier .qml dans le champ "style" du csv.
  
   
+## Accès aux données protégées
 
+Si l'accès à la majorité des ressources reste public, certaines peuvent être protégées par un mot de passe (données métier confidentielles par exemple).
+C'est le cas notamment de certaines données foncières du CEN NA qui nécessitent une authentifiaction. Cette authentification est gérée via le serveur cartographique qui génère les flux.
+Pour y accéder, il faut créer en amont une authentification dans QGIS. L'ouverture des données protégées se fera alors à partir de la première authentification enregistrée dans QGIS (pas de gestion multi-authentification pour le moment)
