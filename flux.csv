@@ -1,29 +1,29 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
 WFS;agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;agriculture;RPG 2019 departement 16;agriculture:rpg_2019_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 16
-WFS;agriculture;RPG 2019 departement 17;agriculture:rpg_2019_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 17
-WFS;agriculture;RPG 2019 departement 19;agriculture:rpg_2019_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 19
-WFS;agriculture;RPG 2019 departement 23;agriculture:rpg_2019_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 23
-WFS;agriculture;RPG 2019 departement 24;agriculture:rpg_2019_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 24
-WFS;agriculture;RPG 2019 departement 33;agriculture:rpg_2019_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 33
-WFS;agriculture;RPG 2019 departement 40;agriculture:rpg_2019_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 40
-WFS;agriculture;RPG 2019 departement 47;agriculture:rpg_2019_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 47
-WFS;agriculture;RPG 2019 departement 64;agriculture:rpg_2019_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 64
-WFS;agriculture;RPG 2019 departement 79;agriculture:rpg_2019_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 79
-WFS;agriculture;RPG 2019 departement 86;agriculture:rpg_2019_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 86
-WFS;agriculture;RPG 2019 departement 87;agriculture:rpg_2019_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019 departement 87
-WFS;agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 16
-WFS;agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 17
-WFS;agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 19
-WFS;agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 23
-WFS;agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 24
-WFS;agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 33
-WFS;agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 40
-WFS;agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 47
-WFS;agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 64
-WFS;agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 79
-WFS;agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 86
-WFS;agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020 departement 87
+WFS;agriculture;RPG 2019 departement 16;agriculture:rpg_2019_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 17;agriculture:rpg_2019_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 19;agriculture:rpg_2019_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 23;agriculture:rpg_2019_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 24;agriculture:rpg_2019_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 33;agriculture:rpg_2019_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 40;agriculture:rpg_2019_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 47;agriculture:rpg_2019_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 64;agriculture:rpg_2019_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 79;agriculture:rpg_2019_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 86;agriculture:rpg_2019_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2019 departement 87;agriculture:rpg_2019_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2019
+WFS;agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
+WFS;agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG 2020
 WFS;agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
