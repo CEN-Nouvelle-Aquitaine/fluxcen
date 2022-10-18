@@ -100,8 +100,7 @@ WMS Raster;fonds_carto;SCAN 50® 1950;GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN50.1950;h
 WMS Raster;fonds_carto;SCAN Départemental®;SCANDEP_PYR-JPEG_FXX_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;fonds_carto;SCAN Régional®;SCANREG_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;clc;Corine Land Cover 2018 - France Métropolitaine ;LANDCOVER.CLC18_FR;https://wxs.ign.fr/clc/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;ortho;ORTHO Express 2021;ORTHOIMAGERY.ORTHOPHOTOS.ORTHO-EXPRESS.2021;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;ortho;ORTHO HR® ;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;ortho;ORTHO Haute Résolution (HR®) ;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;ortho;ORTHO IRC;ORTHOIMAGERY.ORTHOPHOTOS.IRC;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;ortho;Zones interdites à la prise de vue aérienne;ORTHOIMAGERY.ORTHOPHOS.RESTRICTEDAREAS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;orthohisto;BD ORTHO®  1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
@@ -129,7 +128,8 @@ WMS Raster;satellite;Pléiades 2021;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2021;https:/
 WMS Raster;satellite;Pléiades 2022;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2022;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;satellite;SPOT 2020;ORTHOIMAGERY.ORTHO-SAT.SPOT.2020;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;satellite;SPOT 2021;ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;transports;Restrictions pour drones de loisir;TRANSPORTS.DRONES.RESTRICTIONS;https://wxs.ign.fr/transports/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;réglementation drone;Restrictions pour drones de loisir;TRANSPORTS.DRONES.RESTRICTIONS;https://wxs.ign.fr/transports/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;réglementation drone;OACI-VFR;carte OACI-VFR 2022 ;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;administratif;Strates administratives Nouvelle-Aquitaine ;foncier_agg;https://opendata.cen-nouvelle-aquitaine.org/administratif/wms;IGN;
 WMS Raster;cartes;GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;cartes;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
