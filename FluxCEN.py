@@ -24,7 +24,7 @@
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import *
 from qgis.PyQt.QtWidgets import *
-from PyQt5 import QtWidgets
+from PyQt5 import *
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -60,6 +60,23 @@ class Flux:
         self.url = u
         self.parameters = p
 
+
+
+class Popup(QWidget):
+    def __init__(self, parent=None):
+        super(Popup, self).__init__(parent)
+
+        self.plugin_dir = os.path.dirname(__file__)
+
+        self.text_edit = QTextBrowser()
+        text = open(self.plugin_dir +'/info_changelog.html').read()
+        self.text_edit.setHtml(text)
+        self.text_edit.setFont(QtGui.QFont("Calibri",weight=QtGui.QFont.Bold))
+
+
+        self.text_edit.setWindowTitle("Nouveautés")
+        self.text_edit.setMinimumSize(500,200)
+        self.text_edit.setMaximumSize(500,200)
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
@@ -111,6 +128,8 @@ class FluxCEN:
         self.dlg.comboBox.addItem("toutes les catégories")
         self.dlg.commandLinkButton_3.clicked.connect(self.option_OSM)
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
+
+        self.dlg.commandLinkButton_5.clicked.connect(self.popup)
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
@@ -621,7 +640,10 @@ class FluxCEN:
 
 
 
+    def popup(self):
 
+        self.dialog = Popup()  # +++ - self
+        self.dialog.text_edit.show()
 
 # from owslib.wfs import WebFeatureService
 # import csv
@@ -650,4 +672,10 @@ class FluxCEN:
 #     for row in fluxWMS:
 #         writer.writerow(row.split())
 
+#### Récupération des métadonnées des couches quand disponibles:
+
+# from owslib.wms import WebMapService
+# wms = WebMapService('http://geoservices.brgm.fr/geologie?service=WMS+Raster', version='1.1.1')
+# print(list(wms.contents))
 #
+# print(wms['IDPR'].abstract)

@@ -277,6 +277,35 @@
     </size>
    </property>
   </widget>
+  <widget class="QCommandLinkButton" name="commandLinkButton_5">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>750</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/plugins/FluxCEN/info.png</normaloff>:/plugins/FluxCEN/info.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
+   </property>
+  </widget>
  </widget>
  <resources>
  </resources>
