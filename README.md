@@ -1,10 +1,13 @@
 # FluxCEN
- 
+
+<img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icon.png  width="200"/> 
 Le plugin QGIS FluxCEN permet d'accéder en un clic à un large éventail de flux WFS/WMS organisés par catégories et interrogeables sous forme de mots-clés. Les flux mis à disposition sont issus des données du Conservatoire d'Espaces Naturels de Nouvelle-Aquitaine via son serveur cartographique (Geoserver) mais aussi des producteurs nationaux (IGN, BRGM, INPN, SANDRE, GISSOL, GéoPortail, etc.), régionaux ou départementaux.
 Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions et permet aux utilisateurs d'avoir accès facilement à un même endroit à toutes les ressources SIG dont ils ont besoin pour travailler.
 Il rend également plus facile la gestion des styles par défaut pour les données vecteur. 
 
  Ces flux sont centralisés dans le fichier *flux.csv*.
+ 
+ <br> 
  
 ## Composition du fichier .csv
   
