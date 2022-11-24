@@ -127,8 +127,8 @@ WMS Raster;Fonds cartos;TRANSPORTS.DRONES.RESTRICTIONS;TRANSPORTS.DRONES.RESTRIC
 WMS Raster;Fonds cartos;Fond carto altimétrie Aquitain;fond_carto_alti_aquitaine;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;Fond carto altimétrie Limousin;fond_carto_alti_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;Fond carto altimétrie Poitou-Charentes;fond_carto_alti_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;87039_chateau_chervix_1989;87039_chateau_chervix_1989;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;CEN NA;
-WMS Raster;orthohisto;87039_chateau_chervix_1998;87039_chateau_chervix_1998;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;CEN NA;
+WMS Raster;Drone;87039_chateau_chervix_1989;87039_chateau_chervix_1989;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;CEN NA;
+WMS Raster;Drone;87039_chateau_chervix_1998;87039_chateau_chervix_1998;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;CEN NA;
 WMS Raster;Drone;AGG_TMM;AGG_TMM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
 WMS Raster;Drone;16-014_Brandes_de_Soyaux_2020-05;16-014_Brandes_de_Soyaux_2020-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
 WMS Raster;Drone;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
