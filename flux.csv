@@ -1,4 +1,5 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
+WFS;culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
 WFS;agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;agriculture;RPG 2019 departement 16;agriculture:rpg_2019_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;agriculture;RPG 2019 departement 17;agriculture:rpg_2019_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
@@ -79,6 +80,7 @@ WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 64);foncierc
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 47);fonciercen:parcelles_af_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 40);fonciercen:parcelles_af_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 33);fonciercen:parcelles_af_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 23);fonciercen:parcelles_af_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 24);fonciercen:parcelles_af_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
@@ -267,6 +269,10 @@ WMS Raster;drone;79WPD_La-Villédé-Nord_2022-07;79WPD_La-Villédé-Nord_2022-07
 WMS Raster;drone;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WMS Raster;drone;19VIET_vietheil_lande_2022-08-01;19VIET_vietheil_lande_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WMS Raster;drone;19VIET_vietheil_tourbiere_2022-08-01;19VIET_vietheil_tourbiere_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;drone;87LARD_ZH_lardimalie_2022_10_20;87LARD_ZH_lardimalie_2022_10_20;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;drone;87MONT_ZH_grand_monteil_2022_10_20;87MONT_ZH_grand_monteil_2022_10_20;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;drone;19OUSS_coupe_etang_oussines_2022_09_27;19OUSS_coupe_etang_oussines_2022_09_27;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;drone;16GOIR_ZH_du_Goire_2022_04_02;16GOIR_ZH_du_Goire_2022_04_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WFS;perimetres_ecologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
 WFS;perimetres_ecologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;perimetres_ecologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
