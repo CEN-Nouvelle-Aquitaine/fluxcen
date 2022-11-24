@@ -69,8 +69,12 @@ class Popup(QWidget):
         self.plugin_dir = os.path.dirname(__file__)
 
         self.text_edit = QTextBrowser()
-        text = open(self.plugin_dir +'/info_changelog.html').read()
-        self.text_edit.setHtml(text)
+        fp = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/info_changelog.html")
+        mybytes = fp.read()
+        html_changelog = mybytes.decode("utf8")
+        fp.close()
+
+        self.text_edit.setHtml(html_changelog)
         self.text_edit.setFont(QtGui.QFont("Calibri",weight=QtGui.QFont.Bold))
         self.text_edit.anchorClicked.connect(QtGui.QDesktopServices.openUrl)
         self.text_edit.setOpenLinks(False)

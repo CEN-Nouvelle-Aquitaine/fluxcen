@@ -1,69 +1,57 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
-WFS;culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
-WFS;agriculture;Carte des cours dâ€™eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;agriculture;RPG 2019 departement 16;agriculture:rpg_2019_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 17;agriculture:rpg_2019_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 19;agriculture:rpg_2019_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 23;agriculture:rpg_2019_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 24;agriculture:rpg_2019_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 33;agriculture:rpg_2019_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 40;agriculture:rpg_2019_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 47;agriculture:rpg_2019_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 64;agriculture:rpg_2019_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 79;agriculture:rpg_2019_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 86;agriculture:rpg_2019_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 87;agriculture:rpg_2019_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 23;agriculture:rpg_2021_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 24;agriculture:rpg_2021_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 33;agriculture:rpg_2021_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 40;agriculture:rpg_2021_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 47;agriculture:rpg_2021_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 64;agriculture:rpg_2021_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;administratif;DÃ©partement;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
-WFS;administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
-WFS;administratif;EPCI;administratif:epci;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;hydro;bd_topage_bassin_hydrographique;hydrographie:bd_topage_bassin_hydrographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_bv_topographique;hydrographie:bd_topage_bv_topographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_cours_eau;hydrographie:bd_topage_cours_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_plan_eau;hydrographie:bd_topage_plan_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_surface_elementaire;hydrographie:bd_topage_surface_elementaire;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;occ_sol;bdforet_v2_16;occsol:bdforet_v2_16;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_17;occsol:bdforet_v2_17;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_19;occsol:bdforet_v2_19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_23;occsol:bdforet_v2_23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_24;occsol:bdforet_v2_24;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_33;occsol:bdforet_v2_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_40;occsol:bdforet_v2_40;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_47;occsol:bdforet_v2_47;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_64;occsol:bdforet_v2_64;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_79;occsol:bdforet_v2_79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_86;occsol:bdforet_v2_86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_87;occsol:bdforet_v2_87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;pigma_ocs_2020_d19;occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;occ_sol;pigma_ocs_2020_d23;occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;occ_sol;pigma_ocs_2020_d87;occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;occ_sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;occ_sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
+WFS;Agriculture;Carte des cours dâ€™eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
+WFS;Agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 23;agriculture:rpg_2021_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 24;agriculture:rpg_2021_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 33;agriculture:rpg_2021_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 40;agriculture:rpg_2021_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 47;agriculture:rpg_2021_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 64;agriculture:rpg_2021_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
+WFS;Administratif;DÃ©partement;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
+WFS;Administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;Administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;Administratif;EPCI;administratif:epci;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
+WFS;Hydrographie;Bassins hydrographiques (BD Topage);hydrographie:bd_topage_bassin_hydrographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Bassins versants hydrographiques (BD Topage);hydrographie:bd_topage_bv_topographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Cours d'eau (BD Topage);hydrographie:bd_topage_cours_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Plans d'eau (BD Topage);hydrographie:bd_topage_plan_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Surfaces élementaires (BD Topage);hydrographie:bd_topage_surface_elementaire;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 16);occsol:bdforet_v2_16;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 17);occsol:bdforet_v2_17;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 19);occsol:bdforet_v2_19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 23);occsol:bdforet_v2_23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 24);occsol:bdforet_v2_24;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 33);occsol:bdforet_v2_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 40);occsol:bdforet_v2_40;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 47);occsol:bdforet_v2_47;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 64);occsol:bdforet_v2_64;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 79);occsol:bdforet_v2_79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 86);occsol:bdforet_v2_86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 87);occsol:bdforet_v2_87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;pigma_ocs_2020_d19;occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;pigma_ocs_2020_d23;occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;pigma_ocs_2020_d87;occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;paysage;PDIPR_ZONE_INTERET_PRIORITAIRE_new;paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;paysage;inventaire_paysage_pc;paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;paysage;secteurs_paysagers_na;paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
@@ -412,7 +400,7 @@ WMS Raster;risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIFICATION_
 WMS Raster;risques;Secteur d'Information sur les Sols (SIS) - Etat d'avancement par dÃ©partement;ETAT_SIS;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Servitudes d'utilitÃ© publique (SUP);SSP_CLASSIFICATION_SUP;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Anciens sites industriels et activitÃ©s de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sites polluÃ©s ou potentiellement polluÃ©s appelant une action des pouvoirs publics; Ã  titre prÃ©ventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;risques;Sites polluÃ©s ou potentiellement polluÃ©s appelant une action des pouvoirs publics; Ã  titre prÃ©ventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM
 WMS Raster;risques;Potentiel radon Ã  la commune;RADON;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;Carte nationale des remontÃ©es de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;risques;EntitÃ©s hydrogÃ©ologiques impermÃ©ables Ã  l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
