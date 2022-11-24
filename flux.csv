@@ -50,8 +50,8 @@ WFS;Occupation du sol;BD Forêt V2 (département 87);occsol:bdforet_v2_87;https:
 WFS;Occupation du sol;OCS PIGMA 2020 (département 19);occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
 WFS;Occupation du sol;OCS PIGMA 2020 (département 23);occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
 WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Occupation du sol;Synthèse Landes Limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Occupation du sol;Synthèse Tourbières Limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Inventaire paysage (ex Poitou-Charentes);paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Secteurs paysagers (Nouvelle-Aquitaine);paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
