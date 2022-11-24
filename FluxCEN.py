@@ -72,11 +72,11 @@ class Popup(QWidget):
         text = open(self.plugin_dir +'/info_changelog.html').read()
         self.text_edit.setHtml(text)
         self.text_edit.setFont(QtGui.QFont("Calibri",weight=QtGui.QFont.Bold))
-
+        self.text_edit.anchorClicked.connect(QtGui.QDesktopServices.openUrl)
+        self.text_edit.setOpenLinks(False)
 
         self.text_edit.setWindowTitle("Nouveautés")
-        self.text_edit.setMinimumSize(500,200)
-        self.text_edit.setMaximumSize(500,200)
+        self.text_edit.setMinimumSize(600,300)
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
@@ -454,7 +454,6 @@ class FluxCEN:
         if len(list(k)) == 0:
             QMessageBox.question(iface.mainWindow(), u"Attention !", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe", QMessageBox.Ok)
         else:
-            # for i in range(self.dlg.tableWidget_2.rowCount()):
 
             def REQUEST(type):
                 switcher = {
@@ -462,7 +461,7 @@ class FluxCEN:
                     'WMS': "GetMap",
                     'WMS+Vecteur': "GetMap",
                     'WMS+Raster': "GetMap",
-                    'WMTS': "GetMap",
+                    'WMTS': "GetMap"
                 }
                 return switcher.get(type, "nothing")
 
