@@ -1,422 +1,384 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
-WFS;culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
-WFS;agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;agriculture;RPG 2019 departement 16;agriculture:rpg_2019_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 17;agriculture:rpg_2019_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 19;agriculture:rpg_2019_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 23;agriculture:rpg_2019_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 24;agriculture:rpg_2019_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 33;agriculture:rpg_2019_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 40;agriculture:rpg_2019_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 47;agriculture:rpg_2019_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 64;agriculture:rpg_2019_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 79;agriculture:rpg_2019_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 86;agriculture:rpg_2019_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2019 departement 87;agriculture:rpg_2019_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 23;agriculture:rpg_2021_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 24;agriculture:rpg_2021_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 33;agriculture:rpg_2021_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 40;agriculture:rpg_2021_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 47;agriculture:rpg_2021_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 64;agriculture:rpg_2021_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
-WFS;administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
-WFS;administratif;EPCI;administratif:epci;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;hydro;bd_topage_bassin_hydrographique;hydrographie:bd_topage_bassin_hydrographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_bv_topographique;hydrographie:bd_topage_bv_topographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_cours_eau;hydrographie:bd_topage_cours_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_plan_eau;hydrographie:bd_topage_plan_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;hydro;bd_topage_surface_elementaire;hydrographie:bd_topage_surface_elementaire;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
-WFS;occ_sol;bdforet_v2_16;occsol:bdforet_v2_16;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_17;occsol:bdforet_v2_17;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_19;occsol:bdforet_v2_19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_23;occsol:bdforet_v2_23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_24;occsol:bdforet_v2_24;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_33;occsol:bdforet_v2_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_40;occsol:bdforet_v2_40;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_47;occsol:bdforet_v2_47;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_64;occsol:bdforet_v2_64;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_79;occsol:bdforet_v2_79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_86;occsol:bdforet_v2_86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;bdforet_v2_87;occsol:bdforet_v2_87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;occ_sol;pigma_ocs_2020_d19;occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;occ_sol;pigma_ocs_2020_d23;occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;occ_sol;pigma_ocs_2020_d87;occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;occ_sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;occ_sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;paysage;PDIPR_ZONE_INTERET_PRIORITAIRE_new;paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;paysage;inventaire_paysage_pc;paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;paysage;secteurs_paysagers_na;paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;paysage;sites_classes;paysages:sites_classes;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;paysage;sites_inscrits;paysages:sites_inscrits;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;paysage;vallees_principales_na;paysages:vallees_principales_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;fonciercen;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
-WFS;fonciercen;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
-WFS;fonciercen;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 64);fonciercen:parcelles_af_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 47);fonciercen:parcelles_af_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 40);fonciercen:parcelles_af_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 33);fonciercen:parcelles_af_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 23);fonciercen:parcelles_af_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 24);fonciercen:parcelles_af_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
-WFS;fonciercen;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
-WFS;fonciercen;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;fonciercen;aire_fonciere_cenna;fonciercen:aire_fonciere_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises commune;MESURES_COMPENSATOIRES:emprises_commune;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_linéaires;MESURES_COMPENSATOIRES:emprises_lineaires;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;environnement;Mesures compensatoires des atteintes à la biodiversité _emprises_ponctuelles;MESURES_COMPENSATOIRES:emprises_ponctuelles;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;fonds_carto;Carte de l'état-major 1 : 40 000 (1820-1866);GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;fonds_carto;Plan IGN;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;fonds_carto;SCAN 1000®;SCAN1000_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;fonds_carto;SCAN 50® 1950;GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN50.1950;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;fonds_carto;SCAN Départemental®;SCANDEP_PYR-JPEG_FXX_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;fonds_carto;SCAN Régional®;SCANREG_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;clc;Corine Land Cover 2018 - France Métropolitaine ;LANDCOVER.CLC18_FR;https://wxs.ign.fr/clc/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;ortho;ORTHO Haute Résolution (HR®) ;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;ortho;ORTHO IRC;ORTHOIMAGERY.ORTHOPHOTOS.IRC;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;BD ORTHO®  1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2000;ORTHOIMAGERY.ORTHOPHOTOS2000;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2001;ORTHOIMAGERY.ORTHOPHOTOS2001;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2002;ORTHOIMAGERY.ORTHOPHOTOS2002;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2003;ORTHOIMAGERY.ORTHOPHOTOS2003;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2004;ORTHOIMAGERY.ORTHOPHOTOS2004;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2005;ORTHOIMAGERY.ORTHOPHOTOS2005;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2006;ORTHOIMAGERY.ORTHOPHOTOS2006;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2007;ORTHOIMAGERY.ORTHOPHOTOS2007;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2008;ORTHOIMAGERY.ORTHOPHOTOS2008;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2009;ORTHOIMAGERY.ORTHOPHOTOS2009;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2010;ORTHOIMAGERY.ORTHOPHOTOS2010;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2011;ORTHOIMAGERY.ORTHOPHOTOS2011;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2012;ORTHOIMAGERY.ORTHOPHOTOS2012;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2013;ORTHOIMAGERY.ORTHOPHOTOS2013;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2014;ORTHOIMAGERY.ORTHOPHOTOS2014;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2015;ORTHOIMAGERY.ORTHOPHOTOS2015;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2016;ORTHOIMAGERY.ORTHOPHOTOS2016;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2017;ORTHOIMAGERY.ORTHOPHOTOS2017;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2018;ORTHOIMAGERY.ORTHOPHOTOS2018;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;orthohisto;Photographies aériennes 2019;ORTHOIMAGERY.ORTHOPHOTOS2019;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;satellite;Pléiades 2021;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;satellite;Pléiades 2022;ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2022;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;satellite;SPOT 2020;ORTHOIMAGERY.ORTHO-SAT.SPOT.2020;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;satellite;SPOT 2021;ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;réglementation drone;Zones interdites à la prise de vue aérienne;ORTHOIMAGERY.ORTHOPHOS.RESTRICTEDAREAS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;réglementation drone;Restrictions pour drones de loisir;TRANSPORTS.DRONES.RESTRICTIONS;https://wxs.ign.fr/transports/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;réglementation drone;OACI-VFR;SCANOACI_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;administratif;Strates administratives Nouvelle-Aquitaine ;foncier_agg;https://opendata.cen-nouvelle-aquitaine.org/administratif/wms;IGN;
-WMS Raster;cartes;GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS.1980-1995;ORTHOIMAGERY.ORTHOPHOTOS.1980-1995;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO;ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS2000-2005;ORTHOIMAGERY.ORTHOPHOTOS2000-2005;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS2006-2010;ORTHOIMAGERY.ORTHOPHOTOS2006-2010;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;ORTHOIMAGERY.ORTHOPHOTOS2011-2015;ORTHOIMAGERY.ORTHOPHOTOS2011-2015;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;SCAN 25® IGN;SCAN25TOUR_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;SCAN 100® IGN;SCAN100_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;TRANSPORTS.DRONES.RESTRICTIONS;TRANSPORTS.DRONES.RESTRICTIONS;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;fond_carto_alti_aquitaine;fond_carto_alti_aquitaine;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;fond_carto_alti_limousin;fond_carto_alti_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;cartes;fond_carto_alti_pc;fond_carto_alti_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WFS;Culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
+WFS;Agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
+WFS;Agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 23;agriculture:rpg_2021_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 24;agriculture:rpg_2021_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 33;agriculture:rpg_2021_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 40;agriculture:rpg_2021_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 47;agriculture:rpg_2021_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 64;agriculture:rpg_2021_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
+WFS;Administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
+WFS;Administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;Administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
+WFS;Administratif;EPCI;administratif:epci;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
+WFS;Hydrographie;Bassins hydrographiques (BD Topage);hydrographie:bd_topage_bassin_hydrographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Bassins versants hydrographiques (BD Topage);hydrographie:bd_topage_bv_topographique;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Cours d'eau (BD Topage);hydrographie:bd_topage_cours_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Plans d'eau (BD Topage);hydrographie:bd_topage_plan_eau;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Hydrographie;Surfaces élementaires (BD Topage);hydrographie:bd_topage_surface_elementaire;https://opendata.cen-nouvelle-aquitaine.org/hydrographie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;OFB / IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 16);occsol:bdforet_v2_16;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 17);occsol:bdforet_v2_17;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 19);occsol:bdforet_v2_19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 23);occsol:bdforet_v2_23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 24);occsol:bdforet_v2_24;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 33);occsol:bdforet_v2_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 40);occsol:bdforet_v2_40;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 47);occsol:bdforet_v2_47;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 64);occsol:bdforet_v2_64;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 79);occsol:bdforet_v2_79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 86);occsol:bdforet_v2_86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;BD Forêt V2 (département 87);occsol:bdforet_v2_87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Occupation du sol;OCS PIGMA 2020 (département 19);occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;OCS PIGMA 2020 (département 23);occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Paysage;Inventaire paysage (ex Poitou-Charentes);paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Paysage;Secteurs paysagers (Nouvelle-Aquitaine);paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Paysage;Sites classés;paysages:sites_classes;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Paysage;Sites inscrits;paysages:sites_inscrits;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Paysage;Vallées principales Nouvelle-Aquitaine;paysages:vallees_principales_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;FoncierCEN;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 64);fonciercen:parcelles_af_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 47);fonciercen:parcelles_af_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 40);fonciercen:parcelles_af_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 33);fonciercen:parcelles_af_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 23);fonciercen:parcelles_af_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 24);fonciercen:parcelles_af_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
+WFS;FoncierCEN;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
+WFS;FoncierCEN;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;aire_fonciere_cenna;fonciercen:aire_fonciere_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises commune;MESURES_COMPENSATOIRES:emprises_commune;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
+WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_linéaires;MESURES_COMPENSATOIRES:emprises_lineaires;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
+WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
+WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_ponctuelles;MESURES_COMPENSATOIRES:emprises_ponctuelles;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Carte de l'état-major 1 : 40 000 (1820-1866);GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Plan IGN;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN 1000®;SCAN1000_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN 50® 1950;GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN50.1950;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN Départemental®;SCANDEP_PYR-JPEG_FXX_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN Régional®;SCANREG_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Occupation du sol;Corine Land Cover 2018 - France Métropolitaine ;LANDCOVER.CLC18_FR;https://wxs.ign.fr/clc/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;BD ORTHO®;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;BD ORTHO® (Infrarouge);ORTHOIMAGERY.ORTHOPHOTOS.IRC;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;BD ORTHO® 1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2000;ORTHOIMAGERY.ORTHOPHOTOS2000;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2001;ORTHOIMAGERY.ORTHOPHOTOS2001;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2002;ORTHOIMAGERY.ORTHOPHOTOS2002;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2003;ORTHOIMAGERY.ORTHOPHOTOS2003;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2004;ORTHOIMAGERY.ORTHOPHOTOS2004;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2005;ORTHOIMAGERY.ORTHOPHOTOS2005;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2006;ORTHOIMAGERY.ORTHOPHOTOS2006;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2007;ORTHOIMAGERY.ORTHOPHOTOS2007;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2008;ORTHOIMAGERY.ORTHOPHOTOS2008;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2009;ORTHOIMAGERY.ORTHOPHOTOS2009;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2010;ORTHOIMAGERY.ORTHOPHOTOS2010;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2011;ORTHOIMAGERY.ORTHOPHOTOS2011;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2012;ORTHOIMAGERY.ORTHOPHOTOS2012;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2013;ORTHOIMAGERY.ORTHOPHOTOS2013;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2014;ORTHOIMAGERY.ORTHOPHOTOS2014;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2015;ORTHOIMAGERY.ORTHOPHOTOS2015;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2016;ORTHOIMAGERY.ORTHOPHOTOS2016;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2017;ORTHOIMAGERY.ORTHOPHOTOS2017;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2018;ORTHOIMAGERY.ORTHOPHOTOS2018;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Photographies aériennes 2019;ORTHOIMAGERY.ORTHOPHOTOS2019;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Pléiades 2021 (Satelitte);ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Pléiades 2022 (Satelitte);ORTHOIMAGERY.ORTHO-SAT.PLEIADES.2022;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SPOT 2020 (Satelitte);ORTHOIMAGERY.ORTHO-SAT.SPOT.2020;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SPOT 2021 (Satelitte);ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Réglementation drone;Zones interdites à la prise de vue aérienne;ORTHOIMAGERY.ORTHOPHOS.RESTRICTEDAREAS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Réglementation drone;Restrictions pour drones de loisir;TRANSPORTS.DRONES.RESTRICTIONS;https://wxs.ign.fr/transports/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Réglementation drone;OACI-VFR;SCANOACI_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Administratif;Strates administratives Nouvelle-Aquitaine ;foncier_agg;https://opendata.cen-nouvelle-aquitaine.org/administratif/wms;IGN;
+WMS Raster;Fonds cartos;SCAN 25® IGN;SCAN25TOUR_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN 100® IGN;SCAN100_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;TRANSPORTS.DRONES.RESTRICTIONS;TRANSPORTS.DRONES.RESTRICTIONS;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Fond carto altimétrie Aquitain;fond_carto_alti_aquitaine;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Fond carto altimétrie Limousin;fond_carto_alti_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;Fond carto altimétrie Poitou-Charentes;fond_carto_alti_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;orthohisto;87039_chateau_chervix_1989;87039_chateau_chervix_1989;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;CEN NA;
 WMS Raster;orthohisto;87039_chateau_chervix_1998;87039_chateau_chervix_1998;https://opendata.cen-nouvelle-aquitaine.org/photos_historiques/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;CEN NA;
-WMS Raster;drone;AGG_TMM;AGG_TMM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;16-014_Brandes_de_Soyaux_2020-05;16-014_Brandes_de_Soyaux_2020-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;17IMERIS_Grand-Champ_2022-01;17IMERIS_Grand-Champ_2022-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;19PTOR_MNS_filtre_futurs_travaux_2021-10_L93;19PTOR_MNS_filtre_futurs_travaux_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;19PTOR_MNS_filtre_travaux_realises_2021-10_L93;19PTOR_MNS_filtre_travaux_realises_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;19PTOR_ortho_2021-10_L93;19PTOR_ortho_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;23CELI_marais_du_chancelier_2022_03_24;23CELI_marais_du_chancelier_2022_03_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;23CLAM_Rocher_de_Clamouzat_2020-11;23CLAM_Rocher_de_Clamouzat_2020-11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;23DIAB_lande_du_pont_du_diable_nord_2021-10_L93;23DIAB_lande_du_pont_du_diable_nord_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;23DIAB_lande_du_pont_du_diable_sud_2021-10_L93;23DIAB_lande_du_pont_du_diable_sud_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;23LAND_RNN_etang_des_landes_2020-08_L93;23LAND_RNN_etang_des_landes_2020-08_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;33_Lagune-108-2021-08;33_Lagune-108-2021-08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;79BLVI_Blanchère-de-Viennay_2021-10;79BLVI_Blanchère-de-Viennay_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;79VGAT_Vallée-du-Gâteau_Pressigny_2020-02;79VGAT_Vallée-du-Gâteau_Pressigny_2020-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;79VGAT_Vallée-du-Gâteau_Pressigny_2021-10;79VGAT_Vallée-du-Gâteau_Pressigny_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;86-001_TMM_CA-CD_2020-07;86-001_TMM_CA-CD_2020-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;86-500_Clain-sud_Etang-du-Pin;86-500_Clain-sud_Etang-du-Pin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;86_AT_Chalandray_2021-10;86_AT_Chalandray_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;87CREN_siege_saint_gence_2021-09;87CREN_siege_saint_gence_2021-09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;87GRLA_grandes_landes_2021-09-24;87GRLA_grandes_landes_2021-09-24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;87SANA_sanadie_2021-09-24;87SANA_sanadie_2021-09-24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_16_030_Prairies_de_Vouharte_2019_09;a_16_030_Prairies_de_Vouharte_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_17_474_Estauaire_de_la_Gironde_Les_Pr_s_de_la_Rouille_2019_08;a_17_474_Estauaire_de_la_Gironde_Les_Pr_s_de_la_Rouille_2019_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_17_474_Estauaire_de_la_Gironde_Moulin_Rompu_2019_08;a_17_474_Estauaire_de_la_Gironde_Moulin_Rompu_2019_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_17_474_Estuaire_de_la_Gironde_Zone_Humide_de_la_Motte_Ronde_2021_04;a_17_474_Estuaire_de_la_Gironde_Zone_Humide_de_la_Motte_Ronde_2021_04;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_17_IMERIS_Carriere_du_Planton_2021_08_12;a_17_IMERIS_Carriere_du_Planton_2021_08_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_17_LGV_Ragouillis_2021_08_12;a_17_LGV_Ragouillis_2021_08_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_33_Lagune_058_2021_08;a_33_Lagune_058_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_33_Lagune_070_2021_08;a_33_Lagune_070_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_33_Lagune_094_2021_08;a_33_Lagune_094_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_33_Lagune_162_2021_08;a_33_Lagune_162_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_33_Lagune_165_2021_08;a_33_Lagune_165_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_33_Lagunes_207_208_209_2021_08;a_33_Lagunes_207_208_209_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_001_Clussais_la_Pommeraie_2020_11;a_79_001_Clussais_la_Pommeraie_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_008_Landes_de_L_Hopiteau_2019_09;a_79_008_Landes_de_L_Hopiteau_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_020_Bessines_1_avant_travaux_2019_10;a_79_020_Bessines_1_avant_travaux_2019_10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_020_Bessines_2_pendant_travaux_2019_11;a_79_020_Bessines_2_pendant_travaux_2019_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_020_Bessines_3_apres_travaux_2020_12;a_79_020_Bessines_3_apres_travaux_2020_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_044_Carriere_des_Landes_2020_09;a_79_044_Carriere_des_Landes_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_AT_Vernoux_en_Gatine_2020_09;a_79_AT_Vernoux_en_Gatine_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_79_Sources_de_la_Sevre_Niortaise_Pierre_levee_2020_09;a_79_Sources_de_la_Sevre_Niortaise_Pierre_levee_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AA_2020_06;a_86_001_TMM_AA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AB_2020_06;a_86_001_TMM_AB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AC_2020_06;a_86_001_TMM_AC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AD_2020_06;a_86_001_TMM_AD_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AE_2020_06;a_86_001_TMM_AE_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AF_2020_06;a_86_001_TMM_AF_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_AG_2020_07;a_86_001_TMM_AG_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_BA_2020_06;a_86_001_TMM_BA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_BB_2020_06;a_86_001_TMM_BB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_BC_2020_06;a_86_001_TMM_BC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_BD_2020_06;a_86_001_TMM_BD_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_BE_2020_07;a_86_001_TMM_BE_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_BF_2021_06;a_86_001_TMM_BF_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_CB_2020_07;a_86_001_TMM_CB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_CC_2020_07;a_86_001_TMM_CC_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_CC_2021_06;a_86_001_TMM_CC_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_CD_2021_06;a_86_001_TMM_CD_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_CE_2020_07;a_86_001_TMM_CE_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_CF_2020_09;a_86_001_TMM_CF_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_DA_2020_07;a_86_001_TMM_DA_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_DB_2020_09;a_86_001_TMM_DB_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_DC_2021_06;a_86_001_TMM_DC_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_EA_2020_06;a_86_001_TMM_EA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_EB_2020_06;a_86_001_TMM_EB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_EC_2020_06;a_86_001_TMM_EC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_FA_2020_06;a_86_001_TMM_FA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_FB_2020_07;a_86_001_TMM_FB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_FC_2020_07;a_86_001_TMM_FC_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_FC_2021_06;a_86_001_TMM_FC_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_HA_2020_09;a_86_001_TMM_HA_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_IA_2020_06;a_86_001_TMM_IA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_IB_2020_06;a_86_001_TMM_IB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_IC_2020_06;a_86_001_TMM_IC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_JA_2020_07;a_86_001_TMM_JA_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_JB_2020_07;a_86_001_TMM_JB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_JC_2020_07;a_86_001_TMM_JC_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_JE_2020_07;a_86_001_TMM_JE_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_KA_2020_07;a_86_001_TMM_KA_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_001_TMM_KB_2020_07;a_86_001_TMM_KB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_003_Falunieres_de_Moulin_Pochas_2019_09;a_86_003_Falunieres_de_Moulin_Pochas_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_006_Landes_et_pelouses_de_Lussac_Sillars_2019_08;a_86_006_Landes_et_pelouses_de_Lussac_Sillars_2019_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_011_Landes_de_Sainte_Marie_2019_09;a_86_011_Landes_de_Sainte_Marie_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_025_Marais_des_Ragouillis_2020_11;a_86_025_Marais_des_Ragouillis_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_025_Marais_des_Ragouillis_2021_02;a_86_025_Marais_des_Ragouillis_2021_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_026_Etangs_Baro_2019_09;a_86_026_Etangs_Baro_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_029_Vallee_de_la_Longere_2019_09;a_86_029_Vallee_de_la_Longere_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_037_Tourbiere_des_Regeasses_2021_06;a_86_037_Tourbiere_des_Regeasses_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2019_09;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2020_12;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2020_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_052_Fontaine_le_Comte_nord_2020_11;a_86_052_Fontaine_le_Comte_nord_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_052_Fontaine_le_Comte_sud_2020_11;a_86_052_Fontaine_le_Comte_sud_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_054_Vallee_de_la_Vonne_2020_11;a_86_054_Vallee_de_la_Vonne_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_058_Carriere_de_Puy_Herve_2021_02_09;a_86_058_Carriere_de_Puy_Herve_2021_02_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_058_Carriere_de_Puy_Herve_2021_02_25;a_86_058_Carriere_de_Puy_Herve_2021_02_25;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_060_Bocage_de_la_Geoffronniere_2020_11;a_86_060_Bocage_de_la_Geoffronniere_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;a_86_Le_Cormier_2021_05;a_86_Le_Cormier_2021_05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
-WMS Raster;drone;17CHSB_Chaumes-de-Sèchebec_2022-05;17CHSB_Chaumes-de-Sèchebec_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17CSPR_Court-si-Peu-Les-Roches_2022-05;17CSPR_Court-si-Peu-Les-Roches_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17IMERIS_Grande-Nauve_C_2022-06;17IMERIS_Grande-Nauve_C_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17IMERIS_La-Vergne_A_2022-06;17IMERIS_La-Vergne_A_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17IMERIS_La-Vergne_B1_2022-06;17IMERIS_La-Vergne_B1_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17IMERIS_La-Vergne_B2_2022-06;17IMERIS_La-Vergne_B2_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-1_2022-02;17LDMT_Landes-de-Montendre-1_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-2_2022-02;17LDMT_Landes-de-Montendre-2_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-3_2022-02;17LDMT_Landes-de-Montendre-3_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-4_2022-02;17LDMT_Landes-de-Montendre-4_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-5_2022-02;17LDMT_Landes-de-Montendre-5_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-Calcia-1_2022-02;17LDMT_Landes-de-Montendre-Calcia-1_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;17LDMT_Landes-de-Montendre-Calcia-2_2022-02;17LDMT_Landes-de-Montendre-Calcia-2_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;79VCPE_Vallée-et-Coteaux-du-Puits-d'Enfer_2022-05;79VCPE_Vallée-et-Coteaux-du-Puits-d'Enfer_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;79WPD_Croix-Maran_2022-07;79WPD_Croix-Maran_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;79WPD_La-Villédé-Nord-ZT-029_2022-07;79WPD_La-Villédé-Nord-ZT-029_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;79WPD_La-Villédé-Nord-ZT-035_2022-07;79WPD_La-Villédé-Nord-ZT-035_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;79WPD_La-Villédé-Nord_2022-07;79WPD_La-Villédé-Nord_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;19VIET_vietheil_lande_2022-08-01;19VIET_vietheil_lande_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;19VIET_vietheil_tourbiere_2022-08-01;19VIET_vietheil_tourbiere_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;87LARD_ZH_lardimalie_2022_10_20;87LARD_ZH_lardimalie_2022_10_20;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;87MONT_ZH_grand_monteil_2022_10_20;87MONT_ZH_grand_monteil_2022_10_20;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;19OUSS_coupe_etang_oussines_2022_09_27;19OUSS_coupe_etang_oussines_2022_09_27;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WMS Raster;drone;16GOIR_ZH_du_Goire_2022_04_02;16GOIR_ZH_du_Goire_2022_04_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
-WFS;perimetres_ecologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
-WFS;perimetres_ecologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Parcs naturels marins;Parc_naturel_marin;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Parcs naturels régionaux;Parcs_naturels_regionaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Réserves naturelles Nationales;Reserves_naturelles_nationales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Réserves naturelles Régionales;Reserves_naturelles_regionales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Sites d'importance communautaire;Sites_d_importance_communautaire;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Sites d'importance communautaire JOUE (ZSC,SIC);Sites_d_importance_communautaire_JOUE__ZSC_SIC_;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;ZNIEFF de type 1;Znieff1;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;ZNIEFF de type 2;Znieff2;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Zones Importantes pour la Conservation des Oiseaux;ZICO;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
-WFS;perimetres_ecologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
-WFS;perimetres_ecologiques;Réserves Nationales de Chasse et de Faune Sauvage;Reserves_nationales_de_chasse_et_faune_sauvage;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
-WFS;perimetres_ecologiques;Réserves de Biosphère;Reserves_de_la_biosphere;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Réserves biologiques;Reserves_biologiques;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Arretés de protection d'habitats naturels;Arretes_de_protection_d_habitats_naturels;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Inventaire National du Patrimoine Géologique;INPG;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Sites Ramsar;Sites_Ramsar;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Terrains du Conservatoire de Littoral;Terrains_du_Conservatoire_du_Littoral;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;perimetres_ecologiques;Terrains gérés par les Conservatoires d'espaces naturels;CEN_MU;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WMS Raster;geologie;IDPR - Indice de Développement et de Persistance des Réseaux;IDPR;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;GéoServices : géologie, hydrogéologie et gravimétrie;GEOSERVICES_GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Carte d'assemblage des cartes géologiques au 1/50 000e;SCAN_F_GEOL50_CATALOG;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Carte d'assemblage des cartes géologiques au 1/250 000e;SCAN_F_GEOL250_CATALOG;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Carte géologique 50 000e - harmonisé;SCAN_H_GEOL50;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Carte géologique 50 000e - MNT harmonisé;SCAN_H_RELIEF_GEOL50;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Carte lithologique simplifiée au 1/1 000 000;LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
-WFS;geologie;Carte lithologique simplifiée au 1/1 000 000;ms:LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Ouvrages de la banque du sous-sol;BSS;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Référentiel des points d'eau BSS EAU;BSS_EAU;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Référentiel des points d'eau BSS EAU - Points d'eau avec des mesures de niveau d'eau;BSS_EAU_QT;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Bases gravimétriques;GRAVI_BASE;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Stations gravimétriques;GRAVI_STATION;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Campagnes aéro-magnétiques;AEROMAG_CAMPAGNE;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Cartes géologiques;GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Base géologie marine;BGM;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Gisements, gîtes, indices;GITES;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;geologie;Mines;MINES;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;risques;Services cartographiques de diffusion des données GéoRisques;GEORISQUES_SERVICES;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Cavités souterraines abandonnées d'origine non minière;CAVITE_LOCALISEE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Mouvements de Terrain;MVT_LOCALISE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Séismes historiques potentiellement ressentis;SIS_INTENSITE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sismicité - Intensité interpolée maximale possiblement ressentie par communes;SIS_INTENSITE_MAXCOM;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sismicité - Intensité interpolée - Nombre d'évènements par communes;SIS_INTENSITE_EVTCOM;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sismicité - Nombre d'évenements par communes (Intensités interpolées);SIS_INTENSITE_EVT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sismicité - Nombre d'évenements par communes (Intensités interpolées);SIS_INTENSITE_NBEVT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sismicité - Intensité interpolée - Nombre d'évènements par communes;SIS_INTENSITE_NBEVTCOM;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Installations classées;INSTALLATIONS_CLASSEES_SIMPLIFIE;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Etablissements Pollueurs;ETABLISSEMENTS_POLLUEURS;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR naturel;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Avalanche approuvé;PPRN_COMMUNE_AVALANCHE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Avalanche prescrit;PPRN_COMMUNE_AVALANCHE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Phénomènes météorologiques approuvé;PPRN_COMMUNE_ATMOS_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Phénomènes météorologiques prescrit;PPRN_COMMUNE_ATMOS_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Inondation approuvé;PPRN_COMMUNE_RISQINOND_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Inondation prescrit;PPRN_COMMUNE_RISQINOND_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Inondation par sumersion marine approuvé;PPRN_COMMUNE_SUBMAR_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Inondation par sumersion marine prescrit;PPRN_COMMUNE_SUBMAR_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Feu de forêt approuvé;PPRN_COMMUNE_FEU_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Feu de forêt prescrit;PPRN_COMMUNE_FEU_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Mouvement de terrain approuvé;PPRN_COMMUNE_MVT_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Mouvement de terrain prescrit;PPRN_COMMUNE_MVT_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) approuvé;PPRN_COMMUNE_CAVITE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) prescrit;PPRN_COMMUNE_CAVITE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) approuvé;PPRN_COMMUNE_ARGILE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) prescrit;PPRN_COMMUNE_ARGILE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Séisme approuvé;PPRN_COMMUNE_SEISME_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Séisme prescrit;PPRN_COMMUNE_SEISME_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Eruption volcanique approuvé;PPRN_COMMUNE_VOLCAN_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Eruption volcanique prescrit;PPRN_COMMUNE_VOLCAN_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR technologiques;PPRT_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Risque industriel approuvé;PPRT_COMMUNE_RISQIND_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Communes concernées par un PPR Risque industriel prescrit;PPRT_COMMUNE_RISQIND_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Limites de commune concernée par un TRI - France métropolitaine - Rapportage 2020;COMMUNE_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Réseaux - France métropolitaine - Rapportage 2020;ENJEUX_RESEAUX_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Etablissements sensibles - France métropolitaine - Rapportage 2020;ENJEUX_ETS_SENSIBLES_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Limite de zones de protection naturelle - France métropolitaine - Rapportage 2020;ENJEUX_ZONENATURELLE_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Etablissements classés IED - France métropolitaine - Rapportage 2020;ENJEUX_IED_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Patrimoine culturel - France métropolitaine - Rapportage 2020;ENJEUX_CULT_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Station d'épuration supérieure à 2000 Equivalent Habitant - France métropolitaine - Rapportage 2020;ENJEUX_STEP_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Surface inondable - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Hauteurs d'eau - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Ouvrage de protection - France métropolitaine - Rapportage 2020;OUV_PROTECTION_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zones soustraites à l'aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSSINOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zones de sur-aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSALEA_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètre de TRI - France métropolitaine - Rapportage 2020;LIMITETRI_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;PPR Inondation - France métropolitaine;PPRN_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Inondation - France métropolitaine;PPRN_PERIMETRE_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Littoraux - France métropolitaine;PPRN_PERIMETRE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Inondation - France métropolitaine;PPRN_ZONE_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR littoraux - France métropolitaine;PPRN_ZONE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;PPR Mouvement de terrain - France métropolitaine;PPRN_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Mouvement de terrain - France métropolitaine;PPRN_PERIMETRE_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_PERIMETRE_CAV_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_PERIMETRE_TSD_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Mouvement de terrain - France métropolitaine;PPRN_ZONE_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_ZONE_CAV_FXX_01;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_ZONE_CAV_FXX_02;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;PPR Séisme - France métropolitaine;PPRN_SEISME_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Séisme - France métropolitaine;PPRN_PERIMETRE_SEISME_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Séisme - France métropolitaine;PPRN_ZONE_SEISME_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;PPR Avalanche - France métropolitaine;PPRN_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Avalanche - France métropolitaine;PPRN_PERIMETRE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Avalanche - France métropolitaine;PPRN_ZONE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;PPR Feu de forêt - France métropolitaine;PPRN_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Périmètres des PPR Feu de forêt - France métropolitaine;PPRN_PERIMETRE_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Zonage réglementaire des PPR Feu de forêt - France métropolitaine;PPRN_ZONE_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Canalisations de transport de matières dangereuses : Gaz; Hydrocarbures;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Canalisations de transport de matières dangereuses : Gaz naturel;C_GAZ;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Canalisations de transport de matières dangereuses : Hydrocarbures;C_HYDROCARBURES;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Canalisations de transport de matières dangereuses : Produits chimiques;C_PRODUITS_CHIM;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIFICATION_SIS;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Secteur d'Information sur les Sols (SIS) - Etat d'avancement par département;ETAT_SIS;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Servitudes d'utilité publique (SUP);SSP_CLASSIFICATION_SUP;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Anciens sites industriels et activités de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Potentiel radon à la commune;RADON;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Carte nationale des remontées de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
-WMS Raster;fonds_carto;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
+WMS Raster;Drone;AGG_TMM;AGG_TMM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;16-014_Brandes_de_Soyaux_2020-05;16-014_Brandes_de_Soyaux_2020-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;17IMERIS_Grand-Champ_2022-01;17IMERIS_Grand-Champ_2022-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;19PTOR_MNS_filtre_futurs_travaux_2021-10_L93;19PTOR_MNS_filtre_futurs_travaux_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;19PTOR_MNS_filtre_travaux_realises_2021-10_L93;19PTOR_MNS_filtre_travaux_realises_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;19PTOR_ortho_2021-10_L93;19PTOR_ortho_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;23CELI_marais_du_chancelier_2022_03_24;23CELI_marais_du_chancelier_2022_03_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;23CLAM_Rocher_de_Clamouzat_2020-11;23CLAM_Rocher_de_Clamouzat_2020-11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;23DIAB_lande_du_pont_du_diable_nord_2021-10_L93;23DIAB_lande_du_pont_du_diable_nord_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;23DIAB_lande_du_pont_du_diable_sud_2021-10_L93;23DIAB_lande_du_pont_du_diable_sud_2021-10_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;23LAND_RNN_etang_des_landes_2020-08_L93;23LAND_RNN_etang_des_landes_2020-08_L93;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;33_Lagune-108-2021-08;33_Lagune-108-2021-08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;79BLVI_Blanchère-de-Viennay_2021-10;79BLVI_Blanchère-de-Viennay_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;79VGAT_Vallée-du-Gâteau_Pressigny_2020-02;79VGAT_Vallée-du-Gâteau_Pressigny_2020-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;79VGAT_Vallée-du-Gâteau_Pressigny_2021-10;79VGAT_Vallée-du-Gâteau_Pressigny_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;86-001_TMM_CA-CD_2020-07;86-001_TMM_CA-CD_2020-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;86-500_Clain-sud_Etang-du-Pin;86-500_Clain-sud_Etang-du-Pin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;86_AT_Chalandray_2021-10;86_AT_Chalandray_2021-10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;87CREN_siege_saint_gence_2021-09;87CREN_siege_saint_gence_2021-09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;87GRLA_grandes_landes_2021-09-24;87GRLA_grandes_landes_2021-09-24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;87SANA_sanadie_2021-09-24;87SANA_sanadie_2021-09-24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_16_030_Prairies_de_Vouharte_2019_09;a_16_030_Prairies_de_Vouharte_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_17_474_Estauaire_de_la_Gironde_Les_Pr_s_de_la_Rouille_2019_08;a_17_474_Estauaire_de_la_Gironde_Les_Pr_s_de_la_Rouille_2019_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_17_474_Estauaire_de_la_Gironde_Moulin_Rompu_2019_08;a_17_474_Estauaire_de_la_Gironde_Moulin_Rompu_2019_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_17_474_Estuaire_de_la_Gironde_Zone_Humide_de_la_Motte_Ronde_2021_04;a_17_474_Estuaire_de_la_Gironde_Zone_Humide_de_la_Motte_Ronde_2021_04;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_17_IMERIS_Carriere_du_Planton_2021_08_12;a_17_IMERIS_Carriere_du_Planton_2021_08_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_17_LGV_Ragouillis_2021_08_12;a_17_LGV_Ragouillis_2021_08_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_33_Lagune_058_2021_08;a_33_Lagune_058_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_33_Lagune_070_2021_08;a_33_Lagune_070_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_33_Lagune_094_2021_08;a_33_Lagune_094_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_33_Lagune_162_2021_08;a_33_Lagune_162_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_33_Lagune_165_2021_08;a_33_Lagune_165_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_33_Lagunes_207_208_209_2021_08;a_33_Lagunes_207_208_209_2021_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_001_Clussais_la_Pommeraie_2020_11;a_79_001_Clussais_la_Pommeraie_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_008_Landes_de_L_Hopiteau_2019_09;a_79_008_Landes_de_L_Hopiteau_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_020_Bessines_1_avant_travaux_2019_10;a_79_020_Bessines_1_avant_travaux_2019_10;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_020_Bessines_2_pendant_travaux_2019_11;a_79_020_Bessines_2_pendant_travaux_2019_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_020_Bessines_3_apres_travaux_2020_12;a_79_020_Bessines_3_apres_travaux_2020_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_044_Carriere_des_Landes_2020_09;a_79_044_Carriere_des_Landes_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_AT_Vernoux_en_Gatine_2020_09;a_79_AT_Vernoux_en_Gatine_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_79_Sources_de_la_Sevre_Niortaise_Pierre_levee_2020_09;a_79_Sources_de_la_Sevre_Niortaise_Pierre_levee_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AA_2020_06;a_86_001_TMM_AA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AB_2020_06;a_86_001_TMM_AB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AC_2020_06;a_86_001_TMM_AC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AD_2020_06;a_86_001_TMM_AD_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AE_2020_06;a_86_001_TMM_AE_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AF_2020_06;a_86_001_TMM_AF_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_AG_2020_07;a_86_001_TMM_AG_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_BA_2020_06;a_86_001_TMM_BA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_BB_2020_06;a_86_001_TMM_BB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_BC_2020_06;a_86_001_TMM_BC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_BD_2020_06;a_86_001_TMM_BD_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_BE_2020_07;a_86_001_TMM_BE_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_BF_2021_06;a_86_001_TMM_BF_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_CB_2020_07;a_86_001_TMM_CB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_CC_2020_07;a_86_001_TMM_CC_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_CC_2021_06;a_86_001_TMM_CC_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_CD_2021_06;a_86_001_TMM_CD_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_CE_2020_07;a_86_001_TMM_CE_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_CF_2020_09;a_86_001_TMM_CF_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_DA_2020_07;a_86_001_TMM_DA_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_DB_2020_09;a_86_001_TMM_DB_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_DC_2021_06;a_86_001_TMM_DC_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_EA_2020_06;a_86_001_TMM_EA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_EB_2020_06;a_86_001_TMM_EB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_EC_2020_06;a_86_001_TMM_EC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_FA_2020_06;a_86_001_TMM_FA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_FB_2020_07;a_86_001_TMM_FB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_FC_2020_07;a_86_001_TMM_FC_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_FC_2021_06;a_86_001_TMM_FC_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_HA_2020_09;a_86_001_TMM_HA_2020_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_IA_2020_06;a_86_001_TMM_IA_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_IB_2020_06;a_86_001_TMM_IB_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_IC_2020_06;a_86_001_TMM_IC_2020_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_JA_2020_07;a_86_001_TMM_JA_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_JB_2020_07;a_86_001_TMM_JB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_JC_2020_07;a_86_001_TMM_JC_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_JE_2020_07;a_86_001_TMM_JE_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_KA_2020_07;a_86_001_TMM_KA_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_001_TMM_KB_2020_07;a_86_001_TMM_KB_2020_07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_003_Falunieres_de_Moulin_Pochas_2019_09;a_86_003_Falunieres_de_Moulin_Pochas_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_006_Landes_et_pelouses_de_Lussac_Sillars_2019_08;a_86_006_Landes_et_pelouses_de_Lussac_Sillars_2019_08;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_011_Landes_de_Sainte_Marie_2019_09;a_86_011_Landes_de_Sainte_Marie_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_025_Marais_des_Ragouillis_2020_11;a_86_025_Marais_des_Ragouillis_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_025_Marais_des_Ragouillis_2021_02;a_86_025_Marais_des_Ragouillis_2021_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_026_Etangs_Baro_2019_09;a_86_026_Etangs_Baro_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_029_Vallee_de_la_Longere_2019_09;a_86_029_Vallee_de_la_Longere_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_037_Tourbiere_des_Regeasses_2021_06;a_86_037_Tourbiere_des_Regeasses_2021_06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2019_09;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2019_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2020_12;a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2020_12;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_052_Fontaine_le_Comte_nord_2020_11;a_86_052_Fontaine_le_Comte_nord_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_052_Fontaine_le_Comte_sud_2020_11;a_86_052_Fontaine_le_Comte_sud_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_054_Vallee_de_la_Vonne_2020_11;a_86_054_Vallee_de_la_Vonne_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_058_Carriere_de_Puy_Herve_2021_02_09;a_86_058_Carriere_de_Puy_Herve_2021_02_09;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_058_Carriere_de_Puy_Herve_2021_02_25;a_86_058_Carriere_de_Puy_Herve_2021_02_25;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_060_Bocage_de_la_Geoffronniere_2020_11;a_86_060_Bocage_de_la_Geoffronniere_2020_11;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;a_86_Le_Cormier_2021_05;a_86_Le_Cormier_2021_05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms;CEN NA;
+WMS Raster;Drone;17CHSB_Chaumes-de-Sèchebec_2022-05;17CHSB_Chaumes-de-Sèchebec_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17CSPR_Court-si-Peu-Les-Roches_2022-05;17CSPR_Court-si-Peu-Les-Roches_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17IMERIS_Grande-Nauve_C_2022-06;17IMERIS_Grande-Nauve_C_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17IMERIS_La-Vergne_A_2022-06;17IMERIS_La-Vergne_A_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17IMERIS_La-Vergne_B1_2022-06;17IMERIS_La-Vergne_B1_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17IMERIS_La-Vergne_B2_2022-06;17IMERIS_La-Vergne_B2_2022-06;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-1_2022-02;17LDMT_Landes-de-Montendre-1_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-2_2022-02;17LDMT_Landes-de-Montendre-2_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-3_2022-02;17LDMT_Landes-de-Montendre-3_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-4_2022-02;17LDMT_Landes-de-Montendre-4_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-5_2022-02;17LDMT_Landes-de-Montendre-5_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-Calcia-1_2022-02;17LDMT_Landes-de-Montendre-Calcia-1_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;17LDMT_Landes-de-Montendre-Calcia-2_2022-02;17LDMT_Landes-de-Montendre-Calcia-2_2022-02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;79VCPE_Vallée-et-Coteaux-du-Puits-d'Enfer_2022-05;79VCPE_Vallée-et-Coteaux-du-Puits-d'Enfer_2022-05;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;79WPD_Croix-Maran_2022-07;79WPD_Croix-Maran_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;79WPD_La-Villédé-Nord-ZT-029_2022-07;79WPD_La-Villédé-Nord-ZT-029_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;79WPD_La-Villédé-Nord-ZT-035_2022-07;79WPD_La-Villédé-Nord-ZT-035_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;79WPD_La-Villédé-Nord_2022-07;79WPD_La-Villédé-Nord_2022-07;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;86VLCL_Val-de-Clouère_Étang-du-Pin_2022-03;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;19VIET_vietheil_lande_2022-08-01;19VIET_vietheil_lande_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;19VIET_vietheil_tourbiere_2022-08-01;19VIET_vietheil_tourbiere_2022-08-01;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;87LARD_ZH_lardimalie_2022_10_20;87LARD_ZH_lardimalie_2022_10_20;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;87MONT_ZH_grand_monteil_2022_10_20;87MONT_ZH_grand_monteil_2022_10_20;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;19OUSS_coupe_etang_oussines_2022_09_27;19OUSS_coupe_etang_oussines_2022_09_27;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WMS Raster;Drone;16GOIR_ZH_du_Goire_2022_04_02;16GOIR_ZH_du_Goire_2022_04_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
+WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
+WFS;Périmètres écologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Parcs naturels marins;Parc_naturel_marin;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Parcs naturels régionaux;Parcs_naturels_regionaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Réserves naturelles Nationales;Reserves_naturelles_nationales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Réserves naturelles Régionales;Reserves_naturelles_regionales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Sites d'importance communautaire;Sites_d_importance_communautaire;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Sites d'importance communautaire JOUE (ZSC,SIC);Sites_d_importance_communautaire_JOUE__ZSC_SIC_;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;ZNIEFF de type 1;Znieff1;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;ZNIEFF de type 2;Znieff2;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Zones Importantes pour la Conservation des Oiseaux;ZICO;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
+WFS;Périmètres écologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
+WFS;Périmètres écologiques;Réserves Nationales de Chasse et de Faune Sauvage;Reserves_nationales_de_chasse_et_faune_sauvage;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
+WFS;Périmètres écologiques;Réserves de Biosphère;Reserves_de_la_biosphere;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Réserves biologiques;Reserves_biologiques;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Arretés de protection d'habitats naturels;Arretes_de_protection_d_habitats_naturels;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Inventaire National du Patrimoine Géologique;INPG;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Sites Ramsar;Sites_Ramsar;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Terrains du Conservatoire de Littoral;Terrains_du_Conservatoire_du_Littoral;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Terrains gérés par les Conservatoires d'espaces naturels;CEN_MU;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WMS Raster;Géologie;IDPR - Indice de Développement et de Persistance des Réseaux;IDPR;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;GéoServices : géologie, hydrogéologie et gravimétrie;GEOSERVICES_GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Carte lithologique simplifiée au 1/1 000 000;LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Ouvrages de la banque du sous-sol;BSS;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Référentiel des points d'eau BSS EAU;BSS_EAU;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Référentiel des points d'eau BSS EAU - Points d'eau avec des mesures de niveau d'eau;BSS_EAU_QT;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Bases gravimétriques;GRAVI_BASE;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Stations gravimétriques;GRAVI_STATION;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Campagnes aéro-magnétiques;AEROMAG_CAMPAGNE;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Cartes géologiques;GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Base géologie marine;BGM;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Gisements, gîtes, indices;GITES;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Géologie;Mines;MINES;http://geoservices.brgm.fr/geologie;BRGM;
+WMS Raster;Risques;Services cartographiques de diffusion des données GéoRisques;GEORISQUES_SERVICES;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Cavités souterraines abandonnées d'origine non minière;CAVITE_LOCALISEE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Mouvements de Terrain;MVT_LOCALISE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Séismes historiques potentiellement ressentis;SIS_INTENSITE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Installations classées;INSTALLATIONS_CLASSEES_SIMPLIFIE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Etablissements Pollueurs;ETABLISSEMENTS_POLLUEURS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR naturel;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Avalanche approuvé;PPRN_COMMUNE_AVALANCHE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Avalanche prescrit;PPRN_COMMUNE_AVALANCHE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Phénomènes météorologiques approuvé;PPRN_COMMUNE_ATMOS_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Phénomènes météorologiques prescrit;PPRN_COMMUNE_ATMOS_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation approuvé;PPRN_COMMUNE_RISQINOND_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation prescrit;PPRN_COMMUNE_RISQINOND_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation par sumersion marine approuvé;PPRN_COMMUNE_SUBMAR_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation par sumersion marine prescrit;PPRN_COMMUNE_SUBMAR_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Feu de forêt approuvé;PPRN_COMMUNE_FEU_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Feu de forêt prescrit;PPRN_COMMUNE_FEU_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain approuvé;PPRN_COMMUNE_MVT_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain prescrit;PPRN_COMMUNE_MVT_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) approuvé;PPRN_COMMUNE_CAVITE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) prescrit;PPRN_COMMUNE_CAVITE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) approuvé;PPRN_COMMUNE_ARGILE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) prescrit;PPRN_COMMUNE_ARGILE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR technologiques;PPRT_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Risque industriel approuvé;PPRT_COMMUNE_RISQIND_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Risque industriel prescrit;PPRT_COMMUNE_RISQIND_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Limites de commune concernée par un TRI - France métropolitaine - Rapportage 2020;COMMUNE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Réseaux - France métropolitaine - Rapportage 2020;ENJEUX_RESEAUX_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Etablissements sensibles - France métropolitaine - Rapportage 2020;ENJEUX_ETS_SENSIBLES_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Limite de zones de protection naturelle - France métropolitaine - Rapportage 2020;ENJEUX_ZONENATURELLE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Etablissements classés IED - France métropolitaine - Rapportage 2020;ENJEUX_IED_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Patrimoine culturel - France métropolitaine - Rapportage 2020;ENJEUX_CULT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Station d'épuration supérieure à 2000 Equivalent Habitant - France métropolitaine - Rapportage 2020;ENJEUX_STEP_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Ouvrage de protection - France métropolitaine - Rapportage 2020;OUV_PROTECTION_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zones soustraites à l'aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSSINOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zones de sur-aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSALEA_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètre de TRI - France métropolitaine - Rapportage 2020;LIMITETRI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Inondation - France métropolitaine;PPRN_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Inondation - France métropolitaine;PPRN_PERIMETRE_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Littoraux - France métropolitaine;PPRN_PERIMETRE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Inondation - France métropolitaine;PPRN_ZONE_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR littoraux - France métropolitaine;PPRN_ZONE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Mouvement de terrain - France métropolitaine;PPRN_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - France métropolitaine;PPRN_PERIMETRE_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_PERIMETRE_CAV_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_PERIMETRE_TSD_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - France métropolitaine;PPRN_ZONE_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_ZONE_CAV_FXX_01;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_ZONE_CAV_FXX_02;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Avalanche - France métropolitaine;PPRN_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Avalanche - France métropolitaine;PPRN_PERIMETRE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Avalanche - France métropolitaine;PPRN_ZONE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Feu de forêt - France métropolitaine;PPRN_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Feu de forêt - France métropolitaine;PPRN_PERIMETRE_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Feu de forêt - France métropolitaine;PPRN_ZONE_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Gaz; Hydrocarbures;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Gaz naturel;C_GAZ;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Hydrocarbures;C_HYDROCARBURES;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Produits chimiques;C_PRODUITS_CHIM;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIFICATION_SIS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Secteur d'Information sur les Sols (SIS) - Etat d'avancement par département;ETAT_SIS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Servitudes d'utilité publique (SUP);SSP_CLASSIFICATION_SUP;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Anciens sites industriels et activités de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Potentiel radon à la commune;RADON;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Carte nationale des remontées de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Fonds cartos;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
