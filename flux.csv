@@ -47,9 +47,9 @@ WFS;Occupation du sol;BD Forêt V2 (département 64);occsol:bdforet_v2_64;https:
 WFS;Occupation du sol;BD Forêt V2 (département 79);occsol:bdforet_v2_79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Occupation du sol;BD Forêt V2 (département 86);occsol:bdforet_v2_86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Occupation du sol;BD Forêt V2 (département 87);occsol:bdforet_v2_87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;Occupation du sol;OCS PIGMA 2020 (département 19);occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;Occupation du sol;OCS PIGMA 2020 (département 23);occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;OCS PIGMA 2020 (département 19);occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 23);occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
 WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
