@@ -283,7 +283,7 @@ WFS;Périmètres écologiques;Inventaire National du Patrimoine Géologique;INPG
 WFS;Périmètres écologiques;Sites Ramsar;Sites_Ramsar;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Terrains du Conservatoire de Littoral;Terrains_du_Conservatoire_du_Littoral;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Terrains gérés par les Conservatoires d'espaces naturels;CEN_MU;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Géologie;Tableau d'assemblage des cartes géologiques au 1/50 000ème imprimées;SCAN_F_GEOL50_CATALOG;http://geoservices.brgm.fr/geologie;BRGM;
+WFS;Géologie;Tableau d'assemblage des cartes géologiques au 1/50 000ème imprimées;ms:SCAN_F_GEOL50_CATALOG;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;IDPR - Indice de Développement et de Persistance des Réseaux;IDPR;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;GéoServices : géologie, hydrogéologie et gravimétrie;GEOSERVICES_GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;Carte lithologique simplifiée au 1/1 000 000;LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
