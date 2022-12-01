@@ -392,4 +392,5 @@ WMS Raster;Risques;Enveloppes Approchées des Inondations Potentielles cours d'e
 WMS Raster;Risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;Risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;Fonds cartos;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
-WFS;Climat;Régions biogéographiques;ms:regbio_fr;https://ws.carmencarto.fr/WFS/119/fxx_ref;INPN;
+WFS;Climat;Régions biogéographiques;regbio_fr;https://ws.carmencarto.fr/WFS/119/fxx_ref;INPN;
+
