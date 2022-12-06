@@ -30,3 +30,7 @@ Il rend également plus facile la gestion des styles par défaut pour les donné
 Si l'accès à la majorité des ressources reste public, certaines peuvent être protégées par un mot de passe (données métier confidentielles par exemple).
 C'est le cas notamment de certaines données foncières du CEN NA qui nécessitent une authentifiaction. Cette authentification est gérée via le serveur cartographique qui génère les flux.
 Pour y accéder, il faut créer en amont une authentification dans QGIS. L'ouverture des données protégées se fera alors à partir de la première authentification enregistrée dans QGIS (pas de gestion multi-authentification pour le moment)
+
+## Interface du plugin:
+
+
