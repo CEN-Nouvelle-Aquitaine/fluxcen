@@ -1,6 +1,6 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
 WFS;Culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
-WFS;Drone;Emprise images drone;drone:emprise_ortho_drone_CEN_NA;https://opendata.cen-nouvelle-aquitaine.org/drone/wfs;CEN NA;
+WFS;Drone;Emprise images drone;drone:emprise_ortho_drone_CEN_NA;https://opendata.cen-nouvelle-aquitaine.org/drone/wfs;CEN NA;emprise_drone
 WFS;Agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;Agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
