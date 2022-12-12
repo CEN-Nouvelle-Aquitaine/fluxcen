@@ -500,20 +500,21 @@ class FluxCEN:
 
                         for layer in layers.values():
                             if layer.name() == _item:
+                                if len(_legend) > 1:
+                                    styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + _legend + '.qml'
 
-                                styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + _legend + '.qml'
+                                    fp = urllib.request.urlopen(styles_url)
+                                    mybytes = fp.read()
 
-                                fp = urllib.request.urlopen(styles_url)
-                                mybytes = fp.read()
+                                    document = QDomDocument()
+                                    document.setContent(mybytes)
 
-                                document = QDomDocument()
-                                document.setContent(mybytes)
-
-                                res = layer.importNamedStyle(document)
-                                layer.triggerRepaint()
-
-                                layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
-
+                                    res = layer.importNamedStyle(document)
+                                    layer.triggerRepaint()
+        
+                                    layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
+                                else:
+                                    print("Pas de style à charger pour cette couche")
 
                 elif type == 'WMS' or type == 'WMS Raster' or type == 'WMS Vecteur' or type == 'WMTS':
                     rlayer = QgsRasterLayer(uri, name, "WMS")
