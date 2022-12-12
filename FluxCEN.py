@@ -476,8 +476,17 @@ class FluxCEN:
                     vlayer = QgsVectorLayer(uri, name, "WFS")
                     # vlayer.setScaleBasedVisibility(True)
                     QgsProject.instance().addMapLayer(vlayer)
-                    vlayer.loadNamedStyle(self.plugin_path + '/styles_couches/' + vlayer.name() + '.qml')
-                    vlayer.triggerRepaint()
+
+                    # styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + vlayer.name() + '.qml'
+                    #
+                    # fp = urllib.request.urlopen(styles_url)
+                    # mybytes = fp.read()
+                    #
+                    # document = QDomDocument()
+                    # document.setContent(mybytes)
+                    #
+                    # res = vlayer.importNamedStyle(document)
+                    # vlayer.triggerRepaint()
 
                     layers = QgsProject.instance().mapLayers()  # dictionary
 
@@ -491,6 +500,18 @@ class FluxCEN:
 
                         for layer in layers.values():
                             if layer.name() == _item:
+
+                                styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + _legend + '.qml'
+
+                                fp = urllib.request.urlopen(styles_url)
+                                mybytes = fp.read()
+
+                                document = QDomDocument()
+                                document.setContent(mybytes)
+
+                                res = layer.importNamedStyle(document)
+                                layer.triggerRepaint()
+
                                 layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
 
 
@@ -515,7 +536,7 @@ class FluxCEN:
                         version = '1.0.0'
 
                     if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
-                        if self.dlg.tableWidget_2.item(row,1).text() == 'drone' or self.dlg.tableWidget_2.item(row,1).text() == 'fonciercen':
+                        if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
                             a = Flux(
                                 self.dlg.tableWidget_2.item(row,0).text(),
                                 self.dlg.tableWidget_2.item(row,1).text(),
@@ -582,7 +603,7 @@ class FluxCEN:
                         else:
                             print("Couche "+p[row].nom_commercial+" déjà chargée")
                     elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
-                        if self.dlg.tableWidget_2.item(row,1).text() == 'drone' or self.dlg.tableWidget_2.item(row,1).text() == 'fonciercen':
+                        if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
                             a = Flux(
                                 self.dlg.tableWidget_2.item(row, 0).text(),
                                 self.dlg.tableWidget_2.item(row, 1).text(),
@@ -608,7 +629,7 @@ class FluxCEN:
                             {
                                 'VERSION': version,
                                 'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                'SRSNAME': "EPSG:2154",
+                                # 'SRSNAME': "EPSG:2154",
                                 'request': "GetFeature",
 
                             }
