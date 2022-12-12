@@ -1,5 +1,6 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
 WFS;Culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
+WFS;Drone;Emprise images drone;drone:emprise_ortho_drone_CEN_NA;https://opendata.cen-nouvelle-aquitaine.org/drone/wfs;CEN NA;emprise_drone
 WFS;Agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;Agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
@@ -47,9 +48,18 @@ WFS;Occupation du sol;BD Forêt V2 (département 64);occsol:bdforet_v2_64;https:
 WFS;Occupation du sol;BD Forêt V2 (département 79);occsol:bdforet_v2_79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Occupation du sol;BD Forêt V2 (département 86);occsol:bdforet_v2_86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Occupation du sol;BD Forêt V2 (département 87);occsol:bdforet_v2_87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;Occupation du sol;OCS PIGMA 2020 (département 19);occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;Occupation du sol;OCS PIGMA 2020 (département 23);occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
-WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;
+WFS;Occupation du sol;OCS PIGMA 2020 (département 16);occsol:pigma_ocs_2020_d16;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 17);occsol:pigma_ocs_2020_d17;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 19);occsol:pigma_ocs_2020_d19;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 23);occsol:pigma_ocs_2020_d23;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 24);occsol:pigma_ocs_2020_d24;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 33);occsol:pigma_ocs_2020_d33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 40);occsol:pigma_ocs_2020_d40;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 47);occsol:pigma_ocs_2020_d47;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 64);occsol:pigma_ocs_2020_d64;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 79);occsol:pigma_ocs_2020_d79;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 86);occsol:pigma_ocs_2020_d86;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
+WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
 WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
@@ -274,6 +284,7 @@ WFS;Périmètres écologiques;Inventaire National du Patrimoine Géologique;INPG
 WFS;Périmètres écologiques;Sites Ramsar;Sites_Ramsar;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Terrains du Conservatoire de Littoral;Terrains_du_Conservatoire_du_Littoral;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Terrains gérés par les Conservatoires d'espaces naturels;CEN_MU;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Géologie;Tableau d'assemblage des cartes géologiques au 1/50 000ème imprimées;SCAN_F_GEOL50_CATALOG;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;IDPR - Indice de Développement et de Persistance des Réseaux;IDPR;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;GéoServices : géologie, hydrogéologie et gravimétrie;GEOSERVICES_GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;Carte lithologique simplifiée au 1/1 000 000;LITHO_1M_SIMPLIFIEE;http://geoservices.brgm.fr/geologie;BRGM;
@@ -382,3 +393,4 @@ WMS Raster;Risques;Enveloppes Approchées des Inondations Potentielles cours d'e
 WMS Raster;Risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;Risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;Fonds cartos;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
+WFS;Climat;Régions biogéographiques;regbio_fr;https://ws.carmencarto.fr/WFS/119/fxx_ref;INPN;
