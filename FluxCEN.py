@@ -511,7 +511,7 @@ class FluxCEN:
 
                                     res = layer.importNamedStyle(document)
                                     layer.triggerRepaint()
-        
+
                                     layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
                                 else:
                                     print("Pas de style à charger pour cette couche")
