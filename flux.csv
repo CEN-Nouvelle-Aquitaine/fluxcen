@@ -263,16 +263,17 @@ WMS Raster;Drone;87MONT_ZH_grand_monteil_2022_10_20;87MONT_ZH_grand_monteil_2022
 WMS Raster;Drone;19OUSS_coupe_etang_oussines_2022_09_27;19OUSS_coupe_etang_oussines_2022_09_27;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WMS Raster;Drone;16GOIR_ZH_du_Goire_2022_04_02;16GOIR_ZH_du_Goire_2022_04_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_-_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
+WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Charente-Maritime;CG17:zpens_2022;https://geo.geoplateforme17.fr/CG17/wfs;Département de la Charente-Maritime;
 WFS;Périmètres écologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs naturels marins;Parc_naturel_marin;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs naturels régionaux;Parcs_naturels_regionaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;Réserves naturelles Nationales;Reserves_naturelles_nationales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;Réserves naturelles Régionales;Reserves_naturelles_regionales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;Sites d'importance communautaire;Sites_d_importance_communautaire;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;Sites d'importance communautaire JOUE (ZSC,SIC);Sites_d_importance_communautaire_JOUE__ZSC_SIC_;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;ZNIEFF de type 1;Znieff1;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;ZNIEFF de type 2;Znieff2;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Réserves naturelles Nationales;Reserves_naturelles_nationales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;RNN
+WFS;Périmètres écologiques;Réserves naturelles Régionales;Reserves_naturelles_regionales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;RNR
+WFS;Périmètres écologiques;Sites d'importance communautaire;Sites_d_importance_communautaire;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;SIC
+WFS;Périmètres écologiques;Sites d'importance communautaire JOUE (ZSC,SIC);Sites_d_importance_communautaire_JOUE__ZSC_SIC_;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;SIC
+WFS;Périmètres écologiques;ZNIEFF de type 1;Znieff1;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;znieff1
+WFS;Périmètres écologiques;ZNIEFF de type 2;Znieff2;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;znieff2
 WFS;Périmètres écologiques;Zones Importantes pour la Conservation des Oiseaux;ZICO;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
 WFS;Périmètres écologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
