@@ -101,6 +101,7 @@ WMS Raster;Fonds cartos;SCAN Départemental®;SCANDEP_PYR-JPEG_FXX_WM;https://wx
 WMS Raster;Fonds cartos;SCAN Régional®;SCANREG_PYR-JPEG_WLD_WM;https://wxs.ign.fr/cartes/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Occupation du sol;Corine Land Cover 2018 - France Métropolitaine ;LANDCOVER.CLC18_FR;https://wxs.ign.fr/clc/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;BD ORTHO®;HR.ORTHOIMAGERY.ORTHOPHOTOS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;ORTHO Express 2022;ORTHOIMAGERY.ORTHOPHOTOS.ORTHO-EXPRESS.2022;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;BD ORTHO® (Infrarouge);ORTHOIMAGERY.ORTHOPHOTOS.IRC;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;BD ORTHO® 1950-1965;ORTHOIMAGERY.ORTHOPHOTOS.1950-1965;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;Photographies aériennes 2000;ORTHOIMAGERY.ORTHOPHOTOS2000;https://wxs.ign.fr/orthohisto/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
