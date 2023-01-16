@@ -396,7 +396,7 @@ WMS Raster;Risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr
 WMS Raster;Risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;Fonds cartos;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
 WFS;Climat;Régions biogéographiques;regbio_fr;https://ws.carmencarto.fr/WFS/119/fxx_ref;INPN;
-WFS;Géodésie;Points géodésiques du Réseau Géodésique Français;geodesie:point_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;Géodésie;Repères de nivellement géodésiques du Réseau Géodésique Français;geodesie:repere_nivellement;https://opendata.cen-nouvelle-aquitaine.org/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;Géodésie;Sites du Réseau Géodésique Français;geodesie:site_reseau_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
-WFS;Géodésie;Triplets de repères de nivellement du Réseau Géodésique Français;geodesie:triplet;https://opendata.cen-nouvelle-aquitaine.org/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Géodésie;Points géodésiques du Réseau Géodésique Français;geodesie:point_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Géodésie;Repères de nivellement géodésiques du Réseau Géodésique Français;geodesie:repere_nivellement;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Géodésie;Sites du Réseau Géodésique Français;geodesie:site_reseau_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Géodésie;Triplets de repères de nivellement du Réseau Géodésique Français;geodesie:triplet;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
