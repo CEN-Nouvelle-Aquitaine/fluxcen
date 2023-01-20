@@ -16,7 +16,7 @@ Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions.
 - Sélection rapide des ressources par autocomplétion
 - Gestion des styles par défaut à l'ouverture dans QGIS pour les données WFS
 - Fichier de changelog
-- Centralisation des flux dans un fichier .csv
+- Centralisation  et gestion des flux simplifiée dans un fichier .csv
 - Code et ressources attachées sont gérées directement dans le git
 
 ## Composition du fichier .csv
