@@ -1,14 +1,24 @@
-# FluxCEN
+# <p align="center">FluxCEN</p>
 
-<img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icon.png  width="220"/> 
-Le plugin QGIS FluxCEN permet d'accéder en un clic à un large éventail de flux WFS/WMS organisés par catégories et interrogeables sous forme de mots-clés. Les flux mis à disposition sont issus des données du Conservatoire d'Espaces Naturels de Nouvelle-Aquitaine via son serveur cartographique (Geoserver) mais aussi des producteurs nationaux (IGN, BRGM, INPN, SANDRE, GISSOL, GéoPortail, etc.), régionaux ou départementaux.
-Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions et permet aux utilisateurs d'avoir accès facilement à un même endroit à toutes les ressources SIG dont ils ont besoin pour travailler.
-Il rend également plus facile la gestion des styles par défaut pour les données vecteur. 
+<img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icon.png  width="220"/>
+<br>
+<br>
+<br>
+Le plugin QGIS FluxCEN permet d'accéder rapidement à un large éventail de flux WFS/WMS organisés par catégories et interrogeables sous forme de mots-clés. 
+<br>
+<br>
+Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions.
+<br>
+<br>
+<br>
 
- Ces flux sont centralisés dans le fichier *flux.csv*.
- 
- <br> 
- 
+## 🧐 Features    
+- Sélection rapide des ressources par autocomplétion
+- Gestion des styles par défaut à l'ouverture dans QGIS pour les données WFS
+- Fichier de changelog
+- Centralisation des flux dans un fichier .csv
+- Code et ressources attachées sont gérées directement dans le git
+
 ## Composition du fichier .csv
   
   * service : type de service utilisé (WFS ou WMS)
@@ -18,6 +28,13 @@ Il rend également plus facile la gestion des styles par défaut pour les donné
   * url : URL du serveur pour accéder à la couche
   * source : Source de la donnée
   * style : nom du fichier de style pour affichage à l'ouverture dans QGIS
+ 
+ Exemple pour accéder à la BD ORTHO® :
+ 
+ | service | categorie | Nom_couche_plugin | nom_technique | url | source | style |
+| -------- | -------- | -------- | -------- | -------- |-------- | -------- |
+| WMS Raster| Fonds cartos | BD ORTHO® | HR.ORTHOIMAGERY.ORTHOPHOTOS |https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities| IGN  | |
+
  
  
 ## Style des couches
