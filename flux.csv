@@ -401,3 +401,10 @@ WFS;Géodésie;Repères de nivellement géodésiques du Réseau Géodésique Fra
 WFS;Géodésie;Sites du Réseau Géodésique Français;geodesie:site_reseau_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Géodésie;Triplets de repères de nivellement du Réseau Géodésique Français;geodesie:triplet;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Habitats;Synthèse des habitats cartographiés en ex-Limousin;habitats:synth_habitats_ex_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/habitats/wfs;CEN NA;
+WFS;Pédologie;Référentiel Régional Pédologique du département de la Charente;pedologie:RRP_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
+WFS;Pédologie;Référentiel Régional Pédologique du département de la Charente-Maritime;pedologie:RRP_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
+WFS;Pédologie;Référentiel Régional Pédologique du département de la Dordogne;pedologie:RRP_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
+WFS;Pédologie;Référentiel Régional Pédologique du département du Lot-et-Garonne;pedologie:RRP_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
+WFS;Pédologie;Référentiel Régional Pédologique du département des Pyrénées-Atlantiques;pedologie:RRP_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
+WFS;Pédologie;Référentiel Régional Pédologique du département des Deux-Sèvres;pedologie:RRP_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
+WFS;Pédologie;Référentiel Régional Pédologique du département de la Vienne;pedologie:RRP_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
