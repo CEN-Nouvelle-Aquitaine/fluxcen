@@ -62,6 +62,7 @@ WFS;Occupation du sol;OCS PIGMA 2020 (département 86);occsol:pigma_ocs_2020_d86
 WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;PIGMA;pigma_ocs
 WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;Occupation du sol;Inventaire tourbières de 1949;atlas_tourbiere_fcen_1949;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;FCEN;
 WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Inventaire paysage (ex Poitou-Charentes);paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Secteurs paysagers (Nouvelle-Aquitaine);paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
