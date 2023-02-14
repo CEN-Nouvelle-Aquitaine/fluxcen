@@ -277,7 +277,7 @@ WFS;Périmètres écologiques;Sites d'importance communautaire publiés au JOUE 
 WFS;Périmètres écologiques;ZNIEFF de type 1;Znieff1;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;znieff1
 WFS;Périmètres écologiques;ZNIEFF de type 2;Znieff2;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;znieff2
 WFS;Périmètres écologiques;Zones Importantes pour la Conservation des Oiseaux;ZICO;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;Zones de Protection Spéciales;Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
+WFS;Périmètres écologiques;Zones de Protection Spéciales;ms:Zones_de_protection_speciale;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
 WFS;Périmètres écologiques;Réserves Nationales de Chasse et de Faune Sauvage;Reserves_nationales_de_chasse_et_faune_sauvage;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
 WFS;Périmètres écologiques;Réserves de Biosphère;Reserves_de_la_biosphere;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Réserves biologiques;Reserves_biologiques;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
