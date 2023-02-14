@@ -270,8 +270,8 @@ WFS;Périmètres écologiques;Arrêtés de protection de biotope;Arretes_de_prot
 WFS;Périmètres écologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs naturels marins;Parc_naturel_marin;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs naturels régionaux;Parcs_naturels_regionaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
-WFS;Périmètres écologiques;Réserves naturelles Nationales;Reserves_Naturelles_Nationales;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;RNN
-WFS;Périmètres écologiques;Réserves naturelles Régionales;Reserves_naturelles_regionales;http://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;RNR
+WFS;Périmètres écologiques;Réserves naturelles Nationales;Reserves_Naturelles_Nationales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;RNN
+WFS;Périmètres écologiques;Réserves naturelles Régionales;Reserves_naturelles_regionales;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;RNR
 WFS;Périmètres écologiques;Sites d'importance communautaire (Natura 2000);Sites_d_importance_communautaire;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Sites d'importance communautaire publiés au JOUE (Natura 2000);Sites_d_importance_communautaire_JOUE__ZSC_SIC_;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;ZNIEFF de type 1;Znieff1;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;znieff1
