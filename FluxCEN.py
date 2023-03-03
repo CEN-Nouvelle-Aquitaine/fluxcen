@@ -456,129 +456,104 @@ class FluxCEN:
         k = managerAU.availableAuthMethodConfigs().keys()
         # print( k )
         if len(list(k)) == 0:
-            QMessageBox.question(iface.mainWindow(), u"Attention !", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe", QMessageBox.Ok)
-        else:
+            iface.messageBar().pushMessage("Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN' et 'Drone')", level=Qgis.Success, duration=5)
 
-            def REQUEST(type):
-                switcher = {
-                    'WFS': "GetFeature",
-                    'WMS': "GetMap",
-                    'WMS+Vecteur': "GetMap",
-                    'WMS+Raster': "GetMap",
-                    'WMTS': "GetMap"
-                }
-                return switcher.get(type, "nothing")
+        def REQUEST(type):
+            switcher = {
+                'WFS': "GetFeature",
+                'WMS': "GetMap",
+                'WMS+Vecteur': "GetMap",
+                'WMS+Raster': "GetMap",
+                'WMTS': "GetMap"
+            }
+            return switcher.get(type, "nothing")
 
 
-            def displayOnWindows(type, uri, name):
+        def displayOnWindows(type, uri, name):
 
-                if type == 'WFS':
-                    vlayer = QgsVectorLayer(uri, name, "WFS")
-                    # vlayer.setScaleBasedVisibility(True)
-                    QgsProject.instance().addMapLayer(vlayer)
+            if type == 'WFS':
+                vlayer = QgsVectorLayer(uri, name, "WFS")
+                # vlayer.setScaleBasedVisibility(True)
+                QgsProject.instance().addMapLayer(vlayer)
 
-                    # styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + vlayer.name() + '.qml'
-                    #
-                    # fp = urllib.request.urlopen(styles_url)
-                    # mybytes = fp.read()
-                    #
-                    # document = QDomDocument()
-                    # document.setContent(mybytes)
-                    #
-                    # res = vlayer.importNamedStyle(document)
-                    # vlayer.triggerRepaint()
+                # styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + vlayer.name() + '.qml'
+                #
+                # fp = urllib.request.urlopen(styles_url)
+                # mybytes = fp.read()
+                #
+                # document = QDomDocument()
+                # document.setContent(mybytes)
+                #
+                # res = vlayer.importNamedStyle(document)
+                # vlayer.triggerRepaint()
 
-                    layers = QgsProject.instance().mapLayers()  # dictionary
+                layers = QgsProject.instance().mapLayers()  # dictionary
 
-                    # rowCount() This property holds the number of rows in the table
-                    for row in range(self.dlg.tableWidget_2.rowCount()):
-                        # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
-                        _item = self.dlg.tableWidget_2.item(row, 2).text()
-                        _legend = self.dlg.tableWidget_2.item(row, 6).text()
-                        # print(_item)
-                        # print(_legend)
+                # rowCount() This property holds the number of rows in the table
+                for row in range(self.dlg.tableWidget_2.rowCount()):
+                    # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
+                    _item = self.dlg.tableWidget_2.item(row, 2).text()
+                    _legend = self.dlg.tableWidget_2.item(row, 6).text()
+                    # print(_item)
+                    # print(_legend)
 
-                        for layer in layers.values():
-                            if layer.name() == _item:
-                                if len(_legend) > 1:
-                                    styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + _legend + '.qml'
+                    for layer in layers.values():
+                        if layer.name() == _item:
+                            if len(_legend) > 1:
+                                styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + _legend + '.qml'
 
-                                    fp = urllib.request.urlopen(styles_url)
-                                    mybytes = fp.read()
+                                fp = urllib.request.urlopen(styles_url)
+                                mybytes = fp.read()
 
-                                    document = QDomDocument()
-                                    document.setContent(mybytes)
+                                document = QDomDocument()
+                                document.setContent(mybytes)
 
-                                    res = layer.importNamedStyle(document)
-                                    layer.triggerRepaint()
+                                res = layer.importNamedStyle(document)
+                                layer.triggerRepaint()
 
-                                    layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
-                                else:
-                                    print("Pas de style à charger pour cette couche")
+                                layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
+                            else:
+                                print("Pas de style à charger pour cette couche")
 
-                elif type == 'WMS' or type == 'WMS Raster' or type == 'WMS Vecteur' or type == 'WMTS':
-                    rlayer = QgsRasterLayer(uri, name, "WMS")
-                    QgsProject.instance().addMapLayer(rlayer)
-                else:
-                    print("No WMS or WFS")
+            elif type == 'WMS' or type == 'WMS Raster' or type == 'WMS Vecteur' or type == 'WMTS':
+                rlayer = QgsRasterLayer(uri, name, "WMS")
+                QgsProject.instance().addMapLayer(rlayer)
+            else:
+                print("No WMS or WFS")
 
-            p = []
+        p = []
 
-            for row in range(0, self.dlg.tableWidget_2.rowCount()):
-                    ## supression de la partie de l'url après le point d'interrogation
-                    url = self.dlg.tableWidget_2.item(row,4).text().split("?", 1)[0]
-                    try:
-                        service = re.search('SERVICE=(.+?)&VERSION', self.dlg.tableWidget_2.item(row,4).text()).group(1)
-                    except:
-                        service = '1.0.0'
-                    try:
-                        version = re.search('VERSION=(.+?)&REQUEST', self.dlg.tableWidget_2.item(row,4).text()).group(1)
-                    except:
-                        version = '1.0.0'
+        for row in range(0, self.dlg.tableWidget_2.rowCount()):
+                ## supression de la partie de l'url après le point d'interrogation
+                url = self.dlg.tableWidget_2.item(row,4).text().split("?", 1)[0]
+                try:
+                    service = re.search('SERVICE=(.+?)&VERSION', self.dlg.tableWidget_2.item(row,4).text()).group(1)
+                except:
+                    service = '1.0.0'
+                try:
+                    version = re.search('VERSION=(.+?)&REQUEST', self.dlg.tableWidget_2.item(row,4).text()).group(1)
+                except:
+                    version = '1.0.0'
 
-                    if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
-                        if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
-                            a = Flux(
-                                self.dlg.tableWidget_2.item(row,0).text(),
-                                self.dlg.tableWidget_2.item(row,1).text(),
-                                self.dlg.tableWidget_2.item(row,2).text(),
-                                self.dlg.tableWidget_2.item(row,3).text(),
-                                "url="+url,
-                                {
-                                    'service': self.dlg.tableWidget_2.item(row,0).text(),
-                                    'version': version,
-                                    'crs': "EPSG:2154",
-                                    'format' : "image/png",
-                                    'authcfg' : list(k)[0],
-                                    'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
-                                }
-                            )
+                if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
+                    if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
+                        a = Flux(
+                            self.dlg.tableWidget_2.item(row,0).text(),
+                            self.dlg.tableWidget_2.item(row,1).text(),
+                            self.dlg.tableWidget_2.item(row,2).text(),
+                            self.dlg.tableWidget_2.item(row,3).text(),
+                            "url="+url,
+                            {
+                                'service': self.dlg.tableWidget_2.item(row,0).text(),
+                                'version': version,
+                                'crs': "EPSG:2154",
+                                'format' : "image/png",
+                                'authcfg' : list(k)[0],
+                                'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
+                            }
+                        )
 
-                        else:
-                            a = Flux(
-                                self.dlg.tableWidget_2.item(row,0).text(),
-                                self.dlg.tableWidget_2.item(row,1).text(),
-                                self.dlg.tableWidget_2.item(row,2).text(),
-                                self.dlg.tableWidget_2.item(row,3).text(),
-                                "url="+url,
-                                {
-                                    'service': self.dlg.tableWidget_2.item(row,0).text(),
-                                    'version': version,
-                                    'crs': "EPSG:2154",
-                                    'format' : "image/png",
-                                    'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
-                                }
-                            )
-                        p.append(a)
-
-                        uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        # print(uri)
-                        # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
-                        if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                            displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                        else:
-                            print("Couche "+p[row].nom_commercial+" déjà chargée")
-                    elif self.dlg.tableWidget_2.item(row, 0).text() == 'WMS Vecteur':
+                    else:
                         a = Flux(
                             self.dlg.tableWidget_2.item(row,0).text(),
                             self.dlg.tableWidget_2.item(row,1).text(),
@@ -593,62 +568,86 @@ class FluxCEN:
                                 'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
                             }
                         )
+                    p.append(a)
 
-                        p.append(a)
+                    uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                    # print(uri)
+                    # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
+                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
+                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                    else:
+                        print("Couche "+p[row].nom_commercial+" déjà chargée")
+                elif self.dlg.tableWidget_2.item(row, 0).text() == 'WMS Vecteur':
+                    a = Flux(
+                        self.dlg.tableWidget_2.item(row,0).text(),
+                        self.dlg.tableWidget_2.item(row,1).text(),
+                        self.dlg.tableWidget_2.item(row,2).text(),
+                        self.dlg.tableWidget_2.item(row,3).text(),
+                        "url="+url,
+                        {
+                            'service': self.dlg.tableWidget_2.item(row,0).text(),
+                            'version': version,
+                            'crs': "EPSG:2154",
+                            'format' : "image/png",
+                            'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
+                        }
+                    )
 
-                        uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        # print(uri)
-                        # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
-                        if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                            displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                        else:
-                            print("Couche "+p[row].nom_commercial+" déjà chargée")
-                    elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
-                        if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
-                            a = Flux(
-                                self.dlg.tableWidget_2.item(row, 0).text(),
-                                self.dlg.tableWidget_2.item(row, 1).text(),
-                                self.dlg.tableWidget_2.item(row, 2).text(),
-                                self.dlg.tableWidget_2.item(row, 3).text(),
-                                url,
-                                {
-                                    'VERSION': version,
-                                    'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                    'SRSNAME': "EPSG:2154",
-                                    'authcfg': list(k)[0],
-                                    'request': "GetFeature",
+                    p.append(a)
 
-                                }
-                            )
-                        else:
-                            a = Flux(
+                    uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                    # print(uri)
+                    # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
+                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
+                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                    else:
+                        print("Couche "+p[row].nom_commercial+" déjà chargée")
+                elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
+                    if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
+                        a = Flux(
                             self.dlg.tableWidget_2.item(row, 0).text(),
                             self.dlg.tableWidget_2.item(row, 1).text(),
                             self.dlg.tableWidget_2.item(row, 2).text(),
                             self.dlg.tableWidget_2.item(row, 3).text(),
-                                url,
+                            url,
                             {
                                 'VERSION': version,
                                 'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                # 'SRSNAME': "EPSG:2154",
+                                'SRSNAME': "EPSG:2154",
+                                'authcfg': list(k)[0],
                                 'request': "GetFeature",
 
                             }
                         )
-
-                        p.append(a)
-
-                        uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        # print(uri)
-
-                        if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                            displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                        else:
-                            print("Couche "+p[row].nom_commercial+" déjà chargée")
-
-
                     else:
-                        print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
+                        a = Flux(
+                        self.dlg.tableWidget_2.item(row, 0).text(),
+                        self.dlg.tableWidget_2.item(row, 1).text(),
+                        self.dlg.tableWidget_2.item(row, 2).text(),
+                        self.dlg.tableWidget_2.item(row, 3).text(),
+                            url,
+                        {
+                            'VERSION': version,
+                            'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
+                            # 'SRSNAME': "EPSG:2154",
+                            'request': "GetFeature",
+
+                        }
+                    )
+
+                    p.append(a)
+
+                    uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                    # print(uri)
+
+                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
+                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                    else:
+                        print("Couche "+p[row].nom_commercial+" déjà chargée")
+
+
+                else:
+                    print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
 
 
 
