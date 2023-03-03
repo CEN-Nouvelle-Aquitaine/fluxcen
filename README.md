@@ -50,7 +50,7 @@ Pour y accéder, il faut créer en amont une authentification dans QGIS. L'ouver
 
 ## Interface du plugin:
 
-<img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/fluxcen_interface.PNG  width="220"/>
+<img align="center" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/fluxcen_interface.PNG  width="600"/>
 
 
 
