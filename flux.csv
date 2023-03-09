@@ -266,7 +266,7 @@ WMS Raster;Drone;19OUSS_coupe_etang_oussines_2022_09_27;19OUSS_coupe_etang_oussi
 WMS Raster;Drone;16GOIR_ZH_du_Goire_2022_04_02;16GOIR_ZH_du_Goire_2022_04_02;https://opendata.cen-nouvelle-aquitaine.org/geoserver/drone/wms?;CEN NA;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Charente-Maritime;CG17:zpens_2022;https://geo.geoplateforme17.fr/CG17/wfs;Département de la Charente-Maritime;
-WFS;Périmètres écologiques;Espaces Naturels Sensibles (couche en construction);ms:Espaces_naturels_sensibles;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
+WFS;Périmètres écologiques;Espaces Naturels Sensibles (couche en construction);ms:Espaces_naturels_sensibles;https://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs naturels marins;Parc_naturel_marin;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
