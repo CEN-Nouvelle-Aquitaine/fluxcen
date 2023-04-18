@@ -42,13 +42,28 @@ import os
 import io
 import re
 import random
-import urllib
 # Deal with SSL
 import ssl
+import urllib
 from urllib import request, parse
+import socket
 import json
 
 ssl._create_default_https_context = ssl._create_unverified_context
+
+
+
+
+# Vérifier la connexion à internet
+try:
+    # Vérifier si l'utilisateur est connecté à internet en ouvrant une connexion avec un site web
+    host = socket.gethostbyname("www.google.com")
+    s = socket.create_connection((host, 80), 2)
+    s.close()
+except socket.error:
+    # Afficher un message si l'utilisateur n'est pas connecté à internet
+    QMessageBox.warning(None, 'Avertissement',
+                        'Vous n\'êtes actuellement pas connecté à internet. Veuillez vous connecter pour pouvoir utiliser FluxCEN !')
 
 
 class Flux:
@@ -171,7 +186,6 @@ class FluxCEN:
             iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN %s est à jour !" %version_utilisateur, level=Qgis.Success, duration=5)
         else:
             iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
-
 
     def _mousePressEvent(self, event):
         self.dlg.lineEdit.setText("")
@@ -455,8 +469,8 @@ class FluxCEN:
         managerAU = QgsApplication.authManager()
         k = managerAU.availableAuthMethodConfigs().keys()
         # print( k )
-        if len(list(k)) == 0:
-            iface.messageBar().pushMessage("Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN' et 'Drone')", level=Qgis.Success, duration=5)
+        # if len(list(k)) == 0:
+        #     iface.messageBar().pushMessage("Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN' et 'Drone')", level=Qgis.Success, duration=5)
 
         def REQUEST(type):
             switcher = {
@@ -535,49 +549,7 @@ class FluxCEN:
                 except:
                     version = '1.0.0'
 
-                if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
-                    if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
-                        a = Flux(
-                            self.dlg.tableWidget_2.item(row,0).text(),
-                            self.dlg.tableWidget_2.item(row,1).text(),
-                            self.dlg.tableWidget_2.item(row,2).text(),
-                            self.dlg.tableWidget_2.item(row,3).text(),
-                            "url="+url,
-                            {
-                                'service': self.dlg.tableWidget_2.item(row,0).text(),
-                                'version': version,
-                                'crs': "EPSG:2154",
-                                'format' : "image/png",
-                                'authcfg' : list(k)[0],
-                                'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
-                            }
-                        )
-
-                    else:
-                        a = Flux(
-                            self.dlg.tableWidget_2.item(row,0).text(),
-                            self.dlg.tableWidget_2.item(row,1).text(),
-                            self.dlg.tableWidget_2.item(row,2).text(),
-                            self.dlg.tableWidget_2.item(row,3).text(),
-                            "url="+url,
-                            {
-                                'service': self.dlg.tableWidget_2.item(row,0).text(),
-                                'version': version,
-                                'crs': "EPSG:2154",
-                                'format' : "image/png",
-                                'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
-                            }
-                        )
-                    p.append(a)
-
-                    uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                    # print(uri)
-                    # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
-                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                    else:
-                        print("Couche "+p[row].nom_commercial+" déjà chargée")
-                elif self.dlg.tableWidget_2.item(row, 0).text() == 'WMS Vecteur':
+                if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Vecteur' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
                     a = Flux(
                         self.dlg.tableWidget_2.item(row,0).text(),
                         self.dlg.tableWidget_2.item(row,1).text(),
@@ -589,6 +561,7 @@ class FluxCEN:
                             'version': version,
                             'crs': "EPSG:2154",
                             'format' : "image/png",
+                            'authcfg' : list(k)[0],
                             'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
                         }
                     )
@@ -597,28 +570,43 @@ class FluxCEN:
 
                     uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
                     # print(uri)
-                    # QgsMessageLog.logMessage(str(uri), "5sdf", level=Qgis.Info)
                     if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                         displayOnWindows(p[row].type, uri, p[row].nom_commercial)
                     else:
                         print("Couche "+p[row].nom_commercial+" déjà chargée")
-                elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
-                    if self.dlg.tableWidget_2.item(row,1).text() == 'Drone' or self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
-                        a = Flux(
-                            self.dlg.tableWidget_2.item(row, 0).text(),
-                            self.dlg.tableWidget_2.item(row, 1).text(),
-                            self.dlg.tableWidget_2.item(row, 2).text(),
-                            self.dlg.tableWidget_2.item(row, 3).text(),
-                            url,
-                            {
-                                'VERSION': version,
-                                'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                'SRSNAME': "EPSG:2154",
-                                'authcfg': list(k)[0],
-                                'request': "GetFeature",
 
-                            }
-                        )
+
+                elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
+                    if self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
+                        if len(list(k)) == 0:
+                            QMessageBox.question(iface.mainWindow(), u"Attention",
+                                                 "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN')", QMessageBox.Ok)
+                        else :
+                            a = Flux(
+                                self.dlg.tableWidget_2.item(row, 0).text(),
+                                self.dlg.tableWidget_2.item(row, 1).text(),
+                                self.dlg.tableWidget_2.item(row, 2).text(),
+                                self.dlg.tableWidget_2.item(row, 3).text(),
+                                url,
+                                {
+                                    'VERSION': version,
+                                    'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
+                                    'SRSNAME': "EPSG:2154",
+                                    'authcfg': list(k)[0],
+                                    'request': "GetFeature",
+
+                                }
+                            )
+
+                            p.append(a)
+
+                            uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                            # print(uri)
+
+                            if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
+                                displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                            else:
+                                print("Couche " + p[row].nom_commercial + " déjà chargée")
                     else:
                         a = Flux(
                         self.dlg.tableWidget_2.item(row, 0).text(),
@@ -635,15 +623,15 @@ class FluxCEN:
                         }
                     )
 
-                    p.append(a)
+                        p.append(a)
 
-                    uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                    # print(uri)
+                        uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+                        # print(uri)
 
-                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                    else:
-                        print("Couche "+p[row].nom_commercial+" déjà chargée")
+                        if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
+                            displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                        else:
+                            print("Couche "+p[row].nom_commercial+" déjà chargée")
 
 
                 else:
