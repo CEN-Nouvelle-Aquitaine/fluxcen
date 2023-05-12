@@ -68,9 +68,10 @@ WFS;Paysage;Secteurs paysagers (Nouvelle-Aquitaine);paysages:secteurs_paysagers_
 WFS;Paysage;Sites classés;paysages:sites_classes;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Sites inscrits;paysages:sites_inscrits;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Vallées principales Nouvelle-Aquitaine;paysages:vallees_principales_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
-WFS;FoncierCEN;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Sites gérés CEN NA au 31/12/2022 (polygone);fonciercen:site_gere_poly_2022;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Sites gérés CEN NA au 31/12/2022 (point);fonciercen:site_gere_point_2022;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
