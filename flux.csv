@@ -62,6 +62,8 @@ WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87
 WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;Inventaire tourbières de 1949;occsol:atlas_tourbiere_fcen_1949;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;FCEN;
+WFS;Occupation du sol;CarHab : Zones bâties (dpt 33);occsol:carhab_zones_baties_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;INPN;zones_baties_carhab
+WFS;Occupation du sol;CarHab : Habitats (dpt 33);occsol:carhab_habitats_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;INPN;habitats_carhab
 WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Inventaire paysage (ex Poitou-Charentes);paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Secteurs paysagers (Nouvelle-Aquitaine);paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
@@ -84,8 +86,9 @@ WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 24);foncierc
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;FoncierCEN;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
+WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
+WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2022;fonciercen:mfu_cenna_2022;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;FoncierCEN;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
