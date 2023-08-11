@@ -280,6 +280,7 @@ WFS;Géodésie;Points géodésiques du Réseau Géodésique Français;geodesie:p
 WFS;Géodésie;Repères de nivellement géodésiques du Réseau Géodésique Français;geodesie:repere_nivellement;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Géodésie;Sites du Réseau Géodésique Français;geodesie:site_reseau_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
 WFS;Géodésie;Triplets de repères de nivellement du Réseau Géodésique Français;geodesie:triplet;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
+WFS;Géodésie;Bases du réseau Centipède RTK;basertk;http://centipede.fr/index.php/lizmap/service/?repository=cent&project=centipede;Centipède;
 WFS;Habitats;Synthèse des habitats cartographiés en ex-Limousin;habitats:synth_habitats_ex_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/habitats/wfs;CEN NA;
 WFS;Pédologie;Référentiel Régional Pédologique du département de la Charente;pedologie:RRP_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
 WFS;Pédologie;Référentiel Régional Pédologique du département de la Charente-Maritime;pedologie:RRP_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
@@ -295,4 +296,3 @@ WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 5000ème;invent
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Imageconsult;inventaires_zh:eptb_zdh_imageconsult;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Imageconsult;inventaires_zh:eptb_zdh_imageconsult;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 PostGIS;Couches collaboratives;Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;
-WFS;Géodésie;Bases du réseau Centipède RTK;basertk;http://centipede.fr/index.php/lizmap/service/?repository=cent&project=centipede&VERSION=1.3.0;Centipède;
