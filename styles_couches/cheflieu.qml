@@ -69,7 +69,7 @@
               <Option name="properties" type="Map">
                 <Option name="size" type="Map">
                   <Option name="active" type="bool" value="true"/>
-                  <Option name="expression" type="QString" value="coalesce(scale_exp(CASE WHEN  &quot;statut&quot;  LIKE 'Préfecture%' THEN 6&#xa;WHEN &quot;statut&quot; = 'Sous-préfecture' THEN 4&#xa;ELSE 2 END, 0, 0, 1, 10, 0.57), 0)"/>
+                  <Option name="expression" type="QString" value="CASE WHEN  &quot;statut&quot;  LIKE 'Préfecture%' THEN 4&#xa;WHEN &quot;statut&quot; = 'Sous-préfecture' THEN 3&#xa;ELSE 2 END"/>
                   <Option name="type" type="int" value="3"/>
                 </Option>
               </Option>
