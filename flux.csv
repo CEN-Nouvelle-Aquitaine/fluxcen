@@ -26,7 +26,7 @@ WFS;Agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata
 WFS;Agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;Administratif;Chef-lieu;administratif:cheflieu;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;cheflieu;
+WFS;Administratif;Chef-lieu;administratif:cheflieu;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;cheflieu
 WFS;Administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
 WFS;Administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
 WFS;Administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
