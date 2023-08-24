@@ -290,7 +290,7 @@ WFS;Pédologie;Référentiel Régional Pédologique du département des Pyréné
 WFS;Pédologie;Référentiel Régional Pédologique du département des Deux-Sèvres;pedologie:RRP_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
 WFS;Pédologie;Référentiel Régional Pédologique du département de la Vienne;pedologie:RRP_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
 WFS;Pédologie;Référentiel Régional Pédologique du département des Landes;gissol_igcs:etude_32394;https://agroenvgeo.data.inra.fr/geoserver/gissol_igcs/wms;INRAE;
-WFS;Pédologie;Référentiel Régional Pédologique du département de Gironde;etude_30110;https://agroenvgeo.data.inra.fr/geoserver/gissol_igcs/wms;INRAE;
+WFS;Pédologie;Référentiel Régional Pédologique du département de Gironde;layers=etude_30110;https://agroenvgeo.data.inra.fr/geoserver/gissol_igcs/wms;INRAE;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Asconit (avec eaux superficielles);inventaires_zh:eptb_zdh_asconit_avec_eaux_superficielles;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Asconit;inventaires_zh:eptb_zdh_asconit;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 2500ème;inventaires_zh:epidor_zdh_2500eme;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPIDOR;
