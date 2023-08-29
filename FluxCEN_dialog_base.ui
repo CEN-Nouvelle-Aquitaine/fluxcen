@@ -182,9 +182,9 @@
   <widget class="QCommandLinkButton" name="commandLinkButton_3">
    <property name="geometry">
     <rect>
-     <x>690</x>
+     <x>750</x>
      <y>20</y>
-     <width>201</width>
+     <width>131</width>
      <height>41</height>
     </rect>
    </property>
@@ -195,7 +195,7 @@
     </font>
    </property>
    <property name="text">
-    <string>  Ajouter fond de carte OSM</string>
+    <string>OSM</string>
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
@@ -251,9 +251,9 @@
   <widget class="QCommandLinkButton" name="commandLinkButton_4">
    <property name="geometry">
     <rect>
-     <x>690</x>
+     <x>750</x>
      <y>60</y>
-     <width>201</width>
+     <width>131</width>
      <height>41</height>
     </rect>
    </property>
@@ -264,7 +264,7 @@
     </font>
    </property>
    <property name="text">
-    <string>  Ajouter fond Google sat'</string>
+    <string>Google sat'</string>
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">

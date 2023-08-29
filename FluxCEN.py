@@ -95,7 +95,7 @@ class Popup(QWidget):
         self.text_edit.setOpenLinks(False)
 
         self.text_edit.setWindowTitle("Nouveautés")
-        self.text_edit.setMinimumSize(600,300)
+        self.text_edit.setMinimumSize(600,400)
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
@@ -468,9 +468,6 @@ class FluxCEN:
 
         managerAU = QgsApplication.authManager()
         k = managerAU.availableAuthMethodConfigs().keys()
-        # print( k )
-        # if len(list(k)) == 0:
-        #     iface.messageBar().pushMessage("Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN' et 'Drone')", level=Qgis.Success, duration=5)
 
         def REQUEST(type):
             switcher = {
@@ -494,7 +491,7 @@ class FluxCEN:
                 #
                 # fp = urllib.request.urlopen(styles_url)
                 # mybytes = fp.read()
-                #
+
                 # document = QDomDocument()
                 # document.setContent(mybytes)
                 #
@@ -533,7 +530,7 @@ class FluxCEN:
                 rlayer = QgsRasterLayer(uri, name, "WMS")
                 QgsProject.instance().addMapLayer(rlayer)
             else:
-                print("No WMS or WFS")
+                print("Unknown datatype !")
 
         p = []
 
@@ -561,7 +558,6 @@ class FluxCEN:
                             'version': version,
                             'crs': "EPSG:2154",
                             'format' : "image/png",
-                            'authcfg' : list(k)[0],
                             'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
                         }
                     )
@@ -634,6 +630,19 @@ class FluxCEN:
                             print("Couche "+p[row].nom_commercial+" déjà chargée")
 
 
+                elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
+
+                    # Connexion à la base de données PostGIS
+                    uri = QgsDataSourceUri()
+                    uri.setConnection("sandbox.cen-nouvelle-aquitaine.dev", "5432", "piezo", "", "")
+                    # nom du schéma à remplacer: "hydrographie" à supprimer et mettre "couches_collaboratives" lorsqu'on aura regroupé les couches à modifier dans un même schéma
+                    uri.setDataSource("collaboratif", self.dlg.tableWidget_2.item(row, 3).text(), "geom")
+                    # Chargement de la couche PostGIS
+                    layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
+
+                    # Ajout de la couche au canevas QGIS
+                    QgsProject.instance().addMapLayer(layer)
+
                 else:
                     print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
 
@@ -648,7 +657,6 @@ class FluxCEN:
                 self.dlg.tableWidget.setRowHidden(i, match)
                 if not match:
                     break
-
 
 
 

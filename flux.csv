@@ -26,7 +26,6 @@ WFS;Agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata
 WFS;Agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
-WFS;Administratif;Chef-lieu;administratif:cheflieu;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;cheflieu
 WFS;Administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
 WFS;Administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
 WFS;Administratif;Section;administratif:section;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
@@ -63,18 +62,15 @@ WFS;Occupation du sol;OCS PIGMA 2020 (département 87);occsol:pigma_ocs_2020_d87
 WFS;Occupation du sol;synthese_landes_limousin;occsol:synthese_landes_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;synthese_tourbieres_limousin;occsol:synthese_tourbieres_limousin;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Occupation du sol;Inventaire tourbières de 1949;occsol:atlas_tourbiere_fcen_1949;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;FCEN;
-WFS;Occupation du sol;CarHab : Zones bâties (dpt 33);occsol:carhab_zones_baties_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;INPN;zones_baties_carhab
-WFS;Occupation du sol;CarHab : Habitats (dpt 33);occsol:carhab_habitats_33;https://opendata.cen-nouvelle-aquitaine.org/occsol/wfs?SERVICE=WFS&REQUEST=GetCapabilities;INPN;habitats_carhab
 WFS;Paysage;Plan Départemental des Itinéraires de Promenade et de Randonnée (Zones d'intérêt prioritaires);paysages:PDIPR_ZONE_INTERET_PRIORITAIRE_new;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Inventaire paysage (ex Poitou-Charentes);paysages:inventaire_paysage_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Secteurs paysagers (Nouvelle-Aquitaine);paysages:secteurs_paysagers_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Sites classés;paysages:sites_classes;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Sites inscrits;paysages:sites_inscrits;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
 WFS;Paysage;Vallées principales Nouvelle-Aquitaine;paysages:vallees_principales_na;https://opendata.cen-nouvelle-aquitaine.org/geoserver/paysages/wfs?SERVICE=WFS&REQUEST=GetCapabilities;;
+WFS;FoncierCEN;site_gere_poly_2020;fonciercen:site_gere_poly_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Sites gérés CEN NA (polygone);fonciercen:site_gere_poly;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Sites gérés CEN NA (point);fonciercen:site_gere_point;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
-WFS;FoncierCEN;Sites gérés CEN NA au 31/12/2022 (polygone);fonciercen:site_gere_poly_2022;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
-WFS;FoncierCEN;Sites gérés CEN NA au 31/12/2022 (point);fonciercen:site_gere_point_2022;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 87);fonciercen:parcelles_af_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 86);fonciercen:parcelles_af_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 79);fonciercen:parcelles_af_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
@@ -87,9 +83,8 @@ WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 24);foncierc
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
-WFS;FoncierCEN;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
-WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2022;fonciercen:mfu_cenna_2022;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
+WFS;FoncierCEN;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;FoncierCEN;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
@@ -181,100 +176,100 @@ WMS Raster;Géologie;Cartes géologiques;GEOLOGIE;http://geoservices.brgm.fr/geo
 WMS Raster;Géologie;Base géologie marine;BGM;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;Gisements, gîtes, indices;GITES;http://geoservices.brgm.fr/geologie;BRGM;
 WMS Raster;Géologie;Mines;MINES;http://geoservices.brgm.fr/geologie;BRGM;
-WMS Raster;Risques;Cavités souterraines abandonnées d'origine non minière;CAVITE_LOCALISEE;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Mouvements de Terrain;MVT_LOCALISE;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Séismes historiques potentiellement ressentis;SIS_INTENSITE;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Installations classées;INSTALLATIONS_CLASSEES_SIMPLIFIE;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Etablissements Pollueurs;ETABLISSEMENTS_POLLUEURS;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR naturel;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Avalanche approuvé;PPRN_COMMUNE_AVALANCHE_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Avalanche prescrit;PPRN_COMMUNE_AVALANCHE_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Phénomènes météorologiques approuvé;PPRN_COMMUNE_ATMOS_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Phénomènes météorologiques prescrit;PPRN_COMMUNE_ATMOS_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Inondation approuvé;PPRN_COMMUNE_RISQINOND_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Inondation prescrit;PPRN_COMMUNE_RISQINOND_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Inondation par sumersion marine approuvé;PPRN_COMMUNE_SUBMAR_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Inondation par sumersion marine prescrit;PPRN_COMMUNE_SUBMAR_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Feu de forêt approuvé;PPRN_COMMUNE_FEU_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Feu de forêt prescrit;PPRN_COMMUNE_FEU_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain approuvé;PPRN_COMMUNE_MVT_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain prescrit;PPRN_COMMUNE_MVT_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) approuvé;PPRN_COMMUNE_CAVITE_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) prescrit;PPRN_COMMUNE_CAVITE_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) approuvé;PPRN_COMMUNE_ARGILE_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) prescrit;PPRN_COMMUNE_ARGILE_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR technologiques;PPRT_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Risque industriel approuvé;PPRT_COMMUNE_RISQIND_APPROUV;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Communes concernées par un PPR Risque industriel prescrit;PPRT_COMMUNE_RISQIND_PRESCRIT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Limites de commune concernée par un TRI - France métropolitaine - Rapportage 2020;COMMUNE_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Réseaux - France métropolitaine - Rapportage 2020;ENJEUX_RESEAUX_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Etablissements sensibles - France métropolitaine - Rapportage 2020;ENJEUX_ETS_SENSIBLES_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Limite de zones de protection naturelle - France métropolitaine - Rapportage 2020;ENJEUX_ZONENATURELLE_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Etablissements classés IED - France métropolitaine - Rapportage 2020;ENJEUX_IED_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Patrimoine culturel - France métropolitaine - Rapportage 2020;ENJEUX_CULT_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Station d'épuration supérieure à 2000 Equivalent Habitant - France métropolitaine - Rapportage 2020;ENJEUX_STEP_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Surface inondable - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Hauteurs d'eau - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Ouvrage de protection - France métropolitaine - Rapportage 2020;OUV_PROTECTION_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zones soustraites à l'aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSSINOND_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zones de sur-aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSALEA_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètre de TRI - France métropolitaine - Rapportage 2020;LIMITETRI_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;PPR Inondation - France métropolitaine;PPRN_INOND_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Inondation - France métropolitaine;PPRN_PERIMETRE_INOND_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Littoraux - France métropolitaine;PPRN_PERIMETRE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR Inondation - France métropolitaine;PPRN_ZONE_INOND_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR littoraux - France métropolitaine;PPRN_ZONE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;PPR Mouvement de terrain - France métropolitaine;PPRN_MVT_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - France métropolitaine;PPRN_PERIMETRE_MVT_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_PERIMETRE_CAV_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_PERIMETRE_TSD_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - France métropolitaine;PPRN_ZONE_MVT_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_ZONE_CAV_FXX_01;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_ZONE_CAV_FXX_02;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;PPR Avalanche - France métropolitaine;PPRN_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Avalanche - France métropolitaine;PPRN_PERIMETRE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR Avalanche - France métropolitaine;PPRN_ZONE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;PPR Feu de forêt - France métropolitaine;PPRN_FEU_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Périmètres des PPR Feu de forêt - France métropolitaine;PPRN_PERIMETRE_FEU_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Zonage réglementaire des PPR Feu de forêt - France métropolitaine;PPRN_ZONE_FEU_FXX;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Canalisations de transport de matières dangereuses : Gaz; Hydrocarbures;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Canalisations de transport de matières dangereuses : Gaz naturel;C_GAZ;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Canalisations de transport de matières dangereuses : Hydrocarbures;C_HYDROCARBURES;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Canalisations de transport de matières dangereuses : Produits chimiques;C_PRODUITS_CHIM;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIFICATION_SIS;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Secteur d'Information sur les Sols (SIS) - Etat d'avancement par département;ETAT_SIS;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Servitudes d'utilité publique (SUP);SSP_CLASSIFICATION_SUP;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Anciens sites industriels et activités de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;GéoRisques
-WMS Raster;Risques;Potentiel radon à la commune;RADON;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Carte nationale des remontées de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Eolien : Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Eolien : Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;GéoRisques;
-WMS Raster;Risques;Eolien : Aérogénérateurs;eolienne;https://www.georisques.gouv.fr/services;GéoRisques;
+WMS Raster;Risques;Services cartographiques de diffusion des données GéoRisques;GEORISQUES_SERVICES;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Cavités souterraines abandonnées d'origine non minière;CAVITE_LOCALISEE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Mouvements de Terrain;MVT_LOCALISE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Exposition au retrait-gonflement des argiles;ALEARG;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Séismes historiques potentiellement ressentis;SIS_INTENSITE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Installations classées;INSTALLATIONS_CLASSEES_SIMPLIFIE;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Etablissements Pollueurs;ETABLISSEMENTS_POLLUEURS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR naturel;PPRN_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Avalanche approuvé;PPRN_COMMUNE_AVALANCHE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Avalanche prescrit;PPRN_COMMUNE_AVALANCHE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Phénomènes météorologiques approuvé;PPRN_COMMUNE_ATMOS_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Phénomènes météorologiques prescrit;PPRN_COMMUNE_ATMOS_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation approuvé;PPRN_COMMUNE_RISQINOND_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation prescrit;PPRN_COMMUNE_RISQINOND_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation par sumersion marine approuvé;PPRN_COMMUNE_SUBMAR_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Inondation par sumersion marine prescrit;PPRN_COMMUNE_SUBMAR_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Feu de forêt approuvé;PPRN_COMMUNE_FEU_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Feu de forêt prescrit;PPRN_COMMUNE_FEU_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain approuvé;PPRN_COMMUNE_MVT_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain prescrit;PPRN_COMMUNE_MVT_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) approuvé;PPRN_COMMUNE_CAVITE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) prescrit;PPRN_COMMUNE_CAVITE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) approuvé;PPRN_COMMUNE_ARGILE_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Mouvement de terrain - Tassements différentiels (Argile) prescrit;PPRN_COMMUNE_ARGILE_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR technologiques;PPRT_COMMUNE_GASPAR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Risque industriel approuvé;PPRT_COMMUNE_RISQIND_APPROUV;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Communes concernées par un PPR Risque industriel prescrit;PPRT_COMMUNE_RISQIND_PRESCRIT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Limites de commune concernée par un TRI - France métropolitaine - Rapportage 2020;COMMUNE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Réseaux - France métropolitaine - Rapportage 2020;ENJEUX_RESEAUX_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Etablissements sensibles - France métropolitaine - Rapportage 2020;ENJEUX_ETS_SENSIBLES_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Limite de zones de protection naturelle - France métropolitaine - Rapportage 2020;ENJEUX_ZONENATURELLE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zone d'activité - France métropolitaine - Rapportage 2020;ENJEUX_ZONEACT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Etablissements classés IED - France métropolitaine - Rapportage 2020;ENJEUX_IED_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Patrimoine culturel - France métropolitaine - Rapportage 2020;ENJEUX_CULT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Station d'épuration supérieure à 2000 Equivalent Habitant - France métropolitaine - Rapportage 2020;ENJEUX_STEP_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Surface inondable - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ALEA_SYNT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_01_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_01_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_01_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa débordement de cours d'eau rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_01_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_02_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_02_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa ruissellement rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_02_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion fréquent ou décennal - France métropolitaine - Rapportage 2020;ISO_HT_03_01FOR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion moyen ou centennal - France métropolitaine - Rapportage 2020;ISO_HT_03_02MOY_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion moyen ou centennal avec prise en compte du changement climatique - France métropolitaine - Rapportage 2020;ISO_HT_03_03MCC_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Hauteurs d'eau - Aléa submersion rare ou millénial - France métropolitaine - Rapportage 2020;ISO_HT_03_04FAI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Ouvrage de protection - France métropolitaine - Rapportage 2020;OUV_PROTECTION_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zones soustraites à l'aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSSINOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zones de sur-aléa inondation - France métropolitaine - Rapportage 2020;OUV_ZONSALEA_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètre de TRI - France métropolitaine - Rapportage 2020;LIMITETRI_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Inondation - France métropolitaine;PPRN_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Inondation - France métropolitaine;PPRN_PERIMETRE_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Littoraux - France métropolitaine;PPRN_PERIMETRE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Inondation - France métropolitaine;PPRN_ZONE_INOND_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR littoraux - France métropolitaine;PPRN_ZONE_SUBMAR_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Mouvement de terrain - France métropolitaine;PPRN_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - France métropolitaine;PPRN_PERIMETRE_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_PERIMETRE_CAV_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_PERIMETRE_TSD_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - France métropolitaine;PPRN_ZONE_MVT_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - Affaissements et effondrements (Cavités souterraines) - France métropolitaine;PPRN_ZONE_CAV_FXX_01;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Mouvement de terrain - Tassements différentiels (Argile) - France métropolitaine;PPRN_ZONE_CAV_FXX_02;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Avalanche - France métropolitaine;PPRN_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Avalanche - France métropolitaine;PPRN_PERIMETRE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Avalanche - France métropolitaine;PPRN_ZONE_AVALANCHE_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;PPR Feu de forêt - France métropolitaine;PPRN_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Périmètres des PPR Feu de forêt - France métropolitaine;PPRN_PERIMETRE_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Zonage réglementaire des PPR Feu de forêt - France métropolitaine;PPRN_ZONE_FEU_FXX;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Gaz; Hydrocarbures;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Gaz naturel;C_GAZ;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Hydrocarbures;C_HYDROCARBURES;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Canalisations de transport de matières dangereuses : Produits chimiques;C_PRODUITS_CHIM;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Secteurs d'information sur les sols (SIS);SSP_CLASSIFICATION_SIS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Secteur d'Information sur les Sols (SIS) - Etat d'avancement par département;ETAT_SIS;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Servitudes d'utilité publique (SUP);SSP_CLASSIFICATION_SUP;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Anciens sites industriels et activités de service;SSP_ETABLISSEMENT;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Sites pollués ou potentiellement pollués appelant une action des pouvoirs publics; à titre préventif ou curatif (BASOL);SSP_INSTRUCTION;https://www.georisques.gouv.fr/services;BRGM
+WMS Raster;Risques;Potentiel radon à la commune;RADON;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Carte nationale des remontées de nappes;REMNAPPE_FR;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Entités hydrogéologiques imperméables à l'affleurement;MASQ_BDLISA;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Enveloppes Approchées des Inondations Potentielles cours d'eau et submersion marine de plus d'un hectare;MASQ_EAIP;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Parcs éoliens terrestres;parc;https://www.georisques.gouv.fr/services;BRGM;
+WMS Raster;Risques;Postes de livraison;poste_livraison;https://www.georisques.gouv.fr/services;BRGM;
 WMS Raster;Fonds cartos;Carte XVIIIème siècle;XVIII%C3%A8me%20si%C3%A8cle;https://ws.sogefi-web.com/wms;SOGEFI;
 WFS;Climat;Régions biogéographiques;regbio_fr;https://ws.carmencarto.fr/WFS/119/fxx_ref;INPN;
 WFS;Géodésie;Points géodésiques du Réseau Géodésique Français;geodesie:point_geodesique;https://opendata.cen-nouvelle-aquitaine.org/geoserver/geodesie/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;
@@ -289,12 +284,9 @@ WFS;Pédologie;Référentiel Régional Pédologique du département du Lot-et-Ga
 WFS;Pédologie;Référentiel Régional Pédologique du département des Pyrénées-Atlantiques;pedologie:RRP_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
 WFS;Pédologie;Référentiel Régional Pédologique du département des Deux-Sèvres;pedologie:RRP_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
 WFS;Pédologie;Référentiel Régional Pédologique du département de la Vienne;pedologie:RRP_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/pedologie/wfs;PIGMA;
-WFS;Pédologie;Référentiel Régional Pédologique du département des Landes;gissol_igcs:etude_32394;https://agroenvgeo.data.inra.fr/geoserver/gissol_igcs/wfs;INRAE;
-WFS;Pédologie;Référentiel Régional Pédologique du département de Gironde;gissol_igcs:etude_30110;https://agroenvgeo.data.inra.fr/geoserver/gissol_igcs/wfs;INRAE;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Asconit (avec eaux superficielles);inventaires_zh:eptb_zdh_asconit_avec_eaux_superficielles;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Asconit;inventaires_zh:eptb_zdh_asconit;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 2500ème;inventaires_zh:epidor_zdh_2500eme;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPIDOR;
 WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 5000ème;inventaires_zh:epidor_zdh_5000eme;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPIDOR;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Imageconsult;inventaires_zh:eptb_zdh_imageconsult;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
-WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Imageconsult;inventaires_zh:eptb_zdh_imageconsult;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
-PostGIS;Couches collaboratives (Bêta test);Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;
+WFS;Flux collaboratifs (Bêta);Piezomètres CEN-NA;flux_modifiables:piezometres_CENNA;https://opendata.cen-nouvelle-aquitaine.org/flux_modifiables/wfs;CEN NA;style_piezo;
