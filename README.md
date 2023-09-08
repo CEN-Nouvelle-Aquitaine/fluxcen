@@ -14,10 +14,11 @@ Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions.
 
 ## 🧐 Features    
 - Sélection rapide des ressources par autocomplétion
+- Regroupement des flux au sein de catégories
 - Gestion des styles par défaut à l'ouverture dans QGIS pour les données WFS
-- Fichier de changelog
 - Centralisation  et gestion des flux simplifiée dans un fichier .csv
-- Code et ressources attachées sont gérées directement dans le git
+- Code et ressources attachées gérées directement via le git
+- Prise en charge des flux Geoserver et Mapserver
 
 ## Composition du fichier .csv
   
@@ -45,7 +46,8 @@ Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions.
 ## Accès aux données protégées
 
 Si l'accès à la majorité des ressources reste public, certaines peuvent être protégées par un mot de passe (données métier confidentielles par exemple).
-C'est le cas notamment de certaines données foncières du CEN NA qui nécessitent une authentifiaction. Cette authentification est gérée via le serveur cartographique qui génère les flux.
+
+ Cette authentification est gérée via le serveur cartographique qui génère les flux.
 Pour y accéder, il faut créer en amont une authentification dans QGIS. L'ouverture des données protégées se fera alors à partir de la première authentification enregistrée dans QGIS (pas de gestion multi-authentification pour le moment)
 
 ## Interface du plugin:
