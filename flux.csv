@@ -89,6 +89,8 @@ WFS;FoncierCEN;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;ht
 WFS;FoncierCEN;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;aire_fonciere_cenna;fonciercen:aire_fonciere_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;ChiroKollect;ChiroKollect : données simplifiées;chirokollect:donnees_simplifiees;https://opendata.cen-nouvelle-aquitaine.org/chirokollect/wfs;CEN NA;
+WFS;ChiroKollect;ChiroKollect : localités;chirokollect:synth_gite_list;https://opendata.cen-nouvelle-aquitaine.org/chirokollect/wfs;CEN NA;
 WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises commune;MESURES_COMPENSATOIRES:emprises_commune;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_linéaires;MESURES_COMPENSATOIRES:emprises_lineaires;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
