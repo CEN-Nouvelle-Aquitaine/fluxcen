@@ -304,3 +304,5 @@ WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 2500ème;invent
 WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 5000ème;inventaires_zh:epidor_zdh_5000eme;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPIDOR;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Imageconsult;inventaires_zh:eptb_zdh_imageconsult;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 PostGIS;Couches collaboratives (Bêta test);Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;
+WFS;Occupation du sol;Forêts publiques de l'ONF;FOR_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;
+WFS;Occupation du sol;Parcelles forestières de l'ONF;PARC_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;
