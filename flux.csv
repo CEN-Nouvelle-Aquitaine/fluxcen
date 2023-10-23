@@ -306,3 +306,4 @@ WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Im
 PostGIS;Couches collaboratives (Bêta test);Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;
 WFS;Occupation du sol;Forêts publiques de l'ONF;FOR_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;
 WFS;Occupation du sol;Parcelles forestières de l'ONF;PARC_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;
+WFS;Hydrobiologie;Frayères poissons migrateurs;hydrbiologie:geoif_frayeres_migrateurs;https://opendata.cen-nouvelle-aquitaine.org/hydrobiologie/wfs;GeoIF;
