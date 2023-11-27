@@ -155,6 +155,7 @@ WMS Raster;Fonds cartos;Fond carto altimétrie Limousin;fond_carto_alti_limousin
 WMS Raster;Fonds cartos;Fond carto altimétrie Poitou-Charentes;fond_carto_alti_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Charente-Maritime;CG17:zpens_2022;https://geo.geoplateforme17.fr/CG17/wfs;Département de la Charente-Maritime;
+WFS;Périmètres écologiques;Espaces Naturels Sensibles du Département du Lot-et-Garonne;perimetres_ecologiques:ens_47;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs;Département du Lot-et-Garonne;
 WFS;Périmètres écologiques;Espaces Naturels Sensibles (couche en construction);Espaces_naturels_sensibles;https://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
 WFS;Périmètres écologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
