@@ -96,7 +96,7 @@ class Popup(QWidget):
         self.text_edit.setOpenLinks(False)
 
         self.text_edit.setWindowTitle("Nouveautés")
-        self.text_edit.setMinimumSize(600,400)
+        self.text_edit.setMinimumSize(600,450)
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
