@@ -21,7 +21,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
 from qgis.PyQt.QtGui import *
 from qgis.PyQt.QtWidgets import *
 from PyQt5 import *
@@ -48,6 +48,7 @@ import urllib
 from urllib import request, parse
 import socket
 import json
+import requests
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -152,7 +153,7 @@ class FluxCEN:
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
-        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux_test_avant_prod.csv")
         colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
 
         mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
@@ -171,14 +172,8 @@ class FluxCEN:
         derniere_version = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt")
         num_last_version = derniere_version.readlines()[0].decode("utf-8")
 
-        # print(":"+num_last_version+":")
-        # print(":"+infos_metadonnees[8]+":")
-        #
-        # print(type(num_last_version))
-        # print(type(infos_metadonnees[8]))
-        #
-        # print(len(num_last_version))
-        # print(len(infos_metadonnees[8]))
+        # Connect the itemClicked signal to the open_url function
+        self.dlg.tableWidget.itemClicked.connect(self.open_url)
 
         version_utilisateur = infos_metadonnees[8].splitlines()
 
@@ -366,6 +361,14 @@ class FluxCEN:
         parent.removeChildNode(google_layer)
 
 
+    def open_url(self, item):
+        url = item.data(Qt.UserRole)
+        if url:
+            # Open the URL, you might use QDesktopServices.openUrl for this in a standalone PyQt application
+            QDesktopServices.openUrl(QUrl(url))
+
+
+
     def initialisation_flux(self):
 
         def csv_import(url):
@@ -380,7 +383,7 @@ class FluxCEN:
         model = QStandardItemModel()
 
         raw = csv_import(
-            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux_test_avant_prod.csv")
 
         for row in raw:
             data.append(row)
@@ -406,6 +409,22 @@ class FluxCEN:
             for row in range(nb_row):
                 for col in range(nb_col):
                     item = QTableWidgetItem(str(data2[row][col]))
+                    # Access the value from the 6th column for the current row (style here)
+                    value_from_2nd_column = str(data2[row][2])
+                    # Set tooltip for each row
+                    tooltip = f"Nom du flux: {value_from_2nd_column}"
+                    item.setToolTip(tooltip)
+
+                    # Check if the current column is the "Résumé des métadonnées" column
+                    if col == 7:
+                        # Set icon for the "Résumé des métadonnées" column
+                        icon_path = self.plugin_path + '/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon = QIcon(icon_path)
+                        item.setIcon(icon)   
+                        # Store the URL in the item's data for later retrieval
+                        url_from_6th_column = str(data2[row][7])  # Assuming the URL is in the next column
+                        item.setData(Qt.UserRole, url_from_6th_column)
+
                     self.dlg.tableWidget.setItem(row, col, item)
         else:
             nb_row = len(data)
@@ -415,17 +434,34 @@ class FluxCEN:
             for row in range(nb_row):
                 for col in range(nb_col):
                     item = QTableWidgetItem(str(data[row][col]))
+                    # Access the value from the 6th column for the current row (style here)
+                    value_from_2nd_column = str(data[row][1])
+                    # Set tooltip for each row
+                    tooltip = f"Nom du flux: {value_from_2nd_column}"
+                    item.setToolTip(tooltip)
+
+                    # Check if the current column is the "Résumé des métadonnées" column
+                    if col == 7:
+                        # Set icon for the "Résumé des métadonnées" column
+                        icon_path = self.plugin_path + '/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon = QIcon(icon_path)
+                        item.setIcon(icon)   
+                        # Store the URL in the item's data for later retrieval
+                        url_from_6th_column = str(data2[row][7])  # Assuming the URL is in the next column
+                        item.setData(Qt.UserRole, url_from_6th_column)
+
                     self.dlg.tableWidget.setItem(row, col, item)
 
-        self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux", "Nom technique", "Url d'accès", "Source", "Style"])
+        self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux", "Nom technique", "Url d'accès", "Source", "Style", "Infos"])
 
-        self.dlg.tableWidget.setColumnWidth(0, 80)
+        self.dlg.tableWidget.setColumnWidth(0, 76)
         self.dlg.tableWidget.setColumnWidth(1, 0)
-        self.dlg.tableWidget.setColumnWidth(2, 629)
+        self.dlg.tableWidget.setColumnWidth(2, 610)
         self.dlg.tableWidget.setColumnWidth(3, 0)
         self.dlg.tableWidget.setColumnWidth(4, 0)
-        self.dlg.tableWidget.setColumnWidth(5, 100)
+        self.dlg.tableWidget.setColumnWidth(5, 88)
         self.dlg.tableWidget.setColumnWidth(6, 0)
+        self.dlg.tableWidget.setColumnWidth(7, 30)
 
         self.dlg.tableWidget.selectRow(0)
 
@@ -522,7 +558,6 @@ class FluxCEN:
                                 res = layer.importNamedStyle(document)
                                 layer.triggerRepaint()
 
-                                layer.loadNamedStyle(self.plugin_path + '/styles_couches/' + _legend + '.qml')
                             else:
                                 print("Pas de style à charger pour cette couche")
 
