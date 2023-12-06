@@ -6,7 +6,7 @@
 name=FluxCEN
 qgisMinimumVersion=3.0
 description=Centralisation des flux WFS/WMS les plus couramment utilisés au CEN-NA
-version=3.5
+version=3.6
 author=Romain Montillet
 email=r.montillet@cen-na.org
 
