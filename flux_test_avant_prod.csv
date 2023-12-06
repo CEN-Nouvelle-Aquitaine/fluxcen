@@ -1,6 +1,6 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style;metadonnees
 WFS;Culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
-WFS;Agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;https://geoservices.ign.fr/sites/default/files/2023-11/IGNF_RPG_2-1.html;
+WFS;Agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;NULL;https://geoservices.ign.fr/sites/default/files/2023-11/IGNF_RPG_2-1.html;
 WFS;Agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG;https://geoservices.ign.fr/sites/default/files/2023-11/IGNF_RPG_2-1.html;
 WFS;Agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG;https://geoservices.ign.fr/sites/default/files/2023-11/IGNF_RPG_2-1.html;
 WFS;Agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG;https://geoservices.ign.fr/sites/default/files/2023-11/IGNF_RPG_2-1.html;
