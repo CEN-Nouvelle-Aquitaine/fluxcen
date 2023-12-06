@@ -1,18 +1,6 @@
 service;categorie;Nom_couche_plugin;nom_technique;url;source;style
 WFS;Culture;Monuments historiques;culture:monuments_historiques;https://opendata.cen-nouvelle-aquitaine.org/culture/wfs;Data-gouv;
 WFS;Agriculture;Carte des cours d’eau BCAE1 2022;HYDROGRAPHY.BCAE.2022:bcae_cours_eau;https://wxs.ign.fr/agriculture/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
-WFS;Agriculture;RPG 2020 departement 16;agriculture:rpg_2020_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 17;agriculture:rpg_2020_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 19;agriculture:rpg_2020_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 23;agriculture:rpg_2020_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 24;agriculture:rpg_2020_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 33;agriculture:rpg_2020_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 40;agriculture:rpg_2020_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 47;agriculture:rpg_2020_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 64;agriculture:rpg_2020_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 79;agriculture:rpg_2020_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 86;agriculture:rpg_2020_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
-WFS;Agriculture;RPG 2020 departement 87;agriculture:rpg_2020_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 16;agriculture:rpg_2021_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 17;agriculture:rpg_2021_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 19;agriculture:rpg_2021_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
@@ -25,6 +13,18 @@ WFS;Agriculture;RPG 2021 departement 64;agriculture:rpg_2021_64;https://opendata
 WFS;Agriculture;RPG 2021 departement 79;agriculture:rpg_2021_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 86;agriculture:rpg_2021_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Agriculture;RPG 2021 departement 87;agriculture:rpg_2021_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 16;agriculture:rpg_2022_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 17;agriculture:rpg_2022_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 19;agriculture:rpg_2022_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 23;agriculture:rpg_2022_23;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 24;agriculture:rpg_2022_24;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 33;agriculture:rpg_2022_33;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 40;agriculture:rpg_2022_40;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 47;agriculture:rpg_2022_47;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 64;agriculture:rpg_2022_64;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 79;agriculture:rpg_2022_79;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 86;agriculture:rpg_2022_86;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
+WFS;Agriculture;RPG 2022 departement 87;agriculture:rpg_2022_87;https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN;RPG
 WFS;Administratif;Commune;administratif:commune;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
 WFS;Administratif;Département;administratif:departement;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;IGN Admin Express;
 WFS;Administratif;Lieu-dit;administratif:lieudit;https://opendata.cen-nouvelle-aquitaine.org/administratif/wfs?SERVICE=WFS&REQUEST=GetCapabilities;Cadastre ETALAB;
@@ -83,12 +83,27 @@ WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 24);foncierc
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 19);fonciercen:parcelles_af_19;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 17);fonciercen:parcelles_af_17;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;Parcelles CEN NA suivies en animation foncière (dpt 16);fonciercen:parcelles_af_16;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
+WFS;FoncierCEN;Prospections tierces (dpt 16);fonciercen:prospections_tierces_16;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 17);fonciercen:prospections_tierces_17;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 19);fonciercen:prospections_tierces_19;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 23);fonciercen:prospections_tierces_23;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 24);fonciercen:prospections_tierces_24;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 33);fonciercen:prospections_tierces_33;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 40);fonciercen:prospections_tierces_40;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 47);fonciercen:prospections_tierces_47;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 64);fonciercen:prospections_tierces_64;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 79);fonciercen:prospections_tierces_79;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 86);fonciercen:prospections_tierces_86;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
+WFS;FoncierCEN;Prospections tierces (dpt 87);fonciercen:prospections_tierces_87;https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs;CEN NA;
 WFS;FoncierCEN;Parcelles CEN NA en MFU au 31/12/2021;fonciercen:mfu_cenna_2021;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;FoncierCEN;Parcelles CEN NA en MFU;fonciercen:mfu_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;mfu_cenna
 WFS;FoncierCEN;mf_cenna_neoterra_a_verif;fonciercen:mf_cenna_neoterra_a_verif;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune_2020;fonciercen:bilan_neoterra_commune_2020;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;bilan_neoterra_commune;fonciercen:bilan_neoterra_commune;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;parcelles_af
 WFS;FoncierCEN;aire_fonciere_cenna;fonciercen:aire_fonciere_cenna;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs;CEN NA;
+WFS;ChiroKollect;ChiroKollect : données simplifiées;chirokollect:donnees_simplifiees;https://opendata.cen-nouvelle-aquitaine.org/chirokollect/wfs;CEN NA;
+WFS;ChiroKollect;ChiroKollect : données détaillées;chirokollect:donnees_detail;https://opendata.cen-nouvelle-aquitaine.org/chirokollect/wfs;CEN NA;
+WFS;ChiroKollect;ChiroKollect : localités;chirokollect:synth_gite_list;https://opendata.cen-nouvelle-aquitaine.org/chirokollect/wfs;CEN NA;
 WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises commune;MESURES_COMPENSATOIRES:emprises_commune;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_linéaires;MESURES_COMPENSATOIRES:emprises_lineaires;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
 WFS;Mesures compensatoires;Mesures compensatoires des atteintes à la biodiversité _emprises_polygones;MESURES_COMPENSATOIRES:emprises_polygones;https://wxs.ign.fr/environnement/geoportail/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;IGN;
@@ -130,16 +145,17 @@ WMS Raster;Fonds cartos;SPOT 2020 (Satelitte);ORTHOIMAGERY.ORTHO-SAT.SPOT.2020;h
 WMS Raster;Fonds cartos;SPOT 2021 (Satelitte);ORTHOIMAGERY.ORTHO-SAT.SPOT.2021;https://wxs.ign.fr/satellite/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Réglementation drone;Zones interdites à la prise de vue aérienne;ORTHOIMAGERY.ORTHOPHOS.RESTRICTEDAREAS;https://wxs.ign.fr/ortho/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
 WMS Raster;Réglementation drone;Restrictions pour drones de loisir;TRANSPORTS.DRONES.RESTRICTIONS;https://wxs.ign.fr/transports/geoportail/r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;
-WMS Raster;Réglementation drone;OACI-VFR;SCANOACI_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Réglementation drone;OACI-VFR;SCANOACI_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto_cle/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Administratif;Strates administratives Nouvelle-Aquitaine ;foncier_agg;https://opendata.cen-nouvelle-aquitaine.org/administratif/wms;IGN;
-WMS Raster;Fonds cartos;SCAN 25® IGN;SCAN25TOUR_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
-WMS Raster;Fonds cartos;SCAN 100® IGN;SCAN100_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN 25® IGN;SCAN25TOUR_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto_cle/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
+WMS Raster;Fonds cartos;SCAN 100® IGN;SCAN100_PYR-JPEG_WLD_WM;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto_cle/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;TRANSPORTS.DRONES.RESTRICTIONS;TRANSPORTS.DRONES.RESTRICTIONS;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;Fond carto altimétrie Aquitain;fond_carto_alti_aquitaine;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;Fond carto altimétrie Limousin;fond_carto_alti_limousin;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WMS Raster;Fonds cartos;Fond carto altimétrie Poitou-Charentes;fond_carto_alti_pc;https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms?SERVICE=WMS&REQUEST=GetCapabilities;IGN;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Gironde;ens_zones_de_preemption_parcelles:Parcelles_ZPENS;https://sig.gironde.fr/arcgis/services/ens_zones_de_preemption_parcelles/MapServer/WFSServer;Département de la Gironde;
 WFS;Périmètres écologiques;Parcelles en ZPENS du Département de la Charente-Maritime;CG17:zpens_2022;https://geo.geoplateforme17.fr/CG17/wfs;Département de la Charente-Maritime;
+WFS;Périmètres écologiques;Espaces Naturels Sensibles du Département du Lot-et-Garonne;perimetres_ecologiques:ens_47;https://opendata.cen-nouvelle-aquitaine.org/perimetres_ecologiques/wfs;Département du Lot-et-Garonne;
 WFS;Périmètres écologiques;Espaces Naturels Sensibles (couche en construction);Espaces_naturels_sensibles;https://ws.carmencarto.fr/WFS/119/fxx_inpn;INPN;
 WFS;Périmètres écologiques;Arrêtés de protection de biotope;Arretes_de_protection_de_biotope;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
 WFS;Périmètres écologiques;Parcs nationaux;Parcs_nationaux;http://ws.carmencarto.fr/WFS/119/fxx_inpn?;INPN;
@@ -290,3 +306,6 @@ WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 2500ème;invent
 WFS;Inventaires zones humides;Zones à dominantes humides EPIDOR 5000ème;inventaires_zh:epidor_zdh_5000eme;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPIDOR;
 WFS;Inventaires zones humides;Zones à dominantes humides EPTB bureau d'etude Imageconsult;inventaires_zh:eptb_zdh_imageconsult;https://opendata.cen-nouvelle-aquitaine.org/geoserver/inventaires_zh/wfs;EPTB Vienne;
 PostGIS;Couches collaboratives (Bêta test);Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;
+WFS;Occupation du sol;Forêts publiques de l'ONF;FOR_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;
+WFS;Occupation du sol;Parcelles forestières de l'ONF;PARC_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;
+WFS;Hydrobiologie;Frayères poissons migrateurs;hydrobiologie:geoif_frayeres_migrateurs;https://opendata.cen-nouvelle-aquitaine.org/hydrobiologie/wfs;GeoIF;frayeres
