@@ -418,7 +418,7 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon_path = self.plugin_path + '/info_metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
                         icon = QIcon(icon_path)
                         item.setIcon(icon)   
                         # Store the URL in the item's data for later retrieval
