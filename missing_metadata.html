@@ -17,6 +17,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+        }
+
+        .image-container {
+            margin-right: 20px; /* Adjust as needed */
+            height: 300px; /* Set the desired fixed height */
         }
 
         p {
@@ -27,7 +34,6 @@
             top: 72%;
             left: 50%;
             transform: translate(-50%, -50%);
-
         }
 
         img {
@@ -39,7 +45,12 @@
 </head>
 <body>
     <div class="content">
-        <img src="https://dataedo.com/asset/img/banners/kb/data-glossary/metadata_v2.png" alt="Metadata Image">
+	    <div class="image-container">
+            <img src="https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/confused_travolta.gif" alt="Another Image">
+        </div>
+        <div class="image-container">
+            <img src="https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/metadata.png" alt="Metadata Image">
+        </div>
     </div>
     <p>Pas de métadonnées encore associées à cette ressource ! Revenez plus tard &#x1F60E;</p>
 </body>
