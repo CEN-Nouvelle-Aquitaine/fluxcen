@@ -102,13 +102,7 @@ class FluxCEN:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
-        """Constructor.
 
-        :param iface: An interface instance that will be passed to this class
-            which provides the hook by which you can manipulate the QGIS
-            application at run time.
-        :type iface: QgsInterface
-        """
         # Save reference to the QGIS interface
         self.iface = iface
         # initialize plugin directory
@@ -188,16 +182,6 @@ class FluxCEN:
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
-        """Get the translation for a string using Qt translation API.
-
-        We implement this ourselves since we do not inherit QObject.
-
-        :param message: String for translation.
-        :type message: str, QString
-
-        :returns: Translated version of message.
-        :rtype: QString
-        """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('FluxCEN', message)
 
@@ -213,43 +197,6 @@ class FluxCEN:
         status_tip=None,
         whats_this=None,
         parent=None):
-        """Add a toolbar icon to the toolbar.
-
-        :param icon_path: Path to the icon for this action. Can be a resource
-            path (e.g. ':/plugins/foo/bar.png') or a normal file system path.
-        :type icon_path: str
-
-        :param text: Text that should be shown in menu items for this action.
-        :type text: str
-
-        :param callback: Function to be called when the action is triggered.
-        :type callback: function
-
-        :param enabled_flag: A flag indicating if the action should be enabled
-            by default. Defaults to True.
-        :type enabled_flag: bool
-
-        :param add_to_menu: Flag indicating whether the action should also
-            be added to the menu. Defaults to True.
-        :type add_to_menu: bool
-
-        :param add_to_toolbar: Flag indicating whether the action should also
-            be added to the toolbar. Defaults to True.
-        :type add_to_toolbar: bool
-
-        :param status_tip: Optional text to show in a popup when mouse pointer
-            hovers over the action.
-        :type status_tip: str
-
-        :param parent: Parent widget for the new action. Defaults None.
-        :type parent: QWidget
-        :param whats_this: Optional text to show in the status bar when the
-            mouse pointer hovers over the action.
-
-        :returns: The action that was created. Note that the action is also
-            added to self.actions list.
-        :rtype: QAction
-        """
 
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
@@ -443,7 +390,7 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon_path = self.plugin_path + '/info_metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
                         icon = QIcon(icon_path)
                         item.setIcon(icon)   
                         # Store the URL in the item's data for later retrieval
@@ -505,17 +452,6 @@ class FluxCEN:
         managerAU = QgsApplication.authManager()
         k = managerAU.availableAuthMethodConfigs().keys()
 
-        def REQUEST(type):
-            switcher = {
-                'WFS': "GetFeature",
-                'WMS': "GetMap",
-                'WMS+Vecteur': "GetMap",
-                'WMS+Raster': "GetMap",
-                'WMTS': "GetMap"
-            }
-            return switcher.get(type, "nothing")
-
-
         def displayOnWindows(type, uri, name):
 
             if type == 'WFS':
@@ -523,16 +459,6 @@ class FluxCEN:
                 # vlayer.setScaleBasedVisibility(True)
                 QgsProject.instance().addMapLayer(vlayer)
 
-                # styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + vlayer.name() + '.qml'
-                #
-                # fp = urllib.request.urlopen(styles_url)
-                # mybytes = fp.read()
-
-                # document = QDomDocument()
-                # document.setContent(mybytes)
-                #
-                # res = vlayer.importNamedStyle(document)
-                # vlayer.triggerRepaint()
 
                 layers = QgsProject.instance().mapLayers()  # dictionary
 
@@ -541,8 +467,6 @@ class FluxCEN:
                     # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
                     _item = self.dlg.tableWidget_2.item(row, 2).text()
                     _legend = self.dlg.tableWidget_2.item(row, 6).text()
-                    # print(_item)
-                    # print(_legend)
 
                     for layer in layers.values():
                         if layer.name() == _item:
@@ -555,7 +479,7 @@ class FluxCEN:
                                 document = QDomDocument()
                                 document.setContent(mybytes)
 
-                                res = layer.importNamedStyle(document)
+                                layer.importNamedStyle(document)
                                 layer.triggerRepaint()
 
                             else:
@@ -572,14 +496,7 @@ class FluxCEN:
         for row in range(0, self.dlg.tableWidget_2.rowCount()):
                 ## supression de la partie de l'url après le point d'interrogation
                 url = self.dlg.tableWidget_2.item(row,4).text().split("?", 1)[0]
-                try:
-                    service = re.search('SERVICE=(.+?)&VERSION', self.dlg.tableWidget_2.item(row,4).text()).group(1)
-                except:
-                    service = '1.0.0'
-                try:
-                    version = re.search('VERSION=(.+?)&REQUEST', self.dlg.tableWidget_2.item(row,4).text()).group(1)
-                except:
-                    version = '1.0.0'
+
 
                 if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Vecteur' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
                     a = Flux(
@@ -590,7 +507,7 @@ class FluxCEN:
                         "url="+url,
                         {
                             'service': self.dlg.tableWidget_2.item(row,0).text(),
-                            'version': version,
+                            'version': 'auto',
                             'crs': "EPSG:2154",
                             'format' : "image/png",
                             'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
@@ -620,7 +537,7 @@ class FluxCEN:
                                 self.dlg.tableWidget_2.item(row, 3).text(),
                                 url,
                                 {
-                                    'VERSION': version,
+                                    'VERSION': 'auto',
                                     'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
                                     'SRSNAME': "EPSG:2154",
                                     'authcfg': list(k)[0],
@@ -646,7 +563,7 @@ class FluxCEN:
                         self.dlg.tableWidget_2.item(row, 3).text(),
                             url,
                         {
-                            'VERSION': version,
+                            'VERSION': 'auto',
                             'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
                             # 'SRSNAME': "EPSG:2154",
                             'request': "GetFeature",
