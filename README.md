@@ -19,6 +19,7 @@ Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions.
 - Centralisation  et gestion des flux simplifiée dans un fichier .csv
 - Code et ressources attachées gérées directement via le git
 - Prise en charge des flux Geoserver et Mapserver
+- Lien direct vers la fiche de métadonnées de la ressource
 
 ## Composition du fichier .csv
   
@@ -29,6 +30,7 @@ Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions.
   * url : URL du serveur pour accéder à la couche
   * source : Source de la donnée
   * style : nom du fichier de style pour affichage à l'ouverture dans QGIS
+  * metadonnees : URL d'accès à la fiche de métadonnées liée à la resource
  
  Exemple pour accéder à la BD ORTHO® :
  
