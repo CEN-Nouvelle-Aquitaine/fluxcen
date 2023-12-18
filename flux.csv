@@ -311,3 +311,4 @@ PostGIS;Couches collaboratives (Bêta test);Piezomètres CEN-NA;piezometres_cenn
 WFS;Occupation du sol;Forêts publiques de l'ONF;FOR_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
 WFS;Occupation du sol;Parcelles forestières de l'ONF;PARC_PUBL_FR;https://ws.carmencarto.fr/WFS/105/ONF_Forets;ONF;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
 WFS;Hydrobiologie;Frayères poissons migrateurs;hydrobiologie:geoif_frayeres_migrateurs;https://opendata.cen-nouvelle-aquitaine.org/hydrobiologie/wfs;GeoIF;frayeres;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
+WFS;Hydrologie;Principaux obstacles à l'écoulement;sa:ObstEcoul_FXX_gele;https://services.sandre.eaufrance.fr/geo/obs?VERSION=2.0.0;SANDRE;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
