@@ -525,17 +525,6 @@ class FluxCEN:
                 # vlayer.setScaleBasedVisibility(True)
                 QgsProject.instance().addMapLayer(vlayer)
 
-                # styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + vlayer.name() + '.qml'
-                #
-                # fp = urllib.request.urlopen(styles_url)
-                # mybytes = fp.read()
-
-                # document = QDomDocument()
-                # document.setContent(mybytes)
-                #
-                # res = vlayer.importNamedStyle(document)
-                # vlayer.triggerRepaint()
-
                 layers = QgsProject.instance().mapLayers()  # dictionary
 
                 # rowCount() This property holds the number of rows in the table
@@ -610,61 +599,55 @@ class FluxCEN:
 
 
                 elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
-                    if self.dlg.tableWidget_2.item(row,1).text() == 'FoncierCEN':
-                        if len(list(k)) == 0:
-                            QMessageBox.question(iface.mainWindow(), u"Attention",
-                                                 "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN')", QMessageBox.Ok)
-                        else :
-                            a = Flux(
-                                self.dlg.tableWidget_2.item(row, 0).text(),
-                                self.dlg.tableWidget_2.item(row, 1).text(),
-                                self.dlg.tableWidget_2.item(row, 2).text(),
-                                self.dlg.tableWidget_2.item(row, 3).text(),
-                                url,
-                                {
-                                    'VERSION': version,
-                                    'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                                    'SRSNAME': "EPSG:2154",
-                                    'authcfg': list(k)[0],
-                                    'request': "GetFeature",
+                    
+                    a = Flux(
+                    self.dlg.tableWidget_2.item(row, 0).text(),
+                    self.dlg.tableWidget_2.item(row, 1).text(),
+                    self.dlg.tableWidget_2.item(row, 2).text(),
+                    self.dlg.tableWidget_2.item(row, 3).text(),
+                        url,
+                    {
+                        'VERSION': version,
+                        'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
+                        'request': "GetFeature",
 
-                                }
-                            )
+                    }
+                )
 
-                            p.append(a)
+                    p.append(a)
 
-                            uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                            # print(uri)
+                    uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
 
-                            if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                                displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                    try:
+                        response = requests.get(uri)
+
+                        if response.status_code == 401:
+                            print("Statut de réponse: 401")
+                            
+                            if len(list(k)) == 0:
+                                QMessageBox.question(iface.mainWindow(), u"Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN')", QMessageBox.Ok)
                             else:
-                                print("Couche " + p[row].nom_commercial + " déjà chargée")
-                    else:
-                        a = Flux(
-                        self.dlg.tableWidget_2.item(row, 0).text(),
-                        self.dlg.tableWidget_2.item(row, 1).text(),
-                        self.dlg.tableWidget_2.item(row, 2).text(),
-                        self.dlg.tableWidget_2.item(row, 3).text(),
-                            url,
-                        {
-                            'VERSION': version,
-                            'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                            # 'SRSNAME': "EPSG:2154",
-                            'request': "GetFeature",
+                                # Add 'authcfg' to the parameters dictionary
+                                p[row].parameters['authcfg'] = list(k)[0]
+                                
+                                # Update the URI with the modified parameters
+                                uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
 
-                        }
-                    )
-
-                        p.append(a)
-
-                        uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                        # print(uri)
-
-                        if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                            displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                                # Make the request again with the updated URI
+                                response = requests.get(uri)
+                        elif response.status_code == 200:
+                            print("Statut de réponse: 200.")
                         else:
-                            print("Couche "+p[row].nom_commercial+" déjà chargée")
+                            print(f"Statut de réponse: {response.status_code}")
+
+                    except requests.exceptions.RequestException as e:
+                        print(f"problème de requete: {e}")
+
+
+                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
+                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
+                    else:
+                        print("Couche "+p[row].nom_commercial+" déjà chargée")
 
 
                 elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
