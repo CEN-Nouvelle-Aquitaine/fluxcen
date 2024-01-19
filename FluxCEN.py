@@ -466,24 +466,37 @@ class FluxCEN:
         self.dlg.tableWidget.selectRow(0)
 
     def selection_flux(self):
+        selected_row = 0
+        selected_items = self.dlg.tableWidget.selectedItems()
 
-        self.dlg.tableWidget_2.insertRow(0)
+        # Assuming you want to compare items in the first column for uniqueness
+        new_item_text = selected_items[3].text()
 
-        for column in range(self.dlg.tableWidget.columnCount()):
-            for a in [self.dlg.tableWidget.selectedItems()[column]]:
-                cloned_item = a.clone()
+        if not self.item_already_exists(new_item_text):
+            self.dlg.tableWidget_2.insertRow(selected_row)
+
+            for column in range(self.dlg.tableWidget.columnCount()):
+                cloned_item = selected_items[column].clone()
                 self.dlg.tableWidget_2.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux sélectionné", "Nom technique", "Url d'accès", "Source", "Style", "Infos"])
                 self.dlg.tableWidget_2.setColumnCount(8)
-                self.dlg.tableWidget_2.setItem(0,column,cloned_item)
+                self.dlg.tableWidget_2.setItem(selected_row, column, cloned_item)
 
-        self.dlg.tableWidget_2.setColumnWidth(0,80)
-        self.dlg.tableWidget_2.setColumnWidth(1,0)
-        self.dlg.tableWidget_2.setColumnWidth(2,640)
-        self.dlg.tableWidget_2.setColumnWidth(3,0)
-        self.dlg.tableWidget_2.setColumnWidth(4,0)
-        self.dlg.tableWidget_2.setColumnWidth(5,100)
-        self.dlg.tableWidget_2.setColumnWidth(6, 0)
-        self.dlg.tableWidget_2.setColumnWidth(7, 0)
+            self.dlg.tableWidget_2.setColumnWidth(0, 80)
+            self.dlg.tableWidget_2.setColumnWidth(1, 0)
+            self.dlg.tableWidget_2.setColumnWidth(2, 640)
+            self.dlg.tableWidget_2.setColumnWidth(3, 0)
+            self.dlg.tableWidget_2.setColumnWidth(4, 0)
+            self.dlg.tableWidget_2.setColumnWidth(5, 100)
+            self.dlg.tableWidget_2.setColumnWidth(6, 0)
+            self.dlg.tableWidget_2.setColumnWidth(7, 0)
+
+    def item_already_exists(self, new_item_text):
+        # Assuming you want to compare items in the first column for uniqueness
+        existing_items = self.dlg.tableWidget_2.findItems(new_item_text, QtCore.Qt.MatchExactly)
+
+        # Check if there are any existing items with the same text in the first column
+        return len(existing_items) > 0
+
 
 
     def limite_flux(self):
