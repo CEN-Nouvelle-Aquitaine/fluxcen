@@ -667,7 +667,12 @@ class FluxCEN:
 
                     # Connexion à la base de données PostGIS
                     uri = QgsDataSourceUri()
-                    uri.setConnection("sandbox.cen-nouvelle-aquitaine.dev", "5432", "piezo", "", "")
+
+                    if len(list(k)) == 0 :        
+                        uri.setConnection("51.210.28.153", "5432", "collab_test", "", "",)
+                    else:
+                        uri.setConnection("51.210.28.153", "5432", "collab_test", None, None, authConfigId=list(k)[0])
+
                     # nom du schéma à remplacer: "hydrographie" à supprimer et mettre "couches_collaboratives" lorsqu'on aura regroupé les couches à modifier dans un même schéma
                     uri.setDataSource("collaboratif", self.dlg.tableWidget_2.item(row, 3).text(), "geom")
                     # Chargement de la couche PostGIS
@@ -676,8 +681,38 @@ class FluxCEN:
                     # Ajout de la couche au canevas QGIS
                     QgsProject.instance().addMapLayer(layer)
 
+                    # Call the function to apply changes to all PostGIS layers
+                    self.parametrage_couches_postgis()
+
                 else:
                     print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
+
+    def parametrage_couches_postgis(self):
+        
+        # Get all layers in the map canvas
+        layers = QgsProject.instance().mapLayers().values()
+
+        # Iterate over each layer
+        for layer in layers:
+            # Check if the layer's data provider is PostGIS
+            if layer.providerType() == 'postgres':
+                columns_to_hide = ["ip", "last_ip"]
+                column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
+
+                layer_attr_table_config = layer.attributeTableConfig()
+
+                for column_name in columns_to_hide:
+                    column_index = layer.fields().indexOf(column_name)
+                    if column_index != -1:  # Check if the column exists
+                        layer_attr_table_config.setColumnHidden(column_index, True)
+
+                for old_name, new_name in column_name_changes.items():
+                    column_index = layer.fields().indexOf(old_name)
+                    if column_index != -1:  # Check if the column exists
+                        layer.setFieldAlias(column_index, new_name)
+
+                layer.setAttributeTableConfig(layer_attr_table_config)
+
 
 
 
