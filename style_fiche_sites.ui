@@ -826,6 +826,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_125">
       <property name="geometry">
@@ -861,6 +864,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="especes_pna_ajout">
       <property name="geometry">
@@ -876,6 +882,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="especes_flore_pn_pr_kollect">
@@ -995,6 +1004,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(219, 255, 202);</string>
+      </property>
      </widget>
      <widget class="QComboBox" name="milieu_dominant_fcen">
       <property name="geometry">
@@ -1010,6 +1022,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(219, 255, 202);</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="milieu_synthese">
@@ -1507,6 +1522,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="objectif_02">
       <property name="geometry">
@@ -1522,6 +1540,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_114">
@@ -1558,6 +1579,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_62">
       <property name="geometry">
@@ -1592,6 +1616,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_115">
@@ -1628,6 +1655,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_63">
       <property name="geometry">
@@ -1662,6 +1692,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_116">
@@ -1717,6 +1750,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="objectif_07">
       <property name="geometry">
@@ -1733,6 +1769,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="objectif_10">
       <property name="geometry">
@@ -1748,6 +1787,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_112">
@@ -1784,6 +1826,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_117">
       <property name="geometry">
@@ -1819,6 +1864,9 @@
        <weight>50</weight>
        <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(219, 255, 202);</string>
      </property>
      <property name="dateTime">
       <datetime>
@@ -2275,6 +2323,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+      </property>
       <property name="text">
        <string>Année ? </string>
       </property>
@@ -2293,6 +2344,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
       </property>
       <property name="text">
        <string>Année ? </string>
@@ -2376,6 +2430,9 @@
        <bold>false</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+     </property>
     </widget>
     <widget class="QPlainTextEdit" name="partenaires_financiers">
      <property name="geometry">
@@ -2392,6 +2449,9 @@
        <bold>false</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
+     </property>
     </widget>
     <widget class="QPlainTextEdit" name="rapporteur_cst">
      <property name="geometry">
@@ -2407,6 +2467,9 @@
        <weight>50</weight>
        <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
      </property>
     </widget>
    </widget>
@@ -2507,6 +2570,12 @@
       <underline>false</underline>
       <kerning>true</kerning>
      </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: solid; border-radius: 5px; border-width: 3px; border-color: rgb(27, 185, 24);</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
