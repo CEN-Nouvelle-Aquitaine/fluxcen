@@ -2330,7 +2330,7 @@
        <string>Année ? </string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_39">
+     <widget class="QLineEdit" name="images_drone_annee">
       <property name="geometry">
        <rect>
         <x>360</x>
