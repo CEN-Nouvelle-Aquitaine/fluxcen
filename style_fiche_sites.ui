@@ -32,7 +32,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -83,7 +83,7 @@
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>60</y>
+        <y>70</y>
         <width>113</width>
         <height>20</height>
        </rect>
@@ -92,7 +92,7 @@
      <widget class="QLineEdit" name="mf_total_achat_neoterra">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>410</x>
         <y>30</y>
         <width>113</width>
         <height>20</height>
@@ -112,7 +112,7 @@
      <widget class="QLineEdit" name="mf_achat_part_neoterra">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>410</x>
         <y>60</y>
         <width>113</width>
         <height>20</height>
@@ -142,7 +142,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>60</y>
+        <y>70</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -160,7 +160,7 @@
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>260</x>
         <y>30</y>
         <width>141</width>
         <height>21</height>
@@ -179,7 +179,7 @@
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>260</x>
         <y>60</y>
         <width>141</width>
         <height>21</height>
@@ -242,18 +242,21 @@
       <widget class="QLineEdit" name="mu_total_convention_cdl">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>20</y>
+         <x>430</x>
+         <y>40</y>
          <width>101</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>Convention de gestion avec le Conservatoire du littoral</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_31">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
+         <y>70</y>
          <width>141</width>
          <height>21</height>
         </rect>
@@ -272,7 +275,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>110</y>
+         <y>130</y>
          <width>141</width>
          <height>21</height>
         </rect>
@@ -283,6 +286,9 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Convention de gestion entre le CEN et le Fonds de dotation / la Fondation des CEN</string>
+       </property>
        <property name="text">
         <string>Fonds CEN :</string>
        </property>
@@ -290,8 +296,8 @@
       <widget class="QLineEdit" name="mu_total_convention_occ_precaire">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>80</y>
+         <x>170</x>
+         <y>100</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -301,7 +307,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>40</y>
          <width>141</width>
          <height>21</height>
         </rect>
@@ -319,8 +325,8 @@
       <widget class="QLineEdit" name="mu_total_convention_gestion">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>20</y>
+         <x>170</x>
+         <y>40</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -330,7 +336,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
+         <y>100</y>
          <width>121</width>
          <height>21</height>
         </rect>
@@ -348,8 +354,8 @@
       <widget class="QLineEdit" name="mu_total_pret_usage">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>50</y>
+         <x>170</x>
+         <y>70</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -358,19 +364,22 @@
       <widget class="QLineEdit" name="mu_total_convention_fondation">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>110</y>
+         <x>170</x>
+         <y>130</y>
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>Convention de gestion entre le CEN et le Fonds de dotation / la Fondation des CEN</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_34">
        <property name="geometry">
         <rect>
          <x>310</x>
-         <y>20</y>
-         <width>41</width>
+         <y>40</y>
+         <width>101</width>
          <height>21</height>
         </rect>
        </property>
@@ -380,18 +389,24 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Convention de gestion avec le Conservatoire du littoral</string>
+       </property>
        <property name="text">
-        <string>CDL :</string>
+        <string>Convention CDL :</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="mu_total_convention_service">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>140</y>
+         <x>170</x>
+         <y>160</y>
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>Convention dans le cadre de prestations de services</string>
        </property>
        <property name="text">
         <string/>
@@ -401,7 +416,7 @@
        <property name="geometry">
         <rect>
          <x>310</x>
-         <y>50</y>
+         <y>70</y>
          <width>141</width>
          <height>21</height>
         </rect>
@@ -412,16 +427,19 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Convention de gestion sur terrains militaires</string>
+       </property>
        <property name="text">
-        <string>Terrain militaire : </string>
+        <string>Convention TM : </string>
        </property>
       </widget>
       <widget class="QLabel" name="label_37">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>140</y>
-         <width>121</width>
+         <y>160</y>
+         <width>141</width>
          <height>21</height>
         </rect>
        </property>
@@ -431,18 +449,24 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Convention dans le cadre de prestations de services</string>
+       </property>
        <property name="text">
-        <string>Convention service :</string>
+        <string>Convention de service :</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="mu_total_convention_tm">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>50</y>
+         <x>430</x>
+         <y>70</y>
          <width>101</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>Convention de gestion sur terrains militaires</string>
        </property>
        <property name="text">
         <string/>
@@ -452,7 +476,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>170</y>
+         <y>190</y>
          <width>141</width>
          <height>21</height>
         </rect>
@@ -463,25 +487,31 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Convention sur un site en mesures compensatoires</string>
+       </property>
        <property name="text">
-        <string>Mesures compensatoires :</string>
+        <string>Convention MC :</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="mu_total_convention_mc">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>170</y>
+         <x>170</x>
+         <y>190</y>
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>Convention sur un site en mesures compensatoires</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_65">
        <property name="geometry">
         <rect>
-         <x>310</x>
-         <y>200</y>
+         <x>320</x>
+         <y>190</y>
          <width>121</width>
          <height>21</height>
         </rect>
@@ -499,8 +529,8 @@
       <widget class="QLineEdit" name="mu_total_convention">
        <property name="geometry">
         <rect>
-         <x>450</x>
-         <y>200</y>
+         <x>470</x>
+         <y>190</y>
          <width>111</width>
          <height>20</height>
         </rect>
@@ -513,7 +543,7 @@
         <x>20</x>
         <y>280</y>
         <width>291</width>
-        <height>80</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="title">
@@ -523,7 +553,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>30</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -541,8 +571,8 @@
       <widget class="QLineEdit" name="mu_total_location_bail_civil">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>20</y>
+         <x>130</x>
+         <y>30</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -551,8 +581,8 @@
       <widget class="QLineEdit" name="mu_total_location">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>50</y>
+         <x>130</x>
+         <y>60</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -562,8 +592,8 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
-         <width>81</width>
+         <y>60</y>
+         <width>101</width>
          <height>21</height>
         </rect>
        </property>
@@ -584,7 +614,7 @@
         <x>320</x>
         <y>280</y>
         <width>291</width>
-        <height>81</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="title">
@@ -594,7 +624,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
+         <y>40</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -613,7 +643,7 @@
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>30</y>
+         <y>40</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -623,8 +653,8 @@
      <widget class="QLabel" name="label_39">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>380</y>
+        <x>30</x>
+        <y>390</y>
         <width>121</width>
         <height>21</height>
        </rect>
@@ -643,8 +673,8 @@
       <property name="geometry">
        <rect>
         <x>122</x>
-        <y>380</y>
-        <width>101</width>
+        <y>390</y>
+        <width>111</width>
         <height>20</height>
        </rect>
       </property>
@@ -682,7 +712,7 @@
     <widget class="QLineEdit" name="date_premiere_mfu">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>490</x>
        <y>20</y>
        <width>111</width>
        <height>20</height>
@@ -711,7 +741,7 @@
     <widget class="QLineEdit" name="date_premiere_acqui">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>490</x>
        <y>50</y>
        <width>111</width>
        <height>20</height>
@@ -722,7 +752,7 @@
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>80</y>
+       <y>90</y>
        <width>121</width>
        <height>20</height>
       </rect>
@@ -741,8 +771,8 @@
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>80</y>
-       <width>431</width>
+       <y>90</y>
+       <width>511</width>
        <height>20</height>
       </rect>
      </property>
@@ -779,6 +809,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="toolTip">
+       <string>Liste établie automatiquement à partir des observations saisies dans Kollect</string>
+      </property>
       <property name="text">
        <string>Espèces PNA (Kollect) :</string>
       </property>
@@ -797,6 +830,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="toolTip">
+       <string>Liste établie automatiquement à partir des observations saisies dans Kollect</string>
       </property>
       <property name="text">
        <string>Espèces flore protégées (Kollect) :</string>
@@ -931,6 +967,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="toolTip">
+       <string>Liste établie automatiquement à partir des observations saisies dans Kollect</string>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="especes_pna_kollect">
       <property name="geometry">
@@ -946,6 +985,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="toolTip">
+       <string>Liste établie automatiquement à partir des observations saisies dans Kollect</string>
       </property>
      </widget>
     </widget>
@@ -965,7 +1007,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>30</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -984,7 +1026,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>60</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -1003,7 +1045,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>80</y>
+        <y>90</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -1022,7 +1064,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>20</y>
+        <y>30</y>
         <width>381</width>
         <height>22</height>
        </rect>
@@ -1041,7 +1083,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>50</y>
+        <y>60</y>
         <width>381</width>
         <height>22</height>
        </rect>
@@ -1060,7 +1102,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>80</y>
+        <y>90</y>
         <width>381</width>
         <height>81</height>
        </rect>
@@ -1515,7 +1557,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Première date de document de gestion :</string>
+      <string>Année du premier document de gestion :</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_16">
@@ -1528,7 +1570,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Objectifs de gestion</string>
+      <string>Objectifs opérationnels</string>
      </property>
      <widget class="QLabel" name="label_61">
       <property name="geometry">
@@ -2541,7 +2583,7 @@
      <x>60</x>
      <y>70</y>
      <width>341</width>
-     <height>721</height>
+     <height>761</height>
     </rect>
    </property>
    <property name="font">
@@ -2562,9 +2604,9 @@
    <widget class="QLineEdit" name="nom_site">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>30</y>
-      <width>211</width>
+      <x>20</x>
+      <y>50</y>
+      <width>301</width>
       <height>20</height>
      </rect>
     </property>
@@ -2575,9 +2617,9 @@
    <widget class="QLineEdit" name="codesite">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>60</y>
-      <width>211</width>
+      <x>240</x>
+      <y>80</y>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -2585,9 +2627,9 @@
    <widget class="QLineEdit" name="annee_fiche">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>240</x>
       <y>120</y>
-      <width>191</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -2595,8 +2637,8 @@
    <widget class="QCheckBox" name="est_metasite">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>90</y>
+      <x>20</x>
+      <y>80</y>
       <width>101</width>
       <height>17</height>
      </rect>
@@ -2618,9 +2660,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>360</y>
+      <y>380</y>
       <width>301</width>
-      <height>341</height>
+      <height>371</height>
      </rect>
     </property>
     <property name="font">
@@ -2632,6 +2674,9 @@
       <kerning>true</kerning>
      </font>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Origine de l'intervention du CEN&lt;/p&gt;&lt;p&gt;- Présentation du/des type(s) de milieu(x)&lt;/p&gt;&lt;p&gt;- Contexte local&lt;/p&gt;&lt;p&gt;- Problématique du site et enjeux&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
@@ -2642,7 +2687,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>30</y>
       <width>91</width>
       <height>21</height>
@@ -2664,8 +2709,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>60</y>
+      <x>160</x>
+      <y>80</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -2686,8 +2731,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>160</y>
+      <x>20</x>
+      <y>150</y>
       <width>141</width>
       <height>21</height>
      </rect>
@@ -2708,7 +2753,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>120</x>
       <y>120</y>
       <width>121</width>
       <height>21</height>
@@ -2730,8 +2775,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>340</y>
+      <x>20</x>
+      <y>360</y>
       <width>211</width>
       <height>21</height>
      </rect>
@@ -2746,13 +2791,13 @@
      </font>
     </property>
     <property name="text">
-     <string>Description :</string>
+     <string>Description du site :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>250</y>
       <width>161</width>
       <height>21</height>
@@ -2775,7 +2820,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>180</y>
+      <y>170</y>
       <width>301</width>
       <height>61</height>
      </rect>
