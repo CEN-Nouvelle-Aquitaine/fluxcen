@@ -2675,7 +2675,7 @@
      </font>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Origine de l'intervention du CEN&lt;/p&gt;&lt;p&gt;- Présentation du/des type(s) de milieu(x)&lt;/p&gt;&lt;p&gt;- Contexte local&lt;/p&gt;&lt;p&gt;- Problématique du site et enjeux&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Origine de l'intervention du CEN&lt;/p&gt;&lt;p&gt;- Présentation du/des type(s) de milieu(x)&lt;/p&gt;&lt;p&gt;- Contexte local&lt;/p&gt;&lt;p&gt;- Problématique du site / menaces et enjeux&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
