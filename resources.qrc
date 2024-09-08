@@ -7,5 +7,7 @@
 		<file>globe.png</file>
 		<file>orthos.png</file>
 		<file>info.png</file>
+		<file>dataviz.png</file>
+		<file>image.png</file>
     </qresource>
 </RCC>

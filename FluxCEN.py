@@ -22,20 +22,20 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
-from qgis.PyQt.QtGui import *
-from qgis.PyQt.QtWidgets import *
-from PyQt5 import *
+from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon
+from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QTextBrowser, QMessageBox
+from qgis.utils import iface
+
+from qgis.core import (
+    Qgis, QgsApplication, QgsRasterLayer, QgsVectorLayer,
+    QgsProject, QgsDataSourceUri
+)
 
 # Initialize Qt resources from file resources.py
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
 import os.path, os, shutil
-from qgis.core import *
-from qgis.gui import *
-from qgis.utils import *
-import processing
-import psycopg2
 from PyQt5.QtXml import QDomDocument
 import csv
 import os
@@ -49,9 +49,11 @@ from urllib import request, parse
 import socket
 import json
 import requests
-
+import datetime
 ssl._create_default_https_context = ssl._create_unverified_context
-
+import sqlite3
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 
 
@@ -91,12 +93,116 @@ class Popup(QWidget):
         fp.close()
 
         self.text_edit.setHtml(html_changelog)
-        self.text_edit.setFont(QtGui.QFont("Calibri",weight=QtGui.QFont.Bold))
-        self.text_edit.anchorClicked.connect(QtGui.QDesktopServices.openUrl)
+        self.text_edit.setFont(QFont("Calibri",weight=QFont.Bold))
+        self.text_edit.anchorClicked.connect(QDesktopServices.openUrl)
         self.text_edit.setOpenLinks(False)
 
         self.text_edit.setWindowTitle("Nouveautés")
         self.text_edit.setMinimumSize(600,450)
+
+
+
+class BarChartPopup(QWidget):
+    def __init__(self, parent=None):
+        super(BarChartPopup, self).__init__(parent)
+
+        # Set up the layout
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+
+        # Load data from SQLite database
+        data = self.load_data_from_database()
+
+        # Create a single figure
+        plt.figure(figsize=(12, 8))
+
+        # Create and display all visualizations
+        self.create_time_series_plot(data)
+        self.create_pie_chart(data)
+        self.create_stacked_bar_chart(data)
+        self.create_histogram(data)
+
+        # Display the figure
+        plt.tight_layout()
+        plt.show()
+
+        # Close button
+        close_button = QPushButton('Close')
+        close_button.clicked.connect(self.close)
+        layout.addWidget(close_button)
+
+    def load_data_from_database(self):
+        # Connect to the SQLite database
+        conn = sqlite3.connect('analytics.db')
+        cursor = conn.cursor()
+
+        # Execute a query to retrieve data for the visualizations
+        cursor.execute("SELECT * FROM analytics")
+        data = cursor.fetchall()
+
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
+
+        return data
+
+    def create_time_series_plot(self, data):
+        timestamps = [row[1] for row in data]
+
+        # Create a time series plot
+        plt.subplot(2, 2, 1)
+        plt.plot(timestamps, range(len(timestamps)), marker='o')
+        plt.xlabel('Temps')
+        plt.ylabel('Nombre de couches chargées depuis FluxCEN')
+        plt.title("Suivi de l'utilisation de FluxCEN dans le temps")
+        plt.xticks(rotation=45)
+
+    def create_pie_chart(self, data):
+        usernames = [row[2] for row in data]
+        unique_usernames = list(set(usernames))
+        counts = [usernames.count(username) for username in unique_usernames]
+
+        # Create a pie chart
+        plt.subplot(2, 2, 2)
+        plt.pie(counts, labels=unique_usernames, autopct='%1.1f%%', startangle=140)
+        plt.axis('equal')
+        plt.title('Chargement des couches depuis FluxCEN par utilisateur')
+
+    def create_stacked_bar_chart(self, data):
+        # Extract layer names from the data
+        layer_names = [row[3] for row in data]
+
+        # Count the number of layer additions for each layer
+        layer_counts = {}
+        for layer in layer_names:
+            layer_counts[layer] = layer_counts.get(layer, 0) + 1
+
+        # Sort the layers based on their counts
+        sorted_layers = sorted(layer_counts.items(), key=lambda x: x[1], reverse=True)
+
+        # Select the top 10 layers
+        top_layers = dict(sorted_layers[:3])
+
+        # Create a stacked bar chart for the top 10 layers
+        plt.subplot(2, 2, 3)
+        plt.bar(top_layers.keys(), top_layers.values())
+        plt.xlabel('Nom des couches')
+        plt.ylabel('Nombre de couches chargées')
+        plt.title('Top 10 des couches les plus chargées')
+        plt.xticks(rotation=45)
+
+
+    def create_histogram(self, data):
+        # Extract timestamps from the data
+        timestamps = [row[1] for row in data]
+
+        # Create a histogram
+        plt.subplot(2, 2, 4)
+        plt.hist(timestamps, bins=20, color='skyblue', edgecolor='black')
+        plt.xlabel('Temps')
+        plt.ylabel('Nombre de couches chargées')
+        plt.title('Distribution des chargements de couches en fonction du temps')
+        plt.xticks(rotation=45)
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
@@ -137,7 +243,7 @@ class FluxCEN:
         self.first_start = None
 
         self.dlg.tableWidget.setSelectionBehavior(QTableWidget.SelectRows)
-        self.dlg.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.dlg.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         self.dlg.comboBox.currentIndexChanged.connect(self.initialisation_flux)
         self.dlg.commandLinkButton.clicked.connect(self.selection_flux)
@@ -150,6 +256,7 @@ class FluxCEN:
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
 
         self.dlg.commandLinkButton_5.clicked.connect(self.popup)
+        self.dlg.commandLinkButton_6.clicked.connect(self.dataviz_popup)
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
@@ -409,10 +516,10 @@ class FluxCEN:
             for row in range(nb_row):
                 for col in range(nb_col):
                     item = QTableWidgetItem(str(data2[row][col]))
-                    # Access the value from the 6th column for the current row (style here)
-                    value_from_2nd_column = str(data2[row][2])
+                    # Access the value from the 4th column for the current row (style here)
+                    value_from_4th_column = str(data2[row][3])
                     # Set tooltip for each row
-                    tooltip = f"Nom du flux: {value_from_2nd_column}"
+                    tooltip = f"Nom technique du flux: {value_from_4th_column}"
                     item.setToolTip(tooltip)
 
                     # Check if the current column is the "Résumé des métadonnées" column
@@ -434,11 +541,12 @@ class FluxCEN:
             for row in range(nb_row):
                 for col in range(nb_col):
                     item = QTableWidgetItem(str(data[row][col]))
-                    # Access the value from the 6th column for the current row (style here)
-                    value_from_2nd_column = str(data[row][1])
-                    # Set tooltip for each row
-                    tooltip = f"Nom du flux: {value_from_2nd_column}"
-                    item.setToolTip(tooltip)
+                    ## Problème ici car décalage d'une ligne :
+                    ##  Access the value from the 4th column for the current row (style here)
+                    # value_from_4th_column = str(data2[row][3])
+                    ##  Set tooltip for each row
+                    # tooltip = f"Nom technique du flux: {value_from_4th_column}"
+                    # item.setToolTip(tooltip)
 
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
@@ -669,12 +777,12 @@ class FluxCEN:
                     uri = QgsDataSourceUri()
 
                     if len(list(k)) == 0 :        
-                        uri.setConnection("51.210.28.153", "5432", "collab_test", "", "",)
+                        uri.setConnection("51.210.28.153", "5432", "collab_fiches_sites", "", "",)
                     else:
-                        uri.setConnection("51.210.28.153", "5432", "collab_test", None, None, authConfigId=list(k)[0])
+                        uri.setConnection("51.210.28.153", "5432", "collab_fiches_sites", None, None, authConfigId=list(k)[0])
 
                     # nom du schéma à remplacer: "hydrographie" à supprimer et mettre "couches_collaboratives" lorsqu'on aura regroupé les couches à modifier dans un même schéma
-                    uri.setDataSource("collaboratif", self.dlg.tableWidget_2.item(row, 3).text(), "geom")
+                    uri.setDataSource("fiches_sites", self.dlg.tableWidget_2.item(row, 3).text(), "geom")
                     # Chargement de la couche PostGIS
                     layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
 
@@ -686,6 +794,82 @@ class FluxCEN:
 
                 else:
                     print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
+
+        self.plugin_analytics()
+        
+
+    def plugin_analytics(self):
+        # Get the current timestamp
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        # Get the username (Windows session username)
+        username = os.getenv('USERNAME')
+
+        # Get the current date and time
+        current_datetime = datetime.datetime.now()
+
+        # Calculate the last insertion time (8 hours ago)
+        last_insertion_time = current_datetime - datetime.timedelta(hours=8)
+
+        # Check if the SQLite database file exists, if not, create it
+        if not os.path.exists('analytics.db'):
+            with open('analytics.db', 'w'):
+                pass
+
+        # Connect to the SQLite database (creates if not exists)
+        conn = sqlite3.connect('analytics.db')
+
+        # Create a cursor object to execute SQL queries
+        cursor = conn.cursor()
+
+        # Create the analytics table if it doesn't exist
+        cursor.execute('''CREATE TABLE IF NOT EXISTS analytics (
+                            id INTEGER PRIMARY KEY,
+                            timestamp TEXT,
+                            username TEXT,
+                            layer_name TEXT,
+                            last_insertion_time TEXT,
+                            UNIQUE(username, layer_name)
+                        )''')
+
+        # Extract layer names loaded in QGIS
+        layer_names = []
+
+        for row in range(self.dlg.tableWidget_2.rowCount()):
+            layer_name = self.dlg.tableWidget_2.item(row, 2).text()
+            layer_names.append(layer_name)
+
+        try:
+            # Check the last insertion time for each user and layer combination
+            for layer_name in layer_names:
+                cursor.execute(
+                    "SELECT last_insertion_time FROM analytics WHERE username = ? AND layer_name = ?",
+                    (username, layer_name)
+                )
+                last_insertion_time = cursor.fetchone()
+
+                # If last insertion time is None or more than 8 hours ago, insert data into the database
+                if not last_insertion_time or current_datetime - datetime.datetime.strptime(last_insertion_time[0], '%Y-%m-%d %H:%M:%S') > datetime.timedelta(hours=8):
+                    cursor.execute(
+                        "INSERT INTO analytics (timestamp, username, layer_name, last_insertion_time) VALUES (?, ?, ?, ?)",
+                        (timestamp, username, layer_name, timestamp)
+                    )
+
+            # Commit the transaction
+            conn.commit()
+            print('Data successfully inserted into the database')
+
+        except sqlite3.Error as e:
+            # Rollback the transaction in case of error
+            conn.rollback()
+            print('Error:', e)
+
+        finally:
+            # Close the cursor and database connection
+            cursor.close()
+            conn.close()
+
+            
 
     def parametrage_couches_postgis(self):
         
@@ -713,7 +897,18 @@ class FluxCEN:
 
                 layer.setAttributeTableConfig(layer_attr_table_config)
 
+                #TEMPORAIRE POUR TEST (à corriger car DÉGUEULASSE !)
 
+                styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
+
+                fp = urllib.request.urlopen(styles_url)
+                mybytes = fp.read()
+
+                document = QDomDocument()
+                document.setContent(mybytes)
+
+                res = layer.importNamedStyle(document)
+                layer.triggerRepaint()
 
 
     def filtre_dynamique(self, filter_text):
@@ -732,6 +927,10 @@ class FluxCEN:
 
         self.dialog = Popup()  # +++ - self
         self.dialog.text_edit.show()
+
+    def dataviz_popup(self):
+
+        self.dialog = BarChartPopup()  # +++ - self
 
 # from owslib.wfs import WebFeatureService
 # import csv
