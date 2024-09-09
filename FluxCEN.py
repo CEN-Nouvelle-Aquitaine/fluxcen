@@ -260,7 +260,7 @@ class FluxCEN:
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
-        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux_test_avant_prod.csv")
         colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
 
         mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
@@ -490,7 +490,7 @@ class FluxCEN:
         model = QStandardItemModel()
 
         raw = csv_import(
-            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux_test_avant_prod.csv")
 
         for row in raw:
             data.append(row)
@@ -716,7 +716,7 @@ class FluxCEN:
                     if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                         displayOnWindows(p[row].type, uri, p[row].nom_commercial)
                     else:
-                        print("Couche "+p[row].nom_commercial+" déjà chargée")
+                        QMessageBox.question(iface.mainWindow(), u"Attention :", "Couche \"" + p[row].nom_commercial + "\" déjà chargée", QMessageBox.Ok)
 
 
                 elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
@@ -768,35 +768,95 @@ class FluxCEN:
                     if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                         displayOnWindows(p[row].type, uri, p[row].nom_commercial)
                     else:
-                        print("Couche "+p[row].nom_commercial+" déjà chargée")
+                        QMessageBox.question(iface.mainWindow(), u"Attention :", "Couche \"" + p[row].nom_commercial + "\" déjà chargée", QMessageBox.Ok)
+
 
 
                 elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
 
-                    # Connexion à la base de données PostGIS
+                    # Extraction des informations de connexion à la base de données depuis les champs de l'interface
+                    db_host = self.dlg.tableWidget_2.item(row, 8).text()  # Extrait l'hôte de la base
+                    db_port = self.dlg.tableWidget_2.item(row, 9).text()  # Extrait le port de la base
+                    db_name = self.dlg.tableWidget_2.item(row, 10).text()  # Extrait le nom de la base
+                    schema_name = self.dlg.tableWidget_2.item(row, 11).text()  # Extrait le nom du schéma
+                    table_name = self.dlg.tableWidget_2.item(row, 3).text()  # Extrait le nom de la table
+
+
                     uri = QgsDataSourceUri()
-
-                    if len(list(k)) == 0 :        
-                        uri.setConnection("51.210.28.153", "5432", "collab_fiches_sites", "", "",)
+                    # Vérifie la présence de méthodes d'authentification disponibles
+                    if len(list(k)) == 0:        
+                        uri.setConnection(db_host, db_port, db_name, "", "")
                     else:
-                        uri.setConnection("51.210.28.153", "5432", "collab_fiches_sites", None, None, authConfigId=list(k)[0])
+                        uri.setConnection(db_host, db_port, db_name, None, None, authConfigId=list(k)[0])
 
-                    # nom du schéma à remplacer: "hydrographie" à supprimer et mettre "couches_collaboratives" lorsqu'on aura regroupé les couches à modifier dans un même schéma
-                    uri.setDataSource("fiches_sites", self.dlg.tableWidget_2.item(row, 3).text(), "geom")
-                    # Chargement de la couche PostGIS
+                    # Configuration de la source de données en utilisant le schéma et le nom de la table dynamiques
+                    uri.setDataSource(schema_name, table_name, "geom")
+                    
+                    # Chargement de la couche PostGIS avec le nom dynamique
                     layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
-
-                    # Ajout de la couche au canevas QGIS
                     QgsProject.instance().addMapLayer(layer)
 
-                    # Call the function to apply changes to all PostGIS layers
-                    self.parametrage_couches_postgis()
+                    # Appliquer les paramètres spécifiques à la couche chargée
+                    self.parametrage_couches_postgis(layer)
 
                 else:
                     print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
 
         self.plugin_analytics()
         
+
+
+    def parametrage_couches_postgis(self, layer):
+        # Détermine les paramètres spécifiques en fonction de la couche
+        if layer.name() == "fiches_sites":
+            columns_to_hide = ["ip", "last_ip"]
+            column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
+        elif layer.name() == "une_autre_couche":
+            columns_to_hide = ["colonne1", "colonne2"]  # Définir les colonnes spécifiques à cacher pour cette couche
+            column_name_changes = {"nom_colonne1": "nouveau_nom1"}  # Définir les noms de colonnes à changer pour cette couche
+        else:
+            columns_to_hide = []
+            column_name_changes = {}
+
+        # Configuration de la table d'attributs pour cacher et renommer les colonnes
+        layer_attr_table_config = layer.attributeTableConfig()
+
+        for column_name in columns_to_hide:
+            column_index = layer.fields().indexOf(column_name)
+            if column_index != -1:  # Vérifie si la colonne existe
+                layer_attr_table_config.setColumnHidden(column_index, True)
+
+        for old_name, new_name in column_name_changes.items():
+            column_index = layer.fields().indexOf(old_name)
+            if column_index != -1:  # Vérifie si la colonne existe
+                layer.setFieldAlias(column_index, new_name)
+
+        layer.setAttributeTableConfig(layer_attr_table_config)
+
+        # Appliquer un style à la couche si nécessaire
+        styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
+
+        fp = urllib.request.urlopen(styles_url)
+        mybytes = fp.read()
+
+        document = QDomDocument()
+        document.setContent(mybytes)
+
+        layer.importNamedStyle(document)
+        layer.triggerRepaint()
+
+
+    def filtre_dynamique(self, filter_text):
+
+        for i in range(self.dlg.tableWidget.rowCount()):
+            for j in range(self.dlg.tableWidget.columnCount()):
+                item = self.dlg.tableWidget.item(i, j)
+                match = filter_text.lower() not in item.text().lower()
+                self.dlg.tableWidget.setRowHidden(i, match)
+                if not match:
+                    break
+
+
 
     def plugin_analytics(self):
         # Get the current timestamp
@@ -870,56 +930,6 @@ class FluxCEN:
             conn.close()
 
             
-
-    def parametrage_couches_postgis(self):
-        
-        # Get all layers in the map canvas
-        layers = QgsProject.instance().mapLayers().values()
-
-        # Iterate over each layer
-        for layer in layers:
-            # Check if the layer's data provider is PostGIS
-            if layer.providerType() == 'postgres':
-                columns_to_hide = ["ip", "last_ip"]
-                column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
-
-                layer_attr_table_config = layer.attributeTableConfig()
-
-                for column_name in columns_to_hide:
-                    column_index = layer.fields().indexOf(column_name)
-                    if column_index != -1:  # Check if the column exists
-                        layer_attr_table_config.setColumnHidden(column_index, True)
-
-                for old_name, new_name in column_name_changes.items():
-                    column_index = layer.fields().indexOf(old_name)
-                    if column_index != -1:  # Check if the column exists
-                        layer.setFieldAlias(column_index, new_name)
-
-                layer.setAttributeTableConfig(layer_attr_table_config)
-
-                #TEMPORAIRE POUR TEST (à corriger car DÉGUEULASSE !)
-
-                styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
-
-                fp = urllib.request.urlopen(styles_url)
-                mybytes = fp.read()
-
-                document = QDomDocument()
-                document.setContent(mybytes)
-
-                res = layer.importNamedStyle(document)
-                layer.triggerRepaint()
-
-
-    def filtre_dynamique(self, filter_text):
-
-        for i in range(self.dlg.tableWidget.rowCount()):
-            for j in range(self.dlg.tableWidget.columnCount()):
-                item = self.dlg.tableWidget.item(i, j)
-                match = filter_text.lower() not in item.text().lower()
-                self.dlg.tableWidget.setRowHidden(i, match)
-                if not match:
-                    break
 
 
 
