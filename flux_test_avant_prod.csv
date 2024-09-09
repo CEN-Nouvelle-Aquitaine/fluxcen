@@ -1,4 +1,4 @@
-service;categorie;Nom_couche_plugin;nom_technique;url;source;style;metadonnees
+service;categorie;Nom_couche_plugin;nom_technique;url;source;style;metadonnees;hote;port;nom_bdd;nom_schema
 WFS;agriculture;Bandes tampons des cours d'eau BCAE 4;HYDROGRAPHY.BCAE.LATEST:bcae_cours_eau;https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities;MASA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
 WMS Raster;cartes;SCAN 50® Historique 1950;GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN50.1950;https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
 WMS Raster;cartes;PLAN IGN;GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2;https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities;IGN;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
@@ -335,3 +335,5 @@ WFS;Occupation du sol;Parcelles forestières de l'ONF;PARC_PUBL_FR;https://ws.ca
 WFS;Hydrobiologie;Frayères poissons migrateurs;hydrobiologie:geoif_frayeres_migrateurs;https://opendata.cen-nouvelle-aquitaine.org/hydrobiologie/wfs;GeoIF;frayeres;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
 WFS;Urbanisme;Emprises des documents d'urbanisme;wfs_du:document;https://wxs-gpu.mongeoportail.ign.fr/externe/39wtxmgtn23okfbbs1al2lz3/wfs;Géoportail de l’Urbanisme;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
 WFS;Urbanisme;Zonages des documents d'urbanisme;wfs_du:zone_urba;https://wxs-gpu.mongeoportail.ign.fr/externe/39wtxmgtn23okfbbs1al2lz3/wfs;Géoportail de l’Urbanisme;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html
+PostGIS;Couches collaboratives (Bêta test);Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;51.210.28.153;5432;collab_test;collaboratif
+PostGIS;Couches collaboratives (Bêta test);Fiche site 2024;fiche_site_2024; ;CEN NA;style_fiche_site_2024;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;51.210.28.153;5432;collab_fiches_sites;fiches_sites
