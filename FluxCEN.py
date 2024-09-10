@@ -260,7 +260,7 @@ class FluxCEN:
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
-        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/test/flux_test_avant_prod.csv")
+        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
         colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
 
         mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
@@ -490,7 +490,7 @@ class FluxCEN:
         model = QStandardItemModel()
 
         raw = csv_import(
-            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/test/flux_test_avant_prod.csv")
+            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
 
         for row in raw:
             data.append(row)
