@@ -57,7 +57,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resources.qrc">:/plugins/FluxCEN/logo.jpg</pixmap>
+    <pixmap resource="resources.qrc">:/plugins/FluxCEN/icons/logo.jpg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -121,8 +121,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/arrow-bottom.png</normaloff>:/plugins/FluxCEN/arrow-bottom.png</iconset>
+    <iconset>
+     <normaloff>:/plugins/FluxCEN/icons/arrow-bottom.png</normaloff>:/plugins/FluxCEN/icons/arrow-bottom.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -145,7 +145,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/arrow-up.png</normaloff>:/plugins/FluxCEN/arrow-up.png</iconset>
+     <normaloff>:/plugins/FluxCEN/icons/arrow-up.png</normaloff>:/plugins/FluxCEN/icons/arrow-up.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -199,7 +199,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/globe.png</normaloff>:/plugins/FluxCEN/globe.png</iconset>
+     <normaloff>:/plugins/FluxCEN/icons/globe.png</normaloff>:/plugins/FluxCEN/icons/globe.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -268,7 +268,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/orthos.png</normaloff>:/plugins/FluxCEN/orthos.png</iconset>
+     <normaloff>:/plugins/FluxCEN/icons/orthos.png</normaloff>:/plugins/FluxCEN/icons/orthos.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -297,7 +297,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/info.png</normaloff>:/plugins/FluxCEN/info.png</iconset>
+     <normaloff>:/plugins/FluxCEN/icons/info.png</normaloff>:/plugins/FluxCEN/icons/info.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -326,7 +326,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/plugins/FluxCEN/dataviz.png</normaloff>:/plugins/FluxCEN/dataviz.png</iconset>
+     <normaloff>:/plugins/FluxCEN/icons/dataviz.png</normaloff>:/plugins/FluxCEN/icons/dataviz.png</iconset>
    </property>
    <property name="iconSize">
     <size>

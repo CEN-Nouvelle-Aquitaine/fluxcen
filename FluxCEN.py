@@ -103,107 +103,107 @@ class Popup(QWidget):
 
 
 
-class BarChartPopup(QWidget):
-    def __init__(self, parent=None):
-        super(BarChartPopup, self).__init__(parent)
+# class BarChartPopup(QWidget):
+#     def __init__(self, parent=None):
+#         super(BarChartPopup, self).__init__(parent)
 
-        # Set up the layout
-        layout = QVBoxLayout()
-        self.setLayout(layout)
+#         # Set up the layout
+#         layout = QVBoxLayout()
+#         self.setLayout(layout)
 
-        # Load data from SQLite database
-        data = self.load_data_from_database()
+#         # Load data from SQLite database
+#         data = self.load_data_from_database()
 
-        # Create a single figure
-        plt.figure(figsize=(12, 8))
+#         # Create a single figure
+#         plt.figure(figsize=(12, 8))
 
-        # Create and display all visualizations
-        self.create_time_series_plot(data)
-        self.create_pie_chart(data)
-        self.create_stacked_bar_chart(data)
-        self.create_histogram(data)
+#         # Create and display all visualizations
+#         self.create_time_series_plot(data)
+#         self.create_pie_chart(data)
+#         self.create_stacked_bar_chart(data)
+#         self.create_histogram(data)
 
-        # Display the figure
-        plt.tight_layout()
-        plt.show()
+#         # Display the figure
+#         plt.tight_layout()
+#         plt.show()
 
-        # Close button
-        close_button = QPushButton('Close')
-        close_button.clicked.connect(self.close)
-        layout.addWidget(close_button)
+#         # Close button
+#         close_button = QPushButton('Close')
+#         close_button.clicked.connect(self.close)
+#         layout.addWidget(close_button)
 
-    def load_data_from_database(self):
-        # Connect to the SQLite database
-        conn = sqlite3.connect('analytics.db')
-        cursor = conn.cursor()
+#     def load_data_from_database(self):
+#         # Connect to the SQLite database
+#         conn = sqlite3.connect('analytics.db')
+#         cursor = conn.cursor()
 
-        # Execute a query to retrieve data for the visualizations
-        cursor.execute("SELECT * FROM analytics")
-        data = cursor.fetchall()
+#         # Execute a query to retrieve data for the visualizations
+#         cursor.execute("SELECT * FROM analytics")
+#         data = cursor.fetchall()
 
-        # Close the cursor and connection
-        cursor.close()
-        conn.close()
+#         # Close the cursor and connection
+#         cursor.close()
+#         conn.close()
 
-        return data
+#         return data
 
-    def create_time_series_plot(self, data):
-        timestamps = [row[1] for row in data]
+#     def create_time_series_plot(self, data):
+#         timestamps = [row[1] for row in data]
 
-        # Create a time series plot
-        plt.subplot(2, 2, 1)
-        plt.plot(timestamps, range(len(timestamps)), marker='o')
-        plt.xlabel('Temps')
-        plt.ylabel('Nombre de couches chargées depuis FluxCEN')
-        plt.title("Suivi de l'utilisation de FluxCEN dans le temps")
-        plt.xticks(rotation=45)
+#         # Create a time series plot
+#         plt.subplot(2, 2, 1)
+#         plt.plot(timestamps, range(len(timestamps)), marker='o')
+#         plt.xlabel('Temps')
+#         plt.ylabel('Nombre de couches chargées depuis FluxCEN')
+#         plt.title("Suivi de l'utilisation de FluxCEN dans le temps")
+#         plt.xticks(rotation=45)
 
-    def create_pie_chart(self, data):
-        usernames = [row[2] for row in data]
-        unique_usernames = list(set(usernames))
-        counts = [usernames.count(username) for username in unique_usernames]
+#     def create_pie_chart(self, data):
+#         usernames = [row[2] for row in data]
+#         unique_usernames = list(set(usernames))
+#         counts = [usernames.count(username) for username in unique_usernames]
 
-        # Create a pie chart
-        plt.subplot(2, 2, 2)
-        plt.pie(counts, labels=unique_usernames, autopct='%1.1f%%', startangle=140)
-        plt.axis('equal')
-        plt.title('Chargement des couches depuis FluxCEN par utilisateur')
+#         # Create a pie chart
+#         plt.subplot(2, 2, 2)
+#         plt.pie(counts, labels=unique_usernames, autopct='%1.1f%%', startangle=140)
+#         plt.axis('equal')
+#         plt.title('Chargement des couches depuis FluxCEN par utilisateur')
 
-    def create_stacked_bar_chart(self, data):
-        # Extract layer names from the data
-        layer_names = [row[3] for row in data]
+#     def create_stacked_bar_chart(self, data):
+#         # Extract layer names from the data
+#         layer_names = [row[3] for row in data]
 
-        # Count the number of layer additions for each layer
-        layer_counts = {}
-        for layer in layer_names:
-            layer_counts[layer] = layer_counts.get(layer, 0) + 1
+#         # Count the number of layer additions for each layer
+#         layer_counts = {}
+#         for layer in layer_names:
+#             layer_counts[layer] = layer_counts.get(layer, 0) + 1
 
-        # Sort the layers based on their counts
-        sorted_layers = sorted(layer_counts.items(), key=lambda x: x[1], reverse=True)
+#         # Sort the layers based on their counts
+#         sorted_layers = sorted(layer_counts.items(), key=lambda x: x[1], reverse=True)
 
-        # Select the top 10 layers
-        top_layers = dict(sorted_layers[:3])
+#         # Select the top 10 layers
+#         top_layers = dict(sorted_layers[:3])
 
-        # Create a stacked bar chart for the top 10 layers
-        plt.subplot(2, 2, 3)
-        plt.bar(top_layers.keys(), top_layers.values())
-        plt.xlabel('Nom des couches')
-        plt.ylabel('Nombre de couches chargées')
-        plt.title('Top 10 des couches les plus chargées')
-        plt.xticks(rotation=45)
+#         # Create a stacked bar chart for the top 10 layers
+#         plt.subplot(2, 2, 3)
+#         plt.bar(top_layers.keys(), top_layers.values())
+#         plt.xlabel('Nom des couches')
+#         plt.ylabel('Nombre de couches chargées')
+#         plt.title('Top 10 des couches les plus chargées')
+#         plt.xticks(rotation=45)
 
 
-    def create_histogram(self, data):
-        # Extract timestamps from the data
-        timestamps = [row[1] for row in data]
+#     def create_histogram(self, data):
+#         # Extract timestamps from the data
+#         timestamps = [row[1] for row in data]
 
-        # Create a histogram
-        plt.subplot(2, 2, 4)
-        plt.hist(timestamps, bins=20, color='skyblue', edgecolor='black')
-        plt.xlabel('Temps')
-        plt.ylabel('Nombre de couches chargées')
-        plt.title('Distribution des chargements de couches en fonction du temps')
-        plt.xticks(rotation=45)
+#         # Create a histogram
+#         plt.subplot(2, 2, 4)
+#         plt.hist(timestamps, bins=20, color='skyblue', edgecolor='black')
+#         plt.xlabel('Temps')
+#         plt.ylabel('Nombre de couches chargées')
+#         plt.title('Distribution des chargements de couches en fonction du temps')
+#         plt.xticks(rotation=45)
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
@@ -257,7 +257,7 @@ class FluxCEN:
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
 
         self.dlg.commandLinkButton_5.clicked.connect(self.popup)
-        self.dlg.commandLinkButton_6.clicked.connect(self.dataviz_popup)
+        # self.dlg.commandLinkButton_6.clicked.connect(self.dataviz_popup)
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
 
@@ -386,7 +386,7 @@ class FluxCEN:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = ':/plugins/FluxCEN/icon.png'
+        icon_path = ':/plugins/FluxCEN/icons/icon.png'
         self.add_action(
             icon_path,
             text=self.tr(u'FluxCEN'),
@@ -526,7 +526,7 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/info_metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon_path = self.plugin_path + '/icons/info_metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
                         icon = QIcon(icon_path)
                         item.setIcon(icon)   
                         # Store the URL in the item's data for later retrieval
@@ -552,7 +552,7 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon_path = self.plugin_path + '/icons/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
                         icon = QIcon(icon_path)
                         item.setIcon(icon)   
                         # Store the URL in the item's data for later retrieval
@@ -566,7 +566,7 @@ class FluxCEN:
         self.dlg.tableWidget.setColumnWidth(0, 76)
         self.dlg.tableWidget.setColumnWidth(1, 0)
         self.dlg.tableWidget.setColumnWidth(2, 610)
-        self.dlg.tableWidget.setColumnWidth(3, 50)
+        self.dlg.tableWidget.setColumnWidth(3, 0)
         self.dlg.tableWidget.setColumnWidth(4, 0)
         self.dlg.tableWidget.setColumnWidth(5, 88)
         self.dlg.tableWidget.setColumnWidth(6, 0)
@@ -674,8 +674,8 @@ class FluxCEN:
                     # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
                     _item = self.dlg.tableWidget_2.item(row, 2).text()
                     _legend = self.dlg.tableWidget_2.item(row, 6).text()
-                    print(_item)
-                    print(_legend)
+                    #print(_item)
+                    #print(_legend)
 
                     for layer in layers.values():
                         if layer.name() == _item:
@@ -796,15 +796,15 @@ class FluxCEN:
                 elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
 
                     postgis_config = self.load_postgis_config('config_db.yaml')
+
                     # Extraction des informations de connexion à la base de données depuis les champs de l'interface
                     if postgis_config:
                                 db_host = postgis_config['host'] # Extrait l'hôte du yaml
                                 db_port = str(postgis_config['port']) # Extrait le port du yaml
-                                db_name = self.dlg.tableWidget_2.item(row, 1).text()  # Extrait le nom de la base
+                                db_name = self.dlg.tableWidget_2.item(row, 8).text()  # Extrait le nom de la base
                                 schema_name = self.dlg.tableWidget_2.item(row, 9).text()  # Extrait le nom du schéma
                                 table_name = self.dlg.tableWidget_2.item(row, 3).text()  # Extrait le nom de la table
 
-                    print(db_host)
 
                     uri = QgsDataSourceUri()
                     # Vérifie la présence de méthodes d'authentification disponibles
@@ -826,13 +826,13 @@ class FluxCEN:
                 else:
                     print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
 
-        self.plugin_analytics()
+        #self.plugin_analytics()
         
 
 
     def parametrage_couches_postgis(self, layer):
         # Détermine les paramètres spécifiques en fonction de la couche
-        if layer.name() == "fiches_sites":
+        if layer.name() == "Piezomètres CEN-NA":
             columns_to_hide = ["ip", "last_ip"]
             column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
         elif layer.name() == "une_autre_couche":
@@ -882,76 +882,76 @@ class FluxCEN:
 
 
 
-    def plugin_analytics(self):
-        # Get the current timestamp
-        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # def plugin_analytics(self):
+    #     # Get the current timestamp
+    #     timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        # Get the username (Windows session username)
-        username = os.getenv('USERNAME')
+    #     # Get the username (Windows session username)
+    #     username = os.getenv('USERNAME')
 
-        # Get the current date and time
-        current_datetime = datetime.datetime.now()
+    #     # Get the current date and time
+    #     current_datetime = datetime.datetime.now()
 
-        # Calculate the last insertion time (8 hours ago)
-        last_insertion_time = current_datetime - datetime.timedelta(hours=8)
+    #     # Calculate the last insertion time (8 hours ago)
+    #     last_insertion_time = current_datetime - datetime.timedelta(hours=8)
 
-        # Check if the SQLite database file exists, if not, create it
-        if not os.path.exists('analytics.db'):
-            with open('analytics.db', 'w'):
-                pass
+    #     # Check if the SQLite database file exists, if not, create it
+    #     if not os.path.exists('analytics.db'):
+    #         with open('analytics.db', 'w'):
+    #             pass
 
-        # Connect to the SQLite database (creates if not exists)
-        conn = sqlite3.connect('analytics.db')
+    #     # Connect to the SQLite database (creates if not exists)
+    #     conn = sqlite3.connect('analytics.db')
 
-        # Create a cursor object to execute SQL queries
-        cursor = conn.cursor()
+    #     # Create a cursor object to execute SQL queries
+    #     cursor = conn.cursor()
 
-        # Create the analytics table if it doesn't exist
-        cursor.execute('''CREATE TABLE IF NOT EXISTS analytics (
-                            id INTEGER PRIMARY KEY,
-                            timestamp TEXT,
-                            username TEXT,
-                            layer_name TEXT,
-                            last_insertion_time TEXT,
-                            UNIQUE(username, layer_name)
-                        )''')
+    #     # Create the analytics table if it doesn't exist
+    #     cursor.execute('''CREATE TABLE IF NOT EXISTS analytics (
+    #                         id INTEGER PRIMARY KEY,
+    #                         timestamp TEXT,
+    #                         username TEXT,
+    #                         layer_name TEXT,
+    #                         last_insertion_time TEXT,
+    #                         UNIQUE(username, layer_name)
+    #                     )''')
 
-        # Extract layer names loaded in QGIS
-        layer_names = []
+    #     # Extract layer names loaded in QGIS
+    #     layer_names = []
 
-        for row in range(self.dlg.tableWidget_2.rowCount()):
-            layer_name = self.dlg.tableWidget_2.item(row, 2).text()
-            layer_names.append(layer_name)
+    #     for row in range(self.dlg.tableWidget_2.rowCount()):
+    #         layer_name = self.dlg.tableWidget_2.item(row, 2).text()
+    #         layer_names.append(layer_name)
 
-        try:
-            # Check the last insertion time for each user and layer combination
-            for layer_name in layer_names:
-                cursor.execute(
-                    "SELECT last_insertion_time FROM analytics WHERE username = ? AND layer_name = ?",
-                    (username, layer_name)
-                )
-                last_insertion_time = cursor.fetchone()
+    #     try:
+    #         # Check the last insertion time for each user and layer combination
+    #         for layer_name in layer_names:
+    #             cursor.execute(
+    #                 "SELECT last_insertion_time FROM analytics WHERE username = ? AND layer_name = ?",
+    #                 (username, layer_name)
+    #             )
+    #             last_insertion_time = cursor.fetchone()
 
-                # If last insertion time is None or more than 8 hours ago, insert data into the database
-                if not last_insertion_time or current_datetime - datetime.datetime.strptime(last_insertion_time[0], '%Y-%m-%d %H:%M:%S') > datetime.timedelta(hours=8):
-                    cursor.execute(
-                        "INSERT INTO analytics (timestamp, username, layer_name, last_insertion_time) VALUES (?, ?, ?, ?)",
-                        (timestamp, username, layer_name, timestamp)
-                    )
+    #             # If last insertion time is None or more than 8 hours ago, insert data into the database
+    #             if not last_insertion_time or current_datetime - datetime.datetime.strptime(last_insertion_time[0], '%Y-%m-%d %H:%M:%S') > datetime.timedelta(hours=8):
+    #                 cursor.execute(
+    #                     "INSERT INTO analytics (timestamp, username, layer_name, last_insertion_time) VALUES (?, ?, ?, ?)",
+    #                     (timestamp, username, layer_name, timestamp)
+    #                 )
 
-            # Commit the transaction
-            conn.commit()
-            print('Data successfully inserted into the database')
+    #         # Commit the transaction
+    #         conn.commit()
+    #         print('Data successfully inserted into the database')
 
-        except sqlite3.Error as e:
-            # Rollback the transaction in case of error
-            conn.rollback()
-            print('Error:', e)
+    #     except sqlite3.Error as e:
+    #         # Rollback the transaction in case of error
+    #         conn.rollback()
+    #         print('Error:', e)
 
-        finally:
-            # Close the cursor and database connection
-            cursor.close()
-            conn.close()
+    #     finally:
+    #         # Close the cursor and database connection
+    #         cursor.close()
+    #         conn.close()
 
             
 
@@ -962,9 +962,9 @@ class FluxCEN:
         self.dialog = Popup()  # +++ - self
         self.dialog.text_edit.show()
 
-    def dataviz_popup(self):
+    # def dataviz_popup(self):
 
-        self.dialog = BarChartPopup()  # +++ - self
+    #     self.dialog = BarChartPopup()  # +++ - self
 
 # from owslib.wfs import WebFeatureService
 # import csv
