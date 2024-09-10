@@ -835,9 +835,12 @@ class FluxCEN:
         if layer.name() == "Piezomètres CEN-NA":
             columns_to_hide = ["ip", "last_ip"]
             column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
-        elif layer.name() == "une_autre_couche":
-            columns_to_hide = ["colonne1", "colonne2"]  # Définir les colonnes spécifiques à cacher pour cette couche
-            column_name_changes = {"nom_colonne1": "nouveau_nom1"}  # Définir les noms de colonnes à changer pour cette couche
+            style_url = None
+
+        elif layer.name() == "Fiche site 2024":
+            columns_to_hide = []  # Définir les colonnes spécifiques à cacher pour cette couche
+            column_name_changes = {}  # Définir les noms de colonnes à changer pour cette couche
+            style_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
         else:
             columns_to_hide = []
             column_name_changes = {}
@@ -857,17 +860,24 @@ class FluxCEN:
 
         layer.setAttributeTableConfig(layer_attr_table_config)
 
-        # Appliquer un style à la couche si nécessaire
-        styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
+        # Appliquer un style aux couches PostGIS si nécessaire
+        if style_url:
+            try:
+                fp = urllib.request.urlopen(style_url)
+                mybytes = fp.read()
 
-        fp = urllib.request.urlopen(styles_url)
-        mybytes = fp.read()
+                document = QDomDocument()
+                document.setContent(mybytes)
 
-        document = QDomDocument()
-        document.setContent(mybytes)
+                layer.importNamedStyle(document)
+                layer.triggerRepaint()
 
-        layer.importNamedStyle(document)
-        layer.triggerRepaint()
+                print("Stylé appliqué !")
+
+            except Exception as e:
+                print(f"Erreur lors du chargement du style: {e}")
+        else:
+            print("Aucun style spécifique à appliquer pour cette couche.")
 
 
     def filtre_dynamique(self, filter_text):
