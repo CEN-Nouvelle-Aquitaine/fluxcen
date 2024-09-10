@@ -1,6 +1,6 @@
 # <p align="center">FluxCEN</p>
 
-<img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icon.png  width="220"/>
+<img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icons/icon.png  width="220"/>
 <br>
 <br>
 <br>
