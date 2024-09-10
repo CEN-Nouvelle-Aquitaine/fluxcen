@@ -974,5 +974,4 @@ class FluxCEN:
 # from owslib.wms import WebMapService
 # wms = WebMapService('http://geoservices.brgm.fr/geologie?service=WMS+Raster', version='1.1.1')
 # print(list(wms.contents))
-#
 # print(wms['IDPR'].abstract)
