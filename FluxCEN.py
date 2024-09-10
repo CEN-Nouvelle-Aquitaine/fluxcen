@@ -54,6 +54,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 import sqlite3
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import yaml
 
 
 
@@ -565,11 +566,13 @@ class FluxCEN:
         self.dlg.tableWidget.setColumnWidth(0, 76)
         self.dlg.tableWidget.setColumnWidth(1, 0)
         self.dlg.tableWidget.setColumnWidth(2, 610)
-        self.dlg.tableWidget.setColumnWidth(3, 0)
+        self.dlg.tableWidget.setColumnWidth(3, 50)
         self.dlg.tableWidget.setColumnWidth(4, 0)
         self.dlg.tableWidget.setColumnWidth(5, 88)
         self.dlg.tableWidget.setColumnWidth(6, 0)
         self.dlg.tableWidget.setColumnWidth(7, 30)
+        self.dlg.tableWidget.setColumnWidth(8, 0)
+        self.dlg.tableWidget.setColumnWidth(9, 0)
 
         self.dlg.tableWidget.selectRow(0)
 
@@ -586,7 +589,7 @@ class FluxCEN:
             for column in range(self.dlg.tableWidget.columnCount()):
                 cloned_item = selected_items[column].clone()
                 self.dlg.tableWidget_2.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux sélectionné", "Nom technique", "Url d'accès", "Source", "Style", "Infos"])
-                self.dlg.tableWidget_2.setColumnCount(8)
+                self.dlg.tableWidget_2.setColumnCount(12)
                 self.dlg.tableWidget_2.setItem(selected_row, column, cloned_item)
 
             self.dlg.tableWidget_2.setColumnWidth(0, 80)
@@ -597,6 +600,8 @@ class FluxCEN:
             self.dlg.tableWidget_2.setColumnWidth(5, 100)
             self.dlg.tableWidget_2.setColumnWidth(6, 0)
             self.dlg.tableWidget_2.setColumnWidth(7, 0)
+            self.dlg.tableWidget_2.setColumnWidth(8, 0)
+            self.dlg.tableWidget_2.setColumnWidth(9, 0)
 
     def item_already_exists(self, new_item_text):
         # Assuming you want to compare items in the first column for uniqueness
@@ -604,7 +609,6 @@ class FluxCEN:
 
         # Check if there are any existing items with the same text in the first column
         return len(existing_items) > 0
-
 
 
     def limite_flux(self):
@@ -622,6 +626,23 @@ class FluxCEN:
 
         if self.dlg.tableWidget_2.rowCount() <= 3:
             self.chargement_flux()
+
+    # Charger les configurations depuis le fichier YAML et récupérer les informations de connexion pour PostGIS
+    def load_postgis_config(self, yaml_file):
+        config_path = os.path.join(self.plugin_path, yaml_file)
+        with open(config_path, 'r') as file:
+            config = yaml.safe_load(file)
+        
+        # Assurer que 'database' est une clé valide dans le fichier YAML
+        db_config_list = config.get('database', [])
+        
+        # Trouver et retourner la configuration pour PostGIS
+        for db in db_config_list:
+            if db['type'] == 'PostGIS':
+                return db
+        
+        return None
+
 
     def chargement_flux(self):
 
@@ -653,8 +674,8 @@ class FluxCEN:
                     # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
                     _item = self.dlg.tableWidget_2.item(row, 2).text()
                     _legend = self.dlg.tableWidget_2.item(row, 6).text()
-                    # print(_item)
-                    # print(_legend)
+                    print(_item)
+                    print(_legend)
 
                     for layer in layers.values():
                         if layer.name() == _item:
@@ -774,13 +795,16 @@ class FluxCEN:
 
                 elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
 
+                    postgis_config = self.load_postgis_config('config_db.yaml')
                     # Extraction des informations de connexion à la base de données depuis les champs de l'interface
-                    db_host = self.dlg.tableWidget_2.item(row, 8).text()  # Extrait l'hôte de la base
-                    db_port = self.dlg.tableWidget_2.item(row, 9).text()  # Extrait le port de la base
-                    db_name = self.dlg.tableWidget_2.item(row, 10).text()  # Extrait le nom de la base
-                    schema_name = self.dlg.tableWidget_2.item(row, 11).text()  # Extrait le nom du schéma
-                    table_name = self.dlg.tableWidget_2.item(row, 3).text()  # Extrait le nom de la table
+                    if postgis_config:
+                                db_host = postgis_config['host'] # Extrait l'hôte du yaml
+                                db_port = str(postgis_config['port']) # Extrait le port du yaml
+                                db_name = self.dlg.tableWidget_2.item(row, 1).text()  # Extrait le nom de la base
+                                schema_name = self.dlg.tableWidget_2.item(row, 9).text()  # Extrait le nom du schéma
+                                table_name = self.dlg.tableWidget_2.item(row, 3).text()  # Extrait le nom de la table
 
+                    print(db_host)
 
                     uri = QgsDataSourceUri()
                     # Vérifie la présence de méthodes d'authentification disponibles
