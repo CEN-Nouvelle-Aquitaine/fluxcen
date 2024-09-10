@@ -483,7 +483,7 @@ class FluxCEN:
             csvfile = csv.reader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
             #on ne lit pas la première ligne correspondant aux noms des colonnes avec next()
             next(csvfile)
-            return csvfile;
+            return csvfile
 
         data = []
         data2 = []
