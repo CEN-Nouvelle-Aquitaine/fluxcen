@@ -222,7 +222,7 @@ WMS Raster;Géologie;Référentiel des points d'eau BSS EAU - Points d'eau avec 
 WMS Raster;Géologie;Bases gravimétriques;GRAVI_BASE;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
 WMS Raster;Géologie;Stations gravimétriques;GRAVI_STATION;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
 WMS Raster;Géologie;Campagnes aéro-magnétiques;AEROMAG_CAMPAGNE;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
-WMS Raster;Géologie;Cartes géologiques;GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
+WMS Raster;Géologie;Carte géologique au 1/50000;GEOLOGIE;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
 WMS Raster;Géologie;Base géologie marine;BGM;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
 WMS Raster;Géologie;Gisements, gîtes, indices;GITES;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
 WMS Raster;Géologie;Mines;MINES;http://geoservices.brgm.fr/geologie;BRGM;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/missing_metadata.html;None;None
