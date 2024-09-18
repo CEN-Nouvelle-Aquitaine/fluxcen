@@ -1,6 +1,0 @@
-github_urls:
-  flux_csv: "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv"
-  styles_couches: "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/"
-  info_changelog: "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/info_changelog.html"
-depot_plugins_url:
-  last_version: "https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt"
