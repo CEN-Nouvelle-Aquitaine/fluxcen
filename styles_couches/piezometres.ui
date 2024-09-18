@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>774</width>
-    <height>565</height>
+    <width>797</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>520</y>
-     <width>341</width>
+     <x>600</x>
+     <y>10</y>
+     <width>181</width>
      <height>32</height>
     </rect>
    </property>
@@ -32,7 +32,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>80</x>
      <y>20</y>
      <width>81</width>
      <height>17</height>
@@ -45,11 +45,122 @@
   <widget class="QTextEdit" name="nom">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>170</x>
      <y>10</y>
      <width>351</width>
      <height>31</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="nom_ref">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>50</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>60</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Salarié(e) référent(e)</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="date_pose">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>90</y>
+     <width>91</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>90</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Date de pose</string>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="d_piezo_mm">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>64</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>130</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Diamètre (mm)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>160</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Profondeur (cm)</string>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="p_piezo_cm">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>160</y>
+     <width>64</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="type_relev">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>200</y>
+     <width>351</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentText">
+    <string/>
+   </property>
+   <property name="modelColumn">
+    <number>0</number>
    </property>
   </widget>
  </widget>
