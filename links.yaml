@@ -4,3 +4,4 @@ github_urls:
   info_changelog: "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/info_changelog.html"
 depot_plugins_url:
   last_version: "https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt"
+
