@@ -1,0 +1,4 @@
+database:
+  - type: PostGIS
+    host: your_database_ip
+    port: your_database_port (5432 by default)

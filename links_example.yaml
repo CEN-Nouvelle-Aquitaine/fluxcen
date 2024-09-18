@@ -1,0 +1,7 @@
+github_urls:
+  flux_csv: "link_to_the_csv_file (your_flux.csv)"
+  styles_couches: "link_to_the_layer_styles_file (your styles_couches folder)"
+  info_changelog: "link_to_the_changelog_html (if needed)"
+depot_plugins_url:
+  last_version: "link_to_the_plugin_version (.txt)"
+  
