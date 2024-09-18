@@ -1,4 +1,2 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-# Add flux.scv to the merge driver preservedata
-flux.csv merge=preservedata
