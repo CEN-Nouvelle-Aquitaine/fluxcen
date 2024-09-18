@@ -85,10 +85,18 @@ class Popup(QWidget):
     def __init__(self, parent=None):
         super(Popup, self).__init__(parent)
 
+        self.flux_cen = flux_cen_instance
+        
+        try:
+            _,_,_,info_changelog= self.flux_cen.load_urls('links.yaml')
+            print(f"Info changelog url: {info_changelog}")
+        except Exception as e:
+            print(f"Error loading URLs: {e}")
+
         self.plugin_dir = os.path.dirname(__file__)
 
         self.text_edit = QTextBrowser()
-        fp = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/info_changelog.html")
+        fp = urllib.request.urlopen(info_changelog)
         mybytes = fp.read()
         html_changelog = mybytes.decode("utf8")
         fp.close()
@@ -99,8 +107,7 @@ class Popup(QWidget):
         self.text_edit.setOpenLinks(False)
 
         self.text_edit.setWindowTitle("Nouveautés")
-        self.text_edit.setMinimumSize(600,450)
-
+        self.text_edit.setMinimumSize(600,550)
 
 
 # class BarChartPopup(QWidget):
@@ -260,8 +267,14 @@ class FluxCEN:
         # self.dlg.commandLinkButton_6.clicked.connect(self.dataviz_popup)
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
-
-        url_open = urllib.request.urlopen("https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+        # Load URLs and handle possible errors
+        try:
+            flux_csv_url, last_version_url, _, _= self.load_urls('links.yaml')
+        except Exception as e:
+            self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
+            return
+        
+        url_open = urllib.request.urlopen(flux_csv_url)
         colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
 
         mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
@@ -277,7 +290,7 @@ class FluxCEN:
         metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
         infos_metadonnees = metadonnees_plugin.readlines()
 
-        derniere_version = urllib.request.urlopen("https://sig.dsi-cen.org/qgis/downloads/last_version_fluxcen.txt")
+        derniere_version = urllib.request.urlopen(last_version_url)
         num_last_version = derniere_version.readlines()[0].decode("utf-8")
 
         # Connect the itemClicked signal to the open_url function
@@ -424,6 +437,44 @@ class FluxCEN:
             # substitute with your code.
             pass
 
+    # Charger les configurations depuis le fichier YAML et récupérer les informations de connexion pour PostGIS
+    def load_postgis_config(self, yaml_file):
+        config_path = os.path.join(self.plugin_path, yaml_file)
+        with open(config_path, 'r') as file:
+            config = yaml.safe_load(file)
+        
+        # Assurer que 'database' est une clé valide dans le fichier YAML
+        db_config_list = config.get('database', [])
+        
+        # Trouver et retourner la configuration pour PostGIS
+        for db in db_config_list:
+            if db['type'] == 'PostGIS':
+                return db
+        
+        return None
+    
+    
+    def load_urls(self, yaml_file):
+        # Charger le fichier YAML contenant plusieurs clés
+        config_path = os.path.join(self.plugin_path, yaml_file)
+        
+        # Lire le fichier YAML
+        with open(config_path, 'r') as file:
+            config = yaml.safe_load(file)
+        
+        # Extraire les URL pour chaque clé
+        github_urls = config.get('github_urls', {})
+        depot_plugins_url = config.get('depot_plugins_url', {})
+
+        # Accéder aux sous-clés spécifiques
+        flux_csv_url = github_urls.get('flux_csv')  # Utilisation correcte de la clé 'flux_csv'
+        styles_couches = github_urls.get('styles_couches')
+        info_changelog = github_urls.get('info_changelog')
+        last_version_url = depot_plugins_url.get('last_version')
+
+        return flux_csv_url, last_version_url, styles_couches, info_changelog
+    
+
     def suppression_flux(self):
         self.dlg.tableWidget_2.removeRow(self.dlg.tableWidget_2.currentRow())
 
@@ -479,6 +530,9 @@ class FluxCEN:
 
     def initialisation_flux(self):
 
+        # Unpack only flux_csv_url and ignore last_version_url
+        flux_csv_url, _, _, _ = self.load_urls('links.yaml')
+
         def csv_import(url):
             url_open = urllib.request.urlopen(url)
             csvfile = csv.reader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
@@ -490,8 +544,9 @@ class FluxCEN:
         data2 = []
         model = QStandardItemModel()
 
-        raw = csv_import(
-            "https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/flux.csv")
+
+        raw = csv_import(flux_csv_url)
+
 
         for row in raw:
             data.append(row)
@@ -589,7 +644,7 @@ class FluxCEN:
             for column in range(self.dlg.tableWidget.columnCount()):
                 cloned_item = selected_items[column].clone()
                 self.dlg.tableWidget_2.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux sélectionné", "Nom technique", "Url d'accès", "Source", "Style", "Infos"])
-                self.dlg.tableWidget_2.setColumnCount(12)
+                self.dlg.tableWidget_2.setColumnCount(10)
                 self.dlg.tableWidget_2.setItem(selected_row, column, cloned_item)
 
             self.dlg.tableWidget_2.setColumnWidth(0, 80)
@@ -627,24 +682,10 @@ class FluxCEN:
         if self.dlg.tableWidget_2.rowCount() <= 3:
             self.chargement_flux()
 
-    # Charger les configurations depuis le fichier YAML et récupérer les informations de connexion pour PostGIS
-    def load_postgis_config(self, yaml_file):
-        config_path = os.path.join(self.plugin_path, yaml_file)
-        with open(config_path, 'r') as file:
-            config = yaml.safe_load(file)
-        
-        # Assurer que 'database' est une clé valide dans le fichier YAML
-        db_config_list = config.get('database', [])
-        
-        # Trouver et retourner la configuration pour PostGIS
-        for db in db_config_list:
-            if db['type'] == 'PostGIS':
-                return db
-        
-        return None
-
 
     def chargement_flux(self):
+
+        _, _, styles_couches, _ = self.load_urls('links.yaml')
 
         managerAU = QgsApplication.authManager()
         k = managerAU.availableAuthMethodConfigs().keys()
@@ -674,21 +715,20 @@ class FluxCEN:
                     # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
                     _item = self.dlg.tableWidget_2.item(row, 2).text()
                     _legend = self.dlg.tableWidget_2.item(row, 6).text()
-                    #print(_item)
-                    #print(_legend)
 
                     for layer in layers.values():
                         if layer.name() == _item:
                             if len(_legend) > 1:
-                                styles_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/' + _legend + '.qml'
-
+                                styles_url = styles_couches + _legend + ".qml"
+                                print(styles_url)
                                 fp = urllib.request.urlopen(styles_url)
                                 mybytes = fp.read()
 
                                 document = QDomDocument()
                                 document.setContent(mybytes)
 
-                                res = layer.importNamedStyle(document)
+                                layer.importNamedStyle(document)
+                                
                                 layer.triggerRepaint()
 
                             else:
@@ -765,9 +805,9 @@ class FluxCEN:
 
                         if response.status_code == 401:
                             print("Statut de réponse: 401")
-                            
+                            #à commenter
                             if len(list(k)) == 0:
-                                QMessageBox.question(iface.mainWindow(), u"Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux CEN-NA sécurisés par un mot de passe (Flux 'FoncierCEN')", QMessageBox.Ok)
+                                QMessageBox.question(iface.mainWindow(), u"Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux sécurisés par un mot de passe", QMessageBox.Ok)
                             else:
                                 # Add 'authcfg' to the parameters dictionary
                                 p[row].parameters['authcfg'] = list(k)[0]
@@ -830,54 +870,55 @@ class FluxCEN:
         
 
 
-    def parametrage_couches_postgis(self, layer):
-        # Détermine les paramètres spécifiques en fonction de la couche
-        if layer.name() == "Piezomètres CEN-NA":
-            columns_to_hide = ["ip", "last_ip"]
-            column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
-            style_url = None
+    # def parametrage_couches_postgis(self, layer):
+    #     # Détermine les paramètres spécifiques en fonction de la couche
+    #     if layer.name() == "Piezomètres CEN-NA":
+    #         columns_to_hide = ["ip", "last_ip"]
+    #         column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
+    #         style_url = None
 
-        elif layer.name() == "Fiche site 2024":
-            columns_to_hide = []  # Définir les colonnes spécifiques à cacher pour cette couche
-            column_name_changes = {}  # Définir les noms de colonnes à changer pour cette couche
-            style_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
-        else:
-            columns_to_hide = []
-            column_name_changes = {}
+    #     elif layer.name() == "Fiche site 2024":
+    #         columns_to_hide = []  # Définir les colonnes spécifiques à cacher pour cette couche
+    #         column_name_changes = {}  # Définir les noms de colonnes à changer pour cette couche
+    #         #lien vers .qml car style par défaut postgis en base ne semble pas gérer un ui personnalisé donc appelle via lien vers le ui dans github dans le qml
+    #         style_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
+    #     else:
+    #         columns_to_hide = []
+    #         column_name_changes = {}
 
-        # Configuration de la table d'attributs pour cacher et renommer les colonnes
-        layer_attr_table_config = layer.attributeTableConfig()
+    #     # Configuration de la table d'attributs pour cacher et renommer les colonnes
+    #     layer_attr_table_config = layer.attributeTableConfig()
 
-        for column_name in columns_to_hide:
-            column_index = layer.fields().indexOf(column_name)
-            if column_index != -1:  # Vérifie si la colonne existe
-                layer_attr_table_config.setColumnHidden(column_index, True)
+    #     for column_name in columns_to_hide:
+    #         column_index = layer.fields().indexOf(column_name)
+    #         if column_index != -1:  # Vérifie si la colonne existe
+    #             layer_attr_table_config.setColumnHidden(column_index, True)
 
-        for old_name, new_name in column_name_changes.items():
-            column_index = layer.fields().indexOf(old_name)
-            if column_index != -1:  # Vérifie si la colonne existe
-                layer.setFieldAlias(column_index, new_name)
+    #     for old_name, new_name in column_name_changes.items():
+    #         column_index = layer.fields().indexOf(old_name)
+    #         if column_index != -1:  # Vérifie si la colonne existe
+    #             layer.setFieldAlias(column_index, new_name)
 
-        layer.setAttributeTableConfig(layer_attr_table_config)
+    #     layer.setAttributeTableConfig(layer_attr_table_config)
 
-        # Appliquer un style aux couches PostGIS si nécessaire
-        if style_url:
-            try:
-                fp = urllib.request.urlopen(style_url)
-                mybytes = fp.read()
+    #     # Appliquer un style aux couches PostGIS si nécessaire
+    #     if style_url:
+    #         try:
+    #             fp = urllib.request.urlopen(style_url)
+    #             mybytes = fp.read()
 
-                document = QDomDocument()
-                document.setContent(mybytes)
+    #             document = QDomDocument()
+    #             document.setContent(mybytes)
 
-                layer.importNamedStyle(document)
-                layer.triggerRepaint()
+    #             layer.importNamedStyle(document)
+    #             layer.triggerRepaint()
 
-                print("Stylé appliqué !")
+    #             print("Stylé appliqué !")
 
-            except Exception as e:
-                print(f"Erreur lors du chargement du style: {e}")
-        else:
-            print("Aucun style spécifique à appliquer pour cette couche.")
+    #         except Exception as e:
+    #             print(f"Erreur lors du chargement du style: {e}")
+    #     else:
+    #         print("Aucun style spécifique à appliquer pour cette couche.")
 
 
     def filtre_dynamique(self, filter_text):
@@ -971,6 +1012,9 @@ class FluxCEN:
 
         self.dialog = Popup()  # +++ - self
         self.dialog.text_edit.show()
+
+flux_cen_instance = FluxCEN(iface)
+
 
     # def dataviz_popup(self):
 
