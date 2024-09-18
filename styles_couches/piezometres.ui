@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>797</width>
+    <width>554</width>
     <height>582</height>
    </rect>
   </property>
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>10</y>
+     <x>200</x>
+     <y>530</y>
      <width>181</width>
      <height>32</height>
     </rect>
@@ -57,7 +57,7 @@
     <rect>
      <x>170</x>
      <y>50</y>
-     <width>351</width>
+     <width>161</width>
      <height>31</height>
     </rect>
    </property>
@@ -78,9 +78,9 @@
   <widget class="QDateEdit" name="date_pose">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>90</y>
-     <width>91</width>
+     <x>410</x>
+     <y>100</y>
+     <width>111</width>
      <height>26</height>
     </rect>
    </property>
@@ -88,8 +88,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>90</y>
+     <x>410</x>
+     <y>80</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -98,21 +98,11 @@
     <string>Date de pose</string>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="d_piezo_mm">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>130</y>
-     <width>64</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>130</y>
+     <y>110</y>
      <width>91</width>
      <height>17</height>
     </rect>
@@ -125,7 +115,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>160</y>
+     <y>140</y>
      <width>91</width>
      <height>17</height>
     </rect>
@@ -134,23 +124,13 @@
     <string>Profondeur (cm)</string>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="p_piezo_cm">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>160</y>
-     <width>64</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QComboBox" name="type_relev">
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>200</y>
+     <y>180</y>
      <width>351</width>
-     <height>25</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="editable">
@@ -163,7 +143,171 @@
     <number>0</number>
    </property>
   </widget>
+  <widget class="QTextEdit" name="d_piezo_mm">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>100</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="p_piezo_cm">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>140</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>190</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Type de relevé</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="model_sonde">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>230</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>240</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Modèle de la sonde</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="typ_milieu">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>360</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>370</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Milieu</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="obj_suivi">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>400</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>400</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Objectif suivi</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="protocole">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>450</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>450</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Protocole</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="code_site">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>320</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>320</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Code site géré</string>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>code_site</tabstop>
+  <tabstop>nom_ref</tabstop>
+  <tabstop>date_pose</tabstop>
+  <tabstop>type_relev</tabstop>
+  <tabstop>d_piezo_mm</tabstop>
+  <tabstop>p_piezo_cm</tabstop>
+  <tabstop>model_sonde</tabstop>
+  <tabstop>typ_milieu</tabstop>
+  <tabstop>obj_suivi</tabstop>
+  <tabstop>protocole</tabstop>
+  <tabstop>nom</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -173,8 +317,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>780</x>
+     <y>24</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -189,8 +333,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>780</x>
+     <y>30</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
