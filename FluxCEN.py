@@ -88,7 +88,7 @@ class Popup(QWidget):
         self.flux_cen = flux_cen_instance
         
         try:
-            _,_,_,info_changelog= self.flux_cen.load_urls('links.yaml')
+            _,_,_,info_changelog= self.flux_cen.load_urls('config/yaml/links.yaml')
             print(f"Info changelog url: {info_changelog}")
         except Exception as e:
             print(f"Error loading URLs: {e}")
@@ -269,7 +269,7 @@ class FluxCEN:
         # iface.mapCanvas().extentsChanged.connect(self.test5)
         # Load URLs and handle possible errors
         try:
-            flux_csv_url, last_version_url, _, _= self.load_urls('links.yaml')
+            flux_csv_url, last_version_url, _, _= self.load_urls('config/yaml/links.yaml')
         except Exception as e:
             self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
             return
@@ -528,7 +528,7 @@ class FluxCEN:
     def initialisation_flux(self):
 
         # Unpacking de flux_csv_url et on ignore last_version_url, info_changelog, styles_couches
-        flux_csv_url, _, _, _ = self.load_urls('links.yaml')
+        flux_csv_url, _, _, _ = self.load_urls('config/yaml/links.yaml')
 
         def csv_import(url):
             url_open = urllib.request.urlopen(url)
@@ -678,7 +678,7 @@ class FluxCEN:
 
     def chargement_flux(self):
 
-        _, _, styles_couches, _ = self.load_urls('links.yaml')
+        _, _, styles_couches, _ = self.load_urls('config/yaml/links.yaml')
 
         managerAU = QgsApplication.authManager()
         k = managerAU.availableAuthMethodConfigs().keys()
@@ -828,7 +828,7 @@ class FluxCEN:
 
                 elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
 
-                    postgis_config = self.load_postgis_config('config_db.yaml')
+                    postgis_config = self.load_postgis_config('config/yaml/config_db.yaml')
 
                     # Extraction des informations de connexion à la base de données depuis les champs de l'interface
                     if postgis_config:
@@ -852,9 +852,6 @@ class FluxCEN:
                     # Chargement de la couche PostGIS avec le nom dynamique
                     layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
                     QgsProject.instance().addMapLayer(layer)
-
-                    # Appliquer les paramètres spécifiques à la couche chargée
-                    self.parametrage_couches_postgis(layer)
 
                 else:
                     print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
