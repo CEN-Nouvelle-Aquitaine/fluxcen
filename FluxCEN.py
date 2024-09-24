@@ -491,7 +491,6 @@ class FluxCEN:
 
         root = QgsProject.instance().layerTreeRoot()
 
-        # Move Layer
         OSM_layer = root.findLayer(OSM_layer.id())
         myClone = OSM_layer.clone()
         parent = OSM_layer.parent()
@@ -512,7 +511,6 @@ class FluxCEN:
 
         root = QgsProject.instance().layerTreeRoot()
 
-        # Move Layer
         google_layer = root.findLayer(google_layer.id())
         myClone = google_layer.clone()
         parent = google_layer.parent()
@@ -523,14 +521,13 @@ class FluxCEN:
     def open_url(self, item):
         url = item.data(Qt.UserRole)
         if url:
-            # Open the URL, you might use QDesktopServices.openUrl for this in a standalone PyQt application
             QDesktopServices.openUrl(QUrl(url))
 
 
 
     def initialisation_flux(self):
 
-        # Unpack only flux_csv_url and ignore last_version_url
+        # Unpacking de flux_csv_url et on ignore last_version_url, info_changelog, styles_couches
         flux_csv_url, _, _, _ = self.load_urls('links.yaml')
 
         def csv_import(url):
@@ -561,9 +558,7 @@ class FluxCEN:
             model.appendRow(items)
 
         if self.dlg.comboBox.currentText() == 'toutes les catégories':
-            # print(str(data2[0]))
-            # del data2[0]
-            # print(str(data2[0]))
+
             nb_row = len(data2)
             nb_col = len(data2[0])
 
@@ -581,11 +576,11 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/icons/info_metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon_path = self.plugin_path + '/icons/info_metadata.png' 
                         icon = QIcon(icon_path)
                         item.setIcon(icon)   
                         # Store the URL in the item's data for later retrieval
-                        url_from_6th_column = str(data2[row][7])  # Assuming the URL is in the next column
+                        url_from_6th_column = str(data2[row][7])  
                         item.setData(Qt.UserRole, url_from_6th_column)
 
                     self.dlg.tableWidget.setItem(row, col, item)
@@ -607,11 +602,11 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/icons/metadata.png' # Replace 'path_to_your_icon.png' with the actual path to your icon
+                        icon_path = self.plugin_path + '/icons/metadata.png' 
                         icon = QIcon(icon_path)
                         item.setIcon(icon)   
                         # Store the URL in the item's data for later retrieval
-                        url_from_6th_column = str(data2[row][7])  # Assuming the URL is in the next column
+                        url_from_6th_column = str(data2[row][7])  
                         item.setData(Qt.UserRole, url_from_6th_column)
 
                     self.dlg.tableWidget.setItem(row, col, item)
@@ -635,7 +630,6 @@ class FluxCEN:
         selected_row = 0
         selected_items = self.dlg.tableWidget.selectedItems()
 
-        # Assuming you want to compare items in the first column for uniqueness
         new_item_text = selected_items[3].text()
 
         if not self.item_already_exists(new_item_text):
@@ -659,10 +653,9 @@ class FluxCEN:
             self.dlg.tableWidget_2.setColumnWidth(9, 0)
 
     def item_already_exists(self, new_item_text):
-        # Assuming you want to compare items in the first column for uniqueness
+
         existing_items = self.dlg.tableWidget_2.findItems(new_item_text, QtCore.Qt.MatchExactly)
 
-        # Check if there are any existing items with the same text in the first column
         return len(existing_items) > 0
 
 
@@ -773,7 +766,7 @@ class FluxCEN:
                     p.append(a)
 
                     uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-                    # print(uri)
+
                     if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
                         displayOnWindows(p[row].type, uri, p[row].nom_commercial)
                     else:
@@ -868,57 +861,6 @@ class FluxCEN:
 
         #self.plugin_analytics()
         
-
-
-    # def parametrage_couches_postgis(self, layer):
-    #     # Détermine les paramètres spécifiques en fonction de la couche
-    #     if layer.name() == "Piezomètres CEN-NA":
-    #         columns_to_hide = ["ip", "last_ip"]
-    #         column_name_changes = {"time": "creation", "last_time": "modif", "uid": "createur", "last_uid": "last_edit"}
-    #         style_url = None
-
-    #     elif layer.name() == "Fiche site 2024":
-    #         columns_to_hide = []  # Définir les colonnes spécifiques à cacher pour cette couche
-    #         column_name_changes = {}  # Définir les noms de colonnes à changer pour cette couche
-    #         #lien vers .qml car style par défaut postgis en base ne semble pas gérer un ui personnalisé donc appelle via lien vers le ui dans github dans le qml
-    #         style_url = 'https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/styles_couches/style_fiche_site_2024.qml'
-    #     else:
-    #         columns_to_hide = []
-    #         column_name_changes = {}
-
-    #     # Configuration de la table d'attributs pour cacher et renommer les colonnes
-    #     layer_attr_table_config = layer.attributeTableConfig()
-
-    #     for column_name in columns_to_hide:
-    #         column_index = layer.fields().indexOf(column_name)
-    #         if column_index != -1:  # Vérifie si la colonne existe
-    #             layer_attr_table_config.setColumnHidden(column_index, True)
-
-    #     for old_name, new_name in column_name_changes.items():
-    #         column_index = layer.fields().indexOf(old_name)
-    #         if column_index != -1:  # Vérifie si la colonne existe
-    #             layer.setFieldAlias(column_index, new_name)
-
-    #     layer.setAttributeTableConfig(layer_attr_table_config)
-
-    #     # Appliquer un style aux couches PostGIS si nécessaire
-    #     if style_url:
-    #         try:
-    #             fp = urllib.request.urlopen(style_url)
-    #             mybytes = fp.read()
-
-    #             document = QDomDocument()
-    #             document.setContent(mybytes)
-
-    #             layer.importNamedStyle(document)
-    #             layer.triggerRepaint()
-
-    #             print("Stylé appliqué !")
-
-    #         except Exception as e:
-    #             print(f"Erreur lors du chargement du style: {e}")
-    #     else:
-    #         print("Aucun style spécifique à appliquer pour cette couche.")
 
 
     def filtre_dynamique(self, filter_text):
