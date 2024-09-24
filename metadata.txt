@@ -7,7 +7,7 @@ name=FluxCEN
 qgisMinimumVersion=3.0
 description=Centralisation des flux WFS/WMS les plus couramment utilisés au CEN-NA
 version=4.1
-author=Romain Montillet
+author=Romain Montillet (CEN-NA)
 email=r.montillet@cen-na.org
 
 about=Le plugin fluxCEN permet d'accéder en un clic à un large éventail de flux WFS/WMS organisés par catégories et interrogeables sous forme de mots-clés. Les flux mis à disposition sont issus des données du CEN-NA mais aussi des producteurs nationaux (IGN, BRGM, INPN, SANDRE, GISSOL, GéoPortail, etc.), régionaux ou départementaux.
