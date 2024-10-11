@@ -22,8 +22,8 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
-from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon
-from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QTextBrowser, QMessageBox
+from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon, QPixmap
+from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QTextBrowser, QMessageBox, QLabel, QDialog, QPushButton
 from qgis.utils import iface
 
 from qgis.core import (
@@ -35,26 +35,27 @@ from qgis.core import (
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
-import os.path, os, shutil
+
+import yaml
+import os.path, os
 from PyQt5.QtXml import QDomDocument
 import csv
 import os
 import io
 import re
-import random
-# Deal with SSL
 import ssl
 import urllib
 from urllib import request, parse
 import socket
-import json
 import requests
+
+#Dataviz:
 import datetime
-ssl._create_default_https_context = ssl._create_unverified_context
 import sqlite3
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-import yaml
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 
@@ -69,15 +70,6 @@ except socket.error:
     QMessageBox.warning(None, 'Avertissement',
                         'Vous n\'êtes actuellement pas connecté à internet. Veuillez vous connecter pour pouvoir utiliser FluxCEN !')
 
-
-class Flux:
-    def __init__(self, t, c, nc, l, u, p):
-        self.type = t
-        self.category = c
-        self.nom_commercial = nc
-        self.layer = l
-        self.url = u
-        self.parameters = p
 
 
 
@@ -307,6 +299,91 @@ class FluxCEN:
         self.dlg.lineEdit.setText("")
         self.dlg.lineEdit.mousePressEvent = None
 
+    def show_welcome_popup(self):
+        """
+        Affiche une fenêtre avec une image au démarrage, centre l'image et ajoute un texte en dessous.
+        """
+        # Créer un QDialog (fenêtre personnalisée)
+        dialog = QDialog()
+        dialog.setWindowTitle("Nouvelle version : FluxCEN 4.5 !")
+
+        # Créer un layout
+        layout = QVBoxLayout()
+
+        # Ajouter une image (remplace 'maj_4.5.JPG' par le chemin de ton image)
+        label_image = QLabel()
+        pixmap = QPixmap(self.plugin_path + "/icons/maj_4.5.JPG")  # Chemin absolu ou relatif de ton image
+
+        # Vérifier si l'image existe et est chargée
+        if not pixmap.isNull():
+            # Redimensionner l'image à une taille raisonnable si nécessaire
+            pixmap = pixmap.scaled(600, 400, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            label_image.setPixmap(pixmap)
+            label_image.setAlignment(Qt.AlignCenter)  # Centre l'image
+        else:
+            label_image.setText("Image introuvable")
+            label_image.setAlignment(Qt.AlignCenter)
+
+        # Ajouter le label avec l'image au layout
+        layout.addWidget(label_image)
+
+        # Ajouter un label avec du texte (la version et description)
+        label_text = QLabel("Version 4.5 (11/10/2024): MAJ significative permettant un chargement beaucoup plus rapide des différents flux ! 🚀💥")
+        label_text.setAlignment(Qt.AlignCenter)  # Centre le texte
+        label_text.setFont(QFont("Calibri", 12, QFont.Bold))  # Style du texte
+        layout.addWidget(label_text)
+
+        # Ajouter un bouton de fermeture
+        button = QPushButton("Fermer")
+        button.clicked.connect(dialog.accept)
+        layout.addWidget(button)
+
+        # Centrer le bouton
+        layout.setAlignment(button, Qt.AlignCenter)
+
+        # Appliquer le layout à la fenêtre
+        dialog.setLayout(layout)
+
+        # Définir la taille minimum du dialog pour s'adapter à l'image et au texte
+        dialog.setMinimumSize(620, 500)  # Ajuste la taille pour correspondre à l'image, texte et bouton
+
+        # Afficher la fenêtre
+        dialog.exec_()
+
+
+    def is_first_run_of_new_version(self):
+        """
+        Vérifie si c'est la première fois que cette version du plugin est démarrée en utilisant la version
+        du plugin stockée dans 'metadata.txt' et la dernière version disponible en ligne.
+        """
+        settings = QSettings()
+
+        # Obtenir la version actuelle du plugin depuis le fichier 'metadata.txt'
+        metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
+        infos_metadonnees = metadonnees_plugin.readlines()
+        version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin (par exemple, '4.5.1')
+
+        # Charger la dernière version depuis l'URL
+        try:
+            _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
+            derniere_version = urllib.request.urlopen(last_version_url)
+            num_last_version = derniere_version.readlines()[0].decode("utf-8").strip()  # Récupérer la dernière version disponible
+        except Exception as e:
+            self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
+            return False
+
+        # Obtenir la dernière version utilisée stockée dans les paramètres
+        last_version = settings.value("FluxCEN/last_version", "", type=str)
+
+        # Comparer la version actuelle avec la dernière version utilisée
+        if last_version != version_utilisateur or version_utilisateur != num_last_version:
+            # Si la version a changé, c'est un premier démarrage de cette version
+            settings.setValue("FluxCEN/last_version", version_utilisateur)  # Mettre à jour la version stockée
+            return True
+
+        return False
+
+
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
         """Get the translation for a string using Qt translation API.
@@ -398,6 +475,15 @@ class FluxCEN:
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
+
+        """
+        Fonction appelée au démarrage du plugin.
+        """
+
+        # Vérifier si c'est le premier démarrage de cette version
+        if self.is_first_run_of_new_version():
+            self.show_welcome_popup()
+
 
         icon_path = ':/plugins/FluxCEN/icons/icon.png'
         self.add_action(
@@ -676,187 +762,209 @@ class FluxCEN:
             self.chargement_flux()
 
 
-    def chargement_flux(self):
+    def apply_qml_style(self, wfs_layer, style_url):
+        """
+        Function to apply QML style to a WFS layer.
+        """
 
+        try:
+            # Récupération des styles depuis url github
+            response = request.urlopen(style_url)
+            style_data = response.read()
+
+            #"Décorticage" du style QML en utilisant QDomDocument
+            document = QDomDocument()
+            if not document.setContent(style_data):
+                print("Echec de l'ouverture du style QML.")
+                return
+
+            # on applique le style au flux
+            if not wfs_layer.importNamedStyle(document):
+                print(f"Echec, le style n'a pas pu être appliqué au flux: {wfs_layer.name()}")
+            else:
+                print(f"Le style a bien été appliqué au flux: {wfs_layer.name()}")
+
+            #Actualisation de la couche pour prendre en compte le nouveau style
+            wfs_layer.triggerRepaint()
+
+        except Exception as e:
+            print(f"Problème dans l'application du style: {e}")
+
+
+    def apply_authentication_if_needed(self, uri):
+        """
+        Vérifie s'il existe une configuration d'authentification et l'applique à l'uri si nécessaire.
+        
+        Parameters:
+            uri (QgsDataSourceUri): L'uri de la source de données à laquelle on doit éventuellement ajouter l'authentification.
+
+        Returns:
+            bool: True si l'authentification a été appliquée, False sinon.
+        """
+        managerAU = QgsApplication.authManager()
+        auth_configs = list(managerAU.availableAuthMethodConfigs().keys())  # Récupération des configurations disponibles
+
+        if auth_configs:
+            uri.setAuthConfigId(auth_configs[0])  # Applique la première configuration d'authentification disponible
+            return True
+        else:
+            QMessageBox.warning(iface.mainWindow(), "Attention", 
+                "Aucune configuration d'authentification disponible. Veuillez ajouter une configuration d'authentification dans QGIS.",
+                QMessageBox.Ok)
+            return False
+
+    def avertissement_pas_de_flux(self):
+        """
+        Affiche un QMessageBox pour indiquer qu'il n'y a pas de flux à charger si tableWidget_2 est vide.
+        """
+        QMessageBox.information(iface.mainWindow(), "Aucun flux pré-chargé", "Il n'y a aucun flux à charger dans la table de sélection.", QMessageBox.Ok)
+
+
+    def chargement_flux(self):
+        """
+        Main function to load layers from tableWidget_2 based on service type (WMS, WFS, PostGIS).
+        """
         _, _, styles_couches, _ = self.load_urls('config/yaml/links.yaml')
 
-        managerAU = QgsApplication.authManager()
-        k = managerAU.availableAuthMethodConfigs().keys()
+        # Vérifier si tableWidget_2 est vide
+        if self.dlg.tableWidget_2.rowCount() == 0:
+            self.avertissement_pas_de_flux()
+            return  # Quitter la fonction si la table est vide
 
-        def REQUEST(type):
-            switcher = {
-                'WFS': "GetFeature",
-                'WMS': "GetMap",
-                'WMS+Vecteur': "GetMap",
-                'WMS+Raster': "GetMap",
-                'WMTS': "GetMap"
-            }
-            return switcher.get(type, "nothing")
+        # Iterate through each row in the tableWidget_2
+        for row in range(self.dlg.tableWidget_2.rowCount()):
+            try:
+                data = self.parse_table_row(row, styles_couches)
+                if not data:
+                    continue
 
+                service, nom_couche, nom_technique, url, style_url = data
 
-        def displayOnWindows(type, uri, name):
+                # Handle different service types
+                if service.startswith("WMS"):
+                    self.handle_wms_layer(row, nom_couche, nom_technique, url, style_url)
+                elif service == "WFS":
+                    self.handle_wfs_layer(row, nom_couche, nom_technique, url, style_url)
+                elif service == "PostGIS":
+                    self.handle_postgis_layer(row)
 
-            if type == 'WFS':
-                vlayer = QgsVectorLayer(uri, name, "WFS")
-                # vlayer.setScaleBasedVisibility(True)
-                QgsProject.instance().addMapLayer(vlayer)
+            except AttributeError:
+                print(f"Erreur: données manquantes dans la ligne: {row}")
+                continue  # Skip the row if there are missing fields
 
-                layers = QgsProject.instance().mapLayers()  # dictionary
+        # Vider le contenu de tableWidget_2
+        self.dlg.tableWidget_2.clearContents()  # Efface les cellules existantes
+        self.dlg.tableWidget_2.setRowCount(0)   # Réinitialise le nombre de lignes à 0
 
-                # rowCount() This property holds the number of rows in the table
-                for row in range(self.dlg.tableWidget_2.rowCount()):
-                    # item(row, 0) Returns the item for the given row and column if one has been set; otherwise returns nullptr.
-                    _item = self.dlg.tableWidget_2.item(row, 2).text()
-                    _legend = self.dlg.tableWidget_2.item(row, 6).text()
+    def parse_table_row(self, row, styles_couches):
+        """
+        Extract relevant data from a given row in tableWidget_2.
+        """
+        try:
+            service = self.dlg.tableWidget_2.item(row, 0).text()  # Type of service (WFS, WMS, PostGIS)
+            nom_couche = self.dlg.tableWidget_2.item(row, 2).text()  # Layer name
+            nom_technique = self.dlg.tableWidget_2.item(row, 3).text()  # Technical layer name
+            url = self.dlg.tableWidget_2.item(row, 4).text()  # URL of the service
+            nom_style = self.dlg.tableWidget_2.item(row, 6).text()  # Optional QML style
+            style_url = styles_couches + nom_style + ".qml" if nom_style and len(nom_style.strip()) >= 2 else None
+            return service, nom_couche, nom_technique, url, style_url
+        except AttributeError:
+            print(f"Erreur: données manquantes dans la ligne: {row}")
+            return None  # Return None if there are missing fields
 
-                    for layer in layers.values():
-                        if layer.name() == _item:
-                            if len(_legend) > 1:
-                                styles_url = styles_couches + _legend + ".qml"
-                                print(styles_url)
-                                fp = urllib.request.urlopen(styles_url)
-                                mybytes = fp.read()
+    def handle_wms_layer(self, row, nom_couche, nom_technique, url, style_url):
+        """
+        Handle WMS layer loading and apply authentication if necessary.
+        """
+        try:
+            version = re.search('VERSION=(.+?)&REQUEST', url).group(1)
+        except:
+            version = '1.0.0'
 
-                                document = QDomDocument()
-                                document.setContent(mybytes)
+        wms_layer_url = (
+            f"url={url}&"
+            f"service=WMS&"
+            f"version={version}&"
+            f"crs=EPSG:2154&"
+            f"format=image/png&"
+            f"layers={nom_technique}&"
+            f"styles"
+        )
 
-                                layer.importNamedStyle(document)
-                                
-                                layer.triggerRepaint()
+        uri = QgsDataSourceUri()
+        if not self.apply_authentication_if_needed(uri):
+            return  # Skip if authentication fails
+        print(wms_layer_url)
+        wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
+        if not wms_layer.isValid():
+            print(f"Failed to load WMS layer: {nom_couche}")
+            return
 
-                            else:
-                                print("Pas de style à charger pour cette couche")
+        QgsProject.instance().addMapLayer(wms_layer)
 
-            elif type == 'WMS' or type == 'WMS Raster' or type == 'WMS Vecteur' or type == 'WMTS':
-                rlayer = QgsRasterLayer(uri, name, "WMS")
-                QgsProject.instance().addMapLayer(rlayer)
-            else:
-                print("Unknown datatype !")
+    def handle_wfs_layer(self, row, nom_couche, nom_technique, url, style_url):
+        """
+        Handle WFS layer loading and apply authentication if necessary.
+        """
+        try:
+            version = re.search('VERSION=(.+?)&REQUEST', url).group(1)
+        except:
+            version = '1.0.0'
 
-        p = []
+        uri = QgsDataSourceUri()
+        uri.setParam("url", url)
+        uri.setParam("version", version)
+        uri.setParam("typename", nom_technique)
+        uri.setParam("request", "GetFeature")
 
-        for row in range(0, self.dlg.tableWidget_2.rowCount()):
-                ## supression de la partie de l'url après le point d'interrogation
-                url = self.dlg.tableWidget_2.item(row,4).text().split("?", 1)[0]
-                try:
-                    service = re.search('SERVICE=(.+?)&VERSION', self.dlg.tableWidget_2.item(row,4).text()).group(1)
-                except:
-                    service = '1.0.0'
-                try:
-                    version = re.search('VERSION=(.+?)&REQUEST', self.dlg.tableWidget_2.item(row,4).text()).group(1)
-                except:
-                    version = '1.0.0'
+        if not self.apply_authentication_if_needed(uri):
+            return  # Skip if authentication fails
 
-                if self.dlg.tableWidget_2.item(row,0).text() == 'WMS' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Vecteur' or self.dlg.tableWidget_2.item(row,0).text() == 'WMS Raster':
-                    a = Flux(
-                        self.dlg.tableWidget_2.item(row,0).text(),
-                        self.dlg.tableWidget_2.item(row,1).text(),
-                        self.dlg.tableWidget_2.item(row,2).text(),
-                        self.dlg.tableWidget_2.item(row,3).text(),
-                        "url="+url,
-                        {
-                            'service': self.dlg.tableWidget_2.item(row,0).text(),
-                            'version': version,
-                            'crs': "EPSG:2154",
-                            'format' : "image/png",
-                            'layers': self.dlg.tableWidget_2.item(row,3).text()+"&styles"
-                        }
-                    )
+        wfs_layer = QgsVectorLayer(uri.uri(), nom_couche, "WFS")
+        if not wfs_layer.isValid():
+            print(f"Failed to load WFS layer: {nom_couche}")
+            return
 
-                    p.append(a)
+        QgsProject.instance().addMapLayer(wfs_layer)
 
-                    uri = p[row].url + '&' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+        if style_url:
+            self.apply_qml_style(wfs_layer, style_url)
+        else:
+            print(f"Pas de style à charger pour la couche: {nom_couche}")
 
-                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                    else:
-                        QMessageBox.question(iface.mainWindow(), u"Attention :", "Couche \"" + p[row].nom_commercial + "\" déjà chargée", QMessageBox.Ok)
+    def handle_postgis_layer(self, row):
+        """
+        Handle PostGIS layer loading and apply authentication if necessary.
+        """
+        postgis_config = self.load_postgis_config('config/yaml/config_db.yaml')
+        if not postgis_config:
+            QMessageBox.critical(iface.mainWindow(), "Erreur", "Impossible de charger la configuration PostGIS depuis le fichier YAML.", QMessageBox.Ok)
+            return
 
+        db_host = postgis_config['host']
+        db_port = str(postgis_config['port'])
+        db_name = self.dlg.tableWidget_2.item(row, 8).text()
+        schema_name = self.dlg.tableWidget_2.item(row, 9).text()
+        table_name = self.dlg.tableWidget_2.item(row, 3).text()
 
-                elif self.dlg.tableWidget_2.item(row,0).text() == 'WFS':
-                    
-                    a = Flux(
-                    self.dlg.tableWidget_2.item(row, 0).text(),
-                    self.dlg.tableWidget_2.item(row, 1).text(),
-                    self.dlg.tableWidget_2.item(row, 2).text(),
-                    self.dlg.tableWidget_2.item(row, 3).text(),
-                        url,
-                    {
-                        'VERSION': version,
-                        'TYPENAME': self.dlg.tableWidget_2.item(row, 3).text(),
-                        'request': "GetFeature",
+        if not (db_host and db_port and db_name and schema_name and table_name):
+            QMessageBox.critical(iface.mainWindow(), "Erreur", "Des informations de connexion sont manquantes pour la base de données PostGIS.", QMessageBox.Ok)
+            return
 
-                    }
-                )
+        uri = QgsDataSourceUri()
+        uri.setConnection(db_host, db_port, db_name, None, None)
 
-                    p.append(a)
+        if not self.apply_authentication_if_needed(uri):
+            return  # Skip if authentication fails
 
-                    uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
+        uri.setDataSource(schema_name, table_name, "geom")
 
-                    try:
-                        response = requests.get(uri)
+        layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
+        if layer.isValid():
+            QgsProject.instance().addMapLayer(layer)
+        else:
+            QMessageBox.critical(iface.mainWindow(), "Erreur", f"Échec de chargement de la couche PostGIS : {table_name}", QMessageBox.Ok)
 
-                        if response.status_code == 401:
-                            print("Statut de réponse: 401")
-                            #à commenter
-                            if len(list(k)) == 0:
-                                QMessageBox.question(iface.mainWindow(), u"Attention", "Veuillez ajouter une entrée de configuration d'authentification dans QGIS pour accéder aux flux sécurisés par un mot de passe", QMessageBox.Ok)
-                            else:
-                                # Add 'authcfg' to the parameters dictionary
-                                p[row].parameters['authcfg'] = list(k)[0]
-                                
-                                # Update the URI with the modified parameters
-                                uri = p[row].url + '?' + urllib.parse.unquote(urllib.parse.urlencode(p[row].parameters))
-
-                                # Make the request again with the updated URI
-                                response = requests.get(uri)
-                        elif response.status_code == 200:
-                            print("Statut de réponse: 200.")
-                        else:
-                            print(f"Statut de réponse: {response.status_code}")
-
-                    except requests.exceptions.RequestException as e:
-                        print(f"problème de requete: {e}")
-
-
-                    if not QgsProject.instance().mapLayersByName(p[row].nom_commercial):
-                        displayOnWindows(p[row].type, uri, p[row].nom_commercial)
-                    else:
-                        QMessageBox.question(iface.mainWindow(), u"Attention :", "Couche \"" + p[row].nom_commercial + "\" déjà chargée", QMessageBox.Ok)
-
-
-
-                elif self.dlg.tableWidget_2.item(row, 0).text() == 'PostGIS':
-
-                    postgis_config = self.load_postgis_config('config/yaml/config_db.yaml')
-
-                    # Extraction des informations de connexion à la base de données depuis les champs de l'interface
-                    if postgis_config:
-                                db_host = postgis_config['host'] # Extrait l'hôte du yaml
-                                db_port = str(postgis_config['port']) # Extrait le port du yaml
-                                db_name = self.dlg.tableWidget_2.item(row, 8).text()  # Extrait le nom de la base
-                                schema_name = self.dlg.tableWidget_2.item(row, 9).text()  # Extrait le nom du schéma
-                                table_name = self.dlg.tableWidget_2.item(row, 3).text()  # Extrait le nom de la table
-
-
-                    uri = QgsDataSourceUri()
-                    # Vérifie la présence de méthodes d'authentification disponibles
-                    if len(list(k)) == 0:        
-                        uri.setConnection(db_host, db_port, db_name, "", "")
-                    else:
-                        uri.setConnection(db_host, db_port, db_name, None, None, authConfigId=list(k)[0])
-
-                    # Configuration de la source de données en utilisant le schéma et le nom de la table dynamiques
-                    uri.setDataSource(schema_name, table_name, "geom")
-                    
-                    # Chargement de la couche PostGIS avec le nom dynamique
-                    layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
-                    QgsProject.instance().addMapLayer(layer)
-
-                else:
-                    print("Les flux WMTS et autres ne sont pas encore gérés par le plugin")
-
-        #self.plugin_analytics()
         
 
 
