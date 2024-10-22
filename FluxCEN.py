@@ -23,7 +23,7 @@
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
 from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon, QPixmap
-from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QTextBrowser, QMessageBox, QLabel, QDialog, QPushButton
+from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QTextBrowser, QMessageBox, QLabel, QDialog, QPushButton, QListWidget
 from qgis.utils import iface
 
 from qgis.core import (
@@ -204,6 +204,45 @@ class Popup(QWidget):
 #         plt.title('Distribution des chargements de couches en fonction du temps')
 #         plt.xticks(rotation=45)
 
+
+class AuthSelectionDialog(QDialog):
+    def __init__(self, auth_configs, parent=None):
+        super(AuthSelectionDialog, self).__init__(parent)
+        self.selected_auth_id = None
+        self.auth_config_dict = {}  # Dictionnaire pour stocker l'association entre nom et ID
+        
+        self.setWindowTitle("Sélectionner une configuration d'authentification")
+
+        layout = QVBoxLayout()
+
+        # List to display available authentication configurations
+        self.list_widget = QListWidget(self)
+        for auth_id, auth_config in auth_configs.items():
+            auth_name = auth_config.name()  # Obtenir le nom de la configuration
+            self.list_widget.addItem(auth_name)
+            self.auth_config_dict[auth_name] = auth_id  # Associer le nom à l'ID
+
+        layout.addWidget(self.list_widget)
+
+        # OK button
+        ok_button = QPushButton("OK")
+        ok_button.clicked.connect(self.accept_selection)
+        layout.addWidget(ok_button)
+
+        self.setLayout(layout)
+
+    def accept_selection(self):
+        # Get the selected item from the list
+        selected_item = self.list_widget.currentItem()
+        if selected_item:
+            selected_name = selected_item.text()
+            # Récupérer l'ID associé au nom sélectionné
+            self.selected_auth_id = self.auth_config_dict.get(selected_name)
+            self.accept()
+        else:
+            QMessageBox.warning(self, "Sélection requise", "Veuillez sélectionner une configuration d'authentification.")
+
+
 class FluxCEN:
     """QGIS Plugin Implementation."""
 
@@ -255,7 +294,7 @@ class FluxCEN:
         self.dlg.commandLinkButton_3.clicked.connect(self.option_OSM)
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
 
-        self.dlg.commandLinkButton_5.clicked.connect(self.popup)
+        self.dlg.commandLinkButton_5.clicked.connect(self.choose_default_authentication)
         # self.dlg.commandLinkButton_6.clicked.connect(self.dataviz_popup)
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
@@ -299,20 +338,21 @@ class FluxCEN:
         self.dlg.lineEdit.setText("")
         self.dlg.lineEdit.mousePressEvent = None
 
+        
     def show_welcome_popup(self):
         """
         Affiche une fenêtre avec une image au démarrage, centre l'image et ajoute un texte en dessous.
         """
         # Créer un QDialog (fenêtre personnalisée)
         dialog = QDialog()
-        dialog.setWindowTitle("Nouvelle version : FluxCEN 4.5 !")
+        dialog.setWindowTitle("Nouvelle version : FluxCEN 4.6 !")
 
         # Créer un layout
         layout = QVBoxLayout()
 
         # Ajouter une image (remplace 'maj_4.5.JPG' par le chemin de ton image)
         label_image = QLabel()
-        pixmap = QPixmap(self.plugin_path + "/icons/maj_4.5.JPG")  # Chemin absolu ou relatif de ton image
+        pixmap = QPixmap(self.plugin_path + "/icons/logo_fluxcen.JPG")  
 
         # Vérifier si l'image existe et est chargée
         if not pixmap.isNull():
@@ -327,11 +367,27 @@ class FluxCEN:
         # Ajouter le label avec l'image au layout
         layout.addWidget(label_image)
 
-        # Ajouter un label avec du texte (la version et description)
-        label_text = QLabel("Version 4.5 (11/10/2024): MAJ significative permettant un chargement beaucoup plus rapide des différents flux ! 🚀💥")
-        label_text.setAlignment(Qt.AlignCenter)  # Centre le texte
-        label_text.setFont(QFont("Calibri", 12, QFont.Bold))  # Style du texte
-        layout.addWidget(label_text)
+        # Créer un QLabel pour afficher le changelog en HTML
+        changelog_label = QLabel()
+        changelog_label.setWordWrap(True)  # Permet le retour à la ligne automatique
+
+        try:
+            # Charger le contenu du changelog depuis l'URL
+            _, _, _, info_changelog = self.load_urls('config/yaml/links.yaml')
+            fp = urllib.request.urlopen(info_changelog)
+            mybytes = fp.read()
+            html_changelog = mybytes.decode("utf8")
+            fp.close()
+
+            # Afficher le texte HTML dans le QLabel
+            changelog_label.setText(html_changelog)
+            changelog_label.setFont(QFont("Calibri", weight=QFont.Bold))
+
+        except Exception as e:
+            changelog_label.setText(f"Erreur lors du chargement du changelog : {e}")
+
+        # Ajouter le QLabel au layout
+        layout.addWidget(changelog_label)
 
         # Ajouter un bouton de fermeture
         button = QPushButton("Fermer")
@@ -349,6 +405,7 @@ class FluxCEN:
 
         # Afficher la fenêtre
         dialog.exec_()
+
 
 
     def is_first_run_of_new_version(self):
@@ -492,9 +549,29 @@ class FluxCEN:
             callback=self.run,
             parent=self.iface.mainWindow())
 
-        # will be set False in run()
+        # Appeler la fonction pour informer l'utilisateur s'il a plus d'une configuration d'authentification
+        self.check_authentication_configs()
+
+        # Autres configurations si nécessaire...
         self.first_start = True
 
+
+    def check_authentication_configs(self):
+        """Vérifie le nombre de configurations d'authentification disponibles et affiche un message si nécessaire."""
+        managerAU = QgsApplication.authManager()
+        auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
+
+        settings = QSettings()
+        default_auth_id = settings.value("FluxCEN/default_auth_id", None)
+
+        if len(auth_configs) > 1:
+            # Si plusieurs configurations sont disponibles et aucune par défaut n'est définie
+            QMessageBox.information(
+                self.iface.mainWindow(),
+                "Choix de la configuration d'authentification",
+                "<center>Vous avez plusieurs configurations d'authentification disponibles.</center><br> Veuillez vous assurer de choisir la bonne configuration pour utiliser FluxCEN.<br>"
+                "Vous pouvez définir votre configuration par défault en cliquant sur l'icone en forme de 🛠️ en bas à droite de la fenêtre du plugin."
+            )
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -791,27 +868,57 @@ class FluxCEN:
             print(f"Problème dans l'application du style: {e}")
 
 
+    def choose_default_authentication(self):
+        managerAU = QgsApplication.authManager()
+        auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
+
+        if not auth_configs:
+            QMessageBox.warning(self.dlg, "Pas de configurations", "Aucune configuration d'authentification disponible.")
+            return
+
+        dialog = AuthSelectionDialog(auth_configs)
+        if dialog.exec_() == QDialog.Accepted:
+            selected_auth_id = dialog.selected_auth_id
+            # Enregistrer la configuration par défaut dans QSettings
+            settings = QSettings()
+            settings.setValue("FluxCEN/default_auth_id", selected_auth_id)
+            QMessageBox.information(self.dlg, "Configuration sauvegardée", "La configuration d'authentification par défaut a été définie.")
+
+
     def apply_authentication_if_needed(self, uri):
         """
-        Vérifie s'il existe une configuration d'authentification et l'applique à l'uri si nécessaire.
-        
-        Parameters:
-            uri (QgsDataSourceUri): L'uri de la source de données à laquelle on doit éventuellement ajouter l'authentification.
-
-        Returns:
-            bool: True si l'authentification a été appliquée, False sinon.
+        Applique une configuration d'authentification si nécessaire.
+        Charge automatiquement la configuration par défaut si elle est enregistrée dans QSettings.
         """
-        managerAU = QgsApplication.authManager()
-        auth_configs = list(managerAU.availableAuthMethodConfigs().keys())  # Récupération des configurations disponibles
+        settings = QSettings()
+        default_auth_id = settings.value("FluxCEN/default_auth_id", None)
 
-        if auth_configs:
-            uri.setAuthConfigId(auth_configs[0])  # Applique la première configuration d'authentification disponible
+        # Si une configuration par défaut existe, on l'applique automatiquement
+        if default_auth_id:
+            uri.setAuthConfigId(default_auth_id)
             return True
+
+        # Si aucune configuration par défaut n'est définie, ouvrir la boîte de dialogue
+        managerAU = QgsApplication.authManager()
+        auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
+
+        if len(auth_configs) == 1:
+            # Si une seule configuration est disponible, on l'applique directement
+            auth_id = list(auth_configs.keys())[0]
+            uri.setAuthConfigId(auth_id)
+            return True
+        elif len(auth_configs) > 1:
+            # Si plusieurs configurations sont disponibles, on invite l'utilisateur à en choisir une
+            dialog = AuthSelectionDialog(auth_configs)
+            result = dialog.exec_()
+            if result == QDialog.Accepted and dialog.selected_auth_id:
+                uri.setAuthConfigId(dialog.selected_auth_id)
+                return True
         else:
-            QMessageBox.warning(iface.mainWindow(), "Attention", 
-                "Aucune configuration d'authentification disponible. Veuillez ajouter une configuration d'authentification dans QGIS.",
-                QMessageBox.Ok)
-            return False
+            QMessageBox.warning(iface.mainWindow(), "Attention", "Aucune configuration d'authentification n'a été trouvée dans votre QGIS. Veuillez ajouter la configuration d'authentification CEN-NA pour charger les flux sécurisés tels que la MFU .")
+            
+
+
 
     def avertissement_pas_de_flux(self):
         """
@@ -826,21 +933,20 @@ class FluxCEN:
         """
         _, _, styles_couches, _ = self.load_urls('config/yaml/links.yaml')
 
-        # Vérifier si tableWidget_2 est vide
         if self.dlg.tableWidget_2.rowCount() == 0:
             self.avertissement_pas_de_flux()
-            return  # Quitter la fonction si la table est vide
+            return
 
-        # Iterate through each row in the tableWidget_2
         for row in range(self.dlg.tableWidget_2.rowCount()):
             try:
+                # Utilisation de la fonction de validation des données
                 data = self.parse_table_row(row, styles_couches)
                 if not data:
-                    continue
+                    continue  # Si des données manquent, passer à la ligne suivante
 
                 service, nom_couche, nom_technique, url, style_url = data
 
-                # Handle different service types
+                # Gestion des types de service (WFS, WMS, PostGIS)
                 if service.startswith("WMS"):
                     self.handle_wms_layer(row, nom_couche, nom_technique, url, style_url)
                 elif service == "WFS":
@@ -848,9 +954,10 @@ class FluxCEN:
                 elif service == "PostGIS":
                     self.handle_postgis_layer(row)
 
-            except AttributeError:
-                print(f"Erreur: données manquantes dans la ligne: {row}")
-                continue  # Skip the row if there are missing fields
+            except Exception as e:
+                print(f"Erreur lors du chargement de la ligne: {row}, Erreur: {e}")
+                continue  # Passer à la ligne suivante en cas d'erreur
+
 
         # Vider le contenu de tableWidget_2
         self.dlg.tableWidget_2.clearContents()  # Efface les cellules existantes
@@ -866,11 +973,21 @@ class FluxCEN:
             nom_technique = self.dlg.tableWidget_2.item(row, 3).text()  # Technical layer name
             url = self.dlg.tableWidget_2.item(row, 4).text()  # URL of the service
             nom_style = self.dlg.tableWidget_2.item(row, 6).text()  # Optional QML style
+
+            # Validation des données
+            if not service or not nom_couche or not nom_technique or not url:
+                print(f"Données manquantes dans la ligne: {row}")
+                return None  # Si une donnée importante manque, on retourne None
+
+            # Construction du chemin du style si disponible
             style_url = styles_couches + nom_style + ".qml" if nom_style and len(nom_style.strip()) >= 2 else None
+
             return service, nom_couche, nom_technique, url, style_url
-        except AttributeError:
-            print(f"Erreur: données manquantes dans la ligne: {row}")
-            return None  # Return None if there are missing fields
+
+        except Exception as e:
+            print(f"Erreur lors de la récupération des données de la ligne: {row}, Erreur: {e}")
+            return None
+
 
     def handle_wms_layer(self, row, nom_couche, nom_technique, url, style_url):
         """
@@ -902,6 +1019,7 @@ class FluxCEN:
 
         QgsProject.instance().addMapLayer(wms_layer)
 
+
     def handle_wfs_layer(self, row, nom_couche, nom_technique, url, style_url):
         """
         Handle WFS layer loading and apply authentication if necessary.
@@ -917,20 +1035,31 @@ class FluxCEN:
         uri.setParam("typename", nom_technique)
         uri.setParam("request", "GetFeature")
 
+        # Appliquer l'authentification si nécessaire
         if not self.apply_authentication_if_needed(uri):
-            return  # Skip if authentication fails
+            return  # Si l'authentification échoue, on abandonne
 
         wfs_layer = QgsVectorLayer(uri.uri(), nom_couche, "WFS")
-        if not wfs_layer.isValid():
-            print(f"Failed to load WFS layer: {nom_couche}")
-            return
 
-        QgsProject.instance().addMapLayer(wfs_layer)
-
-        if style_url:
-            self.apply_qml_style(wfs_layer, style_url)
+        # Si la couche est valide, on l'ajoute
+        if wfs_layer.isValid():
+            QgsProject.instance().addMapLayer(wfs_layer)
+            # Appliquer le style, si disponible
+            if style_url:
+                self.apply_qml_style(wfs_layer, style_url)
         else:
-            print(f"Pas de style à charger pour la couche: {nom_couche}")
+            # Si le chargement échoue, on peut essayer de recharger avec authentification
+            print(f"Le chargement a échoué, tentative de rechargement avec authentification pour {nom_couche}")
+            if self.apply_authentication_if_needed(uri):
+                wfs_layer = QgsVectorLayer(uri.uri(), nom_couche, "WFS")
+                if wfs_layer.isValid():
+                    QgsProject.instance().addMapLayer(wfs_layer)
+                    if style_url:
+                        self.apply_qml_style(wfs_layer, style_url)
+                else:
+                    print(f"Le rechargement avec authentification a échoué pour : {nom_couche}")
+
+
 
     def handle_postgis_layer(self, row):
         """
@@ -1051,14 +1180,7 @@ class FluxCEN:
     #         cursor.close()
     #         conn.close()
 
-            
-
-
-
-    def popup(self):
-
-        self.dialog = Popup()  # +++ - self
-        self.dialog.text_edit.show()
+    
 
 flux_cen_instance = FluxCEN(iface)
 

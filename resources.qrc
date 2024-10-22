@@ -6,8 +6,7 @@
         <file>icons/logo.jpg</file>
 		<file>icons/globe.png</file>
 		<file>icons/orthos.png</file>
-		<file>icons/info.png</file>
 		<file>icons/dataviz.png</file>
-		<file>icons/image.png</file>
+		<file>icons/parametres.png</file>
     </qresource>
 </RCC>
