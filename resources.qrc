@@ -8,5 +8,6 @@
 		<file>icons/orthos.png</file>
 		<file>icons/dataviz.png</file>
 		<file>icons/parametres.png</file>
+        <file>icons/info.png</file>
     </qresource>
 </RCC>

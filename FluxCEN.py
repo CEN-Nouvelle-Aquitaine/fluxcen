@@ -28,8 +28,7 @@ from qgis.utils import iface
 
 from qgis.core import (
     Qgis, QgsApplication, QgsRasterLayer, QgsVectorLayer,
-    QgsProject, QgsDataSourceUri
-)
+    QgsProject, QgsDataSourceUri)
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -70,36 +69,6 @@ except socket.error:
     QMessageBox.warning(None, 'Avertissement',
                         'Vous n\'êtes actuellement pas connecté à internet. Veuillez vous connecter pour pouvoir utiliser FluxCEN !')
 
-
-
-
-class Popup(QWidget):
-    def __init__(self, parent=None):
-        super(Popup, self).__init__(parent)
-
-        self.flux_cen = flux_cen_instance
-        
-        try:
-            _,_,_,info_changelog= self.flux_cen.load_urls('config/yaml/links.yaml')
-            print(f"Info changelog url: {info_changelog}")
-        except Exception as e:
-            print(f"Error loading URLs: {e}")
-
-        self.plugin_dir = os.path.dirname(__file__)
-
-        self.text_edit = QTextBrowser()
-        fp = urllib.request.urlopen(info_changelog)
-        mybytes = fp.read()
-        html_changelog = mybytes.decode("utf8")
-        fp.close()
-
-        self.text_edit.setHtml(html_changelog)
-        self.text_edit.setFont(QFont("Calibri",weight=QFont.Bold))
-        self.text_edit.anchorClicked.connect(QDesktopServices.openUrl)
-        self.text_edit.setOpenLinks(False)
-
-        self.text_edit.setWindowTitle("Nouveautés")
-        self.text_edit.setMinimumSize(600,550)
 
 
 # class BarChartPopup(QWidget):
@@ -295,7 +264,7 @@ class FluxCEN:
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
 
         self.dlg.commandLinkButton_5.clicked.connect(self.choose_default_authentication)
-        # self.dlg.commandLinkButton_6.clicked.connect(self.dataviz_popup)
+        self.dlg.commandLinkButton_7.clicked.connect(self.show_welcome_popup)
 
         # iface.mapCanvas().extentsChanged.connect(self.test5)
         # Load URLs and handle possible errors
@@ -345,7 +314,7 @@ class FluxCEN:
         """
         # Créer un QDialog (fenêtre personnalisée)
         dialog = QDialog()
-        dialog.setWindowTitle("Nouvelle version : FluxCEN 4.6 !")
+        dialog.setWindowTitle("Nouvelle version : FluxCEN 4.8 !")
 
         # Créer un layout
         layout = QVBoxLayout()
@@ -558,18 +527,23 @@ class FluxCEN:
 
     def check_authentication_configs(self):
         """Vérifie le nombre de configurations d'authentification disponibles et affiche un message si nécessaire."""
+
         managerAU = QgsApplication.authManager()
         auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
 
+        # Vérifier si une authentification par défaut a été définie et l'appliquer
         settings = QSettings()
         default_auth_id = settings.value("FluxCEN/default_auth_id", None)
+        
+        if default_auth_id:
+            self.apply_authentication_if_needed(QgsDataSourceUri())  
 
-        if len(auth_configs) > 1:
+        elif len(auth_configs) > 1:
             # Si plusieurs configurations sont disponibles et aucune par défaut n'est définie
             QMessageBox.information(
                 self.iface.mainWindow(),
                 "Choix de la configuration d'authentification",
-                "<center>Vous avez plusieurs configurations d'authentification disponibles.</center><br> Veuillez vous assurer de choisir la bonne configuration pour utiliser FluxCEN.<br>"
+                "<center>Vous avez plusieurs configurations d'authentification disponibles.</center><br> Veuillez vous assurer de choisir la bonne configuration pour utiliser la couche MFU dans MapCEN.<br>"
                 "Vous pouvez définir votre configuration par défault en cliquant sur l'icone en forme de 🛠️ en bas à droite de la fenêtre du plugin."
             )
 
@@ -1039,7 +1013,7 @@ class FluxCEN:
         if not self.apply_authentication_if_needed(uri):
             return  # Si l'authentification échoue, on abandonne
 
-        wfs_layer = QgsVectorLayer(uri.uri(), nom_couche, "WFS")
+        wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
 
         # Si la couche est valide, on l'ajoute
         if wfs_layer.isValid():
@@ -1051,7 +1025,7 @@ class FluxCEN:
             # Si le chargement échoue, on peut essayer de recharger avec authentification
             print(f"Le chargement a échoué, tentative de rechargement avec authentification pour {nom_couche}")
             if self.apply_authentication_if_needed(uri):
-                wfs_layer = QgsVectorLayer(uri.uri(), nom_couche, "WFS")
+                wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
                 if wfs_layer.isValid():
                     QgsProject.instance().addMapLayer(wfs_layer)
                     if style_url:
@@ -1088,7 +1062,7 @@ class FluxCEN:
 
         uri.setDataSource(schema_name, table_name, "geom")
 
-        layer = QgsVectorLayer(uri.uri(), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
+        layer = QgsVectorLayer(uri.uri(False), self.dlg.tableWidget_2.item(row, 2).text(), "postgres")
         if layer.isValid():
             QgsProject.instance().addMapLayer(layer)
         else:
