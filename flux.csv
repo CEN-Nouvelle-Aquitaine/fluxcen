@@ -323,6 +323,6 @@ WFS;Urbanisme;Emprises des documents d'urbanisme;wfs_du:document;https://wxs-gpu
 WFS;Urbanisme;Zonages des documents d'urbanisme;wfs_du:zone_urba;https://wxs-gpu.mongeoportail.ign.fr/externe/39wtxmgtn23okfbbs1al2lz3/wfs;Géoportail de l’Urbanisme;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;None;None
 WFS;Maillage;Mailles 10x10km;maillage:mailles_10km;https://opendata.cen-nouvelle-aquitaine.org/maillage/wfs;INPN;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;None;None
 WFS;Maillage;Mailles 5x5km;maillage:mailles_5km;https://opendata.cen-nouvelle-aquitaine.org/maillage/wfs;INPN;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;None;None
-PostGIS;Couches collaboratives;Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_test;collaboratif
+PostGIS;Couches collaboratives;Piezomètres CEN-NA;piezometres_cenna; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_piezometres;piezometres
 PostGIS;Couches collaboratives;Fiche site 2024;fiche_site_2024; ;CEN NA;style_fiche_site_2024;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_fiches_sites;fiches_sites
 PostGIS;Couches collaboratives;Opportunités foncières GPSO;parcelles; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_of_gpso;parcelles_of
