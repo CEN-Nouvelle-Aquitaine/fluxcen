@@ -312,68 +312,56 @@ class FluxCEN:
         """
         Affiche une fenêtre avec une image au démarrage, centre l'image et ajoute un texte en dessous.
         """
-        # Créer un QDialog (fenêtre personnalisée)
-        dialog = QDialog()
-        dialog.setWindowTitle("Nouvelle version : FluxCEN 4.8 !")
+        # Créer un QDialog (fenêtre personnalisée) et le stocker dans self
+        self.welcome_dialog = QDialog()  # Référence persistante
+        self.welcome_dialog.setWindowTitle("Nouvelle version disponible: FluxCEN 4.8 !")
 
         # Créer un layout
         layout = QVBoxLayout()
 
-        # Ajouter une image (remplace 'maj_4.5.JPG' par le chemin de ton image)
+        # Ajouter une image
         label_image = QLabel()
-        pixmap = QPixmap(self.plugin_path + "/icons/logo_fluxcen.JPG")  
+        pixmap = QPixmap(self.plugin_path + "/icons/logo_fluxcen.jpg")  
 
-        # Vérifier si l'image existe et est chargée
         if not pixmap.isNull():
-            # Redimensionner l'image à une taille raisonnable si nécessaire
-            pixmap = pixmap.scaled(600, 400, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            pixmap = pixmap.scaled(450, 300, Qt.KeepAspectRatio, Qt.SmoothTransformation)
             label_image.setPixmap(pixmap)
-            label_image.setAlignment(Qt.AlignCenter)  # Centre l'image
+            label_image.setAlignment(Qt.AlignCenter)
         else:
             label_image.setText("Image introuvable")
             label_image.setAlignment(Qt.AlignCenter)
 
-        # Ajouter le label avec l'image au layout
         layout.addWidget(label_image)
 
         # Créer un QLabel pour afficher le changelog en HTML
         changelog_label = QLabel()
-        changelog_label.setWordWrap(True)  # Permet le retour à la ligne automatique
+        changelog_label.setWordWrap(True)
 
         try:
-            # Charger le contenu du changelog depuis l'URL
             _, _, _, info_changelog = self.load_urls('config/yaml/links.yaml')
             fp = urllib.request.urlopen(info_changelog)
             mybytes = fp.read()
             html_changelog = mybytes.decode("utf8")
             fp.close()
-
-            # Afficher le texte HTML dans le QLabel
             changelog_label.setText(html_changelog)
             changelog_label.setFont(QFont("Calibri", weight=QFont.Bold))
-
         except Exception as e:
             changelog_label.setText(f"Erreur lors du chargement du changelog : {e}")
 
-        # Ajouter le QLabel au layout
         layout.addWidget(changelog_label)
 
         # Ajouter un bouton de fermeture
         button = QPushButton("Fermer")
-        button.clicked.connect(dialog.accept)
+        button.clicked.connect(self.welcome_dialog.close)
         layout.addWidget(button)
-
-        # Centrer le bouton
         layout.setAlignment(button, Qt.AlignCenter)
 
         # Appliquer le layout à la fenêtre
-        dialog.setLayout(layout)
+        self.welcome_dialog.setLayout(layout)
+        self.welcome_dialog.setMinimumSize(550, 450)
 
-        # Définir la taille minimum du dialog pour s'adapter à l'image et au texte
-        dialog.setMinimumSize(620, 500)  # Ajuste la taille pour correspondre à l'image, texte et bouton
-
-        # Afficher la fenêtre
-        dialog.exec_()
+        # Afficher la fenêtre en mode non modal
+        self.welcome_dialog.show()
 
 
 
@@ -387,7 +375,7 @@ class FluxCEN:
         # Obtenir la version actuelle du plugin depuis le fichier 'metadata.txt'
         metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
         infos_metadonnees = metadonnees_plugin.readlines()
-        version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin (par exemple, '4.5.1')
+        version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin 
 
         # Charger la dernière version depuis l'URL
         try:
