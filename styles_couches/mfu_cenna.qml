@@ -1,630 +1,630 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis styleCategories="AllStyleCategories" maxScale="0" simplifyMaxScale="1" minScale="100000000" simplifyDrawingHints="1" simplifyAlgorithm="0" simplifyDrawingTol="1" labelsEnabled="0" simplifyLocal="1" symbologyReferenceScale="-1" readOnly="0" version="3.34.10-Prizren" hasScaleBasedVisibilityFlag="0">
+<qgis minScale="100000000" version="3.34.13-Prizren" simplifyDrawingTol="1" simplifyDrawingHints="1" autoRefreshMode="Disabled" hasScaleBasedVisibilityFlag="0" styleCategories="AllStyleCategories" maxScale="0" simplifyAlgorithm="0" simplifyLocal="1" readOnly="0" symbologyReferenceScale="-1" autoRefreshTime="0" simplifyMaxScale="1" labelsEnabled="0">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
     <Searchable>1</Searchable>
     <Private>0</Private>
   </flags>
-  <temporal durationField="idpartie" startExpression="" durationUnit="min" accumulate="0" mode="0" fixedDuration="0" endField="" startField="derniere_date_mfu" enabled="0" limitMode="0" endExpression="">
+  <temporal limitMode="0" endField="" enabled="0" startField="derniere_date_mfu" mode="0" endExpression="" durationUnit="min" fixedDuration="0" accumulate="0" startExpression="" durationField="idpartie">
     <fixedRange>
       <start></start>
       <end></end>
     </fixedRange>
   </temporal>
-  <elevation symbology="Line" respectLayerSymbol="1" showMarkerSymbolInSurfacePlots="0" extrusion="0" zoffset="0" zscale="1" type="IndividualFeatures" extrusionEnabled="0" binding="Centroid" clamping="Terrain">
+  <elevation showMarkerSymbolInSurfacePlots="0" symbology="Line" binding="Centroid" type="IndividualFeatures" zoffset="0" extrusionEnabled="0" clamping="Terrain" respectLayerSymbol="1" zscale="1" extrusion="0">
     <data-defined-properties>
       <Option type="Map">
-        <Option type="QString" name="name" value=""/>
+        <Option value="" name="name" type="QString"/>
         <Option name="properties"/>
-        <Option type="QString" name="type" value="collection"/>
+        <Option value="collection" name="type" type="QString"/>
       </Option>
     </data-defined-properties>
     <profileLineSymbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="line" alpha="1" is_animated="0" name="">
+      <symbol frame_rate="10" name="" clip_to_extent="1" type="line" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{5240e58e-5048-4692-830c-f4c96994b7d6}" pass="0" class="SimpleLine" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleLine" id="{5240e58e-5048-4692-830c-f4c96994b7d6}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="align_dash_pattern" value="0"/>
-            <Option type="QString" name="capstyle" value="square"/>
-            <Option type="QString" name="customdash" value="5;2"/>
-            <Option type="QString" name="customdash_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="customdash_unit" value="MM"/>
-            <Option type="QString" name="dash_pattern_offset" value="0"/>
-            <Option type="QString" name="dash_pattern_offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="dash_pattern_offset_unit" value="MM"/>
-            <Option type="QString" name="draw_inside_polygon" value="0"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="line_color" value="213,180,60,255"/>
-            <Option type="QString" name="line_style" value="solid"/>
-            <Option type="QString" name="line_width" value="0.6"/>
-            <Option type="QString" name="line_width_unit" value="MM"/>
-            <Option type="QString" name="offset" value="0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="ring_filter" value="0"/>
-            <Option type="QString" name="trim_distance_end" value="0"/>
-            <Option type="QString" name="trim_distance_end_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="trim_distance_end_unit" value="MM"/>
-            <Option type="QString" name="trim_distance_start" value="0"/>
-            <Option type="QString" name="trim_distance_start_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="trim_distance_start_unit" value="MM"/>
-            <Option type="QString" name="tweak_dash_pattern_on_corners" value="0"/>
-            <Option type="QString" name="use_custom_dash" value="0"/>
-            <Option type="QString" name="width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
+            <Option value="0" name="align_dash_pattern" type="QString"/>
+            <Option value="square" name="capstyle" type="QString"/>
+            <Option value="5;2" name="customdash" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="customdash_map_unit_scale" type="QString"/>
+            <Option value="MM" name="customdash_unit" type="QString"/>
+            <Option value="0" name="dash_pattern_offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="dash_pattern_offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="dash_pattern_offset_unit" type="QString"/>
+            <Option value="0" name="draw_inside_polygon" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="213,180,60,255" name="line_color" type="QString"/>
+            <Option value="solid" name="line_style" type="QString"/>
+            <Option value="0.6" name="line_width" type="QString"/>
+            <Option value="MM" name="line_width_unit" type="QString"/>
+            <Option value="0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="0" name="ring_filter" type="QString"/>
+            <Option value="0" name="trim_distance_end" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="trim_distance_end_map_unit_scale" type="QString"/>
+            <Option value="MM" name="trim_distance_end_unit" type="QString"/>
+            <Option value="0" name="trim_distance_start" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="trim_distance_start_map_unit_scale" type="QString"/>
+            <Option value="MM" name="trim_distance_start_unit" type="QString"/>
+            <Option value="0" name="tweak_dash_pattern_on_corners" type="QString"/>
+            <Option value="0" name="use_custom_dash" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="width_map_unit_scale" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
     </profileLineSymbol>
     <profileFillSymbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="">
+      <symbol frame_rate="10" name="" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{207a8eea-4c31-4826-aea9-46f8bd8c5e43}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{207a8eea-4c31-4826-aea9-46f8bd8c5e43}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="213,180,60,255"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="152,129,43,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.2"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="213,180,60,255" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="152,129,43,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.2" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
     </profileFillSymbol>
     <profileMarkerSymbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="marker" alpha="1" is_animated="0" name="">
+      <symbol frame_rate="10" name="" clip_to_extent="1" type="marker" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{021aa23f-8a7a-45e3-8033-a895e2b363c1}" pass="0" class="SimpleMarker" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleMarker" id="{021aa23f-8a7a-45e3-8033-a895e2b363c1}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="angle" value="0"/>
-            <Option type="QString" name="cap_style" value="square"/>
-            <Option type="QString" name="color" value="213,180,60,255"/>
-            <Option type="QString" name="horizontal_anchor_point" value="1"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="name" value="diamond"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="152,129,43,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.2"/>
-            <Option type="QString" name="outline_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="scale_method" value="diameter"/>
-            <Option type="QString" name="size" value="3"/>
-            <Option type="QString" name="size_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="size_unit" value="MM"/>
-            <Option type="QString" name="vertical_anchor_point" value="1"/>
+            <Option value="0" name="angle" type="QString"/>
+            <Option value="square" name="cap_style" type="QString"/>
+            <Option value="213,180,60,255" name="color" type="QString"/>
+            <Option value="1" name="horizontal_anchor_point" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="diamond" name="name" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="152,129,43,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.2" name="outline_width" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="outline_width_map_unit_scale" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="diameter" name="scale_method" type="QString"/>
+            <Option value="3" name="size" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="size_map_unit_scale" type="QString"/>
+            <Option value="MM" name="size_unit" type="QString"/>
+            <Option value="1" name="vertical_anchor_point" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
     </profileMarkerSymbol>
   </elevation>
-  <renderer-v2 forceraster="0" type="categorizedSymbol" symbollevels="0" attr="type_mfu" referencescale="-1" enableorderby="0">
+  <renderer-v2 enableorderby="0" attr="type_mfu" type="categorizedSymbol" forceraster="0" symbollevels="0" referencescale="-1">
     <categories>
-      <category uuid="0" type="string" symbol="0" render="true" value="Achat finalisé (Acquisition)" label="Achat finalisé (Acquisition)"/>
-      <category uuid="1" type="string" symbol="1" render="true" value="Bail emphytéotique &quot;classique&quot;" label="Bail emphytéotique &quot;classique&quot;"/>
-      <category uuid="2" type="string" symbol="2" render="true" value="Bail emphytéotique administratif" label="Bail emphytéotique administratif"/>
-      <category uuid="{d593ab98-291f-4e3c-b895-e0f1443c2814}" type="string" symbol="3" render="true" value="Convention dans le cadre de prestations de services" label="Convention dans le cadre de prestations de services"/>
-      <category uuid="3" type="string" symbol="4" render="true" value="Bail civil" label="Bail civil"/>
-      <category uuid="4" type="string" symbol="5" render="true" value="Convention d'usage / convention de gestion" label="Convention d'usage / convention de gestion"/>
-      <category uuid="5" type="string" symbol="6" render="true" value="Convention de gestion entre le CEN et le Fonds de dotation / la Fondation des CEN" label="Convention de gestion entre le CEN et le Fonds de dotation / la Fondation des CEN"/>
-      <category uuid="6" type="string" symbol="7" render="true" value="Convention de gestion sur terrains militaires" label="Convention de gestion sur terrains militaires"/>
-      <category uuid="7" type="string" symbol="8" render="true" value="Convention de gestion avec le Conservatoire du littoral" label="Convention de gestion avec le Conservatoire du littoral"/>
-      <category uuid="8" type="string" symbol="9" render="true" value="Convention d'occupation précaire" label="Convention d'occupation précaire"/>
-      <category uuid="{b7936ce5-0963-4164-84a6-b6cb1df62bea}" type="string" symbol="10" render="true" value="Convention sur un site en mesures compensatoires" label="Convention sur un site en mesures compensatoires"/>
-      <category uuid="9" type="string" symbol="11" render="true" value="Contrat ORE" label="Contrat ORE"/>
-      <category uuid="10" type="string" symbol="12" render="true" value="Prêt à usage / commodat" label="Prêt à usage / commodat"/>
-      <category uuid="11" type="string" symbol="13" render="false" value="" label=""/>
+      <category value="Acquisition" label="Acquisition" symbol="0" uuid="0" type="string" render="true"/>
+      <category value="Bail emphytéotique &quot;classique&quot;" label="Bail emphytéotique &quot;classique&quot;" symbol="1" uuid="1" type="string" render="true"/>
+      <category value="Bail emphytéotique administratif" label="Bail emphytéotique administratif" symbol="2" uuid="2" type="string" render="true"/>
+      <category value="Convention dans le cadre de prestations de services" label="Convention dans le cadre de prestations de services" symbol="3" uuid="{d593ab98-291f-4e3c-b895-e0f1443c2814}" type="string" render="true"/>
+      <category value="Bail civil" label="Bail civil" symbol="4" uuid="3" type="string" render="true"/>
+      <category value="Convention d'usage / convention de gestion" label="Convention d'usage / convention de gestion" symbol="5" uuid="4" type="string" render="true"/>
+      <category value="Convention de gestion entre le CEN et le Fonds de dotation / la Fondation des CEN" label="Convention de gestion entre le CEN et le Fonds de dotation / la Fondation des CEN" symbol="6" uuid="5" type="string" render="true"/>
+      <category value="Convention de gestion sur terrains militaires" label="Convention de gestion sur terrains militaires" symbol="7" uuid="6" type="string" render="true"/>
+      <category value="Convention de gestion avec le Conservatoire du littoral" label="Convention de gestion avec le Conservatoire du littoral" symbol="8" uuid="7" type="string" render="true"/>
+      <category value="Convention d'occupation précaire" label="Convention d'occupation précaire" symbol="9" uuid="8" type="string" render="true"/>
+      <category value="Convention sur un site en mesures compensatoires" label="Convention sur un site en mesures compensatoires" symbol="10" uuid="{b7936ce5-0963-4164-84a6-b6cb1df62bea}" type="string" render="true"/>
+      <category value="Contrat ORE" label="Contrat ORE" symbol="11" uuid="9" type="string" render="true"/>
+      <category value="Prêt à usage / commodat" label="Prêt à usage / commodat" symbol="12" uuid="10" type="string" render="true"/>
+      <category value="" label="" symbol="13" uuid="11" type="string" render="false"/>
     </categories>
     <symbols>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="0">
+      <symbol frame_rate="10" name="0" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{f15b7ea0-784f-4551-b8e6-1d5d1653900e}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{f15b7ea0-784f-4551-b8e6-1d5d1653900e}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="50,235,64,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="50,235,64,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="1">
+      <symbol frame_rate="10" name="1" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{83ecde31-8bf4-41a7-9a3e-f668cc78c31d}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{83ecde31-8bf4-41a7-9a3e-f668cc78c31d}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="248,215,83,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="248,215,83,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="10">
+      <symbol frame_rate="10" name="10" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="190,69,91,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="190,69,91,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="11">
+      <symbol frame_rate="10" name="11" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{410673eb-1baf-4fd1-9816-3e1fcf3bb63f}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{410673eb-1baf-4fd1-9816-3e1fcf3bb63f}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="28,161,99,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="28,161,99,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="12">
+      <symbol frame_rate="10" name="12" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{cebd59fa-6c29-4f2c-9aa8-889d3dd3c977}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{cebd59fa-6c29-4f2c-9aa8-889d3dd3c977}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="180,238,244,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.26"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="180,238,244,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.26" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="13">
+      <symbol frame_rate="10" name="13" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{b7e2e7fc-436d-42a7-bd17-241ac279d113}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{b7e2e7fc-436d-42a7-bd17-241ac279d113}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="40,161,78,255"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.26"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="no"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="40,161,78,255" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.26" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="no" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="2">
+      <symbol frame_rate="10" name="2" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{0127b5ca-d4f7-44ee-9700-0a390c82bb06}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{0127b5ca-d4f7-44ee-9700-0a390c82bb06}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="237,156,50,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="237,156,50,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="3">
+      <symbol frame_rate="10" name="3" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="177,133,51,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="177,133,51,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="4">
+      <symbol frame_rate="10" name="4" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="177,137,240,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="177,137,240,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="5">
+      <symbol frame_rate="10" name="5" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{69779fc0-e06e-42cd-a480-d073f84f2856}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{69779fc0-e06e-42cd-a480-d073f84f2856}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="0,204,255,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="0,204,255,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="6">
+      <symbol frame_rate="10" name="6" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{69779fc0-e06e-42cd-a480-d073f84f2856}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{69779fc0-e06e-42cd-a480-d073f84f2856}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="231,138,232,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="231,138,232,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="7">
+      <symbol frame_rate="10" name="7" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{3f640c81-2622-468c-a530-2dd0cb7fe501}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{3f640c81-2622-468c-a530-2dd0cb7fe501}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="176,201,163,255"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.26"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="176,201,163,255" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.26" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="8">
+      <symbol frame_rate="10" name="8" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{68c28571-0e11-4235-af32-c17913b12b66}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{68c28571-0e11-4235-af32-c17913b12b66}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="35,137,225,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="35,137,225,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="9">
+      <symbol frame_rate="10" name="9" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{ae520d70-9e47-4c35-af56-d29c63ca8fec}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{ae520d70-9e47-4c35-af56-d29c63ca8fec}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="255,250,177,179"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.3"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="255,250,177,179" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.3" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
     </symbols>
     <source-symbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="0">
+      <symbol frame_rate="10" name="0" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{672e13e6-6ea9-4cf3-81f9-d0b3a1bb920e}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="231,138,232,255"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.26"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="231,138,232,255" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.26" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
@@ -636,33 +636,33 @@
   <selection mode="Default">
     <selectionColor invalid="1"/>
     <selectionSymbol>
-      <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="fill" alpha="1" is_animated="0" name="">
+      <symbol frame_rate="10" name="" clip_to_extent="1" type="fill" alpha="1" is_animated="0" force_rhr="0">
         <data_defined_properties>
           <Option type="Map">
-            <Option type="QString" name="name" value=""/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" name="type" value="collection"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </data_defined_properties>
-        <layer id="{e3fb443e-b477-4310-8e24-56c8eabd9e6f}" pass="0" class="SimpleFill" enabled="1" locked="0">
+        <layer enabled="1" locked="0" class="SimpleFill" id="{e3fb443e-b477-4310-8e24-56c8eabd9e6f}" pass="0">
           <Option type="Map">
-            <Option type="QString" name="border_width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="color" value="0,0,255,255"/>
-            <Option type="QString" name="joinstyle" value="bevel"/>
-            <Option type="QString" name="offset" value="0,0"/>
-            <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-            <Option type="QString" name="offset_unit" value="MM"/>
-            <Option type="QString" name="outline_color" value="35,35,35,255"/>
-            <Option type="QString" name="outline_style" value="solid"/>
-            <Option type="QString" name="outline_width" value="0.26"/>
-            <Option type="QString" name="outline_width_unit" value="MM"/>
-            <Option type="QString" name="style" value="solid"/>
+            <Option value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale" type="QString"/>
+            <Option value="0,0,255,255" name="color" type="QString"/>
+            <Option value="bevel" name="joinstyle" type="QString"/>
+            <Option value="0,0" name="offset" type="QString"/>
+            <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+            <Option value="MM" name="offset_unit" type="QString"/>
+            <Option value="35,35,35,255" name="outline_color" type="QString"/>
+            <Option value="solid" name="outline_style" type="QString"/>
+            <Option value="0.26" name="outline_width" type="QString"/>
+            <Option value="MM" name="outline_width_unit" type="QString"/>
+            <Option value="solid" name="style" type="QString"/>
           </Option>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
         </layer>
@@ -671,8 +671,8 @@
   </selection>
   <customproperties>
     <Option type="Map">
-      <Option type="QString" name="dualview/previewExpressions" value="&quot;nom&quot;"/>
-      <Option type="QString" name="embeddedWidgets/count" value="0"/>
+      <Option value="&quot;nom&quot;" name="dualview/previewExpressions" type="QString"/>
+      <Option value="0" name="embeddedWidgets/count" type="QString"/>
       <Option name="variableNames"/>
       <Option name="variableValues"/>
     </Option>
@@ -681,53 +681,53 @@
   <featureBlendMode>0</featureBlendMode>
   <layerOpacity>1</layerOpacity>
   <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-    <DiagramCategory height="15" penAlpha="255" direction="1" labelPlacementMethod="XHeight" opacity="1" scaleBasedVisibility="0" enabled="0" sizeScale="3x:0,0,0,0,0,0" minScaleDenominator="0" barWidth="5" penColor="#000000" spacing="0" backgroundColor="#ffffff" minimumSize="0" penWidth="0" spacingUnit="MM" width="15" spacingUnitScale="3x:0,0,0,0,0,0" diagramOrientation="Up" sizeType="MM" maxScaleDenominator="1e+08" lineSizeType="MM" scaleDependency="Area" showAxis="0" rotationOffset="270" backgroundAlpha="255" lineSizeScale="3x:0,0,0,0,0,0">
-      <fontProperties bold="0" style="" strikethrough="0" italic="0" description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" underline="0"/>
-      <attribute colorOpacity="1" field="" color="#000000" label=""/>
+    <DiagramCategory scaleDependency="Area" lineSizeScale="3x:0,0,0,0,0,0" penAlpha="255" labelPlacementMethod="XHeight" minScaleDenominator="0" lineSizeType="MM" enabled="0" maxScaleDenominator="1e+08" spacingUnit="MM" penColor="#000000" scaleBasedVisibility="0" minimumSize="0" showAxis="0" diagramOrientation="Up" spacing="0" sizeScale="3x:0,0,0,0,0,0" barWidth="5" height="15" opacity="1" spacingUnitScale="3x:0,0,0,0,0,0" backgroundColor="#ffffff" sizeType="MM" penWidth="0" direction="1" backgroundAlpha="255" width="15" rotationOffset="270">
+      <fontProperties italic="0" style="" strikethrough="0" underline="0" description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" bold="0"/>
+      <attribute label="" colorOpacity="1" color="#000000" field=""/>
       <axisSymbol>
-        <symbol force_rhr="0" clip_to_extent="1" frame_rate="10" type="line" alpha="1" is_animated="0" name="">
+        <symbol frame_rate="10" name="" clip_to_extent="1" type="line" alpha="1" is_animated="0" force_rhr="0">
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option value="" name="name" type="QString"/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option value="collection" name="type" type="QString"/>
             </Option>
           </data_defined_properties>
-          <layer id="{d33922c3-5b87-4130-9394-ba689bfbc49a}" pass="0" class="SimpleLine" enabled="1" locked="0">
+          <layer enabled="1" locked="0" class="SimpleLine" id="{d33922c3-5b87-4130-9394-ba689bfbc49a}" pass="0">
             <Option type="Map">
-              <Option type="QString" name="align_dash_pattern" value="0"/>
-              <Option type="QString" name="capstyle" value="square"/>
-              <Option type="QString" name="customdash" value="5;2"/>
-              <Option type="QString" name="customdash_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-              <Option type="QString" name="customdash_unit" value="MM"/>
-              <Option type="QString" name="dash_pattern_offset" value="0"/>
-              <Option type="QString" name="dash_pattern_offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-              <Option type="QString" name="dash_pattern_offset_unit" value="MM"/>
-              <Option type="QString" name="draw_inside_polygon" value="0"/>
-              <Option type="QString" name="joinstyle" value="bevel"/>
-              <Option type="QString" name="line_color" value="35,35,35,255"/>
-              <Option type="QString" name="line_style" value="solid"/>
-              <Option type="QString" name="line_width" value="0.26"/>
-              <Option type="QString" name="line_width_unit" value="MM"/>
-              <Option type="QString" name="offset" value="0"/>
-              <Option type="QString" name="offset_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-              <Option type="QString" name="offset_unit" value="MM"/>
-              <Option type="QString" name="ring_filter" value="0"/>
-              <Option type="QString" name="trim_distance_end" value="0"/>
-              <Option type="QString" name="trim_distance_end_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-              <Option type="QString" name="trim_distance_end_unit" value="MM"/>
-              <Option type="QString" name="trim_distance_start" value="0"/>
-              <Option type="QString" name="trim_distance_start_map_unit_scale" value="3x:0,0,0,0,0,0"/>
-              <Option type="QString" name="trim_distance_start_unit" value="MM"/>
-              <Option type="QString" name="tweak_dash_pattern_on_corners" value="0"/>
-              <Option type="QString" name="use_custom_dash" value="0"/>
-              <Option type="QString" name="width_map_unit_scale" value="3x:0,0,0,0,0,0"/>
+              <Option value="0" name="align_dash_pattern" type="QString"/>
+              <Option value="square" name="capstyle" type="QString"/>
+              <Option value="5;2" name="customdash" type="QString"/>
+              <Option value="3x:0,0,0,0,0,0" name="customdash_map_unit_scale" type="QString"/>
+              <Option value="MM" name="customdash_unit" type="QString"/>
+              <Option value="0" name="dash_pattern_offset" type="QString"/>
+              <Option value="3x:0,0,0,0,0,0" name="dash_pattern_offset_map_unit_scale" type="QString"/>
+              <Option value="MM" name="dash_pattern_offset_unit" type="QString"/>
+              <Option value="0" name="draw_inside_polygon" type="QString"/>
+              <Option value="bevel" name="joinstyle" type="QString"/>
+              <Option value="35,35,35,255" name="line_color" type="QString"/>
+              <Option value="solid" name="line_style" type="QString"/>
+              <Option value="0.26" name="line_width" type="QString"/>
+              <Option value="MM" name="line_width_unit" type="QString"/>
+              <Option value="0" name="offset" type="QString"/>
+              <Option value="3x:0,0,0,0,0,0" name="offset_map_unit_scale" type="QString"/>
+              <Option value="MM" name="offset_unit" type="QString"/>
+              <Option value="0" name="ring_filter" type="QString"/>
+              <Option value="0" name="trim_distance_end" type="QString"/>
+              <Option value="3x:0,0,0,0,0,0" name="trim_distance_end_map_unit_scale" type="QString"/>
+              <Option value="MM" name="trim_distance_end_unit" type="QString"/>
+              <Option value="0" name="trim_distance_start" type="QString"/>
+              <Option value="3x:0,0,0,0,0,0" name="trim_distance_start_map_unit_scale" type="QString"/>
+              <Option value="MM" name="trim_distance_start_unit" type="QString"/>
+              <Option value="0" name="tweak_dash_pattern_on_corners" type="QString"/>
+              <Option value="0" name="use_custom_dash" type="QString"/>
+              <Option value="3x:0,0,0,0,0,0" name="width_map_unit_scale" type="QString"/>
             </Option>
             <data_defined_properties>
               <Option type="Map">
-                <Option type="QString" name="name" value=""/>
+                <Option value="" name="name" type="QString"/>
                 <Option name="properties"/>
-                <Option type="QString" name="type" value="collection"/>
+                <Option value="collection" name="type" type="QString"/>
               </Option>
             </data_defined_properties>
           </layer>
@@ -735,22 +735,22 @@
       </axisSymbol>
     </DiagramCategory>
   </SingleCategoryDiagramRenderer>
-  <DiagramLayerSettings obstacle="0" linePlacementFlags="18" zIndex="0" dist="0" showAll="1" placement="1" priority="0">
+  <DiagramLayerSettings showAll="1" zIndex="0" obstacle="0" linePlacementFlags="18" priority="0" placement="1" dist="0">
     <properties>
       <Option type="Map">
-        <Option type="QString" name="name" value=""/>
+        <Option value="" name="name" type="QString"/>
         <Option name="properties"/>
-        <Option type="QString" name="type" value="collection"/>
+        <Option value="collection" name="type" type="QString"/>
       </Option>
     </properties>
   </DiagramLayerSettings>
-  <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+  <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
     <activeChecks/>
     <checkConfiguration type="Map">
-      <Option type="Map" name="QgsGeometryGapCheck">
-        <Option type="double" name="allowedGapsBuffer" value="0"/>
-        <Option type="bool" name="allowedGapsEnabled" value="false"/>
-        <Option type="QString" name="allowedGapsLayer" value=""/>
+      <Option name="QgsGeometryGapCheck" type="Map">
+        <Option value="0" name="allowedGapsBuffer" type="double"/>
+        <Option value="false" name="allowedGapsEnabled" type="bool"/>
+        <Option value="" name="allowedGapsLayer" type="QString"/>
       </Option>
     </checkConfiguration>
   </geometryOptions>
@@ -813,8 +813,29 @@
         </config>
       </editWidget>
     </field>
-    <field configurationFlags="NoFlag" name="contenance">
+    <field configurationFlags="NoFlag" name="contenance_parcelle_m2">
       <editWidget type="Range">
+        <config>
+          <Option/>
+        </config>
+      </editWidget>
+    </field>
+    <field configurationFlags="NoFlag" name="contenance_mfu_m2">
+      <editWidget type="Range">
+        <config>
+          <Option/>
+        </config>
+      </editWidget>
+    </field>
+    <field configurationFlags="NoFlag" name="contenance_parcelle_txt">
+      <editWidget type="TextEdit">
+        <config>
+          <Option/>
+        </config>
+      </editWidget>
+    </field>
+    <field configurationFlags="NoFlag" name="contenance_mfu_txt">
+      <editWidget type="TextEdit">
         <config>
           <Option/>
         </config>
@@ -1081,298 +1102,316 @@
     </field>
   </fieldConfiguration>
   <aliases>
-    <alias field="idparcelle" name="" index="0"/>
-    <alias field="idpartie" name="" index="1"/>
-    <alias field="departement" name="" index="2"/>
-    <alias field="insee_commune" name="" index="3"/>
-    <alias field="insee_commune_ref" name="" index="4"/>
-    <alias field="nom_commune" name="" index="5"/>
-    <alias field="section" name="" index="6"/>
-    <alias field="numero" name="" index="7"/>
-    <alias field="contenance" name="" index="8"/>
-    <alias field="libinteret" name="" index="9"/>
-    <alias field="derniere_date_mfu" name="" index="10"/>
-    <alias field="categorie_mfu" name="" index="11"/>
-    <alias field="type_mfu" name="" index="12"/>
-    <alias field="premiere_date_mfu" name="" index="13"/>
-    <alias field="idlot" name="" index="14"/>
-    <alias field="nomlot" name="" index="15"/>
-    <alias field="codesite" name="" index="16"/>
-    <alias field="nom_site" name="" index="17"/>
-    <alias field="code_metasite" name="" index="18"/>
-    <alias field="nom_metasite" name="" index="19"/>
-    <alias field="date_debut_convention" name="" index="20"/>
-    <alias field="date_fin_convention" name="" index="21"/>
-    <alias field="reconductibilite_convention" name="" index="22"/>
-    <alias field="idaire" name="" index="23"/>
-    <alias field="lib_aire" name="" index="24"/>
-    <alias field="libdossier" name="" index="25"/>
-    <alias field="libhabitat" name="" index="26"/>
-    <alias field="last_idevenement" name="" index="27"/>
-    <alias field="last_libevenement" name="" index="28"/>
-    <alias field="last_dateevenement" name="" index="29"/>
-    <alias field="utilisateur" name="" index="30"/>
-    <alias field="millesime_cadastre" name="" index="31"/>
-    <alias field="source_cadastre" name="" index="32"/>
-    <alias field="parcelle_partie" name="" index="33"/>
-    <alias field="parcelle_bnd" name="" index="34"/>
-    <alias field="parcelle_mc" name="" index="35"/>
-    <alias field="type_pro_2" name="" index="36"/>
-    <alias field="type_pro_3" name="" index="37"/>
-    <alias field="lib_droit" name="" index="38"/>
-    <alias field="type_droit" name="" index="39"/>
-    <alias field="lib_demembrement" name="" index="40"/>
-    <alias field="nom_proprietaire" name="" index="41"/>
-    <alias field="date_acte" name="" index="42"/>
-    <alias field="ff_millesime" name="" index="43"/>
-    <alias field="fcen_typprop_id" name="" index="44"/>
-    <alias field="fcen_typprop_det" name="" index="45"/>
+    <alias name="" field="idparcelle" index="0"/>
+    <alias name="" field="idpartie" index="1"/>
+    <alias name="" field="departement" index="2"/>
+    <alias name="" field="insee_commune" index="3"/>
+    <alias name="" field="insee_commune_ref" index="4"/>
+    <alias name="" field="nom_commune" index="5"/>
+    <alias name="" field="section" index="6"/>
+    <alias name="" field="numero" index="7"/>
+    <alias name="" field="contenance_parcelle_m2" index="8"/>
+    <alias name="" field="contenance_mfu_m2" index="9"/>
+    <alias name="" field="contenance_parcelle_txt" index="10"/>
+    <alias name="" field="contenance_mfu_txt" index="11"/>
+    <alias name="" field="libinteret" index="12"/>
+    <alias name="" field="derniere_date_mfu" index="13"/>
+    <alias name="" field="categorie_mfu" index="14"/>
+    <alias name="" field="type_mfu" index="15"/>
+    <alias name="" field="premiere_date_mfu" index="16"/>
+    <alias name="" field="idlot" index="17"/>
+    <alias name="" field="nomlot" index="18"/>
+    <alias name="" field="codesite" index="19"/>
+    <alias name="" field="nom_site" index="20"/>
+    <alias name="" field="code_metasite" index="21"/>
+    <alias name="" field="nom_metasite" index="22"/>
+    <alias name="" field="date_debut_convention" index="23"/>
+    <alias name="" field="date_fin_convention" index="24"/>
+    <alias name="" field="reconductibilite_convention" index="25"/>
+    <alias name="" field="idaire" index="26"/>
+    <alias name="" field="lib_aire" index="27"/>
+    <alias name="" field="libdossier" index="28"/>
+    <alias name="" field="libhabitat" index="29"/>
+    <alias name="" field="last_idevenement" index="30"/>
+    <alias name="" field="last_libevenement" index="31"/>
+    <alias name="" field="last_dateevenement" index="32"/>
+    <alias name="" field="utilisateur" index="33"/>
+    <alias name="" field="millesime_cadastre" index="34"/>
+    <alias name="" field="source_cadastre" index="35"/>
+    <alias name="" field="parcelle_partie" index="36"/>
+    <alias name="" field="parcelle_bnd" index="37"/>
+    <alias name="" field="parcelle_mc" index="38"/>
+    <alias name="" field="type_pro_2" index="39"/>
+    <alias name="" field="type_pro_3" index="40"/>
+    <alias name="" field="lib_droit" index="41"/>
+    <alias name="" field="type_droit" index="42"/>
+    <alias name="" field="lib_demembrement" index="43"/>
+    <alias name="" field="nom_proprietaire" index="44"/>
+    <alias name="" field="date_acte" index="45"/>
+    <alias name="" field="ff_millesime" index="46"/>
+    <alias name="" field="fcen_typprop_id" index="47"/>
+    <alias name="" field="fcen_typprop_det" index="48"/>
   </aliases>
   <splitPolicies>
-    <policy field="idparcelle" policy="Duplicate"/>
-    <policy field="idpartie" policy="Duplicate"/>
-    <policy field="departement" policy="Duplicate"/>
-    <policy field="insee_commune" policy="Duplicate"/>
-    <policy field="insee_commune_ref" policy="Duplicate"/>
-    <policy field="nom_commune" policy="Duplicate"/>
-    <policy field="section" policy="Duplicate"/>
-    <policy field="numero" policy="Duplicate"/>
-    <policy field="contenance" policy="Duplicate"/>
-    <policy field="libinteret" policy="Duplicate"/>
-    <policy field="derniere_date_mfu" policy="Duplicate"/>
-    <policy field="categorie_mfu" policy="Duplicate"/>
-    <policy field="type_mfu" policy="Duplicate"/>
-    <policy field="premiere_date_mfu" policy="Duplicate"/>
-    <policy field="idlot" policy="Duplicate"/>
-    <policy field="nomlot" policy="Duplicate"/>
-    <policy field="codesite" policy="Duplicate"/>
-    <policy field="nom_site" policy="Duplicate"/>
-    <policy field="code_metasite" policy="Duplicate"/>
-    <policy field="nom_metasite" policy="Duplicate"/>
-    <policy field="date_debut_convention" policy="Duplicate"/>
-    <policy field="date_fin_convention" policy="Duplicate"/>
-    <policy field="reconductibilite_convention" policy="Duplicate"/>
-    <policy field="idaire" policy="Duplicate"/>
-    <policy field="lib_aire" policy="Duplicate"/>
-    <policy field="libdossier" policy="Duplicate"/>
-    <policy field="libhabitat" policy="Duplicate"/>
-    <policy field="last_idevenement" policy="Duplicate"/>
-    <policy field="last_libevenement" policy="Duplicate"/>
-    <policy field="last_dateevenement" policy="Duplicate"/>
-    <policy field="utilisateur" policy="Duplicate"/>
-    <policy field="millesime_cadastre" policy="Duplicate"/>
-    <policy field="source_cadastre" policy="Duplicate"/>
-    <policy field="parcelle_partie" policy="Duplicate"/>
-    <policy field="parcelle_bnd" policy="Duplicate"/>
-    <policy field="parcelle_mc" policy="Duplicate"/>
-    <policy field="type_pro_2" policy="Duplicate"/>
-    <policy field="type_pro_3" policy="Duplicate"/>
-    <policy field="lib_droit" policy="Duplicate"/>
-    <policy field="type_droit" policy="Duplicate"/>
-    <policy field="lib_demembrement" policy="Duplicate"/>
-    <policy field="nom_proprietaire" policy="Duplicate"/>
-    <policy field="date_acte" policy="Duplicate"/>
-    <policy field="ff_millesime" policy="Duplicate"/>
-    <policy field="fcen_typprop_id" policy="Duplicate"/>
-    <policy field="fcen_typprop_det" policy="Duplicate"/>
+    <policy policy="Duplicate" field="idparcelle"/>
+    <policy policy="Duplicate" field="idpartie"/>
+    <policy policy="Duplicate" field="departement"/>
+    <policy policy="Duplicate" field="insee_commune"/>
+    <policy policy="Duplicate" field="insee_commune_ref"/>
+    <policy policy="Duplicate" field="nom_commune"/>
+    <policy policy="Duplicate" field="section"/>
+    <policy policy="Duplicate" field="numero"/>
+    <policy policy="Duplicate" field="contenance_parcelle_m2"/>
+    <policy policy="Duplicate" field="contenance_mfu_m2"/>
+    <policy policy="Duplicate" field="contenance_parcelle_txt"/>
+    <policy policy="Duplicate" field="contenance_mfu_txt"/>
+    <policy policy="Duplicate" field="libinteret"/>
+    <policy policy="Duplicate" field="derniere_date_mfu"/>
+    <policy policy="Duplicate" field="categorie_mfu"/>
+    <policy policy="Duplicate" field="type_mfu"/>
+    <policy policy="Duplicate" field="premiere_date_mfu"/>
+    <policy policy="Duplicate" field="idlot"/>
+    <policy policy="Duplicate" field="nomlot"/>
+    <policy policy="Duplicate" field="codesite"/>
+    <policy policy="Duplicate" field="nom_site"/>
+    <policy policy="Duplicate" field="code_metasite"/>
+    <policy policy="Duplicate" field="nom_metasite"/>
+    <policy policy="Duplicate" field="date_debut_convention"/>
+    <policy policy="Duplicate" field="date_fin_convention"/>
+    <policy policy="Duplicate" field="reconductibilite_convention"/>
+    <policy policy="Duplicate" field="idaire"/>
+    <policy policy="Duplicate" field="lib_aire"/>
+    <policy policy="Duplicate" field="libdossier"/>
+    <policy policy="Duplicate" field="libhabitat"/>
+    <policy policy="Duplicate" field="last_idevenement"/>
+    <policy policy="Duplicate" field="last_libevenement"/>
+    <policy policy="Duplicate" field="last_dateevenement"/>
+    <policy policy="Duplicate" field="utilisateur"/>
+    <policy policy="Duplicate" field="millesime_cadastre"/>
+    <policy policy="Duplicate" field="source_cadastre"/>
+    <policy policy="Duplicate" field="parcelle_partie"/>
+    <policy policy="Duplicate" field="parcelle_bnd"/>
+    <policy policy="Duplicate" field="parcelle_mc"/>
+    <policy policy="Duplicate" field="type_pro_2"/>
+    <policy policy="Duplicate" field="type_pro_3"/>
+    <policy policy="Duplicate" field="lib_droit"/>
+    <policy policy="Duplicate" field="type_droit"/>
+    <policy policy="Duplicate" field="lib_demembrement"/>
+    <policy policy="Duplicate" field="nom_proprietaire"/>
+    <policy policy="Duplicate" field="date_acte"/>
+    <policy policy="Duplicate" field="ff_millesime"/>
+    <policy policy="Duplicate" field="fcen_typprop_id"/>
+    <policy policy="Duplicate" field="fcen_typprop_det"/>
   </splitPolicies>
   <defaults>
-    <default applyOnUpdate="0" field="idparcelle" expression=""/>
-    <default applyOnUpdate="0" field="idpartie" expression=""/>
-    <default applyOnUpdate="0" field="departement" expression=""/>
-    <default applyOnUpdate="0" field="insee_commune" expression=""/>
-    <default applyOnUpdate="0" field="insee_commune_ref" expression=""/>
-    <default applyOnUpdate="0" field="nom_commune" expression=""/>
-    <default applyOnUpdate="0" field="section" expression=""/>
-    <default applyOnUpdate="0" field="numero" expression=""/>
-    <default applyOnUpdate="0" field="contenance" expression=""/>
-    <default applyOnUpdate="0" field="libinteret" expression=""/>
-    <default applyOnUpdate="0" field="derniere_date_mfu" expression=""/>
-    <default applyOnUpdate="0" field="categorie_mfu" expression=""/>
-    <default applyOnUpdate="0" field="type_mfu" expression=""/>
-    <default applyOnUpdate="0" field="premiere_date_mfu" expression=""/>
-    <default applyOnUpdate="0" field="idlot" expression=""/>
-    <default applyOnUpdate="0" field="nomlot" expression=""/>
-    <default applyOnUpdate="0" field="codesite" expression=""/>
-    <default applyOnUpdate="0" field="nom_site" expression=""/>
-    <default applyOnUpdate="0" field="code_metasite" expression=""/>
-    <default applyOnUpdate="0" field="nom_metasite" expression=""/>
-    <default applyOnUpdate="0" field="date_debut_convention" expression=""/>
-    <default applyOnUpdate="0" field="date_fin_convention" expression=""/>
-    <default applyOnUpdate="0" field="reconductibilite_convention" expression=""/>
-    <default applyOnUpdate="0" field="idaire" expression=""/>
-    <default applyOnUpdate="0" field="lib_aire" expression=""/>
-    <default applyOnUpdate="0" field="libdossier" expression=""/>
-    <default applyOnUpdate="0" field="libhabitat" expression=""/>
-    <default applyOnUpdate="0" field="last_idevenement" expression=""/>
-    <default applyOnUpdate="0" field="last_libevenement" expression=""/>
-    <default applyOnUpdate="0" field="last_dateevenement" expression=""/>
-    <default applyOnUpdate="0" field="utilisateur" expression=""/>
-    <default applyOnUpdate="0" field="millesime_cadastre" expression=""/>
-    <default applyOnUpdate="0" field="source_cadastre" expression=""/>
-    <default applyOnUpdate="0" field="parcelle_partie" expression=""/>
-    <default applyOnUpdate="0" field="parcelle_bnd" expression=""/>
-    <default applyOnUpdate="0" field="parcelle_mc" expression=""/>
-    <default applyOnUpdate="0" field="type_pro_2" expression=""/>
-    <default applyOnUpdate="0" field="type_pro_3" expression=""/>
-    <default applyOnUpdate="0" field="lib_droit" expression=""/>
-    <default applyOnUpdate="0" field="type_droit" expression=""/>
-    <default applyOnUpdate="0" field="lib_demembrement" expression=""/>
-    <default applyOnUpdate="0" field="nom_proprietaire" expression=""/>
-    <default applyOnUpdate="0" field="date_acte" expression=""/>
-    <default applyOnUpdate="0" field="ff_millesime" expression=""/>
-    <default applyOnUpdate="0" field="fcen_typprop_id" expression=""/>
-    <default applyOnUpdate="0" field="fcen_typprop_det" expression=""/>
+    <default field="idparcelle" expression="" applyOnUpdate="0"/>
+    <default field="idpartie" expression="" applyOnUpdate="0"/>
+    <default field="departement" expression="" applyOnUpdate="0"/>
+    <default field="insee_commune" expression="" applyOnUpdate="0"/>
+    <default field="insee_commune_ref" expression="" applyOnUpdate="0"/>
+    <default field="nom_commune" expression="" applyOnUpdate="0"/>
+    <default field="section" expression="" applyOnUpdate="0"/>
+    <default field="numero" expression="" applyOnUpdate="0"/>
+    <default field="contenance_parcelle_m2" expression="" applyOnUpdate="0"/>
+    <default field="contenance_mfu_m2" expression="" applyOnUpdate="0"/>
+    <default field="contenance_parcelle_txt" expression="" applyOnUpdate="0"/>
+    <default field="contenance_mfu_txt" expression="" applyOnUpdate="0"/>
+    <default field="libinteret" expression="" applyOnUpdate="0"/>
+    <default field="derniere_date_mfu" expression="" applyOnUpdate="0"/>
+    <default field="categorie_mfu" expression="" applyOnUpdate="0"/>
+    <default field="type_mfu" expression="" applyOnUpdate="0"/>
+    <default field="premiere_date_mfu" expression="" applyOnUpdate="0"/>
+    <default field="idlot" expression="" applyOnUpdate="0"/>
+    <default field="nomlot" expression="" applyOnUpdate="0"/>
+    <default field="codesite" expression="" applyOnUpdate="0"/>
+    <default field="nom_site" expression="" applyOnUpdate="0"/>
+    <default field="code_metasite" expression="" applyOnUpdate="0"/>
+    <default field="nom_metasite" expression="" applyOnUpdate="0"/>
+    <default field="date_debut_convention" expression="" applyOnUpdate="0"/>
+    <default field="date_fin_convention" expression="" applyOnUpdate="0"/>
+    <default field="reconductibilite_convention" expression="" applyOnUpdate="0"/>
+    <default field="idaire" expression="" applyOnUpdate="0"/>
+    <default field="lib_aire" expression="" applyOnUpdate="0"/>
+    <default field="libdossier" expression="" applyOnUpdate="0"/>
+    <default field="libhabitat" expression="" applyOnUpdate="0"/>
+    <default field="last_idevenement" expression="" applyOnUpdate="0"/>
+    <default field="last_libevenement" expression="" applyOnUpdate="0"/>
+    <default field="last_dateevenement" expression="" applyOnUpdate="0"/>
+    <default field="utilisateur" expression="" applyOnUpdate="0"/>
+    <default field="millesime_cadastre" expression="" applyOnUpdate="0"/>
+    <default field="source_cadastre" expression="" applyOnUpdate="0"/>
+    <default field="parcelle_partie" expression="" applyOnUpdate="0"/>
+    <default field="parcelle_bnd" expression="" applyOnUpdate="0"/>
+    <default field="parcelle_mc" expression="" applyOnUpdate="0"/>
+    <default field="type_pro_2" expression="" applyOnUpdate="0"/>
+    <default field="type_pro_3" expression="" applyOnUpdate="0"/>
+    <default field="lib_droit" expression="" applyOnUpdate="0"/>
+    <default field="type_droit" expression="" applyOnUpdate="0"/>
+    <default field="lib_demembrement" expression="" applyOnUpdate="0"/>
+    <default field="nom_proprietaire" expression="" applyOnUpdate="0"/>
+    <default field="date_acte" expression="" applyOnUpdate="0"/>
+    <default field="ff_millesime" expression="" applyOnUpdate="0"/>
+    <default field="fcen_typprop_id" expression="" applyOnUpdate="0"/>
+    <default field="fcen_typprop_det" expression="" applyOnUpdate="0"/>
   </defaults>
   <constraints>
-    <constraint constraints="0" exp_strength="0" field="idparcelle" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="idpartie" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="departement" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="insee_commune" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="insee_commune_ref" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="nom_commune" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="section" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="numero" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="contenance" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="libinteret" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="derniere_date_mfu" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="categorie_mfu" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="type_mfu" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="premiere_date_mfu" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="idlot" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="nomlot" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="codesite" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="nom_site" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="code_metasite" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="nom_metasite" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="date_debut_convention" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="date_fin_convention" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="reconductibilite_convention" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="idaire" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="lib_aire" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="libdossier" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="libhabitat" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="last_idevenement" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="last_libevenement" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="last_dateevenement" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="utilisateur" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="millesime_cadastre" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="source_cadastre" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="parcelle_partie" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="parcelle_bnd" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="parcelle_mc" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="type_pro_2" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="type_pro_3" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="lib_droit" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="type_droit" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="lib_demembrement" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="nom_proprietaire" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="date_acte" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="ff_millesime" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="fcen_typprop_id" unique_strength="0" notnull_strength="0"/>
-    <constraint constraints="0" exp_strength="0" field="fcen_typprop_det" unique_strength="0" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="idparcelle" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="idpartie" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="departement" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="insee_commune" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="insee_commune_ref" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="nom_commune" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="section" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="numero" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="contenance_parcelle_m2" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="contenance_mfu_m2" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="contenance_parcelle_txt" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="contenance_mfu_txt" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="libinteret" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="derniere_date_mfu" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="categorie_mfu" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="type_mfu" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="premiere_date_mfu" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="idlot" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="nomlot" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="codesite" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="nom_site" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="code_metasite" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="nom_metasite" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="date_debut_convention" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="date_fin_convention" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="reconductibilite_convention" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="idaire" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="lib_aire" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="libdossier" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="libhabitat" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="last_idevenement" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="last_libevenement" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="last_dateevenement" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="utilisateur" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="millesime_cadastre" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="source_cadastre" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="parcelle_partie" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="parcelle_bnd" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="parcelle_mc" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="type_pro_2" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="type_pro_3" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="lib_droit" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="type_droit" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="lib_demembrement" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="nom_proprietaire" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="date_acte" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="ff_millesime" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="fcen_typprop_id" notnull_strength="0"/>
+    <constraint exp_strength="0" constraints="0" unique_strength="0" field="fcen_typprop_det" notnull_strength="0"/>
   </constraints>
   <constraintExpressions>
-    <constraint desc="" exp="" field="idparcelle"/>
-    <constraint desc="" exp="" field="idpartie"/>
-    <constraint desc="" exp="" field="departement"/>
-    <constraint desc="" exp="" field="insee_commune"/>
-    <constraint desc="" exp="" field="insee_commune_ref"/>
-    <constraint desc="" exp="" field="nom_commune"/>
-    <constraint desc="" exp="" field="section"/>
-    <constraint desc="" exp="" field="numero"/>
-    <constraint desc="" exp="" field="contenance"/>
-    <constraint desc="" exp="" field="libinteret"/>
-    <constraint desc="" exp="" field="derniere_date_mfu"/>
-    <constraint desc="" exp="" field="categorie_mfu"/>
-    <constraint desc="" exp="" field="type_mfu"/>
-    <constraint desc="" exp="" field="premiere_date_mfu"/>
-    <constraint desc="" exp="" field="idlot"/>
-    <constraint desc="" exp="" field="nomlot"/>
-    <constraint desc="" exp="" field="codesite"/>
-    <constraint desc="" exp="" field="nom_site"/>
-    <constraint desc="" exp="" field="code_metasite"/>
-    <constraint desc="" exp="" field="nom_metasite"/>
-    <constraint desc="" exp="" field="date_debut_convention"/>
-    <constraint desc="" exp="" field="date_fin_convention"/>
-    <constraint desc="" exp="" field="reconductibilite_convention"/>
-    <constraint desc="" exp="" field="idaire"/>
-    <constraint desc="" exp="" field="lib_aire"/>
-    <constraint desc="" exp="" field="libdossier"/>
-    <constraint desc="" exp="" field="libhabitat"/>
-    <constraint desc="" exp="" field="last_idevenement"/>
-    <constraint desc="" exp="" field="last_libevenement"/>
-    <constraint desc="" exp="" field="last_dateevenement"/>
-    <constraint desc="" exp="" field="utilisateur"/>
-    <constraint desc="" exp="" field="millesime_cadastre"/>
-    <constraint desc="" exp="" field="source_cadastre"/>
-    <constraint desc="" exp="" field="parcelle_partie"/>
-    <constraint desc="" exp="" field="parcelle_bnd"/>
-    <constraint desc="" exp="" field="parcelle_mc"/>
-    <constraint desc="" exp="" field="type_pro_2"/>
-    <constraint desc="" exp="" field="type_pro_3"/>
-    <constraint desc="" exp="" field="lib_droit"/>
-    <constraint desc="" exp="" field="type_droit"/>
-    <constraint desc="" exp="" field="lib_demembrement"/>
-    <constraint desc="" exp="" field="nom_proprietaire"/>
-    <constraint desc="" exp="" field="date_acte"/>
-    <constraint desc="" exp="" field="ff_millesime"/>
-    <constraint desc="" exp="" field="fcen_typprop_id"/>
-    <constraint desc="" exp="" field="fcen_typprop_det"/>
+    <constraint field="idparcelle" desc="" exp=""/>
+    <constraint field="idpartie" desc="" exp=""/>
+    <constraint field="departement" desc="" exp=""/>
+    <constraint field="insee_commune" desc="" exp=""/>
+    <constraint field="insee_commune_ref" desc="" exp=""/>
+    <constraint field="nom_commune" desc="" exp=""/>
+    <constraint field="section" desc="" exp=""/>
+    <constraint field="numero" desc="" exp=""/>
+    <constraint field="contenance_parcelle_m2" desc="" exp=""/>
+    <constraint field="contenance_mfu_m2" desc="" exp=""/>
+    <constraint field="contenance_parcelle_txt" desc="" exp=""/>
+    <constraint field="contenance_mfu_txt" desc="" exp=""/>
+    <constraint field="libinteret" desc="" exp=""/>
+    <constraint field="derniere_date_mfu" desc="" exp=""/>
+    <constraint field="categorie_mfu" desc="" exp=""/>
+    <constraint field="type_mfu" desc="" exp=""/>
+    <constraint field="premiere_date_mfu" desc="" exp=""/>
+    <constraint field="idlot" desc="" exp=""/>
+    <constraint field="nomlot" desc="" exp=""/>
+    <constraint field="codesite" desc="" exp=""/>
+    <constraint field="nom_site" desc="" exp=""/>
+    <constraint field="code_metasite" desc="" exp=""/>
+    <constraint field="nom_metasite" desc="" exp=""/>
+    <constraint field="date_debut_convention" desc="" exp=""/>
+    <constraint field="date_fin_convention" desc="" exp=""/>
+    <constraint field="reconductibilite_convention" desc="" exp=""/>
+    <constraint field="idaire" desc="" exp=""/>
+    <constraint field="lib_aire" desc="" exp=""/>
+    <constraint field="libdossier" desc="" exp=""/>
+    <constraint field="libhabitat" desc="" exp=""/>
+    <constraint field="last_idevenement" desc="" exp=""/>
+    <constraint field="last_libevenement" desc="" exp=""/>
+    <constraint field="last_dateevenement" desc="" exp=""/>
+    <constraint field="utilisateur" desc="" exp=""/>
+    <constraint field="millesime_cadastre" desc="" exp=""/>
+    <constraint field="source_cadastre" desc="" exp=""/>
+    <constraint field="parcelle_partie" desc="" exp=""/>
+    <constraint field="parcelle_bnd" desc="" exp=""/>
+    <constraint field="parcelle_mc" desc="" exp=""/>
+    <constraint field="type_pro_2" desc="" exp=""/>
+    <constraint field="type_pro_3" desc="" exp=""/>
+    <constraint field="lib_droit" desc="" exp=""/>
+    <constraint field="type_droit" desc="" exp=""/>
+    <constraint field="lib_demembrement" desc="" exp=""/>
+    <constraint field="nom_proprietaire" desc="" exp=""/>
+    <constraint field="date_acte" desc="" exp=""/>
+    <constraint field="ff_millesime" desc="" exp=""/>
+    <constraint field="fcen_typprop_id" desc="" exp=""/>
+    <constraint field="fcen_typprop_det" desc="" exp=""/>
   </constraintExpressions>
   <expressionfields/>
   <attributeactions>
-    <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+    <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
   </attributeactions>
   <attributetableconfig actionWidgetStyle="dropDown" sortOrder="1" sortExpression="&quot;date_debut&quot;">
     <columns>
-      <column width="-1" type="field" hidden="0" name="idparcelle"/>
-      <column width="-1" type="field" hidden="0" name="section"/>
-      <column width="-1" type="field" hidden="0" name="numero"/>
-      <column width="-1" type="field" hidden="0" name="contenance"/>
-      <column width="-1" type="field" hidden="0" name="libinteret"/>
-      <column width="-1" type="field" hidden="0" name="type_mfu"/>
-      <column width="-1" type="field" hidden="0" name="utilisateur"/>
-      <column width="-1" type="field" hidden="0" name="idaire"/>
-      <column width="-1" type="field" hidden="0" name="libdossier"/>
-      <column width="-1" type="field" hidden="0" name="libhabitat"/>
+      <column width="-1" name="idparcelle" type="field" hidden="0"/>
+      <column width="-1" name="section" type="field" hidden="0"/>
+      <column width="-1" name="numero" type="field" hidden="0"/>
+      <column width="-1" name="libinteret" type="field" hidden="0"/>
+      <column width="-1" name="type_mfu" type="field" hidden="0"/>
+      <column width="-1" name="utilisateur" type="field" hidden="0"/>
+      <column width="-1" name="idaire" type="field" hidden="0"/>
+      <column width="-1" name="libdossier" type="field" hidden="0"/>
+      <column width="-1" name="libhabitat" type="field" hidden="0"/>
       <column width="-1" type="actions" hidden="1"/>
-      <column width="-1" type="field" hidden="0" name="departement"/>
-      <column width="-1" type="field" hidden="0" name="insee_commune"/>
-      <column width="-1" type="field" hidden="0" name="insee_commune_ref"/>
-      <column width="-1" type="field" hidden="0" name="categorie_mfu"/>
-      <column width="-1" type="field" hidden="0" name="codesite"/>
-      <column width="-1" type="field" hidden="0" name="nom_site"/>
-      <column width="-1" type="field" hidden="0" name="date_debut_convention"/>
-      <column width="-1" type="field" hidden="0" name="date_fin_convention"/>
-      <column width="-1" type="field" hidden="0" name="reconductibilite_convention"/>
-      <column width="-1" type="field" hidden="0" name="lib_aire"/>
-      <column width="-1" type="field" hidden="0" name="last_idevenement"/>
-      <column width="-1" type="field" hidden="0" name="last_libevenement"/>
-      <column width="-1" type="field" hidden="0" name="last_dateevenement"/>
-      <column width="-1" type="field" hidden="0" name="millesime_cadastre"/>
-      <column width="-1" type="field" hidden="0" name="source_cadastre"/>
-      <column width="-1" type="field" hidden="0" name="parcelle_partie"/>
-      <column width="-1" type="field" hidden="0" name="parcelle_mc"/>
-      <column width="-1" type="field" hidden="0" name="idpartie"/>
-      <column width="-1" type="field" hidden="0" name="nom_commune"/>
-      <column width="-1" type="field" hidden="0" name="derniere_date_mfu"/>
-      <column width="-1" type="field" hidden="0" name="premiere_date_mfu"/>
-      <column width="-1" type="field" hidden="0" name="idlot"/>
-      <column width="-1" type="field" hidden="0" name="nomlot"/>
-      <column width="-1" type="field" hidden="0" name="code_metasite"/>
-      <column width="-1" type="field" hidden="0" name="nom_metasite"/>
-      <column width="-1" type="field" hidden="0" name="type_pro_2"/>
-      <column width="-1" type="field" hidden="0" name="type_pro_3"/>
-      <column width="-1" type="field" hidden="0" name="lib_droit"/>
-      <column width="-1" type="field" hidden="0" name="type_droit"/>
-      <column width="-1" type="field" hidden="0" name="lib_demembrement"/>
-      <column width="-1" type="field" hidden="0" name="nom_proprietaire"/>
-      <column width="-1" type="field" hidden="0" name="date_acte"/>
-      <column width="-1" type="field" hidden="0" name="ff_millesime"/>
-      <column width="-1" type="field" hidden="0" name="fcen_typprop_id"/>
-      <column width="-1" type="field" hidden="0" name="fcen_typprop_det"/>
-      <column width="-1" type="field" hidden="0" name="parcelle_bnd"/>
+      <column width="-1" name="departement" type="field" hidden="0"/>
+      <column width="-1" name="insee_commune" type="field" hidden="0"/>
+      <column width="-1" name="insee_commune_ref" type="field" hidden="0"/>
+      <column width="-1" name="categorie_mfu" type="field" hidden="0"/>
+      <column width="-1" name="codesite" type="field" hidden="0"/>
+      <column width="-1" name="nom_site" type="field" hidden="0"/>
+      <column width="-1" name="date_debut_convention" type="field" hidden="0"/>
+      <column width="-1" name="date_fin_convention" type="field" hidden="0"/>
+      <column width="-1" name="reconductibilite_convention" type="field" hidden="0"/>
+      <column width="-1" name="lib_aire" type="field" hidden="0"/>
+      <column width="-1" name="last_idevenement" type="field" hidden="0"/>
+      <column width="-1" name="last_libevenement" type="field" hidden="0"/>
+      <column width="-1" name="last_dateevenement" type="field" hidden="0"/>
+      <column width="-1" name="millesime_cadastre" type="field" hidden="0"/>
+      <column width="-1" name="source_cadastre" type="field" hidden="0"/>
+      <column width="-1" name="parcelle_partie" type="field" hidden="0"/>
+      <column width="-1" name="parcelle_mc" type="field" hidden="0"/>
+      <column width="-1" name="idpartie" type="field" hidden="0"/>
+      <column width="-1" name="nom_commune" type="field" hidden="0"/>
+      <column width="-1" name="derniere_date_mfu" type="field" hidden="0"/>
+      <column width="-1" name="premiere_date_mfu" type="field" hidden="0"/>
+      <column width="-1" name="idlot" type="field" hidden="0"/>
+      <column width="-1" name="nomlot" type="field" hidden="0"/>
+      <column width="-1" name="code_metasite" type="field" hidden="0"/>
+      <column width="-1" name="nom_metasite" type="field" hidden="0"/>
+      <column width="-1" name="type_pro_2" type="field" hidden="0"/>
+      <column width="-1" name="type_pro_3" type="field" hidden="0"/>
+      <column width="-1" name="lib_droit" type="field" hidden="0"/>
+      <column width="-1" name="type_droit" type="field" hidden="0"/>
+      <column width="-1" name="lib_demembrement" type="field" hidden="0"/>
+      <column width="-1" name="nom_proprietaire" type="field" hidden="0"/>
+      <column width="-1" name="date_acte" type="field" hidden="0"/>
+      <column width="-1" name="ff_millesime" type="field" hidden="0"/>
+      <column width="-1" name="fcen_typprop_id" type="field" hidden="0"/>
+      <column width="-1" name="fcen_typprop_det" type="field" hidden="0"/>
+      <column width="-1" name="contenance_parcelle_m2" type="field" hidden="0"/>
+      <column width="-1" name="contenance_mfu_m2" type="field" hidden="0"/>
+      <column width="-1" name="contenance_parcelle_txt" type="field" hidden="0"/>
+      <column width="-1" name="contenance_mfu_txt" type="field" hidden="0"/>
+      <column width="-1" name="parcelle_bnd" type="field" hidden="0"/>
     </columns>
   </attributetableconfig>
   <conditionalstyles>
@@ -1403,138 +1442,150 @@ def my_form_open(dialog, layer, feature):
   <featformsuppress>0</featformsuppress>
   <editorlayout>generatedlayout</editorlayout>
   <editable>
-    <field name="categorie_mfu" editable="1"/>
-    <field name="code_metasite" editable="1"/>
-    <field name="codesite" editable="1"/>
-    <field name="commune" editable="1"/>
-    <field name="commune_ref" editable="1"/>
-    <field name="contenance" editable="1"/>
-    <field name="date_acte" editable="1"/>
-    <field name="date_debut" editable="1"/>
-    <field name="date_debut_convention" editable="1"/>
-    <field name="date_debut_mfu" editable="1"/>
-    <field name="date_fin" editable="1"/>
-    <field name="date_fin_convention" editable="1"/>
-    <field name="date_saisie" editable="1"/>
-    <field name="dateevenement" editable="1"/>
-    <field name="departement" editable="1"/>
-    <field name="derniere_date_mfu" editable="1"/>
-    <field name="fcen_typprop_det" editable="1"/>
-    <field name="fcen_typprop_id" editable="1"/>
-    <field name="ff_millesime" editable="1"/>
-    <field name="gid" editable="1"/>
-    <field name="id_type_mfu" editable="1"/>
-    <field name="idaire" editable="1"/>
-    <field name="idcategorie" editable="1"/>
-    <field name="idlot" editable="1"/>
-    <field name="idparcelle" editable="1"/>
-    <field name="idpartie" editable="1"/>
-    <field name="insee_commune" editable="1"/>
-    <field name="insee_commune_ref" editable="1"/>
-    <field name="last_dateevenement" editable="1"/>
-    <field name="last_idevenement" editable="1"/>
-    <field name="last_libevenement" editable="1"/>
-    <field name="lib_aire" editable="1"/>
-    <field name="lib_demembrement" editable="1"/>
-    <field name="lib_droit" editable="1"/>
-    <field name="libaire" editable="1"/>
-    <field name="libcategorie" editable="1"/>
-    <field name="libdossier" editable="1"/>
-    <field name="libevenement" editable="1"/>
-    <field name="libhabitat" editable="1"/>
-    <field name="libinteret" editable="1"/>
-    <field name="millesime_cadastre" editable="1"/>
-    <field name="nom" editable="1"/>
-    <field name="nom_commmune" editable="1"/>
-    <field name="nom_commune" editable="1"/>
-    <field name="nom_metasite" editable="1"/>
-    <field name="nom_proprietaire" editable="1"/>
-    <field name="nom_site" editable="1"/>
-    <field name="nomlot" editable="1"/>
-    <field name="numero" editable="1"/>
-    <field name="parcelle_bnd" editable="1"/>
-    <field name="parcelle_mc" editable="1"/>
-    <field name="parcelle_partie" editable="1"/>
-    <field name="premiere_date_mfu" editable="1"/>
-    <field name="reconductibilite" editable="1"/>
-    <field name="reconductibilite_convention" editable="1"/>
-    <field name="section" editable="1"/>
-    <field name="source_cadastre" editable="1"/>
-    <field name="type_droit" editable="1"/>
-    <field name="type_mfu" editable="1"/>
-    <field name="type_pro_2" editable="1"/>
-    <field name="type_pro_3" editable="1"/>
-    <field name="utilisateur" editable="1"/>
+    <field editable="1" name="categorie_mfu"/>
+    <field editable="1" name="code_metasite"/>
+    <field editable="1" name="codesite"/>
+    <field editable="1" name="commune"/>
+    <field editable="1" name="commune_ref"/>
+    <field editable="1" name="contenance"/>
+    <field editable="1" name="contenance_mfu_m2"/>
+    <field editable="1" name="contenance_mfu_txt"/>
+    <field editable="1" name="contenance_parcelle_m2"/>
+    <field editable="1" name="contenance_parcelle_txt"/>
+    <field editable="1" name="date_acte"/>
+    <field editable="1" name="date_debut"/>
+    <field editable="1" name="date_debut_convention"/>
+    <field editable="1" name="date_debut_mfu"/>
+    <field editable="1" name="date_fin"/>
+    <field editable="1" name="date_fin_convention"/>
+    <field editable="1" name="date_saisie"/>
+    <field editable="1" name="dateevenement"/>
+    <field editable="1" name="departement"/>
+    <field editable="1" name="derniere_date_mfu"/>
+    <field editable="1" name="fcen_typprop_det"/>
+    <field editable="1" name="fcen_typprop_id"/>
+    <field editable="1" name="ff_millesime"/>
+    <field editable="1" name="gid"/>
+    <field editable="1" name="id_type_mfu"/>
+    <field editable="1" name="idaire"/>
+    <field editable="1" name="idcategorie"/>
+    <field editable="1" name="idlot"/>
+    <field editable="1" name="idparcelle"/>
+    <field editable="1" name="idpartie"/>
+    <field editable="1" name="insee_commune"/>
+    <field editable="1" name="insee_commune_ref"/>
+    <field editable="1" name="last_dateevenement"/>
+    <field editable="1" name="last_idevenement"/>
+    <field editable="1" name="last_libevenement"/>
+    <field editable="1" name="lib_aire"/>
+    <field editable="1" name="lib_demembrement"/>
+    <field editable="1" name="lib_droit"/>
+    <field editable="1" name="libaire"/>
+    <field editable="1" name="libcategorie"/>
+    <field editable="1" name="libdossier"/>
+    <field editable="1" name="libevenement"/>
+    <field editable="1" name="libhabitat"/>
+    <field editable="1" name="libinteret"/>
+    <field editable="1" name="millesime_cadastre"/>
+    <field editable="1" name="nom"/>
+    <field editable="1" name="nom_commmune"/>
+    <field editable="1" name="nom_commune"/>
+    <field editable="1" name="nom_metasite"/>
+    <field editable="1" name="nom_proprietaire"/>
+    <field editable="1" name="nom_site"/>
+    <field editable="1" name="nomlot"/>
+    <field editable="1" name="numero"/>
+    <field editable="1" name="parcelle_bnd"/>
+    <field editable="1" name="parcelle_mc"/>
+    <field editable="1" name="parcelle_partie"/>
+    <field editable="1" name="premiere_date_mfu"/>
+    <field editable="1" name="reconductibilite"/>
+    <field editable="1" name="reconductibilite_convention"/>
+    <field editable="1" name="section"/>
+    <field editable="1" name="source_cadastre"/>
+    <field editable="1" name="type_droit"/>
+    <field editable="1" name="type_mfu"/>
+    <field editable="1" name="type_pro_2"/>
+    <field editable="1" name="type_pro_3"/>
+    <field editable="1" name="utilisateur"/>
   </editable>
   <labelOnTop>
-    <field labelOnTop="0" name="categorie_mfu"/>
-    <field labelOnTop="0" name="code_metasite"/>
-    <field labelOnTop="0" name="codesite"/>
-    <field labelOnTop="0" name="commune"/>
-    <field labelOnTop="0" name="commune_ref"/>
-    <field labelOnTop="0" name="contenance"/>
-    <field labelOnTop="0" name="date_acte"/>
-    <field labelOnTop="0" name="date_debut"/>
-    <field labelOnTop="0" name="date_debut_convention"/>
-    <field labelOnTop="0" name="date_debut_mfu"/>
-    <field labelOnTop="0" name="date_fin"/>
-    <field labelOnTop="0" name="date_fin_convention"/>
-    <field labelOnTop="0" name="date_saisie"/>
-    <field labelOnTop="0" name="dateevenement"/>
-    <field labelOnTop="0" name="departement"/>
-    <field labelOnTop="0" name="derniere_date_mfu"/>
-    <field labelOnTop="0" name="fcen_typprop_det"/>
-    <field labelOnTop="0" name="fcen_typprop_id"/>
-    <field labelOnTop="0" name="ff_millesime"/>
-    <field labelOnTop="0" name="gid"/>
-    <field labelOnTop="0" name="id_type_mfu"/>
-    <field labelOnTop="0" name="idaire"/>
-    <field labelOnTop="0" name="idcategorie"/>
-    <field labelOnTop="0" name="idlot"/>
-    <field labelOnTop="0" name="idparcelle"/>
-    <field labelOnTop="0" name="idpartie"/>
-    <field labelOnTop="0" name="insee_commune"/>
-    <field labelOnTop="0" name="insee_commune_ref"/>
-    <field labelOnTop="0" name="last_dateevenement"/>
-    <field labelOnTop="0" name="last_idevenement"/>
-    <field labelOnTop="0" name="last_libevenement"/>
-    <field labelOnTop="0" name="lib_aire"/>
-    <field labelOnTop="0" name="lib_demembrement"/>
-    <field labelOnTop="0" name="lib_droit"/>
-    <field labelOnTop="0" name="libaire"/>
-    <field labelOnTop="0" name="libcategorie"/>
-    <field labelOnTop="0" name="libdossier"/>
-    <field labelOnTop="0" name="libevenement"/>
-    <field labelOnTop="0" name="libhabitat"/>
-    <field labelOnTop="0" name="libinteret"/>
-    <field labelOnTop="0" name="millesime_cadastre"/>
-    <field labelOnTop="0" name="nom"/>
-    <field labelOnTop="0" name="nom_commmune"/>
-    <field labelOnTop="0" name="nom_commune"/>
-    <field labelOnTop="0" name="nom_metasite"/>
-    <field labelOnTop="0" name="nom_proprietaire"/>
-    <field labelOnTop="0" name="nom_site"/>
-    <field labelOnTop="0" name="nomlot"/>
-    <field labelOnTop="0" name="numero"/>
-    <field labelOnTop="0" name="parcelle_bnd"/>
-    <field labelOnTop="0" name="parcelle_mc"/>
-    <field labelOnTop="0" name="parcelle_partie"/>
-    <field labelOnTop="0" name="premiere_date_mfu"/>
-    <field labelOnTop="0" name="reconductibilite"/>
-    <field labelOnTop="0" name="reconductibilite_convention"/>
-    <field labelOnTop="0" name="section"/>
-    <field labelOnTop="0" name="source_cadastre"/>
-    <field labelOnTop="0" name="type_droit"/>
-    <field labelOnTop="0" name="type_mfu"/>
-    <field labelOnTop="0" name="type_pro_2"/>
-    <field labelOnTop="0" name="type_pro_3"/>
-    <field labelOnTop="0" name="utilisateur"/>
+    <field name="categorie_mfu" labelOnTop="0"/>
+    <field name="code_metasite" labelOnTop="0"/>
+    <field name="codesite" labelOnTop="0"/>
+    <field name="commune" labelOnTop="0"/>
+    <field name="commune_ref" labelOnTop="0"/>
+    <field name="contenance" labelOnTop="0"/>
+    <field name="contenance_mfu_m2" labelOnTop="0"/>
+    <field name="contenance_mfu_txt" labelOnTop="0"/>
+    <field name="contenance_parcelle_m2" labelOnTop="0"/>
+    <field name="contenance_parcelle_txt" labelOnTop="0"/>
+    <field name="date_acte" labelOnTop="0"/>
+    <field name="date_debut" labelOnTop="0"/>
+    <field name="date_debut_convention" labelOnTop="0"/>
+    <field name="date_debut_mfu" labelOnTop="0"/>
+    <field name="date_fin" labelOnTop="0"/>
+    <field name="date_fin_convention" labelOnTop="0"/>
+    <field name="date_saisie" labelOnTop="0"/>
+    <field name="dateevenement" labelOnTop="0"/>
+    <field name="departement" labelOnTop="0"/>
+    <field name="derniere_date_mfu" labelOnTop="0"/>
+    <field name="fcen_typprop_det" labelOnTop="0"/>
+    <field name="fcen_typprop_id" labelOnTop="0"/>
+    <field name="ff_millesime" labelOnTop="0"/>
+    <field name="gid" labelOnTop="0"/>
+    <field name="id_type_mfu" labelOnTop="0"/>
+    <field name="idaire" labelOnTop="0"/>
+    <field name="idcategorie" labelOnTop="0"/>
+    <field name="idlot" labelOnTop="0"/>
+    <field name="idparcelle" labelOnTop="0"/>
+    <field name="idpartie" labelOnTop="0"/>
+    <field name="insee_commune" labelOnTop="0"/>
+    <field name="insee_commune_ref" labelOnTop="0"/>
+    <field name="last_dateevenement" labelOnTop="0"/>
+    <field name="last_idevenement" labelOnTop="0"/>
+    <field name="last_libevenement" labelOnTop="0"/>
+    <field name="lib_aire" labelOnTop="0"/>
+    <field name="lib_demembrement" labelOnTop="0"/>
+    <field name="lib_droit" labelOnTop="0"/>
+    <field name="libaire" labelOnTop="0"/>
+    <field name="libcategorie" labelOnTop="0"/>
+    <field name="libdossier" labelOnTop="0"/>
+    <field name="libevenement" labelOnTop="0"/>
+    <field name="libhabitat" labelOnTop="0"/>
+    <field name="libinteret" labelOnTop="0"/>
+    <field name="millesime_cadastre" labelOnTop="0"/>
+    <field name="nom" labelOnTop="0"/>
+    <field name="nom_commmune" labelOnTop="0"/>
+    <field name="nom_commune" labelOnTop="0"/>
+    <field name="nom_metasite" labelOnTop="0"/>
+    <field name="nom_proprietaire" labelOnTop="0"/>
+    <field name="nom_site" labelOnTop="0"/>
+    <field name="nomlot" labelOnTop="0"/>
+    <field name="numero" labelOnTop="0"/>
+    <field name="parcelle_bnd" labelOnTop="0"/>
+    <field name="parcelle_mc" labelOnTop="0"/>
+    <field name="parcelle_partie" labelOnTop="0"/>
+    <field name="premiere_date_mfu" labelOnTop="0"/>
+    <field name="reconductibilite" labelOnTop="0"/>
+    <field name="reconductibilite_convention" labelOnTop="0"/>
+    <field name="section" labelOnTop="0"/>
+    <field name="source_cadastre" labelOnTop="0"/>
+    <field name="type_droit" labelOnTop="0"/>
+    <field name="type_mfu" labelOnTop="0"/>
+    <field name="type_pro_2" labelOnTop="0"/>
+    <field name="type_pro_3" labelOnTop="0"/>
+    <field name="utilisateur" labelOnTop="0"/>
   </labelOnTop>
   <reuseLastValue>
     <field reuseLastValue="0" name="categorie_mfu"/>
     <field reuseLastValue="0" name="code_metasite"/>
     <field reuseLastValue="0" name="codesite"/>
     <field reuseLastValue="0" name="contenance"/>
+    <field reuseLastValue="0" name="contenance_mfu_m2"/>
+    <field reuseLastValue="0" name="contenance_mfu_txt"/>
+    <field reuseLastValue="0" name="contenance_parcelle_m2"/>
+    <field reuseLastValue="0" name="contenance_parcelle_txt"/>
     <field reuseLastValue="0" name="date_acte"/>
     <field reuseLastValue="0" name="date_debut_convention"/>
     <field reuseLastValue="0" name="date_fin_convention"/>
