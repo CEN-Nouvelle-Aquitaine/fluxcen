@@ -340,3 +340,4 @@ PostGIS;Couches collaboratives;Fiche site 2024;fiche_site_2024; ;CEN NA;style_fi
 PostGIS;Couches collaboratives;Parcelles en animation foncière GPSO (édition);parcelles; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_of_gpso;parcelles_of
 PostGIS;Couches collaboratives;Habitats existants GPSO (édition);habitats_existants; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_of_gpso;habitats_of
 PostGIS;Couches collaboratives;Habitats potentiels GPSO (édition);habitats_potentiels; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_of_gpso;habitats_of
+PostGIS;Couches collaboratives;Inventaire vieilles forêts (édition);inventaire_vifo; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_vifo;vifo
