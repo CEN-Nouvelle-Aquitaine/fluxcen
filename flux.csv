@@ -342,4 +342,4 @@ PostGIS;Couches collaboratives;Parcelles en animation foncière GPSO (édition);
 PostGIS;Couches collaboratives;Habitats existants GPSO (édition);habitats_existants; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_of_gpso;habitats_of
 PostGIS;Couches collaboratives;Habitats potentiels GPSO (édition);habitats_potentiels; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_of_gpso;habitats_of
 PostGIS;Couches collaboratives;Inventaire vieilles forêts (édition);inventaire_vifo; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_vifo;vifo
-PostGIS;Couches collaboratives;Couche Travaux 79 (Deux-Sèvres);travaux_79; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_travaux;Travaux_79
+PostGIS;Couches collaboratives;Couche Travaux 79 (Deux-Sèvres);Travaux_79; ;CEN NA;;https://raw.githack.com/CEN-Nouvelle-Aquitaine/fluxcen/main/html/missing_metadata.html;collab_travaux;travaux_79
