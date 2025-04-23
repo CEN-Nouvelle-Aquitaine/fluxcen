@@ -23,7 +23,7 @@
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
 from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon, QPixmap
-from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QTextBrowser, QMessageBox, QLabel, QDialog, QPushButton, QListWidget
+from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QMessageBox, QLabel, QDialog, QPushButton, QListWidget
 from qgis.utils import iface
 
 from qgis.core import (
@@ -48,15 +48,6 @@ from urllib import request, parse
 import socket
 import requests
 
-#Dataviz:
-import datetime
-import sqlite3
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-
-ssl._create_default_https_context = ssl._create_unverified_context
-
-
 
 # Vérifier la connexion à internet
 try:
@@ -69,109 +60,6 @@ except socket.error:
     QMessageBox.warning(None, 'Avertissement',
                         'Vous n\'êtes actuellement pas connecté à internet. Veuillez vous connecter pour pouvoir utiliser FluxCEN !')
 
-
-
-# class BarChartPopup(QWidget):
-#     def __init__(self, parent=None):
-#         super(BarChartPopup, self).__init__(parent)
-
-#         # Set up the layout
-#         layout = QVBoxLayout()
-#         self.setLayout(layout)
-
-#         # Load data from SQLite database
-#         data = self.load_data_from_database()
-
-#         # Create a single figure
-#         plt.figure(figsize=(12, 8))
-
-#         # Create and display all visualizations
-#         self.create_time_series_plot(data)
-#         self.create_pie_chart(data)
-#         self.create_stacked_bar_chart(data)
-#         self.create_histogram(data)
-
-#         # Display the figure
-#         plt.tight_layout()
-#         plt.show()
-
-#         # Close button
-#         close_button = QPushButton('Close')
-#         close_button.clicked.connect(self.close)
-#         layout.addWidget(close_button)
-
-#     def load_data_from_database(self):
-#         # Connect to the SQLite database
-#         conn = sqlite3.connect('analytics.db')
-#         cursor = conn.cursor()
-
-#         # Execute a query to retrieve data for the visualizations
-#         cursor.execute("SELECT * FROM analytics")
-#         data = cursor.fetchall()
-
-#         # Close the cursor and connection
-#         cursor.close()
-#         conn.close()
-
-#         return data
-
-#     def create_time_series_plot(self, data):
-#         timestamps = [row[1] for row in data]
-
-#         # Create a time series plot
-#         plt.subplot(2, 2, 1)
-#         plt.plot(timestamps, range(len(timestamps)), marker='o')
-#         plt.xlabel('Temps')
-#         plt.ylabel('Nombre de couches chargées depuis FluxCEN')
-#         plt.title("Suivi de l'utilisation de FluxCEN dans le temps")
-#         plt.xticks(rotation=45)
-
-#     def create_pie_chart(self, data):
-#         usernames = [row[2] for row in data]
-#         unique_usernames = list(set(usernames))
-#         counts = [usernames.count(username) for username in unique_usernames]
-
-#         # Create a pie chart
-#         plt.subplot(2, 2, 2)
-#         plt.pie(counts, labels=unique_usernames, autopct='%1.1f%%', startangle=140)
-#         plt.axis('equal')
-#         plt.title('Chargement des couches depuis FluxCEN par utilisateur')
-
-#     def create_stacked_bar_chart(self, data):
-#         # Extract layer names from the data
-#         layer_names = [row[3] for row in data]
-
-#         # Count the number of layer additions for each layer
-#         layer_counts = {}
-#         for layer in layer_names:
-#             layer_counts[layer] = layer_counts.get(layer, 0) + 1
-
-#         # Sort the layers based on their counts
-#         sorted_layers = sorted(layer_counts.items(), key=lambda x: x[1], reverse=True)
-
-#         # Select the top 10 layers
-#         top_layers = dict(sorted_layers[:3])
-
-#         # Create a stacked bar chart for the top 10 layers
-#         plt.subplot(2, 2, 3)
-#         plt.bar(top_layers.keys(), top_layers.values())
-#         plt.xlabel('Nom des couches')
-#         plt.ylabel('Nombre de couches chargées')
-#         plt.title('Top 10 des couches les plus chargées')
-#         plt.xticks(rotation=45)
-
-
-#     def create_histogram(self, data):
-#         # Extract timestamps from the data
-#         timestamps = [row[1] for row in data]
-
-#         # Create a histogram
-#         plt.subplot(2, 2, 4)
-#         plt.hist(timestamps, bins=20, color='skyblue', edgecolor='black')
-#         plt.xlabel('Temps')
-#         plt.ylabel('Nombre de couches chargées')
-#         plt.title('Distribution des chargements de couches en fonction du temps')
-#         plt.xticks(rotation=45)
 
 
 class AuthSelectionDialog(QDialog):
@@ -314,7 +202,7 @@ class FluxCEN:
         """
         # Créer un QDialog (fenêtre personnalisée) et le stocker dans self
         self.welcome_dialog = QDialog()  # Référence persistante
-        self.welcome_dialog.setWindowTitle("Nouvelle version disponible: FluxCEN 4.8 !")
+        self.welcome_dialog.setWindowTitle("Nouvelle version disponible: FluxCEN 5.1 !")
 
         # Créer un layout
         layout = QVBoxLayout()
@@ -971,15 +859,24 @@ class FluxCEN:
         )
 
         uri = QgsDataSourceUri()
-        if not self.apply_authentication_if_needed(uri):
-            return  # Skip if authentication fails
-        print(wms_layer_url)
+        # 1. Essayer sans authentification
         wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
-        if not wms_layer.isValid():
-            print(f"Failed to load WMS layer: {nom_couche}")
+        if wms_layer.isValid():
+            QgsProject.instance().addMapLayer(wms_layer)
             return
 
-        QgsProject.instance().addMapLayer(wms_layer)
+        # 2. Si échec, tenter avec authentification
+        if self.apply_authentication_if_needed(uri):
+            # Il faut ajouter l'authcfg à l'URL si nécessaire
+            wms_layer_url_auth = wms_layer_url + f"&authcfg={uri.authConfigId()}"
+            wms_layer = QgsRasterLayer(wms_layer_url_auth, nom_couche, "wms")
+            if wms_layer.isValid():
+                QgsProject.instance().addMapLayer(wms_layer)
+                return
+            else:
+                print(f"Le rechargement avec authentification a échoué pour : {nom_couche}")
+        else:
+            print(f"Le chargement a échoué, aucune authentification disponible pour : {nom_couche}")
 
 
     def handle_wfs_layer(self, row, nom_couche, nom_technique, url, style_url):
@@ -997,29 +894,26 @@ class FluxCEN:
         uri.setParam("typename", nom_technique)
         uri.setParam("request", "GetFeature")
 
-        # Appliquer l'authentification si nécessaire
-        if not self.apply_authentication_if_needed(uri):
-            return  # Si l'authentification échoue, on abandonne
-
+        # 1. Essayer sans authentification
         wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
-
-        # Si la couche est valide, on l'ajoute
         if wfs_layer.isValid():
             QgsProject.instance().addMapLayer(wfs_layer)
-            # Appliquer le style, si disponible
             if style_url:
                 self.apply_qml_style(wfs_layer, style_url)
+            return
+
+        # 2. Si échec, tenter avec authentification
+        if self.apply_authentication_if_needed(uri):
+            wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
+            if wfs_layer.isValid():
+                QgsProject.instance().addMapLayer(wfs_layer)
+                if style_url:
+                    self.apply_qml_style(wfs_layer, style_url)
+                return
+            else:
+                print(f"Le rechargement avec authentification a échoué pour : {nom_couche}")
         else:
-            # Si le chargement échoue, on peut essayer de recharger avec authentification
-            print(f"Le chargement a échoué, tentative de rechargement avec authentification pour {nom_couche}")
-            if self.apply_authentication_if_needed(uri):
-                wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
-                if wfs_layer.isValid():
-                    QgsProject.instance().addMapLayer(wfs_layer)
-                    if style_url:
-                        self.apply_qml_style(wfs_layer, style_url)
-                else:
-                    print(f"Le rechargement avec authentification a échoué pour : {nom_couche}")
+            print(f"Le chargement a échoué, aucune authentification disponible pour : {nom_couche}")
 
 
 
@@ -1056,7 +950,6 @@ class FluxCEN:
         else:
             QMessageBox.critical(iface.mainWindow(), "Erreur", f"Échec de chargement de la couche PostGIS : {table_name}", QMessageBox.Ok)
 
-        
 
 
     def filtre_dynamique(self, filter_text):
@@ -1071,116 +964,4 @@ class FluxCEN:
 
 
 
-    # def plugin_analytics(self):
-    #     # Get the current timestamp
-    #     timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-    #     # Get the username (Windows session username)
-    #     username = os.getenv('USERNAME')
-
-    #     # Get the current date and time
-    #     current_datetime = datetime.datetime.now()
-
-    #     # Calculate the last insertion time (8 hours ago)
-    #     last_insertion_time = current_datetime - datetime.timedelta(hours=8)
-
-    #     # Check if the SQLite database file exists, if not, create it
-    #     if not os.path.exists('analytics.db'):
-    #         with open('analytics.db', 'w'):
-    #             pass
-
-    #     # Connect to the SQLite database (creates if not exists)
-    #     conn = sqlite3.connect('analytics.db')
-
-    #     # Create a cursor object to execute SQL queries
-    #     cursor = conn.cursor()
-
-    #     # Create the analytics table if it doesn't exist
-    #     cursor.execute('''CREATE TABLE IF NOT EXISTS analytics (
-    #                         id INTEGER PRIMARY KEY,
-    #                         timestamp TEXT,
-    #                         username TEXT,
-    #                         layer_name TEXT,
-    #                         last_insertion_time TEXT,
-    #                         UNIQUE(username, layer_name)
-    #                     )''')
-
-    #     # Extract layer names loaded in QGIS
-    #     layer_names = []
-
-    #     for row in range(self.dlg.tableWidget_2.rowCount()):
-    #         layer_name = self.dlg.tableWidget_2.item(row, 2).text()
-    #         layer_names.append(layer_name)
-
-    #     try:
-    #         # Check the last insertion time for each user and layer combination
-    #         for layer_name in layer_names:
-    #             cursor.execute(
-    #                 "SELECT last_insertion_time FROM analytics WHERE username = ? AND layer_name = ?",
-    #                 (username, layer_name)
-    #             )
-    #             last_insertion_time = cursor.fetchone()
-
-    #             # If last insertion time is None or more than 8 hours ago, insert data into the database
-    #             if not last_insertion_time or current_datetime - datetime.datetime.strptime(last_insertion_time[0], '%Y-%m-%d %H:%M:%S') > datetime.timedelta(hours=8):
-    #                 cursor.execute(
-    #                     "INSERT INTO analytics (timestamp, username, layer_name, last_insertion_time) VALUES (?, ?, ?, ?)",
-    #                     (timestamp, username, layer_name, timestamp)
-    #                 )
-
-    #         # Commit the transaction
-    #         conn.commit()
-    #         print('Data successfully inserted into the database')
-
-    #     except sqlite3.Error as e:
-    #         # Rollback the transaction in case of error
-    #         conn.rollback()
-    #         print('Error:', e)
-
-    #     finally:
-    #         # Close the cursor and database connection
-    #         cursor.close()
-    #         conn.close()
-
-    
-
 flux_cen_instance = FluxCEN(iface)
-
-
-    # def dataviz_popup(self):
-
-    #     self.dialog = BarChartPopup()  # +++ - self
-
-# from owslib.wfs import WebFeatureService
-# import csv
-
-# wfs = WebFeatureService(url='https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs')
-# agriculture = list(wfs.contents)
-# with open('C:/Users/Romain/Desktop/test.csv', "a+", encoding="ISO-8859-1", newline='') as f:
-#     writer = csv.writer(f)
-#     for row in agriculture:
-#         writer.writerow(row.split())
-#
-# from owslib.wms import WebMapService
-# wms = WebMapService('https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms')
-# fonds_carto = list(wms.contents)
-# with open('C:/Users/Romain/Desktop/test.csv', "a+", encoding="ISO-8859-1", newline='') as f:
-#     writer = csv.writer(f)
-#     for row in fonds_carto:
-#         writer.writerow(row.split())
-#
-# import csv
-#
-# fluxWMS = ['AGG_TMM', '16-014_Brandes_de_Soyaux_2020-05', '17IMERIS_Bois-Charles_Vallée-du-Larry_2022_01', '17IMERIS_Grand-Champ_2022-01', '19PTOR_MNS_filtre_futurs_travaux_2021-10_L93', '19PTOR_MNS_filtre_travaux_realises_2021-10_L93', '19PTOR_ortho_2021-10_L93', '23CELI_marais_du_chancelier_2022_03_24', '23CLAM_Rocher_de_Clamouzat_2020-11', '23DIAB_lande_du_pont_du_diable_nord_2021-10_L93', '23DIAB_lande_du_pont_du_diable_sud_2021-10_L93', '23LAND_RNN_etang_des_landes_2020-08_L93', '33_Lagune-108-2021-08', '79BLVI_Blanchère-de-Viennay_2021-10', '79VGAT_Vallée-du-Gâteau_Pressigny_2020-02', '79VGAT_Vallée-du-Gâteau_Pressigny_2021-10', '86-001_TMM_CA-CD_2020-07', '86-500_Clain-sud_Etang-du-Pin', '86_AT_Chalandray_2021-10', '87CREN_siege_saint_gence_2021-09', '87GRLA_grandes_landes_2021-09-24', '87SANA_sanadie_2021-09-24', 'a_16_030_Prairies_de_Vouharte_2019_09', 'a_17_474_Estauaire_de_la_Gironde_Les_Pr_s_de_la_Rouille_2019_08', 'a_17_474_Estauaire_de_la_Gironde_Moulin_Rompu_2019_08', 'a_17_474_Estuaire_de_la_Gironde_Zone_Humide_de_la_Motte_Ronde_2021_04', 'a_17_IMERIS_Carriere_du_Planton_2021_08_12', 'a_17_LGV_Ragouillis_2021_08_12', 'a_33_Lagune_058_2021_08', 'a_33_Lagune_070_2021_08', 'a_33_Lagune_094_2021_08', 'a_33_Lagune_162_2021_08', 'a_33_Lagune_165_2021_08', 'a_33_Lagunes_207_208_209_2021_08', 'a_79_001_Clussais_la_Pommeraie_2020_11', 'a_79_008_Landes_de_L_Hopiteau_2019_09', 'a_79_020_Bessines_1_avant_travaux_2019_10', 'a_79_020_Bessines_2_pendant_travaux_2019_11', 'a_79_020_Bessines_3_apres_travaux_2020_12', 'a_79_044_Carriere_des_Landes_2020_09', 'a_79_AT_Vernoux_en_Gatine_2020_09', 'a_79_Sources_de_la_Sevre_Niortaise_Pierre_levee_2020_09', 'a_86_001_TMM_AA_2020_06', 'a_86_001_TMM_AB_2020_06', 'a_86_001_TMM_AC_2020_06', 'a_86_001_TMM_AD_2020_06', 'a_86_001_TMM_AE_2020_06', 'a_86_001_TMM_AF_2020_06', 'a_86_001_TMM_AG_2020_07', 'a_86_001_TMM_BA_2020_06', 'a_86_001_TMM_BB_2020_06', 'a_86_001_TMM_BC_2020_06', 'a_86_001_TMM_BD_2020_06', 'a_86_001_TMM_BE_2020_07', 'a_86_001_TMM_BF_2021_06', 'a_86_001_TMM_CB_2020_07', 'a_86_001_TMM_CC_2020_07', 'a_86_001_TMM_CC_2021_06', 'a_86_001_TMM_CD_2021_06', 'a_86_001_TMM_CE_2020_07', 'a_86_001_TMM_CF_2020_09', 'a_86_001_TMM_DA_2020_07', 'a_86_001_TMM_DB_2020_09', 'a_86_001_TMM_DC_2021_06', 'a_86_001_TMM_EA_2020_06', 'a_86_001_TMM_EB_2020_06', 'a_86_001_TMM_EC_2020_06', 'a_86_001_TMM_FA_2020_06', 'a_86_001_TMM_FB_2020_07', 'a_86_001_TMM_FC_2020_07', 'a_86_001_TMM_FC_2021_06', 'a_86_001_TMM_HA_2020_09', 'a_86_001_TMM_IA_2020_06', 'a_86_001_TMM_IB_2020_06', 'a_86_001_TMM_IC_2020_06', 'a_86_001_TMM_JA_2020_07', 'a_86_001_TMM_JB_2020_07', 'a_86_001_TMM_JC_2020_07', 'a_86_001_TMM_JE_2020_07', 'a_86_001_TMM_KA_2020_07', 'a_86_001_TMM_KB_2020_07', 'a_86_003_Falunieres_de_Moulin_Pochas_2019_09', 'a_86_006_Landes_et_pelouses_de_Lussac_Sillars_2019_08', 'a_86_011_Landes_de_Sainte_Marie_2019_09', 'a_86_025_Marais_des_Ragouillis_2020_11', 'a_86_025_Marais_des_Ragouillis_2021_02', 'a_86_026_Etangs_Baro_2019_09', 'a_86_029_Vallee_de_la_Longere_2019_09', 'a_86_037_Tourbiere_des_Regeasses_2021_06', 'a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2019_09', 'a_86_038_Vallees_de_la_Vienne_et_du_Clain_Persac_2020_12', 'a_86_052_Fontaine_le_Comte_nord_2020_11', 'a_86_052_Fontaine_le_Comte_sud_2020_11', 'a_86_054_Vallee_de_la_Vonne_2020_11', 'a_86_058_Carriere_de_Puy_Herve_2021_02_09', 'a_86_058_Carriere_de_Puy_Herve_2021_02_25', 'a_86_060_Bocage_de_la_Geoffronniere_2020_11', 'a_86_Le_Cormier_2021_05']
-#
-# with open('C:/Users/Romain/Desktop/test.csv', "a+", encoding="ISO-8859-1", newline='') as f:
-#     writer = csv.writer(f)
-#     for row in fluxWMS:
-#         writer.writerow(row.split())
-
-#### Récupération des métadonnées des couches quand disponibles:
-
-# from owslib.wms import WebMapService
-# wms = WebMapService('http://geoservices.brgm.fr/geologie?service=WMS+Raster', version='1.1.1')
-# print(list(wms.contents))
-# print(wms['IDPR'].abstract)
