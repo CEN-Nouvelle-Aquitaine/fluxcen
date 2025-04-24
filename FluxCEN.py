@@ -202,7 +202,7 @@ class FluxCEN:
         """
         # Créer un QDialog (fenêtre personnalisée) et le stocker dans self
         self.welcome_dialog = QDialog()  # Référence persistante
-        self.welcome_dialog.setWindowTitle("Nouvelle version disponible: FluxCEN 5.1 !")
+        self.welcome_dialog.setWindowTitle("Nouvelle version disponible !")
 
         # Créer un layout
         layout = QVBoxLayout()
@@ -859,24 +859,33 @@ class FluxCEN:
         )
 
         uri = QgsDataSourceUri()
-        # 1. Essayer sans authentification
-        wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
+        # Toujours appliquer une config d'authentification QGIS si dispo
+        managerAU = QgsApplication.authManager()
+        auth_configs = managerAU.availableAuthMethodConfigs()
+        if auth_configs:
+            # Utiliser la première config trouvée
+            first_authcfg = list(auth_configs.keys())[0]
+            wms_layer_url_auth = wms_layer_url + f"&authcfg={first_authcfg}"
+            wms_layer = QgsRasterLayer(wms_layer_url_auth, nom_couche, "wms")
+        else:
+            # Pas de config d'authentification : charger sans
+            wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
+            QMessageBox.information(
+                iface.mainWindow(),
+                "Attention",
+                "Aucune configuration d'authentification QGIS n'a été trouvée.\n"
+                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître."
+            )
+
         if wms_layer.isValid():
             QgsProject.instance().addMapLayer(wms_layer)
-            return
-
-        # 2. Si échec, tenter avec authentification
-        if self.apply_authentication_if_needed(uri):
-            # Il faut ajouter l'authcfg à l'URL si nécessaire
-            wms_layer_url_auth = wms_layer_url + f"&authcfg={uri.authConfigId()}"
-            wms_layer = QgsRasterLayer(wms_layer_url_auth, nom_couche, "wms")
-            if wms_layer.isValid():
-                QgsProject.instance().addMapLayer(wms_layer)
-                return
-            else:
-                print(f"Le rechargement avec authentification a échoué pour : {nom_couche}")
         else:
-            print(f"Le chargement a échoué, aucune authentification disponible pour : {nom_couche}")
+            QMessageBox.critical(
+                iface.mainWindow(),
+                "Erreur",
+                f"Impossible de charger la couche '{nom_couche}'."
+            )
+
 
 
     def handle_wfs_layer(self, row, nom_couche, nom_technique, url, style_url):
@@ -894,26 +903,35 @@ class FluxCEN:
         uri.setParam("typename", nom_technique)
         uri.setParam("request", "GetFeature")
 
-        # 1. Essayer sans authentification
-        wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
+        # Toujours appliquer une config d'authentification QGIS si dispo
+        managerAU = QgsApplication.authManager()
+        auth_configs = managerAU.availableAuthMethodConfigs()
+        if auth_configs:
+            # Utiliser la première config trouvée
+            first_authcfg = list(auth_configs.keys())[0]
+            uri.setAuthConfigId(first_authcfg)
+            wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
+        else:
+            # Pas de config d'authentification : charger sans
+            wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
+            QMessageBox.information(
+                iface.mainWindow(),
+                "Attention",
+                "Aucune configuration d'authentification QGIS n'a été trouvée.\n"
+                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître."
+            )
+
         if wfs_layer.isValid():
             QgsProject.instance().addMapLayer(wfs_layer)
             if style_url:
                 self.apply_qml_style(wfs_layer, style_url)
-            return
-
-        # 2. Si échec, tenter avec authentification
-        if self.apply_authentication_if_needed(uri):
-            wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
-            if wfs_layer.isValid():
-                QgsProject.instance().addMapLayer(wfs_layer)
-                if style_url:
-                    self.apply_qml_style(wfs_layer, style_url)
-                return
-            else:
-                print(f"Le rechargement avec authentification a échoué pour : {nom_couche}")
         else:
-            print(f"Le chargement a échoué, aucune authentification disponible pour : {nom_couche}")
+            QMessageBox.critical(
+                iface.mainWindow(),
+                "Erreur",
+                f"Impossible de charger la couche '{nom_couche}'."
+            )
+
 
 
 
