@@ -18,15 +18,15 @@ for path in ('config/yaml/links_example.yaml', 'config/yaml/config_db_example.ya
             yaml.safe_load(f)
         print(f'{path} OK')
     except yaml.YAMLError as exc:
-        errors.append(f'{path}: erreur de syntaxe YAML — {exc}')
+        errors.append(f'{path}: erreur de syntaxe YAML - {exc}')
     except FileNotFoundError:
         errors.append(f'{path}: fichier introuvable')
 
 for path in ('config/yaml/links.yaml', 'config/yaml/config_db.yaml'):
     if os.path.exists(path):
-        errors.append(f'{path}: fichier commité — ne doit pas être versionné (voir .gitignore)')
+        errors.append(f'{path}: fichier commité - ne doit pas être versionné (voir .gitignore)')
     else:
-        print(f'{path} OK — non commité')
+        print(f'{path} non commité - OK')
 
 if errors:
     for e in errors:
