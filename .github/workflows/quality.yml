@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.11'
 
@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          pylint FluxCEN.py FluxCEN_dialog.py __init__.py plugin_upload.py \
+          pylint --recursive=y . \
             --reports=n \
             --rcfile=pylintrc \
             --disable=E0401 2>&1 | tee /tmp/pylint.log
@@ -57,10 +57,16 @@ jobs:
         run: |
           set -o pipefail
           GITLEAKS_VERSION=8.18.4
+          ARCHIVE="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          CHECKSUMS="gitleaks_${GITLEAKS_VERSION}_checksums.txt"
           curl -sSfL \
-            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
-            -o /tmp/gitleaks.tar.gz
-          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/${ARCHIVE}" \
+            -o "/tmp/${ARCHIVE}"
+          curl -sSfL \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/${CHECKSUMS}" \
+            -o "/tmp/${CHECKSUMS}"
+          (cd /tmp && sha256sum --check --ignore-missing "${CHECKSUMS}")
+          tar -xzf "/tmp/${ARCHIVE}" -C /tmp gitleaks
           sudo mv /tmp/gitleaks /usr/local/bin/gitleaks
           gitleaks detect --source . --log-opts="origin/main..HEAD" 2>&1 | tee /tmp/gitleaks.log
 
