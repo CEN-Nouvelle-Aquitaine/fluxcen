@@ -12,6 +12,9 @@ concurrency:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
@@ -31,7 +34,6 @@ jobs:
         id: pylint
         continue-on-error: true
         run: |
-          set -o pipefail
           pylint --recursive=y . \
             --reports=n \
             --rcfile=pylintrc \
@@ -40,22 +42,17 @@ jobs:
       - name: Metadata — validate version format
         id: metadata
         continue-on-error: true
-        run: |
-          set -o pipefail
-          python .github/scripts/check_metadata.py 2>&1 | tee /tmp/metadata.log
+        run: python .github/scripts/check_metadata.py 2>&1 | tee /tmp/metadata.log
 
       - name: YAML — validate example files and detect committed configs
         id: yaml_check
         continue-on-error: true
-        run: |
-          set -o pipefail
-          python .github/scripts/check_yaml.py 2>&1 | tee /tmp/yaml.log
+        run: python .github/scripts/check_yaml.py 2>&1 | tee /tmp/yaml.log
 
       - name: Security — gitleaks scan
         id: gitleaks
         continue-on-error: true
         run: |
-          set -o pipefail
           GITLEAKS_VERSION=8.18.4
           ARCHIVE="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
           CHECKSUMS="gitleaks_${GITLEAKS_VERSION}_checksums.txt"
@@ -73,9 +70,7 @@ jobs:
       - name: Resources — validate .qrc and check resources.py sync
         id: resources
         continue-on-error: true
-        run: |
-          set -o pipefail
-          python .github/scripts/check_resources.py 2>&1 | tee /tmp/resources.log
+        run: python .github/scripts/check_resources.py 2>&1 | tee /tmp/resources.log
 
       - name: Summary
         if: always()
