@@ -66,16 +66,6 @@ def parse_pylint(log_text):
     return severities, rules.most_common(5), score
 
 
-def render_table(out):
-    out.write('## État des lieux qualité\n\n')
-    out.write('| Étape | Statut |\n')
-    out.write('|---|---|\n')
-    for step_id, label in STEPS:
-        outcome = os.environ.get(f'OUTCOME_{step_id}', '')
-        out.write(f'| {label} | {status(outcome)} |\n')
-    out.write('\n')
-
-
 def render_pylint_summary(out, log_text):
     severities, top_rules, score = parse_pylint(log_text)
     if not severities and not score:
@@ -95,8 +85,9 @@ def render_pylint_summary(out, log_text):
 
 
 def render_details(out, step_id, label):
+    outcome = os.environ.get(f'OUTCOME_{step_id}', '')
     log_path = LOG_DIR / f'{step_id}.log'
-    out.write(f'<details><summary>Détails — {label}</summary>\n\n')
+    out.write(f'<details><summary>{label} — {status(outcome)}</summary>\n\n')
     if not log_path.exists():
         out.write('_Aucun log produit._\n\n</details>\n\n')
         return
@@ -112,7 +103,7 @@ def render_details(out, step_id, label):
 
 def main():
     out = sys.stdout
-    render_table(out)
+    out.write('## État des lieux qualité\n\n')
     for step_id, label in STEPS:
         render_details(out, step_id, label)
 
