@@ -5,6 +5,10 @@ on:
     branches: [main]
     types: [opened, synchronize, reopened]
 
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality:
     runs-on: ubuntu-latest
