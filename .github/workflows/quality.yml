@@ -24,28 +24,73 @@ jobs:
           sudo apt-get install -y --no-install-recommends pyqt5-dev-tools
 
       - name: Lint — pylint
+        id: pylint
         continue-on-error: true
         run: |
           pylint FluxCEN.py FluxCEN_dialog.py __init__.py plugin_upload.py \
             --reports=n \
             --rcfile=pylintrc \
-            --disable=E0401
+            --disable=E0401 2>&1 | tee /tmp/pylint.log
 
       - name: Metadata — validate version format
+        id: metadata
         continue-on-error: true
-        run: python .github/scripts/check_metadata.py
+        run: python .github/scripts/check_metadata.py 2>&1 | tee /tmp/metadata.log
 
       - name: YAML — validate example files and detect committed configs
+        id: yaml_check
         continue-on-error: true
-        run: python .github/scripts/check_yaml.py
+        run: python .github/scripts/check_yaml.py 2>&1 | tee /tmp/yaml.log
 
       - name: Security — gitleaks scan
+        id: gitleaks
         continue-on-error: true
         run: |
-          curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/main/scripts/install.sh \
-            | sh -s -- -b /usr/local/bin v8.18.4
-          gitleaks detect --source . --log-opts="origin/main..HEAD"
+          GITLEAKS_VERSION=8.18.4
+          curl -sSfL \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            -o /tmp/gitleaks.tar.gz
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+          sudo mv /tmp/gitleaks /usr/local/bin/gitleaks
+          gitleaks detect --source . --log-opts="origin/main..HEAD" 2>&1 | tee /tmp/gitleaks.log
 
       - name: Resources — validate .qrc and check resources.py sync
+        id: resources
         continue-on-error: true
-        run: python .github/scripts/check_resources.py
+        run: python .github/scripts/check_resources.py 2>&1 | tee /tmp/resources.log
+
+      - name: Summary
+        if: always()
+        run: |
+          status() {
+            case "$1" in
+              success) echo "OK" ;;
+              failure) echo "Problèmes détectés" ;;
+              skipped) echo "Ignoré" ;;
+              *) echo "$1" ;;
+            esac
+          }
+          {
+            echo "## État des lieux qualité"
+            echo ""
+            echo "| Étape | Statut |"
+            echo "|---|---|"
+            echo "| Lint — pylint | $(status '${{ steps.pylint.outcome }}') |"
+            echo "| Metadata | $(status '${{ steps.metadata.outcome }}') |"
+            echo "| YAML | $(status '${{ steps.yaml_check.outcome }}') |"
+            echo "| Security — gitleaks | $(status '${{ steps.gitleaks.outcome }}') |"
+            echo "| Resources | $(status '${{ steps.resources.outcome }}') |"
+            echo ""
+            for log in pylint metadata yaml gitleaks resources; do
+              if [ -f "/tmp/${log}.log" ]; then
+                echo "<details><summary>Détails — ${log}</summary>"
+                echo ""
+                echo '```'
+                cat "/tmp/${log}.log"
+                echo '```'
+                echo ""
+                echo "</details>"
+                echo ""
+              fi
+            done
+          } >> "$GITHUB_STEP_SUMMARY"

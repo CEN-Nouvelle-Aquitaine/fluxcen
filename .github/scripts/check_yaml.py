@@ -25,6 +25,8 @@ for path in ('config/yaml/links_example.yaml', 'config/yaml/config_db_example.ya
 for path in ('config/yaml/links.yaml', 'config/yaml/config_db.yaml'):
     if os.path.exists(path):
         errors.append(f'{path}: fichier commité — ne doit pas être versionné (voir .gitignore)')
+    else:
+        print(f'{path} OK — non commité')
 
 if errors:
     for e in errors:
