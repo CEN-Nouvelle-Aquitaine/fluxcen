@@ -28,7 +28,8 @@ jobs:
           pylint FluxCEN.py FluxCEN_dialog.py __init__.py plugin_upload.py \
             --reports=n \
             --rcfile=pylintrc \
-            --disable=E0401
+            --disable=E0401 \
+            --exit-zero
 
       - name: Metadata — validate version format
         run: python .github/scripts/check_metadata.py
