@@ -27,6 +27,7 @@ jobs:
         id: pylint
         continue-on-error: true
         run: |
+          set -o pipefail
           pylint FluxCEN.py FluxCEN_dialog.py __init__.py plugin_upload.py \
             --reports=n \
             --rcfile=pylintrc \
@@ -35,17 +36,22 @@ jobs:
       - name: Metadata — validate version format
         id: metadata
         continue-on-error: true
-        run: python .github/scripts/check_metadata.py 2>&1 | tee /tmp/metadata.log
+        run: |
+          set -o pipefail
+          python .github/scripts/check_metadata.py 2>&1 | tee /tmp/metadata.log
 
       - name: YAML — validate example files and detect committed configs
         id: yaml_check
         continue-on-error: true
-        run: python .github/scripts/check_yaml.py 2>&1 | tee /tmp/yaml.log
+        run: |
+          set -o pipefail
+          python .github/scripts/check_yaml.py 2>&1 | tee /tmp/yaml.log
 
       - name: Security — gitleaks scan
         id: gitleaks
         continue-on-error: true
         run: |
+          set -o pipefail
           GITLEAKS_VERSION=8.18.4
           curl -sSfL \
             "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
@@ -57,7 +63,9 @@ jobs:
       - name: Resources — validate .qrc and check resources.py sync
         id: resources
         continue-on-error: true
-        run: python .github/scripts/check_resources.py 2>&1 | tee /tmp/resources.log
+        run: |
+          set -o pipefail
+          python .github/scripts/check_resources.py 2>&1 | tee /tmp/resources.log
 
       - name: Summary
         if: always()
