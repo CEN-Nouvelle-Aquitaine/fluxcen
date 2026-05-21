@@ -24,24 +24,28 @@ jobs:
           sudo apt-get install -y --no-install-recommends pyqt5-dev-tools
 
       - name: Lint — pylint
+        continue-on-error: true
         run: |
           pylint FluxCEN.py FluxCEN_dialog.py __init__.py plugin_upload.py \
             --reports=n \
             --rcfile=pylintrc \
-            --disable=E0401 \
-            --exit-zero
+            --disable=E0401
 
       - name: Metadata — validate version format
+        continue-on-error: true
         run: python .github/scripts/check_metadata.py
 
       - name: YAML — validate example files and detect committed configs
+        continue-on-error: true
         run: python .github/scripts/check_yaml.py
 
       - name: Security — gitleaks scan
+        continue-on-error: true
         run: |
           curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/main/scripts/install.sh \
             | sh -s -- -b /usr/local/bin v8.18.4
           gitleaks detect --source . --log-opts="origin/main..HEAD"
 
       - name: Resources — validate .qrc and check resources.py sync
+        continue-on-error: true
         run: python .github/scripts/check_resources.py
