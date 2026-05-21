@@ -1,0 +1,46 @@
+name: Quality
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pylint pyyaml
+          sudo apt-get install -y --no-install-recommends pyqt5-dev-tools
+
+      - name: Lint — pylint
+        run: |
+          pylint FluxCEN.py FluxCEN_dialog.py __init__.py plugin_upload.py \
+            --reports=n \
+            --rcfile=pylintrc \
+            --disable=E0401
+
+      - name: Metadata — validate version format
+        run: python .github/scripts/check_metadata.py
+
+      - name: YAML — validate example files and detect committed configs
+        run: python .github/scripts/check_yaml.py
+
+      - name: Security — gitleaks scan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/main/scripts/install.sh \
+            | sh -s -- -b /usr/local/bin v8.18.4
+          gitleaks detect --source . --log-opts="origin/main..HEAD"
+
+      - name: Resources — validate .qrc and check resources.py sync
+        run: python .github/scripts/check_resources.py
