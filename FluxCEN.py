@@ -980,6 +980,3 @@ class FluxCEN:
                 if not match:
                     break
 
-
-
-flux_cen_instance = FluxCEN(iface)
