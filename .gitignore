@@ -1,2 +1,6 @@
+.venv/
+__pycache__/
+.vscode/
+.claude
 config_db.yaml
 links.yaml
