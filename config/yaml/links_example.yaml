@@ -1,7 +1,18 @@
+# URLs des ressources téléchargées par le plugin.
+# Pour un dépôt privé, faire pointer ces URLs vers la bibliothèque SharePoint / Microsoft Graph
+# (ex. https://graph.microsoft.com/v1.0/sites/<site-id>/drive/root:/fluxcen/flux.csv:/content)
 github_urls:
   flux_csv: "link_to_the_csv_file (your_flux.csv)"
   styles_couches: "link_to_the_layer_styles_file (your styles_couches folder)"
   info_changelog: "link_to_the_changelog_html (if needed)"
 depot_plugins_url:
   last_version: "link_to_the_plugin_version (.txt)"
-  
+
+# Authentification pour l'accès aux ressources privées.
+# `authcfg` = identifiant (7 caractères) d'une configuration d'authentification enregistrée dans le
+# gestionnaire d'authentification QGIS (Préférences > Authentification), typiquement de type OAuth2
+# pointant vers Microsoft Entra ID (app "public client/native", redirect http://localhost:7070,
+# permission déléguée Files.Read.All / Sites.Read.All).
+# Laisser vide ("") pour un accès anonyme (comportement historique, dépôt public).
+auth:
+  authcfg: ""

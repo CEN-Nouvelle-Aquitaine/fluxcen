@@ -59,6 +59,27 @@ Si l'accès à la majorité des ressources reste public, certaines peuvent être
 Cette authentification est gérée via le serveur cartographique qui génère les flux.
 Pour y accéder, il faut créer en amont une authentification dans QGIS. L'ouverture des données protégées se fera alors à partir de la première authentification enregistrée dans QGIS (pas de gestion multi-authentification pour le moment)
 
+## Servir le catalogue (flux.csv, styles, changelog) depuis un dépôt privé
+
+Par défaut, `flux.csv`, les styles `.qml`, le changelog et le fichier de version sont téléchargés
+via les URLs de `config/yaml/links.yaml`, sans authentification (dépôt public).
+
+Pour héberger ces ressources en privé (p. ex. bibliothèque SharePoint / Microsoft Graph) tout en
+laissant chaque utilisateur s'authentifier avec son propre compte Microsoft 365 :
+
+1. **Enregistrer une application dans Microsoft Entra ID** : type *Public client / native*, URI de
+   redirection `http://localhost:7070`, permission déléguée `Files.Read.All` (ou `Sites.Read.All`).
+2. **Créer une configuration d'authentification OAuth2 dans QGIS** (Préférences → Authentification)
+   pointant vers les endpoints Entra de l'organisation ; noter son identifiant à 7 caractères.
+3. **Déposer les ressources** (`flux.csv`, dossier `styles_couches/`, `info_changelog.html`, fichier
+   de version) dans la bibliothèque SharePoint.
+4. **Renseigner `config/yaml/links.yaml`** : mettre les URLs Graph/SharePoint dans `github_urls` /
+   `depot_plugins_url`, et l'identifiant de configuration dans `auth.authcfg`.
+
+Le plugin télécharge alors toutes les ressources via la pile réseau QGIS en appliquant
+automatiquement le jeton (acquis et rafraîchi par QGIS). Si `auth.authcfg` est laissé vide, l'accès
+reste anonyme (comportement historique). Voir `config/yaml/links_example.yaml` pour le modèle.
+
 ## Interface du plugin:
 
 <img align="center" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icons/fluxcen_interface.PNG  width="600"/>

@@ -28,7 +28,8 @@ from qgis.utils import iface
 
 from qgis.core import (
     Qgis, QgsApplication, QgsRasterLayer, QgsVectorLayer,
-    QgsProject, QgsDataSourceUri)
+    QgsProject, QgsDataSourceUri, QgsBlockingNetworkRequest)
+from qgis.PyQt.QtNetwork import QNetworkRequest
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -42,11 +43,7 @@ import csv
 import os
 import io
 import re
-import ssl
-import urllib
-from urllib import request, parse
 import socket
-import requests
 
 
 # Vérifier la connexion à internet
@@ -162,8 +159,8 @@ class FluxCEN:
             self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
             return
         
-        url_open = urllib.request.urlopen(flux_csv_url)
-        colonnes_flux = csv.DictReader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
+        flux_csv_data = self._fetch_bytes(flux_csv_url)
+        colonnes_flux = csv.DictReader(io.StringIO(flux_csv_data.decode('utf-8')), delimiter=';')
 
         mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
         categories = list(set(mots_cles))
@@ -178,7 +175,7 @@ class FluxCEN:
         metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
         infos_metadonnees = metadonnees_plugin.readlines()
 
-        derniere_version = urllib.request.urlopen(last_version_url)
+        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url))
         num_last_version = derniere_version.readlines()[0].decode("utf-8")
 
         # Connect the itemClicked signal to the open_url function
@@ -227,10 +224,7 @@ class FluxCEN:
 
         try:
             _, _, _, info_changelog = self.load_urls('config/yaml/links.yaml')
-            fp = urllib.request.urlopen(info_changelog)
-            mybytes = fp.read()
-            html_changelog = mybytes.decode("utf8")
-            fp.close()
+            html_changelog = self._fetch_bytes(info_changelog).decode("utf8")
             changelog_label.setText(html_changelog)
             changelog_label.setFont(QFont("Calibri", weight=QFont.Bold))
         except Exception as e:
@@ -268,7 +262,7 @@ class FluxCEN:
         # Charger la dernière version depuis l'URL
         try:
             _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
-            derniere_version = urllib.request.urlopen(last_version_url)
+            derniere_version = io.BytesIO(self._fetch_bytes(last_version_url))
             num_last_version = derniere_version.readlines()[0].decode("utf-8").strip()  # Récupérer la dernière version disponible
         except Exception as e:
             self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
@@ -486,7 +480,39 @@ class FluxCEN:
         last_version_url = depot_plugins_url.get('last_version')
 
         return flux_csv_url, last_version_url, styles_couches, info_changelog
-    
+
+    def _authcfg_id(self):
+        """Retourne l'identifiant de configuration d'authentification QGIS à utiliser pour
+        télécharger les ressources (OAuth2 Microsoft Entra ID), ou une chaîne vide si aucune
+        n'est configurée (accès anonyme, comportement historique).
+
+        L'identifiant est lu depuis la clé `auth.authcfg` de `config/yaml/links.yaml`.
+        """
+        try:
+            config_path = os.path.join(self.plugin_path, 'config/yaml/links.yaml')
+            with open(config_path, 'r') as file:
+                config = yaml.safe_load(file) or {}
+            return (config.get('auth', {}) or {}).get('authcfg', '') or ''
+        except Exception:
+            return ''
+
+    def _fetch_bytes(self, url):
+        """Télécharge le contenu d'une URL via la pile réseau QGIS.
+
+        Si une configuration d'authentification est renseignée (`auth.authcfg` dans
+        links.yaml), le jeton correspondant (p. ex. OAuth2 Microsoft Entra ID) est appliqué
+        automatiquement et rafraîchi par QGIS. Sans configuration, la requête reste un simple
+        GET anonyme (comportement historique). Retourne les octets bruts de la ressource.
+        """
+        blocking = QgsBlockingNetworkRequest()
+        authcfg = self._authcfg_id()
+        if authcfg:
+            blocking.setAuthCfg(authcfg)
+        err = blocking.get(QNetworkRequest(QUrl(url)))
+        if err != QgsBlockingNetworkRequest.NoError:
+            raise IOError(u"Échec du téléchargement de %s : %s" % (url, blocking.errorMessage()))
+        return bytes(blocking.reply().content())
+
 
     def suppression_flux(self):
         self.dlg.tableWidget_2.removeRow(self.dlg.tableWidget_2.currentRow())
@@ -544,8 +570,8 @@ class FluxCEN:
         flux_csv_url, _, _, _ = self.load_urls('config/yaml/links.yaml')
 
         def csv_import(url):
-            url_open = urllib.request.urlopen(url)
-            csvfile = csv.reader(io.TextIOWrapper(url_open, encoding='utf8'), delimiter=';')
+            csv_data = self._fetch_bytes(url)
+            csvfile = csv.reader(io.StringIO(csv_data.decode('utf-8')), delimiter=';')
             #on ne lit pas la première ligne correspondant aux noms des colonnes avec next()
             next(csvfile)
             return csvfile
@@ -695,9 +721,8 @@ class FluxCEN:
         """
 
         try:
-            # Récupération des styles depuis url github
-            response = request.urlopen(style_url)
-            style_data = response.read()
+            # Récupération des styles depuis l'URL configurée (accès authentifié si activé)
+            style_data = self._fetch_bytes(style_url)
 
             #"Décorticage" du style QML en utilisant QDomDocument
             document = QDomDocument()
