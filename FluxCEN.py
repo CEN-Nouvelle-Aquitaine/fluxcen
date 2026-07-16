@@ -22,8 +22,8 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
-from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon, QPixmap
-from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QMessageBox, QLabel, QDialog, QPushButton, QListWidget
+from qgis.PyQt.QtGui import QDesktopServices, QStandardItemModel, QStandardItem, QIcon
+from qgis.PyQt.QtWidgets import QAbstractItemView, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QMessageBox, QDialog, QPushButton, QListWidget
 from qgis.utils import iface
 
 from qgis.core import (
@@ -366,7 +366,6 @@ class FluxCEN:
         
         # Extraire les URL pour chaque clé
         github_urls = config.get('github_urls', {})
-        depot_plugins_url = config.get('depot_plugins_url', {})
 
         # Accéder aux sous-clés spécifiques
         flux_csv_url = github_urls.get('flux_csv')  # Utilisation correcte de la clé 'flux_csv'
