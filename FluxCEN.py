@@ -174,6 +174,9 @@ class FluxCEN:
         layout.addWidget(self.dlg.lineEdit)
         self.dlg.lineEdit.mousePressEvent = self._mousePressEvent
 
+        # Connect the itemClicked signal to the open_url function
+        self.dlg.tableWidget.itemClicked.connect(self.open_url)
+
     def _mousePressEvent(self, event):
         self.dlg.lineEdit.setText("")
         self.dlg.lineEdit.mousePressEvent = None
