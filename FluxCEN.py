@@ -34,6 +34,7 @@ from qgis.core import (
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
+from .core.logger import log
 
 import yaml
 import os.path, os
@@ -159,7 +160,11 @@ class FluxCEN:
         try:
             flux_csv_url, last_version_url, _, _= self.load_urls('config/yaml/links.yaml')
         except Exception as e:
-            self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
+            log(
+                f"Failed to load URLs: {e}",
+                Qgis.MessageLevel.Critical,
+                True
+            )
             return
         
         url_open = urllib.request.urlopen(flux_csv_url)
@@ -683,7 +688,10 @@ class FluxCEN:
                 self.chargement_flux()
 
             if self.QMBquestion == QMessageBox.No:
-                print("Annulation du chargement des couches")
+                log(
+                    "Annulation du chargement des couches",
+                    Qgis.MessageLevel.Info
+                )
 
         if self.dlg.tableWidget_2.rowCount() <= 3:
             self.chargement_flux()
@@ -702,21 +710,31 @@ class FluxCEN:
             #"Décorticage" du style QML en utilisant QDomDocument
             document = QDomDocument()
             if not document.setContent(style_data):
-                print("Echec de l'ouverture du style QML.")
+                log(
+                    "Echec de l'ouverture du style QML",
+                    Qgis.MessageLevel.Warning
+                )
                 return
 
             # on applique le style au flux
             if not wfs_layer.importNamedStyle(document):
-                print(f"Echec, le style n'a pas pu être appliqué au flux: {wfs_layer.name()}")
+                log(
+                    f"Echec, le style n'a pas pu être appliqué au flux: {wfs_layer.name()}",
+                    Qgis.MessageLevel.Warning
+                )
             else:
-                print(f"Le style a bien été appliqué au flux: {wfs_layer.name()}")
-
+                log(
+                    f"Le style a bien été appliqué au flux: {wfs_layer.name()}",
+                    Qgis.MessageLevel.Success
+                )
             #Actualisation de la couche pour prendre en compte le nouveau style
             wfs_layer.triggerRepaint()
 
         except Exception as e:
-            print(f"Problème dans l'application du style: {e}")
-
+            log(
+                f"Problème dans l'application du style: {e}",
+                Qgis.MessageLevel.Warning
+            )
 
     def choose_default_authentication(self):
         managerAU = QgsApplication.authManager()
@@ -805,7 +823,10 @@ class FluxCEN:
                     self.handle_postgis_layer(row)
 
             except Exception as e:
-                print(f"Erreur lors du chargement de la ligne: {row}, Erreur: {e}")
+                log(
+                    f"Erreur lors du chargement de la ligne: {row}, Erreur: {e}",
+                    Qgis.MessageLevel.Warning
+                )
                 continue  # Passer à la ligne suivante en cas d'erreur
 
 
@@ -826,7 +847,10 @@ class FluxCEN:
 
             # Validation des données
             if not service or not nom_couche or not nom_technique or not url:
-                print(f"Données manquantes dans la ligne: {row}")
+                log(
+                    f"Données manquantes dans la ligne: {row}",
+                    Qgis.MessageLevel.Warning
+                )
                 return None  # Si une donnée importante manque, on retourne None
 
             # Construction du chemin du style si disponible
@@ -835,7 +859,10 @@ class FluxCEN:
             return service, nom_couche, nom_technique, url, style_url
 
         except Exception as e:
-            print(f"Erreur lors de la récupération des données de la ligne: {row}, Erreur: {e}")
+            log(
+                f"Erreur lors de la récupération des données de la ligne: {row}, Erreur: {e}",
+                Qgis.MessageLevel.Warning
+            )
             return None
 
 
