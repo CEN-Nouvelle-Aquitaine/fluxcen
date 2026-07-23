@@ -34,6 +34,7 @@ from qgis.core import (
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
+from .core.logger import log, alert
 
 import yaml
 import os.path, os
@@ -57,10 +58,11 @@ try:
     s.close()
 except socket.error:
     # Afficher un message si l'utilisateur n'est pas connecté à internet
-    QMessageBox.warning(None, 'Avertissement',
-                        'Vous n\'êtes actuellement pas connecté à internet. Veuillez vous connecter pour pouvoir utiliser FluxCEN !')
-
-
+    alert(
+        "Vous n'êtes pas connecté à internet. "\
+        "Veuillez vous connecter pour pouvoir utiliser FluxCEN.",
+        Qgis.MessageLevel.Critical,
+    )
 
 class AuthSelectionDialog(QDialog):
     def __init__(self, auth_configs, parent=None):
@@ -97,8 +99,11 @@ class AuthSelectionDialog(QDialog):
             self.selected_auth_id = self.auth_config_dict.get(selected_name)
             self.accept()
         else:
-            QMessageBox.warning(self, "Sélection requise", "Veuillez sélectionner une configuration d'authentification.")
-
+            alert(
+                "Veuillez sélectionner une configuration d'authentification.", 
+                level=Qgis.MessageLevel.Warning,
+                parent=self
+            )
 
 class FluxCEN:
     """QGIS Plugin Implementation."""
@@ -158,7 +163,11 @@ class FluxCEN:
         try:
             flux_csv_url, _ = self.load_urls('config/yaml/links.yaml')
         except Exception as e:
-            self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
+            log(
+                f"Failed to load URLs: {e}",
+                Qgis.MessageLevel.Critical,
+                True
+            )
             return
         
         url_open = urllib.request.urlopen(flux_csv_url)
@@ -305,11 +314,9 @@ class FluxCEN:
 
         elif len(auth_configs) > 1:
             # Si plusieurs configurations sont disponibles et aucune par défaut n'est définie
-            QMessageBox.information(
-                self.iface.mainWindow(),
-                "Choix de la configuration d'authentification",
-                "<center>Vous avez plusieurs configurations d'authentification disponibles.</center><br> Veuillez vous assurer de choisir la bonne configuration pour utiliser la couche MFU dans MapCEN.<br>"
-                "Vous pouvez définir votre configuration par défault en cliquant sur l'icone en forme de 🛠️ en bas à droite de la fenêtre du plugin."
+            alert(
+                "Plusieurs configurations d'authentification disponibles. " \
+                "Veuillez en sélectionner une.",
             )
 
     def unload(self):
@@ -384,7 +391,10 @@ class FluxCEN:
         if not QgsProject.instance().mapLayersByName("OSM"):
             QgsProject.instance().addMapLayer(layer)
         else:
-            QMessageBox.question(iface.mainWindow(), u"Fond OSM déjà chargé !", "Le fond de carte OSM est déjà chargé", QMessageBox.Ok)
+            log(
+                "Le fond de carte OSM est déjà chargé.",
+                display=True
+            )
 
         OSM_layer = QgsProject.instance().mapLayersByName("OSM")[0]
 
@@ -404,7 +414,10 @@ class FluxCEN:
         if not QgsProject.instance().mapLayersByName("Google Satelitte"):
             QgsProject.instance().addMapLayer(layer)
         else:
-            QMessageBox.question(iface.mainWindow(), u"Fond Google Sat' déjà chargé !", "Le fond de carte Google Satelitte est déjà chargé", QMessageBox.Ok)
+            log(
+                "Le fond de carte Google Satelitte est déjà chargé.",
+                display=True
+            )
 
         google_layer = QgsProject.instance().mapLayersByName("Google Satelitte")[0]
 
@@ -561,15 +574,22 @@ class FluxCEN:
     def limite_flux(self):
 
         if self.dlg.tableWidget_2.rowCount() > 3:
-            self.QMBquestion = QMessageBox.question(iface.mainWindow(), u"Attention !",
-                                                    "Le nombre de flux à charger en une seule fois est limité à 3 pour des questions de performances. Souhaitez vous tout de même charger les " + str(
-                                                        self.dlg.tableWidget_2.rowCount()) + " flux sélectionnés ? (risque de plantage de QGIS)",
-                                                    QMessageBox.Yes | QMessageBox.No)
+            self.QMBquestion = alert(
+                "Le chargement est limité à 3 flux pour des questions de performances. "\
+                "Souhaitez vous tout de même charger les " 
+                + str(self.dlg.tableWidget_2.rowCount()) + 
+                " flux sélectionnés ? (risque de plantage de QGIS)",
+                buttons=QMessageBox.Yes | QMessageBox.No,
+                parent=self.dlg
+            )
+
             if self.QMBquestion == QMessageBox.Yes:
                 self.chargement_flux()
 
             if self.QMBquestion == QMessageBox.No:
-                print("Annulation du chargement des couches")
+                log(
+                    "Annulation du chargement des couches",
+                )
 
         if self.dlg.tableWidget_2.rowCount() <= 3:
             self.chargement_flux()
@@ -588,28 +608,43 @@ class FluxCEN:
             #"Décorticage" du style QML en utilisant QDomDocument
             document = QDomDocument()
             if not document.setContent(style_data):
-                print("Echec de l'ouverture du style QML.")
+                log(
+                    "Echec de l'ouverture du style QML",
+                    Qgis.MessageLevel.Warning
+                )
                 return
 
             # on applique le style au flux
             if not wfs_layer.importNamedStyle(document):
-                print(f"Echec, le style n'a pas pu être appliqué au flux: {wfs_layer.name()}")
+                log(
+                    f"Echec, le style n'a pas pu être appliqué au flux: {wfs_layer.name()}",
+                    Qgis.MessageLevel.Warning
+                )
             else:
-                print(f"Le style a bien été appliqué au flux: {wfs_layer.name()}")
-
+                log(
+                    f"Le style a bien été appliqué au flux: {wfs_layer.name()}",
+                    Qgis.MessageLevel.Success
+                )
             #Actualisation de la couche pour prendre en compte le nouveau style
             wfs_layer.triggerRepaint()
 
         except Exception as e:
-            print(f"Problème dans l'application du style: {e}")
-
+            log(
+                f"Problème dans l'application du style: {e}",
+                Qgis.MessageLevel.Warning
+            )
 
     def choose_default_authentication(self):
         managerAU = QgsApplication.authManager()
         auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
 
         if not auth_configs:
-            QMessageBox.warning(self.dlg, "Pas de configurations", "Aucune configuration d'authentification disponible.")
+            alert(
+                "Aucune configuration d'authentification disponible. "\
+                "Veuillez créer une configuration d'authentification.",
+                Qgis.MessageLevel.Warning,
+                parent=self.dlg
+            )
             return
 
         dialog = AuthSelectionDialog(auth_configs)
@@ -618,8 +653,11 @@ class FluxCEN:
             # Enregistrer la configuration par défaut dans QSettings
             settings = QSettings()
             settings.setValue("FluxCEN/default_auth_id", selected_auth_id)
-            QMessageBox.information(self.dlg, "Configuration sauvegardée", "La configuration d'authentification par défaut a été définie.")
-
+            log(
+                f"Configuration d'authentification par défaut définie: {selected_auth_id}",
+                Qgis.MessageLevel.Success,
+                True
+            )
 
     def apply_authentication_if_needed(self, uri):
         """
@@ -651,17 +689,12 @@ class FluxCEN:
                 uri.setAuthConfigId(dialog.selected_auth_id)
                 return True
         else:
-            QMessageBox.warning(iface.mainWindow(), "Attention", "Aucune configuration d'authentification n'a été trouvée dans votre QGIS. Veuillez ajouter la configuration d'authentification CEN-NA pour charger les flux sécurisés tels que la MFU .")
-            
-
-
-
-    def avertissement_pas_de_flux(self):
-        """
-        Affiche un QMessageBox pour indiquer qu'il n'y a pas de flux à charger si tableWidget_2 est vide.
-        """
-        QMessageBox.information(iface.mainWindow(), "Aucun flux pré-chargé", "Il n'y a aucun flux à charger dans la table de sélection.", QMessageBox.Ok)
-
+            alert(
+                "Aucune configuration d'authentification disponible. "\
+                "Veuillez créer une configuration d'authentification.",
+                Qgis.MessageLevel.Warning,
+                parent=self.dlg
+            )
 
     def chargement_flux(self):
         """
@@ -670,7 +703,11 @@ class FluxCEN:
         _, styles_couches = self.load_urls('config/yaml/links.yaml')
 
         if self.dlg.tableWidget_2.rowCount() == 0:
-            self.avertissement_pas_de_flux()
+            log(
+                "Aucun flux à charger dans la table de sélection.",
+                Qgis.MessageLevel.Warning,
+                True
+            )    
             return
 
         for row in range(self.dlg.tableWidget_2.rowCount()):
@@ -691,7 +728,10 @@ class FluxCEN:
                     self.handle_postgis_layer(row)
 
             except Exception as e:
-                print(f"Erreur lors du chargement de la ligne: {row}, Erreur: {e}")
+                log(
+                    f"Erreur lors du chargement de la ligne: {row}, Erreur: {e}",
+                    Qgis.MessageLevel.Warning
+                )
                 continue  # Passer à la ligne suivante en cas d'erreur
 
 
@@ -712,7 +752,10 @@ class FluxCEN:
 
             # Validation des données
             if not service or not nom_couche or not nom_technique or not url:
-                print(f"Données manquantes dans la ligne: {row}")
+                log(
+                    f"Données manquantes dans la ligne: {row}",
+                    Qgis.MessageLevel.Warning
+                )
                 return None  # Si une donnée importante manque, on retourne None
 
             # Construction du chemin du style si disponible
@@ -721,7 +764,10 @@ class FluxCEN:
             return service, nom_couche, nom_technique, url, style_url
 
         except Exception as e:
-            print(f"Erreur lors de la récupération des données de la ligne: {row}, Erreur: {e}")
+            log(
+                f"Erreur lors de la récupération des données de la ligne: {row}, Erreur: {e}",
+                Qgis.MessageLevel.Warning
+            )
             return None
 
 
@@ -756,23 +802,21 @@ class FluxCEN:
         else:
             # Pas de config d'authentification : charger sans
             wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
-            QMessageBox.information(
-                iface.mainWindow(),
-                "Attention",
-                "Aucune configuration d'authentification QGIS n'a été trouvée.\n"
-                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître."
+            alert(
+                "Aucune configuration d'authentification disponible. "\
+                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître.",
+                Qgis.MessageLevel.Warning,
+                parent=self.dlg
             )
 
         if wms_layer.isValid():
             QgsProject.instance().addMapLayer(wms_layer)
         else:
-            QMessageBox.critical(
-                iface.mainWindow(),
-                "Erreur",
-                f"Impossible de charger la couche '{nom_couche}'."
+            log(
+                f"Impossible de charger la couche : {nom_couche} | {nom_technique}.",
+                Qgis.MessageLevel.Critical,
+                True
             )
-
-
 
     def handle_wfs_layer(self, row, nom_couche, nom_technique, url, style_url):
         """
@@ -800,11 +844,11 @@ class FluxCEN:
         else:
             # Pas de config d'authentification : charger sans
             wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
-            QMessageBox.information(
-                iface.mainWindow(),
-                "Attention",
-                "Aucune configuration d'authentification QGIS n'a été trouvée.\n"
-                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître."
+            alert(
+                "Aucune configuration d'authentification disponible. "\
+                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître.",
+                Qgis.MessageLevel.Warning,
+                parent=self.dlg
             )
 
         if wfs_layer.isValid():
@@ -812,14 +856,11 @@ class FluxCEN:
             if style_url:
                 self.apply_qml_style(wfs_layer, style_url)
         else:
-            QMessageBox.critical(
-                iface.mainWindow(),
-                "Erreur",
-                f"Impossible de charger la couche '{nom_couche}'."
+            log(
+                f"Impossible de charger la couche : {nom_couche} | {nom_technique}.",
+                Qgis.MessageLevel.Critical,
+                True
             )
-
-
-
 
     def handle_postgis_layer(self, row):
         """
@@ -827,7 +868,11 @@ class FluxCEN:
         """
         postgis_config = self.load_postgis_config('config/yaml/config_db.yaml')
         if not postgis_config:
-            QMessageBox.critical(iface.mainWindow(), "Erreur", "Impossible de charger la configuration PostGIS depuis le fichier YAML.", QMessageBox.Ok)
+            log(
+                "Impossible de charger la configuration PostGIS depuis le fichier YAML.",
+                Qgis.MessageLevel.Critical,
+                True
+            )
             return
 
         db_host = postgis_config['host']
@@ -837,7 +882,11 @@ class FluxCEN:
         table_name = self.dlg.tableWidget_2.item(row, 3).text()
 
         if not (db_host and db_port and db_name and schema_name and table_name):
-            QMessageBox.critical(iface.mainWindow(), "Erreur", "Des informations de connexion sont manquantes pour la base de données PostGIS.", QMessageBox.Ok)
+            log(
+                "Des informations de connexion sont manquantes pour la base de données PostGIS.",
+                Qgis.MessageLevel.Critical,
+                True
+            )
             return
 
         uri = QgsDataSourceUri()
@@ -852,9 +901,11 @@ class FluxCEN:
         if layer.isValid():
             QgsProject.instance().addMapLayer(layer)
         else:
-            QMessageBox.critical(iface.mainWindow(), "Erreur", f"Échec de chargement de la couche PostGIS : {table_name}", QMessageBox.Ok)
-
-
+            log(
+                f"Échec de chargement de la couche PostGIS : {schema_name}, {table_name}",
+                Qgis.MessageLevel.Critical,
+                True
+            )
 
     def filtre_dynamique(self, filter_text):
 

@@ -3,18 +3,13 @@
 <img align="left" src=https://raw.githubusercontent.com/CEN-Nouvelle-Aquitaine/fluxcen/main/icons/icon.png  width="220"/>
 <br>
 <br>
-<br>
 Le plugin QGIS FluxCEN permet d'accéder rapidement à un large éventail de flux WFS/WMS organisés par catégories et interrogeables sous forme de mots-clés. 
 <br>
 <br>
 Il rend également possible l'édition de "couches SIG collaboratives" grâce à la prise en charge de l'édition de tables du SGBD PostgreSQL/PostGIS.
 <br>
 <br>
-<br>
 Il évite ainsi d'avoir à gérer dans QGIS une multitude de connexions et simplifie grandement l'accès aux données dans un système d'information.
-<br>
-
-
 <br>
 
 ## 🧐 Features
