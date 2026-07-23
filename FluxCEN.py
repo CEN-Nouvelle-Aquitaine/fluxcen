@@ -753,11 +753,11 @@ class FluxCEN:
         auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
 
         if not auth_configs:
-            log(
+            alert(
                 "Aucune configuration d'authentification disponible. "\
                 "Veuillez créer une configuration d'authentification.",
                 Qgis.MessageLevel.Warning,
-                True
+                parent=self.dlg
             )
             return
 
@@ -803,11 +803,11 @@ class FluxCEN:
                 uri.setAuthConfigId(dialog.selected_auth_id)
                 return True
         else:
-            log(
+            alert(
                 "Aucune configuration d'authentification disponible. "\
                 "Veuillez créer une configuration d'authentification.",
                 Qgis.MessageLevel.Warning,
-                True
+                parent=self.dlg
             )
 
     def chargement_flux(self):
