@@ -57,7 +57,7 @@ def log(
 def alert(
     message: str,
     level: Qgis.MessageLevel = Qgis.MessageLevel.Info,
-    buttons: QMessageBox.StandardButton = QMessageBox.Ok | QMessageBox.Cancel,
+    buttons: QMessageBox.StandardButton = QMessageBox.Ok,
     parent = None,
     detail: str = None,
     title: str = None,
