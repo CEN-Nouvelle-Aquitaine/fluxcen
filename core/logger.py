@@ -61,7 +61,7 @@ def alert(
     parent = None,
     detail: str = None,
     title: str = None,
-) -> QMessageBox:
+) -> QMessageBox.StandardButton :
     """
     Journalise le message puis affiche une popup bloquante à l'utilisateur.
     -> Bloquant. À utiliser pour solliciter l'attention, l'action ou le consentement de l'utilisateur.
@@ -84,7 +84,7 @@ def alert(
             Par défaut TAG ("FluxCEN")
 
     Returns:
-        Widget popup QMessageBox. 
+        QMessageBox.StandardButton 
         Le code appelant peut comparer le bouton cliqué avec les boutons passés en argument
         (ex: if alert() == QMessageBox.Ok: do_something()).
     """
