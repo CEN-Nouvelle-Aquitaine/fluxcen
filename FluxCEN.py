@@ -101,7 +101,8 @@ class AuthSelectionDialog(QDialog):
         else:
             alert(
                 "Veuillez sélectionner une configuration d'authentification.", 
-                Qgis.MessageLevel.Warning,
+                level=Qgis.MessageLevel.Warning,
+                parent=self
             )
 
 class FluxCEN:
