@@ -138,6 +138,18 @@ class TestInitialisationFluxRobuste:
         plugin.initialisation_flux()
         assert plugin.dlg.tableWidget.rowCount() == 0
 
+    def test_ligne_courte_du_catalogue_distant(self, plugin):
+        # Le catalogue est un fichier vivant sur SharePoint : une ligne à moins
+        # de 10 colonnes (voire moins de 4) ne doit jamais vider le tableau.
+        plugin._catalog_text = CSV_HEADER + (
+            "WFS;Zonages;ZNIEFF;znieff1;https://x;INPN;;https://meta;;\n"
+            "WMS;Cartographie;Ligne courte\n"      # 3 colonnes seulement
+            ";;\n"                                  # quasi vide
+            "WFS;Zonages;ZNIEFF2;znieff2;https://x;INPN;;https://meta;;\n"
+        )
+        plugin.initialisation_flux()               # aucune exception
+        assert plugin.dlg.tableWidget.rowCount() == 3  # la ligne courte reste visible, paddée
+
     def test_url_metadonnees_de_la_bonne_ligne(self, plugin):
         # Finding 4 : en vue filtrée, l'icône Infos doit porter l'URL de la
         # ligne affichée, pas celle du catalogue complet.

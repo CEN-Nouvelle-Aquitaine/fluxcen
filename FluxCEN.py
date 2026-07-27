@@ -560,7 +560,17 @@ class FluxCEN:
         # on ne lit pas la première ligne correspondant aux noms des colonnes
         next(raw, None)
 
-        lignes = sorted(row for row in raw if any(cell.strip() for cell in row))
+        # Le catalogue distant est un fichier vivant : les lignes courtes sont
+        # paddées à 10 colonnes pour que l'affichage ne dépende jamais de la
+        # rigueur du CSV (la validation stricte reste faite au chargement).
+        lignes = []
+        for row in raw:
+            if not any(cell.strip() for cell in row):
+                continue
+            if len(row) < 10:
+                row = row + [""] * (10 - len(row))
+            lignes.append(row)
+        lignes.sort()
 
         categorie_courante = self.dlg.comboBox.currentText()
         if categorie_courante == 'toutes les catégories':
