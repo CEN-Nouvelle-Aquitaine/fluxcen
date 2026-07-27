@@ -3,7 +3,7 @@
 et filtrage du périmètre d'authentification Microsoft).
 
 Nécessitent QGIS (ignorés sur un poste sans bindings ; exécutés en CI sur
-l'image qgis/qgis:release-3_44). La pile réseau est remplacée par un faux
+l'image qgis/qgis:3.44). La pile réseau est remplacée par un faux
 QgsBlockingNetworkRequest : on vérifie la requête émise, pas le réseau.
 """
 # pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument

@@ -32,7 +32,7 @@ tests dans `tests/` — cf. plan.md « Project Structure ».
 
 - [X] T001 Créer le package `core/` avec `core/__init__.py` vide (aucun import qgis autorisé dans ce package)
 - [X] T002 Créer l'infrastructure de test : `tests/__init__.py`, `tests/conftest.py` (fixtures pytest-qgis), `tests/data/` avec un `flux_minimal.csv` (3 lignes : WMS, WFS, PostGIS) et un `links_test.yaml`, et la configuration pytest dans `pyproject.toml` (testpaths, markers `unit`/`integration`)
-- [X] T003 [P] Rendre la CI bloquante dans `.github/workflows/quality.yml` : ajouter le job de tests (conteneur `qgis/qgis:release-3_44`, `pip3 install pytest pytest-qgis`, `pytest tests/`) **sans** `continue-on-error`, et retirer `continue-on-error: true` du job pylint existant (gate constitutionnelle lint + tests)
+- [X] T003 [P] Rendre la CI bloquante dans `.github/workflows/quality.yml` : ajouter le job de tests (conteneur `qgis/qgis:3.44`, `pip3 install pytest pytest-qgis`, `pytest tests/`) **sans** `continue-on-error`, et retirer `continue-on-error: true` du job pylint existant (gate constitutionnelle lint + tests)
 
 **Checkpoint**: `pytest tests/` s'exécute (0 test collecté) en local et en CI ; pylint bloquant
 

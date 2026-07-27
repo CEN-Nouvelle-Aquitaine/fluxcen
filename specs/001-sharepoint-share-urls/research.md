@@ -131,7 +131,7 @@ ce volume (fichiers < 100 Ko) — réévaluer si le catalogue grossit.
 d'URL, classification d'erreurs, parsing CSV) est testée sans QGIS ; un petit nombre de tests d'intégration
 utilisent le fixture `qgis_app` de `pytest-qgis` pour `_fetch_bytes` (avec un serveur HTTP local ou des
 mocks de `QgsBlockingNetworkRequest`). CI : job de test ajouté à `.github/workflows/quality.yml` sur
-l'image `qgis/qgis:release-3_44`, bloquant (`continue-on-error` retiré pour ce job).
+l'image `qgis/qgis:3.44`, bloquant (`continue-on-error` retiré pour ce job).
 
 **Rationale**: Principe II (TDD) et III (couche logique porte la couverture). `pytest-qgis` requiert
 QGIS ≥ 3.34, compatible avec la cible 3.44. Rendre le job bloquant donne enfin une gate CI réelle.

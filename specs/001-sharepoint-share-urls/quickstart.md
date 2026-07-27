@@ -29,7 +29,7 @@ export QGIS_PREFIX_PATH=$APP/Contents/MacOS
 export QT_QPA_PLATFORM=offscreen
 $APP/Contents/MacOS/python3.12 -m pip install --user pytest pytest-qgis  # une seule fois
 $APP/Contents/MacOS/python3.12 -m pytest tests/
-docker run --rm -v "$PWD":/src -w /src qgis/qgis:release-3_44 sh -c \
+docker run --rm -v "$PWD":/src -w /src qgis/qgis:3.44 sh -c \
   "pip3 install pytest pytest-qgis && pytest tests/"
 ```
 

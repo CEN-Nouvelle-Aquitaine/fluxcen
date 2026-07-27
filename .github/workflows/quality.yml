@@ -120,7 +120,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     container:
-      image: qgis/qgis:release-3_44
+      image: qgis/qgis:3.44
     env:
       QT_QPA_PLATFORM: offscreen
     defaults:

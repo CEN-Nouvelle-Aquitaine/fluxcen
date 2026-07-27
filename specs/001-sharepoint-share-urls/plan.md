@@ -26,7 +26,7 @@ Approche technique détaillée dans [research.md](research.md).
 pour le catalogue ; base d'auth chiffrée QGIS (authcfg, jamais manipulée directement)
 
 **Testing**: `pytest` + `pytest-qgis` (première suite du dépôt), tests sous `tests/`, CI GitHub Actions
-sur image `qgis/qgis:release-3_44`, job bloquant
+sur image `qgis/qgis:3.44`, job bloquant
 
 **Target Platform**: QGIS Desktop ≥ 3.44 (LTR), Windows / macOS / Linux
 
@@ -103,7 +103,7 @@ tests/
 └── test_fetch.py        # intégration : _fetch_bytes avec/sans authcfg selon domaine
 
 .github/workflows/
-└── quality.yml          # job pytest ajouté (image qgis/qgis:release-3_44, bloquant)
+└── quality.yml          # job pytest ajouté (image qgis/qgis:3.44, bloquant)
 
 metadata.txt             # qgisMinimumVersion=3.44, version MINEUR+1, changelog
 ```
