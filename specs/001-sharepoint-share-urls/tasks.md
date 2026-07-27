@@ -113,15 +113,15 @@ chargé dans tous les cas (quickstart.md, « Cas d'erreur à rejouer »).
 
 ### Tests for User Story 3 (écrits d'abord, échouants)
 
-- [ ] T019 [P] [US3] Écrire les tests unitaires **échouants** de la classification d'erreurs dans `tests/test_errors.py` : mapping (code HTTP, contexte) → famille (`LIEN_INVALIDE` 400/404, `ACCES_REFUSE` 401/403, `RESEAU` timeout/DNS, `AUTH_MANQUANTE` périmètre Microsoft sans authcfg) et vérification que le message produit ne contient ni jeton ni URL complète (nom d'hôte seul)
-- [ ] T020 [P] [US3] Écrire le test d'intégration **échouant** de robustesse au démarrage dans `tests/test_startup.py` : (a) monkeypatch de `QgsBlockingNetworkRequest` levant à tout appel, posé **avant** `importlib.reload` du module `FluxCEN` → l'import ne déclenche aucune requête et n'importe plus `socket` ; (b) instanciation du plugin + `initGui` (fixtures pytest-qgis, `iface` mocké) avec `_fetch_bytes` levant systématiquement → aucune exception ne s'échappe
+- [X] T019 [P] [US3] Écrire les tests unitaires **échouants** de la classification d'erreurs dans `tests/test_errors.py` : mapping (code HTTP, contexte) → famille (`LIEN_INVALIDE` 400/404, `ACCES_REFUSE` 401/403, `RESEAU` timeout/DNS, `AUTH_MANQUANTE` périmètre Microsoft sans authcfg) et vérification que le message produit ne contient ni jeton ni URL complète (nom d'hôte seul)
+- [X] T020 [P] [US3] Écrire le test d'intégration **échouant** de robustesse au démarrage dans `tests/test_startup.py` : (a) monkeypatch de `QgsBlockingNetworkRequest` levant à tout appel, posé **avant** `importlib.reload` du module `FluxCEN` → l'import ne déclenche aucune requête et n'importe plus `socket` ; (b) instanciation du plugin + `initGui` (fixtures pytest-qgis, `iface` mocké) avec `_fetch_bytes` levant systématiquement → aucune exception ne s'échappe
 
 ### Implementation for User Story 3
 
-- [ ] T021 [US3] Créer `core/errors.py` : familles d'erreurs et `classify_error()` + construction des messages français du data-model, jusqu'au vert de T019
-- [ ] T022 [US3] Supprimer le réseau du chargement dans `FluxCEN.py` : retirer le test de connectivité `socket` au niveau module (~lignes 48-58) et son import ; déplacer les fetchs de `__init__` (~lignes 162, 178) vers le premier `run()` ; envelopper chaque fetch dans try/except → famille d'erreur + barre de message ; jusqu'au vert de T020
-- [ ] T023 [US3] Mettre en cache mémoire le catalogue dans `FluxCEN.py` : `initialisation_flux()` (~ligne 573) réutilise le CSV téléchargé une fois par session au lieu de re-télécharger à chaque changement de catégorie
-- [ ] T024 [US3] Journalisation : helper `QgsMessageLog` (onglet « FluxCEN ») dans `FluxCEN.py`, remplacement des `print()` sur les chemins modifiés (dont `chargement_flux` ~lignes 836-838), gestion du cas `AUTH_MANQUANTE` (authcfg vide + URL Microsoft → message d'orientation, pas de requête)
+- [X] T021 [US3] Créer `core/errors.py` : familles d'erreurs et `classify_error()` + construction des messages français du data-model, jusqu'au vert de T019
+- [X] T022 [US3] Supprimer le réseau du chargement dans `FluxCEN.py` : retirer le test de connectivité `socket` au niveau module (~lignes 48-58) et son import ; déplacer les fetchs de `__init__` (~lignes 162, 178) vers le premier `run()` ; envelopper chaque fetch dans try/except → famille d'erreur + barre de message ; jusqu'au vert de T020
+- [X] T023 [US3] Mettre en cache mémoire le catalogue dans `FluxCEN.py` : `initialisation_flux()` (~ligne 573) réutilise le CSV téléchargé une fois par session au lieu de re-télécharger à chaque changement de catégorie
+- [X] T024 [US3] Journalisation : helper `QgsMessageLog` (onglet « FluxCEN ») dans `FluxCEN.py`, remplacement des `print()` sur les chemins modifiés (dont `chargement_flux` ~lignes 836-838), gestion du cas `AUTH_MANQUANTE` (authcfg vide + URL Microsoft → message d'orientation, pas de requête)
 
 **Checkpoint**: les trois user stories sont indépendamment fonctionnelles
 

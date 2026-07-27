@@ -27,7 +27,7 @@ from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTable
 from qgis.utils import iface
 
 from qgis.core import (
-    Qgis, QgsApplication, QgsRasterLayer, QgsVectorLayer,
+    Qgis, QgsApplication, QgsMessageLog, QgsRasterLayer, QgsVectorLayer,
     QgsProject, QgsDataSourceUri, QgsBlockingNetworkRequest)
 from qgis.PyQt.QtNetwork import QNetworkRequest
 
@@ -35,30 +35,16 @@ from qgis.PyQt.QtNetwork import QNetworkRequest
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
-# Logique pure (sans qgis) : URL Microsoft, catalogue de flux, URI de couches
-from .core import catalog, ms_urls
+# Logique pure (sans qgis) : URL Microsoft, catalogue de flux, URI de couches,
+# familles d'erreurs de téléchargement
+from .core import catalog, errors, ms_urls
 
 import yaml
 import os.path, os
-from PyQt5.QtXml import QDomDocument
+from qgis.PyQt.QtXml import QDomDocument
 import csv
 import os
 import io
-import re
-import socket
-
-
-# Vérifier la connexion à internet
-try:
-    # Vérifier si l'utilisateur est connecté à internet en ouvrant une connexion avec un site web
-    host = socket.gethostbyname("www.google.com")
-    s = socket.create_connection((host, 80), 2)
-    s.close()
-except socket.error:
-    # Afficher un message si l'utilisateur n'est pas connecté à internet
-    QMessageBox.warning(None, 'Avertissement',
-                        'Vous n\'êtes actuellement pas connecté à internet. Veuillez vous connecter pour pouvoir utiliser FluxCEN !')
-
 
 
 class AuthSelectionDialog(QDialog):
@@ -153,38 +139,20 @@ class FluxCEN:
         self.dlg.commandLinkButton_5.clicked.connect(self.choose_default_authentication)
         self.dlg.commandLinkButton_7.clicked.connect(self.show_welcome_popup)
 
-        # iface.mapCanvas().extentsChanged.connect(self.test5)
-        # Load URLs and handle possible errors
-        try:
-            flux_csv_url, last_version_url, _, _= self.load_urls('config/yaml/links.yaml')
-        except Exception as e:
-            self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
-            return
-        
-        flux_csv_data = self._fetch_bytes(flux_csv_url)
-        categories = catalog.extract_categories(flux_csv_data.decode('utf-8'))
+        # Les téléchargements (catalogue, version, changelog) sont différés au
+        # premier affichage du dialogue : aucun accès réseau au démarrage de
+        # QGIS, et un échec ne peut pas empêcher le chargement du plugin
+        # (FR-008 / FR-009). Le catalogue est mis en cache pour la session.
+        self._catalog_text = None
+        self._startup_done = False
 
-        self.dlg.comboBox.addItems(categories)
         layout = QVBoxLayout()
         self.dlg.lineEdit.textChanged.connect(self.filtre_dynamique)
         layout.addWidget(self.dlg.lineEdit)
         self.dlg.lineEdit.mousePressEvent = self._mousePressEvent
 
-        metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
-        infos_metadonnees = metadonnees_plugin.readlines()
-
-        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url))
-        num_last_version = derniere_version.readlines()[0].decode("utf-8")
-
         # Connect the itemClicked signal to the open_url function
         self.dlg.tableWidget.itemClicked.connect(self.open_url)
-
-        version_utilisateur = infos_metadonnees[8].splitlines()
-
-        if infos_metadonnees[8].splitlines() == num_last_version.splitlines():
-            iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN %s est à jour !" %version_utilisateur, level=Qgis.Success, duration=5)
-        else:
-            iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
 
     def _mousePressEvent(self, event):
         self.dlg.lineEdit.setText("")
@@ -222,7 +190,7 @@ class FluxCEN:
 
         try:
             _, _, _, info_changelog = self.load_urls('config/yaml/links.yaml')
-            html_changelog = self._fetch_bytes(info_changelog).decode("utf8")
+            html_changelog = self._fetch_bytes(info_changelog, u"changelog").decode("utf8")
             changelog_label.setText(html_changelog)
             changelog_label.setFont(QFont("Calibri", weight=QFont.Bold))
         except Exception as e:
@@ -257,14 +225,11 @@ class FluxCEN:
         infos_metadonnees = metadonnees_plugin.readlines()
         version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin 
 
-        # Charger la dernière version depuis l'URL
-        try:
-            _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
-            derniere_version = io.BytesIO(self._fetch_bytes(last_version_url))
-            num_last_version = derniere_version.readlines()[0].decode("utf-8").strip()  # Récupérer la dernière version disponible
-        except Exception as e:
-            self.iface.messageBar().pushMessage("Error", f"Failed to load URLs: {e}", level=Qgis.Critical, duration=5)
-            return False
+        # Charger la dernière version depuis l'URL (les erreurs remontent à
+        # l'appelant, qui les journalise sans bloquer le plugin)
+        _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
+        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, u"version du plugin"))
+        num_last_version = derniere_version.readlines()[0].decode("utf-8").strip()  # Récupérer la dernière version disponible
 
         # Obtenir la dernière version utilisée stockée dans les paramètres
         last_version = settings.value("FluxCEN/last_version", "", type=str)
@@ -374,10 +339,8 @@ class FluxCEN:
         Fonction appelée au démarrage du plugin.
         """
 
-        # Vérifier si c'est le premier démarrage de cette version
-        if self.is_first_run_of_new_version():
-            self.show_welcome_popup()
-
+        # Aucun accès réseau ici : la vérification de version et la popup de
+        # bienvenue sont différées au premier affichage du dialogue (FR-009).
 
         icon_path = ':/plugins/FluxCEN/icons/icon.png'
         self.add_action(
@@ -424,8 +387,76 @@ class FluxCEN:
             self.iface.removeToolBarIcon(action)
 
 
+    def _log(self, message, level=Qgis.Warning):
+        """Journalise dans le panneau QGIS, onglet dédié « FluxCEN »."""
+        QgsMessageLog.logMessage(message, "FluxCEN", level)
+
+    def _notify_fetch_error(self, exc, resource_name):
+        """Signale un échec de téléchargement : journal + barre de message.
+
+        Les messages ne contiennent jamais d'URL complète ni de jeton (FR-007).
+        """
+        if isinstance(exc, errors.FetchError):
+            message = exc.user_message()
+        else:
+            message = u"Échec du chargement de « %s » : %s" % (resource_name, exc)
+        self._log(message, Qgis.Critical)
+        self.iface.messageBar().pushMessage(u"FluxCEN", message, level=Qgis.Critical, duration=10)
+
+    def _get_catalog_text(self):
+        """Texte du catalogue de flux, téléchargé une seule fois par session."""
+        if self._catalog_text is None:
+            flux_csv_url, _, _, _ = self.load_urls('config/yaml/links.yaml')
+            self._catalog_text = self._fetch_bytes(
+                flux_csv_url, u"catalogue des flux").decode('utf-8')
+        return self._catalog_text
+
+    def _check_version(self):
+        """Compare la version locale à la dernière version publiée (informatif)."""
+        _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
+        with open(os.path.join(self.plugin_path, 'metadata.txt'), encoding='utf-8') as metadata_file:
+            infos_metadonnees = metadata_file.readlines()
+        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, u"version du plugin"))
+        num_last_version = derniere_version.readlines()[0].decode("utf-8")
+        version_utilisateur = infos_metadonnees[8].splitlines()
+
+        if infos_metadonnees[8].splitlines() == num_last_version.splitlines():
+            self.iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN %s est à jour !" % version_utilisateur, level=Qgis.Success, duration=5)
+        else:
+            self.iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
+
+    def _deferred_startup(self):
+        """Téléchargements différés du démarrage : catalogue, version, changelog.
+
+        Chaque échec est signalé par famille (lien invalide / accès refusé /
+        réseau / authentification) sans jamais empêcher l'utilisation du plugin.
+        """
+        self._startup_done = True
+
+        try:
+            categories = catalog.extract_categories(self._get_catalog_text())
+            self.dlg.comboBox.addItems(categories)
+        except Exception as exc:
+            self._notify_fetch_error(exc, u"catalogue des flux")
+
+        try:
+            self._check_version()
+        except Exception as exc:
+            self._log(u"Vérification de version impossible : %s" % exc)
+
+        try:
+            if self.is_first_run_of_new_version():
+                self.show_welcome_popup()
+        except Exception as exc:
+            self._log(u"Affichage du changelog impossible : %s" % exc)
+
     def run(self):
         """Run method that performs all the real work"""
+
+        # Premier affichage : déclenche les téléchargements différés (le flux
+        # OAuth interactif éventuel a lieu ici, sur action utilisateur).
+        if not self._startup_done:
+            self._deferred_startup()
 
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
@@ -494,14 +525,15 @@ class FluxCEN:
         except Exception:
             return ''
 
-    def _fetch_bytes(self, url):
+    def _fetch_bytes(self, url, resource_name=u"ressource"):
         """Télécharge le contenu d'une URL via la pile réseau QGIS.
 
         Un lien de partage SharePoint (« Copier le lien ») est converti en appel
         Microsoft Graph avant la requête. Si une configuration d'authentification
         est renseignée (`auth.authcfg` dans links.yaml), le jeton correspondant
-        (OAuth2 Microsoft Entra ID) est appliqué et rafraîchi par QGIS.
-        Retourne les octets bruts de la ressource.
+        (OAuth2 Microsoft Entra ID) est appliqué et rafraîchi par QGIS — mais
+        uniquement vers le périmètre Microsoft (FR-004). Retourne les octets
+        bruts de la ressource ; lève ``errors.FetchError`` classée par famille.
         """
         if url.split(":", 1)[0].lower() == "http":
             host = url.split("/")[2] if url.count("/") >= 2 else ""
@@ -513,15 +545,23 @@ class FluxCEN:
         if request_url != url:
             # Garantit l'accès au partage le temps de la requête (API Graph /shares)
             request.setRawHeader(b"Prefer", b"redeemSharingLinkIfNecessary")
-        blocking = QgsBlockingNetworkRequest()
+        host = QUrl(request_url).host()
         authcfg = self._authcfg_id()
-        if authcfg and ms_urls.is_microsoft_url(request_url):
-            # L'authentification Microsoft ne sort jamais du périmètre
-            # *.sharepoint.com / graph.microsoft.com (FR-004)
+        perimetre_microsoft = ms_urls.is_microsoft_url(request_url)
+        if perimetre_microsoft and not authcfg:
+            raise errors.FetchError(
+                errors.ErrorFamily.AUTH_MANQUANTE, resource_name, host)
+        blocking = QgsBlockingNetworkRequest()
+        if perimetre_microsoft:
             blocking.setAuthCfg(authcfg)
         err = blocking.get(request)
         if err != QgsBlockingNetworkRequest.NoError:
-            raise IOError(u"Échec du téléchargement de %s : %s" % (url, blocking.errorMessage()))
+            status = None
+            reply = blocking.reply()
+            if reply is not None:
+                status = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
+            raise errors.FetchError(
+                errors.classify_http_status(status), resource_name, host)
         return bytes(blocking.reply().content())
 
 
@@ -577,22 +617,19 @@ class FluxCEN:
 
     def initialisation_flux(self):
 
-        # Unpacking de flux_csv_url et on ignore last_version_url, info_changelog, styles_couches
-        flux_csv_url, _, _, _ = self.load_urls('config/yaml/links.yaml')
-
-        def csv_import(url):
-            csv_data = self._fetch_bytes(url)
-            csvfile = csv.reader(io.StringIO(csv_data.decode('utf-8')), delimiter=';')
-            #on ne lit pas la première ligne correspondant aux noms des colonnes avec next()
-            next(csvfile)
-            return csvfile
+        # Catalogue en cache mémoire : une seule récupération par session,
+        # plus de re-téléchargement à chaque changement de catégorie.
+        try:
+            raw = csv.reader(io.StringIO(self._get_catalog_text()), delimiter=';')
+        except Exception as exc:
+            self._notify_fetch_error(exc, u"catalogue des flux")
+            return
+        # on ne lit pas la première ligne correspondant aux noms des colonnes
+        next(raw, None)
 
         data = []
         data2 = []
         model = QStandardItemModel()
-
-
-        raw = csv_import(flux_csv_url)
 
 
         for row in raw:
@@ -720,7 +757,7 @@ class FluxCEN:
                 self.chargement_flux()
 
             if self.QMBquestion == QMessageBox.No:
-                print("Annulation du chargement des couches")
+                self._log(u"Annulation du chargement des couches", Qgis.Info)
 
         if self.dlg.tableWidget_2.rowCount() <= 3:
             self.chargement_flux()
@@ -732,26 +769,27 @@ class FluxCEN:
         """
 
         try:
-            # Récupération des styles depuis l'URL configurée (accès authentifié si activé)
-            style_data = self._fetch_bytes(style_url)
+            # Récupération des styles depuis l'URL configurée (accès authentifié
+            # uniquement si l'URL appartient au périmètre Microsoft)
+            style_data = self._fetch_bytes(style_url, u"style de couche")
 
             #"Décorticage" du style QML en utilisant QDomDocument
             document = QDomDocument()
             if not document.setContent(style_data):
-                print("Echec de l'ouverture du style QML.")
+                self._log(u"Échec de l'ouverture du style QML.")
                 return
 
             # on applique le style au flux
             if not wfs_layer.importNamedStyle(document):
-                print(f"Echec, le style n'a pas pu être appliqué au flux: {wfs_layer.name()}")
+                self._log(u"Échec, le style n'a pas pu être appliqué au flux : %s" % wfs_layer.name())
             else:
-                print(f"Le style a bien été appliqué au flux: {wfs_layer.name()}")
+                self._log(u"Le style a bien été appliqué au flux : %s" % wfs_layer.name(), Qgis.Info)
 
             #Actualisation de la couche pour prendre en compte le nouveau style
             wfs_layer.triggerRepaint()
 
         except Exception as e:
-            print(f"Problème dans l'application du style: {e}")
+            self._log(u"Problème dans l'application du style : %s" % e)
 
 
     def choose_default_authentication(self):
@@ -841,7 +879,7 @@ class FluxCEN:
                     self.handle_postgis_layer(row)
 
             except Exception as e:
-                print(f"Erreur lors du chargement de la ligne: {row}, Erreur: {e}")
+                self._log(u"Erreur lors du chargement de la ligne %s : %s" % (row, e))
                 continue  # Passer à la ligne suivante en cas d'erreur
 
 
@@ -860,7 +898,7 @@ class FluxCEN:
 
         flux = catalog.parse_table_row(cells)
         if flux is None:
-            print(f"Données manquantes ou invalides dans la ligne: {row}")
+            self._log(u"Données manquantes ou invalides dans la ligne : %s" % row)
             return None
 
         # URL du style si disponible : URL directe (concaténation) ou lien de

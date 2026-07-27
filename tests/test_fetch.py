@@ -135,3 +135,15 @@ class TestFiltragePerimetreAuth:
         data = plugin._fetch_bytes("data:text/plain,version=5.2")
         assert data == b"payload"
         assert fake_network.last.authcfg is None
+
+
+class TestAuthManquante:
+    """T024 — US3 : périmètre Microsoft sans authcfg → erreur d'orientation, sans requête."""
+
+    def test_url_microsoft_sans_authcfg(self, tmp_path, fake_network):
+        from fluxcen.core.errors import ErrorFamily, FetchError
+        plugin = make_plugin(tmp_path, authcfg="")
+        with pytest.raises(FetchError) as excinfo:
+            plugin._fetch_bytes(SHARING_LINK, "catalogue des flux")
+        assert excinfo.value.family is ErrorFamily.AUTH_MANQUANTE
+        assert fake_network.last is None  # aucune requête émise
