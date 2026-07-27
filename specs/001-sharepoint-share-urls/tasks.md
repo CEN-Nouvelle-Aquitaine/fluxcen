@@ -88,16 +88,16 @@ Microsoft portent l'auth ; ajout d'une couche WMS tierce → aucune authcfg dans
 
 ### Tests for User Story 2 (écrits d'abord, échouants)
 
-- [ ] T012 [P] [US2] Compléter `tests/test_fetch.py` avec les tests **échouants** du filtrage : `setAuthCfg` appelé pour URL Graph/SharePoint avec authcfg non vide ; jamais appelé pour `raw.githubusercontent.com` ni domaine trompeur ; URL `http://` → exception explicite sans requête émise ; URL `data:` tolérée, traitée sans authentification (FR-006 précisé)
-- [ ] T013 [P] [US2] Écrire les tests unitaires **échouants** du parsing catalogue dans `tests/test_catalog.py` : 10 colonnes conformes au data-model, ligne à service inconnu ignorée sans exception, nom de style contenant `/`, `\` ou `..` rejeté (traité comme absent), lignes PostGIS sans bdd/schéma ignorées
-- [ ] T014 [P] [US2] Écrire les tests **échouants** des handlers de couches dans `tests/test_layers.py` : l'URI produite par la construction de couche WMS et WFS ne contient jamais `authcfg` pour un domaine hors périmètre Microsoft (fixtures pytest-qgis, couche non résolue acceptable — on teste l'URI)
+- [X] T012 [P] [US2] Compléter `tests/test_fetch.py` avec les tests **échouants** du filtrage : `setAuthCfg` appelé pour URL Graph/SharePoint avec authcfg non vide ; jamais appelé pour `raw.githubusercontent.com` ni domaine trompeur ; URL `http://` → exception explicite sans requête émise ; URL `data:` tolérée, traitée sans authentification (FR-006 précisé)
+- [X] T013 [P] [US2] Écrire les tests unitaires **échouants** du parsing catalogue dans `tests/test_catalog.py` : 10 colonnes conformes au data-model, ligne à service inconnu ignorée sans exception, nom de style contenant `/`, `\` ou `..` rejeté (traité comme absent), lignes PostGIS sans bdd/schéma ignorées
+- [X] T014 [P] [US2] Écrire les tests **échouants** des handlers de couches dans `tests/test_layers.py` : l'URI produite par la construction de couche WMS et WFS ne contient jamais `authcfg` pour un domaine hors périmètre Microsoft (fixtures pytest-qgis, couche non résolue acceptable — on teste l'URI)
 
 ### Implementation for User Story 2
 
-- [ ] T015 [US2] Implémenter le filtrage dans `_fetch_bytes()` (`FluxCEN.py`) : `setAuthCfg` uniquement si `is_microsoft_url(url_finale)` et authcfg non vide ; rejet des URL `http:` avant toute requête ; `data:` traité sans auth ; jusqu'au vert de T012
-- [ ] T016 [US2] Créer `core/catalog.py` : déplacer et adapter `parse_table_row` (`FluxCEN.py:841-866`) et le parsing des catégories, avec validation du data-model (service, colonnes, nom de style) jusqu'au vert de T013
-- [ ] T017 [US2] Brancher `core/catalog.py` dans `FluxCEN.py` : `initialisation_flux()` (~ligne 567) et `chargement_flux()` (~ligne 806) consomment `parse_catalog`/`parse_table_row` du nouveau module ; supprimer le code déplacé
-- [ ] T018 [US2] Supprimer l'attachement indiscriminé de la première authcfg dans `handle_wms_layer` (`FluxCEN.py:887-894`) et `handle_wfs_layer` (`FluxCEN.py:931-937`) — les couches WMS/WFS se chargent sans authcfg (research.md R4) ; jusqu'au vert de T014
+- [X] T015 [US2] Implémenter le filtrage dans `_fetch_bytes()` (`FluxCEN.py`) : `setAuthCfg` uniquement si `is_microsoft_url(url_finale)` et authcfg non vide ; rejet des URL `http:` avant toute requête ; `data:` traité sans auth ; jusqu'au vert de T012
+- [X] T016 [US2] Créer `core/catalog.py` : déplacer et adapter `parse_table_row` (`FluxCEN.py:841-866`) et le parsing des catégories, avec validation du data-model (service, colonnes, nom de style) jusqu'au vert de T013
+- [X] T017 [US2] Brancher `core/catalog.py` dans `FluxCEN.py` : `initialisation_flux()` (~ligne 567) et `chargement_flux()` (~ligne 806) consomment `parse_catalog`/`parse_table_row` du nouveau module ; supprimer le code déplacé
+- [X] T018 [US2] Supprimer l'attachement indiscriminé de la première authcfg dans `handle_wms_layer` (`FluxCEN.py:887-894`) et `handle_wfs_layer` (`FluxCEN.py:931-937`) — les couches WMS/WFS se chargent sans authcfg (research.md R4) ; jusqu'au vert de T014
 
 **Checkpoint**: US1 et US2 fonctionnent indépendamment — aucun jeton hors périmètre Microsoft
 

@@ -35,8 +35,8 @@ from qgis.PyQt.QtNetwork import QNetworkRequest
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
-# Logique pure (sans qgis) : classification et conversion des URL Microsoft
-from .core import ms_urls
+# Logique pure (sans qgis) : URL Microsoft, catalogue de flux, URI de couches
+from .core import catalog, ms_urls
 
 import yaml
 import os.path, os
@@ -162,11 +162,7 @@ class FluxCEN:
             return
         
         flux_csv_data = self._fetch_bytes(flux_csv_url)
-        colonnes_flux = csv.DictReader(io.StringIO(flux_csv_data.decode('utf-8')), delimiter=';')
-
-        mots_cles = [row["categorie"] for row in colonnes_flux if row["categorie"]]
-        categories = list(set(mots_cles))
-        categories.sort()
+        categories = catalog.extract_categories(flux_csv_data.decode('utf-8'))
 
         self.dlg.comboBox.addItems(categories)
         layout = QVBoxLayout()
@@ -507,6 +503,9 @@ class FluxCEN:
         (OAuth2 Microsoft Entra ID) est appliqué et rafraîchi par QGIS.
         Retourne les octets bruts de la ressource.
         """
+        if url.split(":", 1)[0].lower() == "http":
+            host = url.split("/")[2] if url.count("/") >= 2 else ""
+            raise IOError(u"URL refusée (%s) : les ressources doivent être en HTTPS." % host)
         request_url = url
         if ms_urls.classify_url(url) is ms_urls.UrlClass.SHAREPOINT_SHARING_LINK:
             request_url = ms_urls.sharing_link_to_graph_url(url)
@@ -516,7 +515,9 @@ class FluxCEN:
             request.setRawHeader(b"Prefer", b"redeemSharingLinkIfNecessary")
         blocking = QgsBlockingNetworkRequest()
         authcfg = self._authcfg_id()
-        if authcfg:
+        if authcfg and ms_urls.is_microsoft_url(request_url):
+            # L'authentification Microsoft ne sort jamais du périmètre
+            # *.sharepoint.com / graph.microsoft.com (FR-004)
             blocking.setAuthCfg(authcfg)
         err = blocking.get(request)
         if err != QgsBlockingNetworkRequest.NoError:
@@ -852,67 +853,32 @@ class FluxCEN:
         """
         Extract relevant data from a given row in tableWidget_2.
         """
-        try:
-            service = self.dlg.tableWidget_2.item(row, 0).text()  # Type of service (WFS, WMS, PostGIS)
-            nom_couche = self.dlg.tableWidget_2.item(row, 2).text()  # Layer name
-            nom_technique = self.dlg.tableWidget_2.item(row, 3).text()  # Technical layer name
-            url = self.dlg.tableWidget_2.item(row, 4).text()  # URL of the service
-            nom_style = self.dlg.tableWidget_2.item(row, 6).text()  # Optional QML style
+        cells = []
+        for col in range(10):
+            item = self.dlg.tableWidget_2.item(row, col)
+            cells.append(item.text() if item is not None else "")
 
-            # Validation des données
-            if not service or not nom_couche or not nom_technique or not url:
-                print(f"Données manquantes dans la ligne: {row}")
-                return None  # Si une donnée importante manque, on retourne None
-
-            # Construction de l'URL du style si disponible : URL directe
-            # (concaténation) ou lien de partage de dossier SharePoint (Graph)
-            style_url = ms_urls.build_style_url(styles_couches, nom_style) \
-                if nom_style and len(nom_style.strip()) >= 2 else None
-
-            return service, nom_couche, nom_technique, url, style_url
-
-        except Exception as e:
-            print(f"Erreur lors de la récupération des données de la ligne: {row}, Erreur: {e}")
+        flux = catalog.parse_table_row(cells)
+        if flux is None:
+            print(f"Données manquantes ou invalides dans la ligne: {row}")
             return None
+
+        # URL du style si disponible : URL directe (concaténation) ou lien de
+        # partage de dossier SharePoint (résolution par chemin via Graph)
+        style_url = ms_urls.build_style_url(styles_couches, flux.style) if flux.style else None
+
+        return flux.service, flux.nom_couche, flux.nom_technique, flux.url, style_url
 
 
     def handle_wms_layer(self, row, nom_couche, nom_technique, url, style_url):
         """
         Handle WMS layer loading and apply authentication if necessary.
         """
-        try:
-            version = re.search('VERSION=(.+?)&REQUEST', url).group(1)
-        except:
-            version = '1.0.0'
-
-        wms_layer_url = (
-            f"url={url}&"
-            f"service=WMS&"
-            f"version={version}&"
-            f"crs=EPSG:2154&"
-            f"format=image/png&"
-            f"layers={nom_technique}&"
-            f"styles"
-        )
-
-        uri = QgsDataSourceUri()
-        # Toujours appliquer une config d'authentification QGIS si dispo
-        managerAU = QgsApplication.authManager()
-        auth_configs = managerAU.availableAuthMethodConfigs()
-        if auth_configs:
-            # Utiliser la première config trouvée
-            first_authcfg = list(auth_configs.keys())[0]
-            wms_layer_url_auth = wms_layer_url + f"&authcfg={first_authcfg}"
-            wms_layer = QgsRasterLayer(wms_layer_url_auth, nom_couche, "wms")
-        else:
-            # Pas de config d'authentification : charger sans
-            wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
-            QMessageBox.information(
-                iface.mainWindow(),
-                "Attention",
-                "Aucune configuration d'authentification QGIS n'a été trouvée.\n"
-                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître."
-            )
+        # Aucune configuration d'authentification n'est attachée aux couches du
+        # catalogue : l'auth Microsoft est réservée au périmètre SharePoint/Graph
+        # (FR-010) et les flux du catalogue sont publics.
+        wms_layer_url = catalog.build_wms_uri(url, nom_technique)
+        wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
 
         if wms_layer.isValid():
             QgsProject.instance().addMapLayer(wms_layer)
@@ -929,34 +895,13 @@ class FluxCEN:
         """
         Handle WFS layer loading and apply authentication if necessary.
         """
-        try:
-            version = re.search('VERSION=(.+?)&REQUEST', url).group(1)
-        except:
-            version = '1.0.0'
-
+        # Aucune configuration d'authentification n'est attachée aux couches du
+        # catalogue : l'auth Microsoft est réservée au périmètre SharePoint/Graph
+        # (FR-010) et les flux du catalogue sont publics.
         uri = QgsDataSourceUri()
-        uri.setParam("url", url)
-        uri.setParam("version", version)
-        uri.setParam("typename", nom_technique)
-        uri.setParam("request", "GetFeature")
-
-        # Toujours appliquer une config d'authentification QGIS si dispo
-        managerAU = QgsApplication.authManager()
-        auth_configs = managerAU.availableAuthMethodConfigs()
-        if auth_configs:
-            # Utiliser la première config trouvée
-            first_authcfg = list(auth_configs.keys())[0]
-            uri.setAuthConfigId(first_authcfg)
-            wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
-        else:
-            # Pas de config d'authentification : charger sans
-            wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
-            QMessageBox.information(
-                iface.mainWindow(),
-                "Attention",
-                "Aucune configuration d'authentification QGIS n'a été trouvée.\n"
-                "Si le flux nécessite une authentification, une fenêtre de connexion QGIS va apparaître."
-            )
+        for key, value in catalog.build_wfs_uri_params(url, nom_technique).items():
+            uri.setParam(key, value)
+        wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
 
         if wfs_layer.isValid():
             QgsProject.instance().addMapLayer(wfs_layer)

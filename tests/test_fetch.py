@@ -98,3 +98,40 @@ class TestResolutionLienDePartage:
         plugin._fetch_bytes(GRAPH_URL)
         assert sent_url(fake_network) == GRAPH_URL
         assert prefer_header(fake_network) == b""
+
+
+class TestFiltragePerimetreAuth:
+    """T012 — US2 : l'authcfg ne sort jamais du périmètre Microsoft (FR-004/FR-006)."""
+
+    def test_authcfg_pour_graph(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        plugin._fetch_bytes(GRAPH_URL)
+        assert fake_network.last.authcfg == "abc1234"
+
+    def test_authcfg_pour_lien_de_partage(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        plugin._fetch_bytes(SHARING_LINK)
+        assert fake_network.last.authcfg == "abc1234"
+
+    @pytest.mark.parametrize("url", [
+        "https://raw.githubusercontent.com/CEN/fluxcen/main/styles_couches/a.qml",
+        "https://sharepoint.com.evil.tld/x",
+        "https://graph.microsoft.com.evil.tld/x",
+    ])
+    def test_jamais_d_authcfg_hors_perimetre(self, tmp_path, fake_network, url):
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        plugin._fetch_bytes(url)
+        assert fake_network.last.authcfg is None
+
+    def test_http_rejete_sans_requete(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        with pytest.raises(Exception) as excinfo:
+            plugin._fetch_bytes("http://exemple.org/flux.csv")
+        assert "HTTPS" in str(excinfo.value)
+        assert fake_network.last is None  # aucune requête émise
+
+    def test_data_url_toleree_sans_auth(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        data = plugin._fetch_bytes("data:text/plain,version=5.2")
+        assert data == b"payload"
+        assert fake_network.last.authcfg is None
