@@ -1,0 +1,47 @@
+# Quickstart: 001-sharepoint-share-urls
+
+## Pour l'administrateur (après implémentation)
+
+1. Dans SharePoint, naviguer jusqu'au fichier (ex. `flux.csv`) → **Partager** → **Copier le lien**.
+2. Coller le lien tel quel dans `config/yaml/links.yaml`, clé `github_urls.flux_csv`.
+3. Vérifier que `auth.authcfg` référence la config OAuth2 Entra ID de QGIS (voir `links_example.yaml`).
+4. Ouvrir le plugin FluxCEN : le catalogue se charge (éventuelle fenêtre de connexion Microsoft au
+   premier accès, portée par QGIS).
+
+## Pour le développeur
+
+### Environnement de test
+
+```bash
+# Tests purs sur un poste SANS QGIS : installer pytest seul
+# (pytest-qgis importe qgis à la collecte et échouerait)
+pip install pytest
+pytest tests/test_ms_urls.py tests/test_catalog.py tests/test_errors.py
+
+# Suite complète (nécessite QGIS ≥ 3.44 installé, ou l'image Docker) :
+pip install pytest pytest-qgis
+pytest tests/
+docker run --rm -v "$PWD":/src -w /src qgis/qgis:release-3_44 sh -c \
+  "pip3 install pytest pytest-qgis && pytest tests/"
+```
+
+### Vérification de bout en bout
+
+1. Configurer `links.yaml` avec un lien de partage SharePoint du tenant CEN.
+2. Lancer QGIS ≥ 3.44 avec le plugin (symlink du dépôt dans le dossier plugins du profil).
+3. Démarrage : aucune requête réseau, aucun gel, plugin chargé même hors ligne.
+4. Ouvrir FluxCEN : catalogue téléchargé et catégories affichées.
+5. Onglet réseau (débogueur QGIS / proxy local) : l'en-tête d'auth n'apparaît que vers
+   `graph.microsoft.com` / `*.sharepoint.com` ; styles et changelog partent anonymes.
+6. Ajouter une couche WMS/WFS tierce : aucune authcfg attachée à l'URI de la couche.
+7. Panneau Journal (`QgsMessageLog`, onglet « FluxCEN ») : messages sans jeton ni URL complète.
+
+### Cas d'erreur à rejouer
+
+| Scénario | Résultat attendu |
+|---|---|
+| Lien de partage invalide/expiré | message « lien invalide », plugin utilisable |
+| Compte sans accès au fichier | message « accès refusé » |
+| `authcfg` vide + URL SharePoint | message « configurez l'authentification » |
+| Réseau coupé au démarrage de QGIS | QGIS démarre, plugin chargé, message à l'ouverture du dialogue |
+| URL `http://` dans links.yaml | rejet explicite, aucune requête authentifiée |

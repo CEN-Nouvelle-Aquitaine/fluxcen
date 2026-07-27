@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "unit: tests purs, sans QGIS",
+    "integration: tests nécessitant QGIS (pytest-qgis)",
+]

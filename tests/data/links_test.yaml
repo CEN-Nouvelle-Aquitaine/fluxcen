@@ -1,0 +1,9 @@
+# Configuration de test — mêmes clés que links_example.yaml, valeurs factices.
+github_urls:
+  flux_csv: "https://tenantcen.sharepoint.com/:x:/r/personal/tests/Documents/flux.csv?d=w0000&csf=1&web=1&e=TEST"
+  styles_couches: "https://raw.githubusercontent.com/example/fluxcen/main/styles_couches/"
+  info_changelog: "https://raw.githubusercontent.com/example/fluxcen/main/html/info_changelog.html"
+depot_plugins_url:
+  last_version: "data:text/plain,version=5.3"
+auth:
+  authcfg: "abc1234"
