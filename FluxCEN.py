@@ -35,6 +35,8 @@ from qgis.PyQt.QtNetwork import QNetworkRequest
 from .resources import *
 # Import the code for the dialog
 from .FluxCEN_dialog import FluxCENDialog
+# Logique pure (sans qgis) : classification et conversion des URL Microsoft
+from .core import ms_urls
 
 import yaml
 import os.path, os
@@ -499,16 +501,24 @@ class FluxCEN:
     def _fetch_bytes(self, url):
         """Télécharge le contenu d'une URL via la pile réseau QGIS.
 
-        Si une configuration d'authentification est renseignée (`auth.authcfg` dans
-        links.yaml), le jeton correspondant (p. ex. OAuth2 Microsoft Entra ID) est appliqué
-        automatiquement et rafraîchi par QGIS. Sans configuration, la requête reste un simple
-        GET anonyme (comportement historique). Retourne les octets bruts de la ressource.
+        Un lien de partage SharePoint (« Copier le lien ») est converti en appel
+        Microsoft Graph avant la requête. Si une configuration d'authentification
+        est renseignée (`auth.authcfg` dans links.yaml), le jeton correspondant
+        (OAuth2 Microsoft Entra ID) est appliqué et rafraîchi par QGIS.
+        Retourne les octets bruts de la ressource.
         """
+        request_url = url
+        if ms_urls.classify_url(url) is ms_urls.UrlClass.SHAREPOINT_SHARING_LINK:
+            request_url = ms_urls.sharing_link_to_graph_url(url)
+        request = QNetworkRequest(QUrl(request_url))
+        if request_url != url:
+            # Garantit l'accès au partage le temps de la requête (API Graph /shares)
+            request.setRawHeader(b"Prefer", b"redeemSharingLinkIfNecessary")
         blocking = QgsBlockingNetworkRequest()
         authcfg = self._authcfg_id()
         if authcfg:
             blocking.setAuthCfg(authcfg)
-        err = blocking.get(QNetworkRequest(QUrl(url)))
+        err = blocking.get(request)
         if err != QgsBlockingNetworkRequest.NoError:
             raise IOError(u"Échec du téléchargement de %s : %s" % (url, blocking.errorMessage()))
         return bytes(blocking.reply().content())
@@ -854,8 +864,10 @@ class FluxCEN:
                 print(f"Données manquantes dans la ligne: {row}")
                 return None  # Si une donnée importante manque, on retourne None
 
-            # Construction du chemin du style si disponible
-            style_url = styles_couches + nom_style + ".qml" if nom_style and len(nom_style.strip()) >= 2 else None
+            # Construction de l'URL du style si disponible : URL directe
+            # (concaténation) ou lien de partage de dossier SharePoint (Graph)
+            style_url = ms_urls.build_style_url(styles_couches, nom_style) \
+                if nom_style and len(nom_style.strip()) >= 2 else None
 
             return service, nom_couche, nom_technique, url, style_url
 

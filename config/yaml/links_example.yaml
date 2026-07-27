@@ -1,9 +1,21 @@
 # URLs des ressources téléchargées par le plugin.
-# Pour un dépôt privé, faire pointer ces URLs vers la bibliothèque SharePoint / Microsoft Graph
-# (ex. https://graph.microsoft.com/v1.0/sites/<site-id>/drive/root:/fluxcen/flux.csv:/content)
+#
+# Chaque clé accepte indifféremment :
+#   1. Un lien de partage SharePoint collé TEL QUEL depuis « Partager > Copier le lien »
+#      (avec ses paramètres ?d=…&csf=1&web=1&e=…) — le plugin le résout automatiquement
+#      via l'authentification Microsoft configurée dans QGIS.
+#      Pour `styles_couches`, le lien de partage peut désigner un DOSSIER : les fichiers
+#      .qml sont résolus par leur nom à l'intérieur du dossier partagé.
+#   2. Une URL Microsoft Graph historique
+#      (ex. https://graph.microsoft.com/v1.0/sites/<site-id>/drive/root:/fluxcen/flux.csv:/content)
+#   3. Une URL HTTPS publique quelconque — téléchargée SANS authentification Microsoft.
+#
+# Note : l'authentification Microsoft n'est appliquée qu'aux domaines *.sharepoint.com et
+# graph.microsoft.com. Les URL http:// sont refusées.
+# (Le nom de clé `github_urls` est historique — les ressources peuvent être hébergées ailleurs.)
 github_urls:
-  flux_csv: "link_to_the_csv_file (your_flux.csv)"
-  styles_couches: "link_to_the_layer_styles_file (your styles_couches folder)"
+  flux_csv: "https://<tenant>.sharepoint.com/:x:/r/personal/<compte>/Documents/<chemin>/flux.csv?d=w…&csf=1&web=1&e=…"
+  styles_couches: "https://<tenant>.sharepoint.com/:f:/r/personal/<compte>/Documents/<chemin>/styles_couches?csf=1&web=1&e=…"
   info_changelog: "link_to_the_changelog_html (if needed)"
 depot_plugins_url:
   last_version: "link_to_the_plugin_version (.txt)"
