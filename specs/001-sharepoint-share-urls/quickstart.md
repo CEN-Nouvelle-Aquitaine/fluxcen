@@ -22,6 +22,16 @@ pytest tests/test_ms_urls.py tests/test_catalog.py tests/test_errors.py
 pip install pytest pytest-qgis
 pytest tests/
 
+# AVANT TOUT PUSH : rejouer exactement le job CI dans le conteneur
+# (--platform requis sur Mac ARM ; les configs locales sont retirées pour
+# reproduire le checkout CI où les fichiers gitignorés sont absents)
+docker run --rm --platform linux/amd64 -v "$PWD":/src:ro -w /tmp \
+  -e QT_QPA_PLATFORM=offscreen qgis/qgis:3.44 bash -c "
+  cp -r /src /tmp/fluxcen && cd /tmp/fluxcen &&
+  rm -f config/yaml/links.yaml config/yaml/config_db.yaml &&
+  pip3 install --break-system-packages -q pytest pytest-qgis &&
+  python3 -m pytest tests/ -q"
+
 # macOS avec QGIS-LTR.app : utiliser le Python embarqué de QGIS
 APP=/Applications/QGIS-LTR.app
 export PYTHONHOME=$APP/Contents/Frameworks
