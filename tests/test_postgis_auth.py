@@ -48,6 +48,7 @@ def plugin(qgis_app, monkeypatch):
     """Instance minimale + neutralisation des dialogues et du iface global."""
     monkeypatch.setattr(plugin_mod, "iface", MagicMock())
     monkeypatch.setattr(plugin_mod, "QMessageBox", MagicMock())
+    monkeypatch.setattr(plugin_mod, "alert", MagicMock())  # popups centralisées (#46)
     QSettings().remove("FluxCEN/default_auth_id")
     yield plugin_mod.FluxCEN.__new__(plugin_mod.FluxCEN)
     QSettings().remove("FluxCEN/default_auth_id")
