@@ -3,6 +3,7 @@
 
 Nécessitent QGIS (ignorés sans bindings, exécutés en CI).
 """
+# pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 from unittest.mock import MagicMock
 
 import pytest

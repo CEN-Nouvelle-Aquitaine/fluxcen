@@ -3,6 +3,7 @@
 
 Data-model : specs/001-sharepoint-share-urls/data-model.md (CatalogueFlux).
 """
+# pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 import pathlib
 
 from core.catalog import FluxRow, extract_categories, parse_catalog, parse_table_row
@@ -86,7 +87,7 @@ class TestParseCatalog:
         assert "2" in warnings[0]  # numéro de ligne dans le message
 
     def test_jamais_d_exception_sur_contenu_hostile(self):
-        rows, warnings = parse_catalog("pas;un;vrai;catalogue")
+        rows, _ = parse_catalog("pas;un;vrai;catalogue")
         assert rows == []
 
 

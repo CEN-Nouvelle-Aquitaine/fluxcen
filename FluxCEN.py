@@ -52,7 +52,7 @@ class AuthSelectionDialog(QDialog):
         super(AuthSelectionDialog, self).__init__(parent)
         self.selected_auth_id = None
         self.auth_config_dict = {}  # Dictionnaire pour stocker l'association entre nom et ID
-        
+
         self.setWindowTitle("Sélectionner une configuration d'authentification")
 
         layout = QVBoxLayout()
@@ -114,7 +114,7 @@ class FluxCEN:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&FluxCEN')
+        self.menu = self.tr('&FluxCEN')
         self.dlg = FluxCENDialog()
 
         self.plugin_path = os.path.dirname(__file__)
@@ -158,7 +158,7 @@ class FluxCEN:
         self.dlg.lineEdit.setText("")
         self.dlg.lineEdit.mousePressEvent = None
 
-        
+
     def show_welcome_popup(self):
         """
         Affiche une fenêtre avec une image au démarrage, centre l'image et ajoute un texte en dessous.
@@ -172,7 +172,7 @@ class FluxCEN:
 
         # Ajouter une image
         label_image = QLabel()
-        pixmap = QPixmap(self.plugin_path + "/icons/logo_fluxcen.jpg")  
+        pixmap = QPixmap(self.plugin_path + "/icons/logo_fluxcen.jpg")
 
         if not pixmap.isNull():
             pixmap = pixmap.scaled(450, 300, Qt.KeepAspectRatio, Qt.SmoothTransformation)
@@ -190,7 +190,7 @@ class FluxCEN:
 
         try:
             _, _, _, info_changelog = self.load_urls('config/yaml/links.yaml')
-            html_changelog = self._fetch_bytes(info_changelog, u"changelog").decode("utf8")
+            html_changelog = self._fetch_bytes(info_changelog, "changelog").decode("utf8")
             changelog_label.setText(html_changelog)
             changelog_label.setFont(QFont("Calibri", weight=QFont.Bold))
         except Exception as e:
@@ -223,12 +223,12 @@ class FluxCEN:
         # Obtenir la version actuelle du plugin depuis le fichier 'metadata.txt'
         metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
         infos_metadonnees = metadonnees_plugin.readlines()
-        version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin 
+        version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin
 
         # Charger la dernière version depuis l'URL (les erreurs remontent à
         # l'appelant, qui les journalise sans bloquer le plugin)
         _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
-        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, u"version du plugin"))
+        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, "version du plugin"))
         num_last_version = derniere_version.readlines()[0].decode("utf-8").strip()  # Récupérer la dernière version disponible
 
         # Obtenir la dernière version utilisée stockée dans les paramètres
@@ -345,7 +345,7 @@ class FluxCEN:
         icon_path = ':/plugins/FluxCEN/icons/icon.png'
         self.add_action(
             icon_path,
-            text=self.tr(u'FluxCEN'),
+            text=self.tr('FluxCEN'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
@@ -365,9 +365,9 @@ class FluxCEN:
         # Vérifier si une authentification par défaut a été définie et l'appliquer
         settings = QSettings()
         default_auth_id = settings.value("FluxCEN/default_auth_id", None)
-        
+
         if default_auth_id:
-            self.apply_authentication_if_needed(QgsDataSourceUri())  
+            self.apply_authentication_if_needed(QgsDataSourceUri())
 
         elif len(auth_configs) > 1:
             # Si plusieurs configurations sont disponibles et aucune par défaut n'est définie
@@ -382,7 +382,7 @@ class FluxCEN:
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(
-                self.tr(u'&FluxCEN'),
+                self.tr('&FluxCEN'),
                 action)
             self.iface.removeToolBarIcon(action)
 
@@ -399,16 +399,16 @@ class FluxCEN:
         if isinstance(exc, errors.FetchError):
             message = exc.user_message()
         else:
-            message = u"Échec du chargement de « %s » : %s" % (resource_name, exc)
+            message = "Échec du chargement de « %s » : %s" % (resource_name, exc)
         self._log(message, Qgis.Critical)
-        self.iface.messageBar().pushMessage(u"FluxCEN", message, level=Qgis.Critical, duration=10)
+        self.iface.messageBar().pushMessage("FluxCEN", message, level=Qgis.Critical, duration=10)
 
     def _get_catalog_text(self):
         """Texte du catalogue de flux, téléchargé une seule fois par session."""
         if self._catalog_text is None:
             flux_csv_url, _, _, _ = self.load_urls('config/yaml/links.yaml')
             self._catalog_text = self._fetch_bytes(
-                flux_csv_url, u"catalogue des flux").decode('utf-8')
+                flux_csv_url, "catalogue des flux").decode('utf-8')
         return self._catalog_text
 
     def _check_version(self):
@@ -416,7 +416,7 @@ class FluxCEN:
         _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
         with open(os.path.join(self.plugin_path, 'metadata.txt'), encoding='utf-8') as metadata_file:
             infos_metadonnees = metadata_file.readlines()
-        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, u"version du plugin"))
+        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, "version du plugin"))
         num_last_version = derniere_version.readlines()[0].decode("utf-8")
         version_utilisateur = infos_metadonnees[8].splitlines()
 
@@ -436,19 +436,19 @@ class FluxCEN:
         try:
             categories = catalog.extract_categories(self._get_catalog_text())
             self.dlg.comboBox.addItems(categories)
-        except Exception as exc:
-            self._notify_fetch_error(exc, u"catalogue des flux")
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            self._notify_fetch_error(exc, "catalogue des flux")
 
         try:
             self._check_version()
-        except Exception as exc:
-            self._log(u"Vérification de version impossible : %s" % exc)
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            self._log("Vérification de version impossible : %s" % exc)
 
         try:
             if self.is_first_run_of_new_version():
                 self.show_welcome_popup()
-        except Exception as exc:
-            self._log(u"Affichage du changelog impossible : %s" % exc)
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            self._log("Affichage du changelog impossible : %s" % exc)
 
     def run(self):
         """Run method that performs all the real work"""
@@ -478,26 +478,26 @@ class FluxCEN:
         config_path = os.path.join(self.plugin_path, yaml_file)
         with open(config_path, 'r') as file:
             config = yaml.safe_load(file)
-        
+
         # Assurer que 'database' est une clé valide dans le fichier YAML
         db_config_list = config.get('database', [])
-        
+
         # Trouver et retourner la configuration pour PostGIS
         for db in db_config_list:
             if db['type'] == 'PostGIS':
                 return db
-        
+
         return None
-    
-    
+
+
     def load_urls(self, yaml_file):
         # Charger le fichier YAML contenant plusieurs clés
         config_path = os.path.join(self.plugin_path, yaml_file)
-        
+
         # Lire le fichier YAML
         with open(config_path, 'r') as file:
             config = yaml.safe_load(file)
-        
+
         # Extraire les URL pour chaque clé
         github_urls = config.get('github_urls', {})
         depot_plugins_url = config.get('depot_plugins_url', {})
@@ -525,7 +525,7 @@ class FluxCEN:
         except Exception:
             return ''
 
-    def _fetch_bytes(self, url, resource_name=u"ressource"):
+    def _fetch_bytes(self, url, resource_name="ressource"):
         """Télécharge le contenu d'une URL via la pile réseau QGIS.
 
         Un lien de partage SharePoint (« Copier le lien ») est converti en appel
@@ -537,7 +537,7 @@ class FluxCEN:
         """
         if url.split(":", 1)[0].lower() == "http":
             host = url.split("/")[2] if url.count("/") >= 2 else ""
-            raise IOError(u"URL refusée (%s) : les ressources doivent être en HTTPS." % host)
+            raise IOError("URL refusée (%s) : les ressources doivent être en HTTPS." % host)
         request_url = url
         if ms_urls.classify_url(url) is ms_urls.UrlClass.SHAREPOINT_SHARING_LINK:
             request_url = ms_urls.sharing_link_to_graph_url(url)
@@ -575,7 +575,7 @@ class FluxCEN:
         if not QgsProject.instance().mapLayersByName("OSM"):
             QgsProject.instance().addMapLayer(layer)
         else:
-            QMessageBox.question(iface.mainWindow(), u"Fond OSM déjà chargé !", "Le fond de carte OSM est déjà chargé", QMessageBox.Ok)
+            QMessageBox.question(iface.mainWindow(), "Fond OSM déjà chargé !", "Le fond de carte OSM est déjà chargé", QMessageBox.Ok)
 
         OSM_layer = QgsProject.instance().mapLayersByName("OSM")[0]
 
@@ -595,7 +595,7 @@ class FluxCEN:
         if not QgsProject.instance().mapLayersByName("Google Satelitte"):
             QgsProject.instance().addMapLayer(layer)
         else:
-            QMessageBox.question(iface.mainWindow(), u"Fond Google Sat' déjà chargé !", "Le fond de carte Google Satelitte est déjà chargé", QMessageBox.Ok)
+            QMessageBox.question(iface.mainWindow(), "Fond Google Sat' déjà chargé !", "Le fond de carte Google Satelitte est déjà chargé", QMessageBox.Ok)
 
         google_layer = QgsProject.instance().mapLayersByName("Google Satelitte")[0]
 
@@ -621,8 +621,8 @@ class FluxCEN:
         # plus de re-téléchargement à chaque changement de catégorie.
         try:
             raw = csv.reader(io.StringIO(self._get_catalog_text()), delimiter=';')
-        except Exception as exc:
-            self._notify_fetch_error(exc, u"catalogue des flux")
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            self._notify_fetch_error(exc, "catalogue des flux")
             return
         # on ne lit pas la première ligne correspondant aux noms des colonnes
         next(raw, None)
@@ -663,11 +663,11 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/icons/info_metadata.png' 
+                        icon_path = self.plugin_path + '/icons/info_metadata.png'
                         icon = QIcon(icon_path)
-                        item.setIcon(icon)   
+                        item.setIcon(icon)
                         # Store the URL in the item's data for later retrieval
-                        url_from_6th_column = str(data2[row][7])  
+                        url_from_6th_column = str(data2[row][7])
                         item.setData(Qt.UserRole, url_from_6th_column)
 
                     self.dlg.tableWidget.setItem(row, col, item)
@@ -689,11 +689,11 @@ class FluxCEN:
                     # Check if the current column is the "Résumé des métadonnées" column
                     if col == 7:
                         # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/icons/metadata.png' 
+                        icon_path = self.plugin_path + '/icons/metadata.png'
                         icon = QIcon(icon_path)
-                        item.setIcon(icon)   
+                        item.setIcon(icon)
                         # Store the URL in the item's data for later retrieval
-                        url_from_6th_column = str(data2[row][7])  
+                        url_from_6th_column = str(data2[row][7])
                         item.setData(Qt.UserRole, url_from_6th_column)
 
                     self.dlg.tableWidget.setItem(row, col, item)
@@ -749,7 +749,7 @@ class FluxCEN:
     def limite_flux(self):
 
         if self.dlg.tableWidget_2.rowCount() > 3:
-            self.QMBquestion = QMessageBox.question(iface.mainWindow(), u"Attention !",
+            self.QMBquestion = QMessageBox.question(iface.mainWindow(), "Attention !",
                                                     "Le nombre de flux à charger en une seule fois est limité à 3 pour des questions de performances. Souhaitez vous tout de même charger les " + str(
                                                         self.dlg.tableWidget_2.rowCount()) + " flux sélectionnés ? (risque de plantage de QGIS)",
                                                     QMessageBox.Yes | QMessageBox.No)
@@ -757,7 +757,7 @@ class FluxCEN:
                 self.chargement_flux()
 
             if self.QMBquestion == QMessageBox.No:
-                self._log(u"Annulation du chargement des couches", Qgis.Info)
+                self._log("Annulation du chargement des couches", Qgis.Info)
 
         if self.dlg.tableWidget_2.rowCount() <= 3:
             self.chargement_flux()
@@ -771,25 +771,25 @@ class FluxCEN:
         try:
             # Récupération des styles depuis l'URL configurée (accès authentifié
             # uniquement si l'URL appartient au périmètre Microsoft)
-            style_data = self._fetch_bytes(style_url, u"style de couche")
+            style_data = self._fetch_bytes(style_url, "style de couche")
 
             #"Décorticage" du style QML en utilisant QDomDocument
             document = QDomDocument()
             if not document.setContent(style_data):
-                self._log(u"Échec de l'ouverture du style QML.")
+                self._log("Échec de l'ouverture du style QML.")
                 return
 
             # on applique le style au flux
             if not wfs_layer.importNamedStyle(document):
-                self._log(u"Échec, le style n'a pas pu être appliqué au flux : %s" % wfs_layer.name())
+                self._log("Échec, le style n'a pas pu être appliqué au flux : %s" % wfs_layer.name())
             else:
-                self._log(u"Le style a bien été appliqué au flux : %s" % wfs_layer.name(), Qgis.Info)
+                self._log("Le style a bien été appliqué au flux : %s" % wfs_layer.name(), Qgis.Info)
 
             #Actualisation de la couche pour prendre en compte le nouveau style
             wfs_layer.triggerRepaint()
 
-        except Exception as e:
-            self._log(u"Problème dans l'application du style : %s" % e)
+        except Exception as e:  # pylint: disable=broad-exception-caught
+            self._log("Problème dans l'application du style : %s" % e)
 
 
     def choose_default_authentication(self):
@@ -840,7 +840,7 @@ class FluxCEN:
                 return True
         else:
             QMessageBox.warning(iface.mainWindow(), "Attention", "Aucune configuration d'authentification n'a été trouvée dans votre QGIS. Veuillez ajouter la configuration d'authentification CEN-NA pour charger les flux sécurisés tels que la MFU .")
-            
+
 
 
 
@@ -878,8 +878,8 @@ class FluxCEN:
                 elif service == "PostGIS":
                     self.handle_postgis_layer(row)
 
-            except Exception as e:
-                self._log(u"Erreur lors du chargement de la ligne %s : %s" % (row, e))
+            except Exception as e:  # pylint: disable=broad-exception-caught
+                self._log("Erreur lors du chargement de la ligne %s : %s" % (row, e))
                 continue  # Passer à la ligne suivante en cas d'erreur
 
 
@@ -898,7 +898,7 @@ class FluxCEN:
 
         flux = catalog.parse_table_row(cells)
         if flux is None:
-            self._log(u"Données manquantes ou invalides dans la ligne : %s" % row)
+            self._log("Données manquantes ou invalides dans la ligne : %s" % row)
             return None
 
         # URL du style si disponible : URL directe (concaténation) ou lien de
@@ -999,4 +999,3 @@ class FluxCEN:
                 self.dlg.tableWidget.setRowHidden(i, match)
                 if not match:
                     break
-

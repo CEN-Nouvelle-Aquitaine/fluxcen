@@ -6,6 +6,7 @@ configuration d'authentification ne doit y figurer pour un domaine hors
 périmètre Microsoft. Un test de garde vérifie en outre que l'attachement
 indiscriminé de la première authcfg a bien disparu de FluxCEN.py.
 """
+# pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 import pathlib
 
 from core.catalog import build_wfs_uri_params, build_wms_uri, extract_service_version

@@ -3,6 +3,7 @@
 
 Data-model : specs/001-sharepoint-share-urls/data-model.md (ErreurTelechargement).
 """
+# pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 import pytest
 
 from core.errors import ErrorFamily, FetchError, classify_http_status

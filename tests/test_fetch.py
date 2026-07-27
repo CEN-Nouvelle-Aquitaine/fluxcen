@@ -6,12 +6,14 @@ Nécessitent QGIS (ignorés sur un poste sans bindings ; exécutés en CI sur
 l'image qgis/qgis:release-3_44). La pile réseau est remplacée par un faux
 QgsBlockingNetworkRequest : on vérifie la requête émise, pas le réseau.
 """
+# pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 import pytest
 
 pytest.importorskip("qgis.core")
 pytestmark = pytest.mark.integration
 
 import fluxcen.FluxCEN as plugin_mod  # noqa: E402  (après importorskip)
+from fluxcen.core.errors import ErrorFamily, FetchError  # noqa: E402
 
 SHARING_LINK = (
     "https://conservatoirena-my.sharepoint.com/:x:/r/personal/tests/Documents/flux.csv"
@@ -55,7 +57,7 @@ def make_plugin(tmp_path, authcfg="abc1234"):
     cfg_dir = tmp_path / "config" / "yaml"
     cfg_dir.mkdir(parents=True, exist_ok=True)
     (cfg_dir / "links.yaml").write_text(
-        "auth:\n  authcfg: \"%s\"\n" % authcfg, encoding="utf-8"
+        f"auth:\n  authcfg: \"{authcfg}\"\n", encoding="utf-8"
     )
     obj = plugin_mod.FluxCEN.__new__(plugin_mod.FluxCEN)
     obj.plugin_path = str(tmp_path)
@@ -141,7 +143,6 @@ class TestAuthManquante:
     """T024 — US3 : périmètre Microsoft sans authcfg → erreur d'orientation, sans requête."""
 
     def test_url_microsoft_sans_authcfg(self, tmp_path, fake_network):
-        from fluxcen.core.errors import ErrorFamily, FetchError
         plugin = make_plugin(tmp_path, authcfg="")
         with pytest.raises(FetchError) as excinfo:
             plugin._fetch_bytes(SHARING_LINK, "catalogue des flux")

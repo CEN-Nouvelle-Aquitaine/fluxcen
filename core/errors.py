@@ -22,15 +22,15 @@ class ErrorFamily(Enum):
 
 _MESSAGES = {
     ErrorFamily.LIEN_INVALIDE:
-        u"Le lien configuré pour « {resource} » est invalide ou expiré ({host}).",
+        "Le lien configuré pour « {resource} » est invalide ou expiré ({host}).",
     ErrorFamily.ACCES_REFUSE:
-        u"Accès refusé à « {resource} » ({host}) : vérifiez vos droits SharePoint.",
+        "Accès refusé à « {resource} » ({host}) : vérifiez vos droits SharePoint.",
     ErrorFamily.AUTH_MANQUANTE:
-        u"« {resource} » nécessite une authentification Microsoft : configurez-la "
-        u"dans QGIS (Préférences > Authentification) et renseignez auth.authcfg "
-        u"dans links.yaml (voir documentation).",
+        "« {resource} » nécessite une authentification Microsoft : configurez-la "
+        "dans QGIS (Préférences > Authentification) et renseignez auth.authcfg "
+        "dans links.yaml (voir documentation).",
     ErrorFamily.RESEAU:
-        u"« {resource} » inaccessible ({host}) : vérifiez votre connexion.",
+        "« {resource} » inaccessible ({host}) : vérifiez votre connexion.",
 }
 
 

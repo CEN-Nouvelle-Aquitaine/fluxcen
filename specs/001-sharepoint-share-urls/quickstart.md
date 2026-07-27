@@ -36,6 +36,21 @@ docker run --rm -v "$PWD":/src -w /src qgis/qgis:release-3_44 sh -c \
 6. Ajouter une couche WMS/WFS tierce : aucune authcfg attachée à l'URI de la couche.
 7. Panneau Journal (`QgsMessageLog`, onglet « FluxCEN ») : messages sans jeton ni URL complète.
 
+### Traçabilité exigences → tests (T027, vérifiée le 2026-07-27)
+
+| Exigence | Tests verts |
+|---|---|
+| FR-001 (liens de partage, fichiers + dossier styles) | `test_ms_urls.py::TestSharingLinkToGraphUrl/TestSharingLinkToGraphItemUrl/TestBuildStyleUrl` |
+| FR-002 (résolution automatique via auth QGIS) | `test_fetch.py::TestResolutionLienDePartage` |
+| FR-003 (rétrocompat URL Graph) | `test_fetch.py::test_url_graph_directe_inchangee` |
+| FR-004 (auth restreinte au périmètre Microsoft) | `test_fetch.py::TestFiltragePerimetreAuth` |
+| FR-005 (correspondance de domaine stricte) | `test_ms_urls.py::TestIsMicrosoftUrl` (cas hostiles) |
+| FR-006 (HTTPS obligatoire, data: toléré) | `test_fetch.py::test_http_rejete_sans_requete`, `test_data_url_toleree_sans_auth` |
+| FR-007 (aucun secret dans logs/messages) | `test_errors.py::test_jamais_d_url_complete_ni_de_jeton` |
+| FR-008 (échec non fatal) | `test_startup.py::TestEchecReseauNonFatal` |
+| FR-009 (aucun réseau au démarrage) | `test_startup.py::TestAucunReseauALImport` (+ initGui sous fetch défaillant) |
+| FR-010 (couches WMS/WFS sans authcfg) | `test_layers.py` (URI pures + garde sur le code) |
+
 ### Cas d'erreur à rejouer
 
 | Scénario | Résultat attendu |

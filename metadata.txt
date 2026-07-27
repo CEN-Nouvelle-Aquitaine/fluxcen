@@ -4,9 +4,9 @@
 
 [general]
 name=FluxCEN
-qgisMinimumVersion=3.0
+qgisMinimumVersion=3.44
 description=Centralisation des flux WFS/WMS les plus couramment utilisés au CEN-NA
-version=5.2
+version=5.3.0
 author=Romain Montillet (CEN-NA)
 email=r.montillet@cen-na.org
 
@@ -19,8 +19,7 @@ repository=https://sig.dsi-cen.org/qgis/
 # Recommended items:
 
 hasProcessingProvider=no
-# Uncomment the following line and add your changelog:
-# changelog= correctif de sécurité: envoi du certificat d'authentification seulement pour les couches fonciercen et drone / intégration des styles RPG geoportail / modification des noms de couches pour plus de clarté
+changelog=5.3 : support des liens de partage SharePoint (collage direct depuis « Copier le lien », fichiers et dossiers de styles) / sécurité : l'authentification Microsoft est restreinte aux domaines SharePoint et Microsoft Graph (plus aucun jeton envoyé aux services tiers, y compris pour les couches WMS/WFS) / robustesse : plus d'accès réseau au démarrage de QGIS, messages d'erreur explicites par famille, catalogue mis en cache / QGIS minimum 3.44 (LTR)
 
 # Tags are comma separated with spaces allowed
 tags=python

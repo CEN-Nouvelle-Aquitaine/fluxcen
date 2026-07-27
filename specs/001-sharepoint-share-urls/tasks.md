@@ -131,9 +131,9 @@ chargé dans tous les cas (quickstart.md, « Cas d'erreur à rejouer »).
 
 **Purpose**: conformité constitution, métadonnées de release, validation finale
 
-- [ ] T025 [P] Mettre à jour `metadata.txt` : `qgisMinimumVersion=3.44`, version plugin incrémentée en MINEUR (5.2 → 5.3), `changelog` décrivant liens de partage + restriction d'auth (TODO constitutionnel soldé)
-- [ ] T026 [P] Passer `pylint` (config `pylintrc` du dépôt) sur `FluxCEN.py`, `core/` et `tests/` — aucune nouvelle violation
-- [ ] T027 Vérifier la couverture des exigences : chaque FR-001…FR-010 de spec.md tracée vers au moins un test vert ; compléter les tests manquants le cas échéant
+- [X] T025 [P] Mettre à jour `metadata.txt` : `qgisMinimumVersion=3.44`, version plugin incrémentée en MINEUR (5.2 → 5.3), `changelog` décrivant liens de partage + restriction d'auth (TODO constitutionnel soldé)
+- [X] T026 [P] Passer `pylint` (config `pylintrc` du dépôt) sur `FluxCEN.py`, `core/` et `tests/` — aucune nouvelle violation
+- [X] T027 Vérifier la couverture des exigences : chaque FR-001…FR-010 de spec.md tracée vers au moins un test vert ; compléter les tests manquants le cas échéant
 - [ ] T028 Dérouler la validation manuelle de `quickstart.md` (bout en bout + cas d'erreur, y compris un style résolu depuis un dossier partagé) dans un QGIS 3.44 réel avec le tenant CEN, consigner le résultat dans `specs/001-sharepoint-share-urls/quickstart.md` (section résultats à ajouter)
 
 ---

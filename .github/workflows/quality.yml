@@ -58,13 +58,19 @@ jobs:
       - name: Prepare quality output dir
         run: mkdir -p "$LOG_DIR"
 
+      # Gate bloquante (constitution) : échec sur toute erreur (catégorie E)
+      # et sur toute régression du score sous 9.0. La dette pylint héritée de
+      # FluxCEN.py est tolérée mais ne doit plus augmenter.
       - name: Lint — pylint
         id: pylint
         run: |
+          set -o pipefail
           pylint --recursive=y . \
             --reports=n \
             --rcfile=pylintrc \
-            --disable=E0401 2>&1 | tee "$LOG_DIR/pylint.log"
+            --disable=E0401 \
+            --fail-on=E \
+            --fail-under=9.0 2>&1 | tee "$LOG_DIR/pylint.log"
 
       - name: Metadata — validate version format
         id: metadata

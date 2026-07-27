@@ -20,8 +20,8 @@ _DEFAULT_SERVICE_VERSION = "1.0.0"
 
 
 @dataclass(frozen=True)
-class FluxRow:
-    """Ligne validée du catalogue de flux."""
+class FluxRow:  # pylint: disable=too-many-instance-attributes
+    """Ligne validée du catalogue de flux (les 10 colonnes du CSV)."""
 
     service: str
     categorie: str
@@ -82,8 +82,8 @@ def parse_catalog(csv_text: str) -> Tuple[List[FluxRow], List[str]]:
         row = parse_table_row(cells)
         if row is None:
             warnings.append(
-                "ligne %d du catalogue ignorée (service inconnu ou champs manquants)"
-                % line_number)
+                f"ligne {line_number} du catalogue ignorée "
+                "(service inconnu ou champs manquants)")
         else:
             rows.append(row)
     return rows, warnings
