@@ -803,9 +803,22 @@ class FluxCEN:
             self._log("Problème dans l'application du style : %s" % e)
 
 
-    def choose_default_authentication(self):
+    def _database_auth_configs(self):
+        """Configurations d'authentification utilisables pour une connexion BDD.
+
+        Les méthodes web (OAuth2 — Microsoft Entra ID) sont exclues (FR-011).
+        """
         managerAU = QgsApplication.authManager()
-        auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
+        return {
+            auth_id: config
+            for auth_id, config in managerAU.availableAuthMethodConfigs().items()
+            if ms_urls.is_database_auth_method(config.method())
+        }
+
+    def choose_default_authentication(self):
+        # Seules les configurations utilisables pour une BDD sont proposées :
+        # ce choix par défaut ne sert qu'aux connexions PostGIS (FR-011)
+        auth_configs = self._database_auth_configs()
 
         if not auth_configs:
             QMessageBox.warning(self.dlg, "Pas de configurations", "Aucune configuration d'authentification disponible.")
@@ -827,15 +840,19 @@ class FluxCEN:
         """
         settings = QSettings()
         default_auth_id = settings.value("FluxCEN/default_auth_id", None)
+        auth_configs = self._database_auth_configs()
 
-        # Si une configuration par défaut existe, on l'applique automatiquement
+        # Si une configuration par défaut existe ET reste utilisable pour une
+        # BDD, on l'applique automatiquement ; sinon elle est ignorée (FR-011 :
+        # jamais de configuration web/Microsoft sur une connexion PostGIS)
         if default_auth_id:
-            uri.setAuthConfigId(default_auth_id)
-            return True
-
-        # Si aucune configuration par défaut n'est définie, ouvrir la boîte de dialogue
-        managerAU = QgsApplication.authManager()
-        auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
+            if default_auth_id in auth_configs:
+                uri.setAuthConfigId(default_auth_id)
+                return True
+            self._log(
+                "Configuration d'authentification par défaut ignorée pour la "
+                "connexion base de données : méthode web (ex. OAuth2 Microsoft) "
+                "inadaptée à PostGIS. Redéfinissez-la via l'icône 🛠️ du plugin.")
 
         if len(auth_configs) == 1:
             # Si une seule configuration est disponible, on l'applique directement

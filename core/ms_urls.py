@@ -100,6 +100,20 @@ def sharing_link_to_graph_item_url(folder_share_url, filename):
             + "/driveItem:/" + quote(filename) + ":/content")
 
 
+_DATABASE_EXCLUDED_AUTH_METHODS = frozenset({"OAuth2"})
+
+
+def is_database_auth_method(method):
+    """Vraie ssi une méthode d'authentification QGIS est utilisable pour une BDD.
+
+    Les méthodes web (OAuth2 — dont Microsoft Entra ID) ne peuvent rien
+    injecter dans une connexion PostgreSQL : les appliquer fait échouer la
+    connexion et déclenche la fenêtre d'identification de secours de QGIS
+    (FR-011). Basic et les méthodes par certificat restent légitimes.
+    """
+    return method not in _DATABASE_EXCLUDED_AUTH_METHODS
+
+
 def build_style_url(styles_base, style_name):
     """URL de téléchargement d'un style ``<style_name>.qml``.
 

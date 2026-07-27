@@ -58,6 +58,7 @@ docker run --rm -v "$PWD":/src -w /src qgis/qgis:release-3_44 sh -c \
 | FR-008 (échec non fatal) | `test_startup.py::TestEchecReseauNonFatal` |
 | FR-009 (aucun réseau au démarrage) | `test_startup.py::TestAucunReseauALImport` (+ initGui sous fetch défaillant) |
 | FR-010 (couches WMS/WFS sans authcfg) | `test_layers.py` (URI pures + garde sur le code) |
+| FR-011 (jamais d'auth web/Microsoft sur PostGIS) | `test_ms_urls.py::TestIsDatabaseAuthMethod`, `test_postgis_auth.py` |
 
 ### Cas d'erreur à rejouer
 

@@ -99,7 +99,13 @@ Microsoft portent l'auth ; ajout d'une couche WMS tierce → aucune authcfg dans
 - [X] T017 [US2] Brancher `core/catalog.py` dans `FluxCEN.py` : `initialisation_flux()` (~ligne 567) et `chargement_flux()` (~ligne 806) consomment `parse_catalog`/`parse_table_row` du nouveau module ; supprimer le code déplacé
 - [X] T018 [US2] Supprimer l'attachement indiscriminé de la première authcfg dans `handle_wms_layer` (`FluxCEN.py:887-894`) et `handle_wfs_layer` (`FluxCEN.py:931-937`) — les couches WMS/WFS se chargent sans authcfg (research.md R4) ; jusqu'au vert de T014
 
-**Checkpoint**: US1 et US2 fonctionnent indépendamment — aucun jeton hors périmètre Microsoft
+### Amendement 2026-07-27 — FR-011 : PostGIS ne reçoit jamais l'auth Microsoft (découvert en T028)
+
+- [X] T029 [US2] Écrire les tests **échouants** de FR-011 : test pur de `is_database_auth_method()` dans `tests/test_ms_urls.py` (`OAuth2` → False ; `Basic`, `PKI-Paths` → True) et tests d'intégration dans `tests/test_postgis_auth.py` — `apply_authentication_if_needed()` avec un gestionnaire d'auth factice : config OAuth2 seule → aucune authcfg sur l'URI ; config par défaut QSettings pointant vers OAuth2 → ignorée ; config Basic → appliquée
+- [X] T030 [US2] Implémenter FR-011 : `is_database_auth_method()` dans `core/ms_urls.py`, helper `_database_auth_configs()` dans `FluxCEN.py` filtrant `availableAuthMethodConfigs()` par méthode, utilisé par `apply_authentication_if_needed()` (défaut inadapté ignoré + log) et par `choose_default_authentication()` (le dialogue ne propose plus les configs web) ; jusqu'au vert de T029
+
+**Checkpoint**: US1 et US2 fonctionnent indépendamment — aucun jeton hors périmètre Microsoft, aucune
+config Microsoft sur les connexions base de données
 
 ---
 

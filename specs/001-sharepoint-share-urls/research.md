@@ -79,6 +79,25 @@ spécifiée alors (YAGNI).
 - Restaurer l'ancien filtre « fonciercen / drone » du changelog v5.x : ces couches n'existent plus dans le
   CSV actuel sous cette forme ; à re-spécifier si le besoin revient.
 
+## R4bis — Couches PostGIS : filtrage des méthodes d'authentification (amendement 2026-07-27)
+
+**Decision**: `apply_authentication_if_needed()` (chemin PostGIS) et le dialogue de choix de la
+configuration par défaut ne considèrent que les configurations dont la méthode
+(`QgsAuthMethodConfig.method()`) est adaptée à une connexion base de données — la méthode `OAuth2`
+(Microsoft Entra ID) est exclue. Une configuration par défaut mémorisée (QSettings) devenue inadaptée est
+ignorée avec un message journalisé.
+
+**Rationale**: découvert lors de la validation T028 — avec la config Entra présente dans QGIS, la logique
+« première config disponible / config par défaut » attachait l'authcfg OAuth2 à l'URI PostGIS ; la méthode
+OAuth2 de QGIS ne peut rien injecter dans une connexion libpq, la connexion échoue et QGIS affiche sa
+fenêtre d'identification de secours exposant l'URI complète. Liste noire (`OAuth2`) plutôt que liste
+blanche : les méthodes Basic et certificats (PKI) sont toutes légitimes pour PostgreSQL.
+
+**Alternatives considered**:
+- Liste blanche `Basic` uniquement : casserait les authentifications par certificat, légitimes pour
+  PostgreSQL.
+- Supprimer tout le mécanisme d'auth PostGIS : hors périmètre, les couches foncières en dépendent.
+
 ## R5 — Robustesse au démarrage (FR-008, FR-009)
 
 **Decision**: supprimer tout accès réseau de l'import du module et de `FluxCEN.__init__` (y compris le

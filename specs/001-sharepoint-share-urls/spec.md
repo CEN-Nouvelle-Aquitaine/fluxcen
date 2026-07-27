@@ -75,6 +75,13 @@ requêtes émises et vérifier que seules celles vers les domaines Microsoft por
    la couche est ajoutée au projet, **Then** aucune configuration d'authentification Microsoft ne lui est
    attachée ; seules les couches dont la destination appartient au périmètre Microsoft peuvent porter
    cette authentification.
+5. **Given** le chargement d'une couche base de données (PostGIS) alors que la configuration
+   d'authentification Microsoft existe dans QGIS (voire est définie comme configuration par défaut du
+   plugin), **When** la connexion est établie, **Then** la configuration Microsoft n'est jamais attachée à
+   la connexion : seules les configurations d'authentification adaptées aux bases de données
+   (identifiant/mot de passe, certificat) sont proposées ou appliquées. *(Amendement 2026-07-27 :
+   l'attachement de la configuration Microsoft à une connexion PostGIS échoue systématiquement et
+   déclenche une fenêtre d'identification déroutante exposant l'URI de connexion.)*
 
 ---
 
@@ -155,6 +162,11 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   (WMS/WFS) : une configuration d'authentification Microsoft NE DOIT être attachée à une couche que si sa
   destination appartient au périmètre Microsoft ; l'attachement indiscriminé de la première configuration
   d'authentification disponible à toute couche est supprimé.
+- **FR-011** *(amendement 2026-07-27)*: Une configuration d'authentification de type web (OAuth2, dont
+  Microsoft Entra ID) NE DOIT jamais être appliquée à une connexion base de données (PostGIS). Le choix
+  d'une authentification pour une connexion base de données (sélection automatique, dialogue de choix,
+  configuration par défaut mémorisée) NE DOIT proposer ou appliquer que des méthodes adaptées aux bases de
+  données ; une configuration par défaut mémorisée devenue inadaptée est ignorée avec un message journalisé.
 
 ### Key Entities
 

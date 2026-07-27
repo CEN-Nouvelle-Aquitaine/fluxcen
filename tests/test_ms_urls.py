@@ -10,6 +10,7 @@ from core.ms_urls import (
     UrlClass,
     build_style_url,
     classify_url,
+    is_database_auth_method,
     is_microsoft_url,
     is_sharepoint_sharing_link,
     sharing_link_to_graph_item_url,
@@ -147,6 +148,17 @@ class TestSharingLinkToGraphItemUrl:
     def test_valueerror_hors_sharepoint(self):
         with pytest.raises(ValueError):
             sharing_link_to_graph_item_url("https://exemple.org/dossier", "a.qml")
+
+
+class TestIsDatabaseAuthMethod:
+    """FR-011 : les méthodes d'auth web ne sont jamais utilisables pour une BDD."""
+
+    def test_oauth2_exclue(self):
+        assert is_database_auth_method("OAuth2") is False
+
+    @pytest.mark.parametrize("method", ["Basic", "PKI-Paths", "PKI-PKCS#12", "Identity-Cert"])
+    def test_methodes_bdd_acceptees(self, method):
+        assert is_database_auth_method(method) is True
 
 
 class TestBuildStyleUrl:
