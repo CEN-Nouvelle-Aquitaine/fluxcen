@@ -6,8 +6,8 @@
 
 ## Summary
 
-Permettre de configurer les ressources distantes du plugin (catalogue `flux.csv`, styles, changelog,
-version) avec des liens de partage SharePoint copiés depuis l'interface web, convertis par le plugin en
+Permettre de configurer les ressources distantes du plugin (catalogue `flux.csv` et styles —
+changelog/version retirés par les PR #48/#49 de main) avec des liens de partage SharePoint copiés depuis l'interface web, convertis par le plugin en
 appels Microsoft Graph (`/shares/{u!…}/driveItem/content`) téléchargés via `QgsBlockingNetworkRequest` et
 l'authcfg QGIS. Simultanément, restreindre strictement l'application de l'auth Microsoft au périmètre
 `graph.microsoft.com` / `*.sharepoint.com` : dans `_fetch_bytes` (ressources) et en supprimant

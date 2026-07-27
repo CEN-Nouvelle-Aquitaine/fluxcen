@@ -55,6 +55,24 @@ uniquement).
 Retourne `SHAREPOINT_SHARING_LINK`, `GRAPH` ou `OTHER` (cf. data-model.md). Fonction de commodité
 cohérente avec les trois fonctions ci-dessus.
 
+## Fonctions ajoutées par les amendements du 2026-07-27
+
+### `https_hostname(url: str) -> Optional[str]`
+Nom d'hôte (minuscules) si l'URL est HTTPS, sinon `None` ; absorbe toute erreur d'analyse. Socle partagé
+de toutes les décisions de périmètre (`ms_urls`, `catalog`).
+
+### `is_graph_shares_url(url: str) -> bool`
+Vraie ssi l'URL est un appel Graph `/v1.0/shares/…` — ces requêtes reçoivent l'en-tête
+`Prefer: redeemSharingLinkIfNecessary`, qu'elles soient converties à la volée ou pré-construites.
+
+### `is_database_auth_method(method: str) -> bool`
+FR-011 : fausse pour les méthodes web (`OAuth2`, dont Microsoft Entra ID), vraie pour `Basic` et les
+méthodes par certificat — seules candidates pour les connexions BDD et le service sécurisé CEN.
+
+### `build_style_url(styles_base: str, style_name: str) -> str`
+Concaténation `styles_base + style_name + ".qml"` pour les URL directes uniquement ; `ValueError` sur un
+lien de partage (résolution réseau portée par le contrôleur) et sur un nom de style invalide.
+
 ## Contrat d'usage côté contrôleur (`FluxCEN._fetch_bytes`)
 
 1. `classify_url(url)` ; si `SHAREPOINT_SHARING_LINK` → `url = sharing_link_to_graph_url(url)`, avec
@@ -73,3 +91,22 @@ cohérente avec les trois fonctions ci-dessus.
   interrompt les autres lignes.
 - `style` : rejeté (traité comme absent + log) s'il contient `/`, `\` ou `..` — le nom vient d'un fichier
   distant et sert à construire une URL.
+
+## `extract_categories(csv_text: str) -> list[str]`
+
+Catégories uniques du catalogue, normalisées (`strip`) et triées — alimente le menu déroulant.
+
+## `extract_service_version(url: str) -> str`
+
+Version du service extraite de l'URL (motif historique `VERSION=…&REQUEST`), `"1.0.0"` à défaut.
+
+## `is_cen_secured_service(url: str) -> bool`
+
+FR-012 : vraie ssi l'URL HTTPS cible `opendata.cen-nouvelle-aquitaine.org` (correspondance d'hôte
+exacte) — seules ces couches reçoivent une configuration d'authentification (non web).
+
+## `build_wms_uri(url, nom_technique, version=None, authcfg=None) -> str` / `build_wfs_uri_params(url, typename, version=None) -> dict`
+
+URI de couches sans aucune configuration d'authentification par défaut (FR-010) ; `authcfg` n'est ajoutée
+à l'URI WMS que si elle est fournie explicitement (périmètre sécurisé CEN, FR-012). Pour le WFS,
+l'attachement éventuel se fait côté contrôleur (`uri.setAuthConfigId`).

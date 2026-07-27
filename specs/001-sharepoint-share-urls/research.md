@@ -111,7 +111,7 @@ blanche : les méthodes Basic et certificats (PKI) sont toutes légitimes pour P
 ## R5 — Robustesse au démarrage (FR-008, FR-009)
 
 **Decision**: supprimer tout accès réseau de l'import du module et de `FluxCEN.__init__` (y compris le
-test de connectivité `socket` au niveau module). Les téléchargements (catalogue, version, changelog) sont
+test de connectivité `socket` au niveau module). Les téléchargements (catalogue ; version et changelog avant leur retrait par main #48/#49) sont
 déclenchés au premier affichage du dialogue (`run`) et à l'ouverture de la popup de bienvenue, chacun
 enveloppé dans `try/except` avec message `QgsMessageLog` + barre de message. Le catalogue est mis en cache
 en mémoire pour la session (plus de re-téléchargement à chaque changement de catégorie).

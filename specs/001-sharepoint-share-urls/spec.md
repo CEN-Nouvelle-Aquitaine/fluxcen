@@ -16,7 +16,7 @@ les url sharepoint ou graph, éviter les fuites de jetons."
 ### User Story 1 - Configurer une ressource avec un lien de partage SharePoint (Priority: P1)
 
 Un administrateur du plugin (agent DSI du CEN) veut héberger une ressource du plugin (le catalogue de flux
-`flux.csv`, un style, le changelog…) sur le SharePoint du CEN. Il ouvre SharePoint dans son navigateur,
+`flux.csv`, un style de couche…) sur le SharePoint du CEN. Il ouvre SharePoint dans son navigateur,
 clique sur « Partager » / « Copier le lien » sur le fichier, et colle ce lien tel quel dans la configuration
 du plugin. Au prochain usage, le plugin télécharge le fichier de façon transparente : la résolution du lien
 de partage en téléchargement effectif est prise en charge par le plugin, en s'appuyant sur
@@ -48,8 +48,8 @@ l'interface web, démarrer le plugin, vérifier que la liste des catégories de 
 
 Le responsable sécurité du CEN veut la garantie qu'un jeton d'accès Microsoft (Entra ID) n'est jamais
 transmis à un service tiers. Actuellement, l'authentification Microsoft configurée est appliquée à tous les
-téléchargements de ressources, y compris vers des domaines non Microsoft (hébergement des styles, du
-changelog…) : le jeton part vers des serveurs qui n'ont pas à le voir. Après l'évolution, l'authentification
+téléchargements de ressources, y compris vers des domaines non Microsoft (hébergement public des
+styles…) : le jeton part vers des serveurs qui n'ont pas à le voir. Après l'évolution, l'authentification
 Microsoft n'est appliquée qu'aux requêtes à destination des domaines SharePoint/Microsoft Graph ; toute
 autre destination est appelée sans cette authentification.
 
@@ -182,8 +182,8 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
 
 ### Key Entities
 
-- **Ressource distante configurée** : fichier nécessaire au plugin (catalogue de flux, style de couche,
-  changelog, information de version), identifié par une URL dans la configuration ; peut être hébergé sur
+- **Ressource distante configurée** : fichier nécessaire au plugin (catalogue de flux, style de couche —
+  changelog et version retirés par les PR #48/#49 de main), identifié par une URL dans la configuration ; peut être hébergé sur
   SharePoint (avec authentification) ou ailleurs (sans authentification Microsoft).
 - **Lien de partage SharePoint** : URL produite par la fonction « Partager » de SharePoint, manipulable par
   un utilisateur non technique ; pointe vers un fichier mais n'est pas directement un lien de
@@ -219,7 +219,7 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   d'authentification ; cette évolution n'introduit aucun nouveau mode d'authentification.
 - Les utilisateurs finaux disposent d'un compte Microsoft du CEN avec droit de lecture sur les fichiers
   partagés ; la gestion des droits se fait côté SharePoint, hors périmètre du plugin.
-- Les ressources hébergées hors Microsoft (styles, changelog aujourd'hui sur un hébergement public)
+- Les ressources hébergées hors Microsoft (ex. styles sur un hébergement public)
   restent accessibles sans authentification ; leur migration éventuelle vers SharePoint est une décision de
   configuration, pas une exigence de cette évolution.
 - La résolution d'un lien de partage en téléchargement s'appuie sur les capacités standard de la plateforme
