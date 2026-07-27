@@ -50,6 +50,14 @@ class TestEchecReseauNonFatal:
         # Finding 1 : un échec transitoire ne doit pas laisser le catalogue
         # vide pour toute la session — nouvel essai à l'ouverture suivante.
         QSettings().setValue("locale/userLocale", "fr_FR")
+        # Indépendant du links.yaml local (gitignoré, absent du checkout CI)
+        monkeypatch.setattr(
+            plugin_mod.FluxCEN, "load_urls",
+            lambda self, path: ("https://tenantcen.sharepoint.com/flux.csv", "https://styles/"),
+        )
+        monkeypatch.setattr(
+            plugin_mod.FluxCEN, "_authcfg_id", lambda self: "abc1234",
+        )
         monkeypatch.setattr(
             plugin_mod.FluxCEN, "_fetch_bytes",
             lambda self, url, resource_name="ressource": (_ for _ in ()).throw(IOError("réseau coupé")),
