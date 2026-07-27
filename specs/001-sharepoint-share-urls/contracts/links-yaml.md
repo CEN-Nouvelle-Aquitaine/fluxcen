@@ -2,15 +2,15 @@
 
 Interface exposée aux administrateurs du plugin — un fichier YAML local, gitignoré.
 
-## Clés (inchangées)
+## Clés
+
+*(Mise à jour 2026-07-27 : les clés `info_changelog` et `depot_plugins_url.last_version` ont été
+supprimées par la simplification du versionning sur `main`, PR #48/#49.)*
 
 ```yaml
 github_urls:
   flux_csv: "<URL>"        # catalogue de flux (CSV ;)
-  styles_couches: "<URL>"  # préfixe des styles .qml
-  info_changelog: "<URL>"  # changelog HTML
-depot_plugins_url:
-  last_version: "<URL>"    # information de version
+  styles_couches: "<URL>"  # préfixe des styles .qml (URL directe ou lien de partage de dossier)
 auth:
   authcfg: "abc1234"       # ID de config d'auth QGIS (7 car.), vide = jamais d'auth
 ```

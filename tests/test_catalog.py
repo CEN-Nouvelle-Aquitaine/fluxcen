@@ -13,7 +13,6 @@ from core.catalog import (
     is_cen_secured_service,
     parse_catalog,
     parse_table_row,
-    parse_version,
 )
 
 DATA_DIR = pathlib.Path(__file__).resolve().parent / "data"
@@ -133,19 +132,3 @@ class TestBuildWmsUriAuthcfg:
     def test_sans_authcfg(self):
         assert "authcfg" not in build_wms_uri(self.URL, "couche")
 
-
-class TestParseVersion:
-    """Finding 10 : la version est extraite par clé, plus par index de ligne."""
-
-    def test_metadata_complet(self):
-        text = "[general]\nname=FluxCEN\nqgisMinimumVersion=3.44\nversion=5.3.0\nauthor=X\n"
-        assert parse_version(text) == "5.3.0"
-
-    def test_fichier_version_distant(self):
-        assert parse_version("version=5.2\n") == "5.2"
-
-    def test_valeur_brute(self):
-        assert parse_version("5.2\n") == "5.2"
-
-    def test_vide(self):
-        assert parse_version("") == ""

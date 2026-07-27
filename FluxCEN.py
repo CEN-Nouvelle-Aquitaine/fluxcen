@@ -22,8 +22,8 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
-from qgis.PyQt.QtGui import QFont, QDesktopServices, QIcon, QPixmap
-from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QMessageBox, QLabel, QDialog, QPushButton, QListWidget
+from qgis.PyQt.QtGui import QDesktopServices, QIcon
+from qgis.PyQt.QtWidgets import QAbstractItemView, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QMessageBox, QDialog, QPushButton, QListWidget
 from qgis.utils import iface
 
 from qgis.core import (
@@ -146,7 +146,6 @@ class FluxCEN:
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
 
         self.dlg.commandLinkButton_5.clicked.connect(self.choose_default_authentication)
-        self.dlg.commandLinkButton_7.clicked.connect(self.show_welcome_popup)
 
         layout = QVBoxLayout()
         self.dlg.lineEdit.textChanged.connect(self.filtre_dynamique)
@@ -159,85 +158,6 @@ class FluxCEN:
     def _mousePressEvent(self, event):
         self.dlg.lineEdit.setText("")
         self.dlg.lineEdit.mousePressEvent = None
-
-
-    def show_welcome_popup(self):
-        """
-        Affiche une fenêtre avec une image au démarrage, centre l'image et ajoute un texte en dessous.
-        """
-        # Créer un QDialog (fenêtre personnalisée) et le stocker dans self
-        self.welcome_dialog = QDialog()  # Référence persistante
-        self.welcome_dialog.setWindowTitle("Nouvelle version disponible !")
-
-        # Créer un layout
-        layout = QVBoxLayout()
-
-        # Ajouter une image
-        label_image = QLabel()
-        pixmap = QPixmap(self.plugin_path + "/icons/logo_fluxcen.jpg")
-
-        if not pixmap.isNull():
-            pixmap = pixmap.scaled(450, 300, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-            label_image.setPixmap(pixmap)
-            label_image.setAlignment(Qt.AlignCenter)
-        else:
-            label_image.setText("Image introuvable")
-            label_image.setAlignment(Qt.AlignCenter)
-
-        layout.addWidget(label_image)
-
-        # Créer un QLabel pour afficher le changelog en HTML
-        changelog_label = QLabel()
-        changelog_label.setWordWrap(True)
-
-        try:
-            _, _, _, info_changelog = self.load_urls('config/yaml/links.yaml')
-            html_changelog = self._fetch_bytes(info_changelog, "changelog").decode("utf8")
-            changelog_label.setText(html_changelog)
-            changelog_label.setFont(QFont("Calibri", weight=QFont.Bold))
-        except Exception as e:
-            changelog_label.setText(f"Erreur lors du chargement du changelog : {e}")
-
-        layout.addWidget(changelog_label)
-
-        # Ajouter un bouton de fermeture
-        button = QPushButton("Fermer")
-        button.clicked.connect(self.welcome_dialog.close)
-        layout.addWidget(button)
-        layout.setAlignment(button, Qt.AlignCenter)
-
-        # Appliquer le layout à la fenêtre
-        self.welcome_dialog.setLayout(layout)
-        self.welcome_dialog.setMinimumSize(550, 450)
-
-        # Afficher la fenêtre en mode non modal
-        self.welcome_dialog.show()
-
-
-
-    def is_first_run_of_new_version(self):
-        """
-        Vérifie si c'est la première fois que cette version du plugin est démarrée en utilisant la version
-        du plugin stockée dans 'metadata.txt' et la dernière version disponible en ligne.
-        """
-        settings = QSettings()
-
-        # Versions locale et publiée (les erreurs remontent à l'appelant, qui
-        # les journalise sans bloquer le plugin)
-        version_utilisateur = self._local_version()
-        num_last_version = self._remote_version()
-
-        # Obtenir la dernière version utilisée stockée dans les paramètres
-        last_version = settings.value("FluxCEN/last_version", "", type=str)
-
-        # Comparer la version actuelle avec la dernière version utilisée
-        if last_version != version_utilisateur or version_utilisateur != num_last_version:
-            # Si la version a changé, c'est un premier démarrage de cette version
-            settings.setValue("FluxCEN/last_version", version_utilisateur)  # Mettre à jour la version stockée
-            return True
-
-        return False
-
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -335,8 +255,8 @@ class FluxCEN:
         Fonction appelée au démarrage du plugin.
         """
 
-        # Aucun accès réseau ici : la vérification de version et la popup de
-        # bienvenue sont différées au premier affichage du dialogue (FR-009).
+        # Aucun accès réseau ici : les téléchargements sont différés au
+        # premier affichage du dialogue (FR-009).
 
         icon_path = ':/plugins/FluxCEN/icons/icon.png'
         self.add_action(
@@ -402,40 +322,19 @@ class FluxCEN:
     def _get_catalog_text(self):
         """Texte du catalogue de flux, téléchargé une seule fois par session."""
         if self._catalog_text is None:
-            flux_csv_url, _, _, _ = self.load_urls('config/yaml/links.yaml')
+            flux_csv_url, _ = self.load_urls('config/yaml/links.yaml')
             self._catalog_text = self._fetch_bytes(
                 flux_csv_url, "catalogue des flux").decode('utf-8')
         return self._catalog_text
 
-    def _local_version(self):
-        """Version du plugin lue dans metadata.txt (clé version=, plus d'index en dur)."""
-        with open(os.path.join(self.plugin_path, 'metadata.txt'), encoding='utf-8') as metadata_file:
-            return catalog.parse_version(metadata_file.read())
-
-    def _remote_version(self):
-        """Dernière version publiée, lue depuis l'URL configurée."""
-        contenu = self._fetch_bytes(
-            self.load_urls('config/yaml/links.yaml')[1], "version du plugin")
-        return catalog.parse_version(contenu.decode("utf-8"))
-
-    def _check_version(self):
-        """Compare la version locale à la dernière version publiée (informatif)."""
-        version_locale = self._local_version()
-        if version_locale == self._remote_version():
-            self.iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN %s est à jour !" % version_locale, level=Qgis.Success, duration=5)
-        else:
-            self.iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
-
     def _deferred_startup(self):
-        """Téléchargements différés du démarrage : catalogue, version, changelog.
+        """Téléchargement différé du catalogue, au premier affichage du dialogue.
 
         Chaque échec est signalé par famille (lien invalide / accès refusé /
         réseau / authentification) sans jamais empêcher l'utilisation du plugin.
         Le catalogue est retenté à chaque ouverture tant qu'il n'a pas été
-        obtenu (échec réseau transitoire, flux OAuth annulé…) ; la vérification
-        de version et la popup de bienvenue ne sont tentées qu'une fois.
+        obtenu (échec réseau transitoire, flux OAuth annulé…).
         """
-        premiere_ouverture = not self._startup_done
         self._startup_done = True
 
         if self._catalog_text is None:
@@ -447,20 +346,6 @@ class FluxCEN:
                 self.initialisation_flux()
             except Exception as exc:  # pylint: disable=broad-exception-caught
                 self._notify_fetch_error(exc, "catalogue des flux")
-
-        if not premiere_ouverture:
-            return
-
-        try:
-            self._check_version()
-        except Exception as exc:  # pylint: disable=broad-exception-caught
-            self._log("Vérification de version impossible : %s" % exc)
-
-        try:
-            if self.is_first_run_of_new_version():
-                self.show_welcome_popup()
-        except Exception as exc:  # pylint: disable=broad-exception-caught
-            self._log("Affichage du changelog impossible : %s" % exc)
 
     def run(self):
         """Run method that performs all the real work"""
@@ -512,16 +397,13 @@ class FluxCEN:
 
         # Extraire les URL pour chaque clé
         github_urls = config.get('github_urls', {})
-        depot_plugins_url = config.get('depot_plugins_url', {})
 
         # Accéder aux sous-clés spécifiques
         flux_csv_url = github_urls.get('flux_csv')  # Utilisation correcte de la clé 'flux_csv'
         styles_couches = github_urls.get('styles_couches')
-        info_changelog = github_urls.get('info_changelog')
-        last_version_url = depot_plugins_url.get('last_version')
 
-        return flux_csv_url, last_version_url, styles_couches, info_changelog
-
+        return flux_csv_url, styles_couches
+    
     def _authcfg_id(self):
         """Retourne l'identifiant de configuration d'authentification QGIS à utiliser pour
         télécharger les ressources (OAuth2 Microsoft Entra ID), ou une chaîne vide si aucune
@@ -862,7 +744,7 @@ class FluxCEN:
         """
         Main function to load layers from tableWidget_2 based on service type (WMS, WFS, PostGIS).
         """
-        _, _, styles_couches, _ = self.load_urls('config/yaml/links.yaml')
+        _, styles_couches = self.load_urls('config/yaml/links.yaml')
 
         if self.dlg.tableWidget_2.rowCount() == 0:
             self.avertissement_pas_de_flux()

@@ -12,8 +12,6 @@ Fichier nécessaire au plugin, identifié par une URL dans `config/yaml/links.ya
 |---|---|---|
 | `github_urls.flux_csv` | URL | HTTPS obligatoire ; lien de partage SharePoint, URL Graph ou URL quelconque |
 | `github_urls.styles_couches` | URL (préfixe) ou lien de partage de dossier SharePoint | HTTPS obligatoire ; URL directe : concaténée avec `<nom_style>.qml` ; lien de partage de dossier : le fichier `<nom_style>.qml` est résolu par chemin à l'intérieur du dossier partagé |
-| `github_urls.info_changelog` | URL | HTTPS obligatoire |
-| `depot_plugins_url.last_version` | URL | HTTPS obligatoire ; URL `data:` tolérée (contenu embarqué, jamais d'auth, aucune requête serveur) ; `http:` rejetée (FR-006) |
 | `auth.authcfg` | chaîne (7 car.) ou vide | identifiant opaque de la config d'auth QGIS ; jamais les secrets eux-mêmes |
 
 **Invariant** : le format existant reste valide sans modification (rétrocompatibilité FR-003) ; seule la

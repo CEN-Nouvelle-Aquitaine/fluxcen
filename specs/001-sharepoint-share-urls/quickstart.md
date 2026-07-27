@@ -40,7 +40,7 @@ docker run --rm -v "$PWD":/src -w /src qgis/qgis:release-3_44 sh -c \
 3. Démarrage : aucune requête réseau, aucun gel, plugin chargé même hors ligne.
 4. Ouvrir FluxCEN : catalogue téléchargé et catégories affichées.
 5. Onglet réseau (débogueur QGIS / proxy local) : l'en-tête d'auth n'apparaît que vers
-   `graph.microsoft.com` / `*.sharepoint.com` ; styles et changelog partent anonymes.
+   `graph.microsoft.com` / `*.sharepoint.com` ; styles publics partent anonymes.
 6. Ajouter une couche WMS/WFS tierce : aucune authcfg attachée à l'URI de la couche.
 7. Panneau Journal (`QgsMessageLog`, onglet « FluxCEN ») : messages sans jeton ni URL complète.
 

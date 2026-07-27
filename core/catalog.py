@@ -114,25 +114,6 @@ def is_cen_secured_service(url: str) -> bool:
     return https_hostname(url) in _CEN_SECURED_HOSTS
 
 
-def parse_version(text: str) -> str:
-    """Extrait le numéro de version d'un metadata.txt ou d'un fichier de version.
-
-    Cherche la première ligne ``version=X`` ; à défaut, retourne la première
-    ligne non vide sans ``=`` (fichier de version brut). Remplace l'ancien
-    accès par index de ligne en dur, fragile.
-    """
-    fallback = ""
-    for line in (text or "").splitlines():
-        stripped = line.strip()
-        if not stripped:
-            continue
-        if stripped.startswith("version="):
-            return stripped.split("=", 1)[1].strip()
-        if not fallback and "=" not in stripped and not stripped.startswith("["):
-            fallback = stripped
-    return fallback
-
-
 def build_wms_uri(url: str, nom_technique: str, version: Optional[str] = None,
                   authcfg: Optional[str] = None) -> str:
     """URI de couche WMS.

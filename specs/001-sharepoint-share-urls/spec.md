@@ -135,8 +135,10 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
 
 ### Functional Requirements
 
-- **FR-001**: Le plugin DOIT accepter, pour toute ressource distante configurable (catalogue de flux,
-  styles, changelog, version), une URL de partage SharePoint telle que copiée depuis l'interface web
+- **FR-001**: Le plugin DOIT accepter, pour toute ressource distante configurable (catalogue de flux et
+  styles — le changelog et l'information de version ont été retirés du plugin par la simplification du
+  versionning menée sur `main`, PR #48/#49, intégrée le 2026-07-27), une URL de partage SharePoint telle
+  que copiée depuis l'interface web
   (« Copier le lien »), sans transformation manuelle par l'utilisateur. Pour l'emplacement des styles
   (ressource « répertoire »), un lien de partage vers un **dossier** SharePoint est accepté : les fichiers
   de style sont résolus par leur nom à l'intérieur de ce dossier.
