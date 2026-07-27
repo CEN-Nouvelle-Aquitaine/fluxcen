@@ -45,3 +45,21 @@ class TestEchecReseauNonFatal:
         plugin.iface = iface_mock
         plugin.initGui()                          # aucune exception, aucun réseau
         assert plugin is not None
+
+    def test_construction_silencieuse_ni_reseau_ni_erreur(self, qgis_app, monkeypatch):
+        # Régression : comboBox.addItem() dans __init__ déclenche
+        # currentIndexChanged → initialisation_flux() s'exécutait pendant la
+        # construction, avant l'initialisation de _catalog_text (AttributeError
+        # affichée « Échec du chargement de “catalogue des flux” »).
+        QSettings().setValue("locale/userLocale", "fr_FR")
+        monkeypatch.setattr(
+            plugin_mod.FluxCEN, "_fetch_bytes",
+            lambda self, url, resource_name="ressource": (_ for _ in ()).throw(
+                AssertionError("aucun réseau ne doit avoir lieu pendant __init__")),
+        )
+        iface_mock = MagicMock()
+        iface_mock.mainWindow.return_value = None
+        plugin = plugin_mod.FluxCEN(iface_mock)
+        # Aucune notification d'erreur ne doit avoir été émise à la construction.
+        iface_mock.messageBar.return_value.pushMessage.assert_not_called()
+        assert plugin._catalog_text is None

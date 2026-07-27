@@ -115,6 +115,15 @@ class FluxCEN:
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr('&FluxCEN')
+
+        # État du démarrage différé — initialisé AVANT la création du dialogue
+        # et le câblage des signaux : comboBox.addItem() déclenche
+        # currentIndexChanged, donc initialisation_flux() peut s'exécuter dès
+        # la construction (FR-008 / FR-009). Le catalogue est mis en cache
+        # pour la session.
+        self._catalog_text = None
+        self._startup_done = False
+
         self.dlg = FluxCENDialog()
 
         self.plugin_path = os.path.dirname(__file__)
@@ -138,13 +147,6 @@ class FluxCEN:
 
         self.dlg.commandLinkButton_5.clicked.connect(self.choose_default_authentication)
         self.dlg.commandLinkButton_7.clicked.connect(self.show_welcome_popup)
-
-        # Les téléchargements (catalogue, version, changelog) sont différés au
-        # premier affichage du dialogue : aucun accès réseau au démarrage de
-        # QGIS, et un échec ne peut pas empêcher le chargement du plugin
-        # (FR-008 / FR-009). Le catalogue est mis en cache pour la session.
-        self._catalog_text = None
-        self._startup_done = False
 
         layout = QVBoxLayout()
         self.dlg.lineEdit.textChanged.connect(self.filtre_dynamique)
@@ -436,6 +438,9 @@ class FluxCEN:
         try:
             categories = catalog.extract_categories(self._get_catalog_text())
             self.dlg.comboBox.addItems(categories)
+            # Peuple le tableau pour la catégorie courante : ajouter des items
+            # sans changer l'index ne déclenche pas currentIndexChanged.
+            self.initialisation_flux()
         except Exception as exc:  # pylint: disable=broad-exception-caught
             self._notify_fetch_error(exc, "catalogue des flux")
 
@@ -616,6 +621,12 @@ class FluxCEN:
 
 
     def initialisation_flux(self):
+
+        # Signal déclenché pendant la construction du dialogue (addItem) ou
+        # avant le premier affichage : aucun téléchargement tant que le
+        # démarrage différé n'a pas eu lieu (aucun réseau au chargement de QGIS).
+        if not self._startup_done:
+            return
 
         # Catalogue en cache mémoire : une seule récupération par session,
         # plus de re-téléchargement à chaque changement de catégorie.
