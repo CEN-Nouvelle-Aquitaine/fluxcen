@@ -82,6 +82,11 @@ requêtes émises et vérifier que seules celles vers les domaines Microsoft por
    (identifiant/mot de passe, certificat) sont proposées ou appliquées. *(Amendement 2026-07-27 :
    l'attachement de la configuration Microsoft à une connexion PostGIS échoue systématiquement et
    déclenche une fenêtre d'identification déroutante exposant l'URI de connexion.)*
+6. **Given** une couche WFS/WMS du catalogue dont la destination est le service sécurisé du CEN
+   (`opendata.cen-nouvelle-aquitaine.org`, ex. couches foncières), **When** la couche est ajoutée au
+   projet, **Then** une configuration d'authentification adaptée (non web) lui est attachée — jamais la
+   configuration Microsoft. *(Amendement 2026-07-27 : le geoserver CEN est authentifié, confirmé par
+   l'utilisateur.)*
 
 ---
 
@@ -167,6 +172,11 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   d'une authentification pour une connexion base de données (sélection automatique, dialogue de choix,
   configuration par défaut mémorisée) NE DOIT proposer ou appliquer que des méthodes adaptées aux bases de
   données ; une configuration par défaut mémorisée devenue inadaptée est ignorée avec un message journalisé.
+- **FR-012** *(amendement 2026-07-27, revue de code)*: Les couches du catalogue dont la destination est le
+  service cartographique sécurisé du CEN (`opendata.cen-nouvelle-aquitaine.org`) DOIVENT recevoir une
+  configuration d'authentification adaptée (méthode non web : identifiant/mot de passe ou certificat),
+  choisie par le même mécanisme filtré que pour PostGIS (FR-011). Les couches vers toute autre destination
+  restent sans authentification (FR-010) ; la configuration Microsoft n'est jamais candidate.
 
 ### Key Entities
 

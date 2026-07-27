@@ -6,7 +6,15 @@ Data-model : specs/001-sharepoint-share-urls/data-model.md (CatalogueFlux).
 # pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 import pathlib
 
-from core.catalog import FluxRow, extract_categories, parse_catalog, parse_table_row
+from core.catalog import (
+    FluxRow,
+    build_wms_uri,
+    extract_categories,
+    is_cen_secured_service,
+    parse_catalog,
+    parse_table_row,
+    parse_version,
+)
 
 DATA_DIR = pathlib.Path(__file__).resolve().parent / "data"
 
@@ -95,3 +103,49 @@ class TestExtractCategories:
     def test_categories_uniques_triees(self):
         text = (DATA_DIR / "flux_minimal.csv").read_text(encoding="utf-8")
         assert extract_categories(text) == ["Cartographie", "Foncier", "Zonages"]
+
+
+class TestIsCenSecuredService:
+    """FR-012 : périmètre du service cartographique sécurisé du CEN."""
+
+    def test_geoserver_cen(self):
+        assert is_cen_secured_service(
+            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs") is True
+
+    def test_hors_perimetre(self):
+        for url in (
+            "https://data.geopf.fr/wfs/ows?SERVICE=WFS",
+            "https://opendata.cen-nouvelle-aquitaine.org.evil.tld/wfs",
+            "http://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs",  # http
+            "",
+        ):
+            assert is_cen_secured_service(url) is False
+
+
+class TestBuildWmsUriAuthcfg:
+    """FR-012 : authcfg optionnelle dans l'URI WMS, uniquement si fournie."""
+
+    URL = "https://opendata.cen-nouvelle-aquitaine.org/geoserver/ows?VERSION=1.3.0&REQUEST=GetCapabilities"
+
+    def test_avec_authcfg(self):
+        assert build_wms_uri(self.URL, "couche", authcfg="abc1234").endswith("&authcfg=abc1234")
+
+    def test_sans_authcfg(self):
+        assert "authcfg" not in build_wms_uri(self.URL, "couche")
+
+
+class TestParseVersion:
+    """Finding 10 : la version est extraite par clé, plus par index de ligne."""
+
+    def test_metadata_complet(self):
+        text = "[general]\nname=FluxCEN\nqgisMinimumVersion=3.44\nversion=5.3.0\nauthor=X\n"
+        assert parse_version(text) == "5.3.0"
+
+    def test_fichier_version_distant(self):
+        assert parse_version("version=5.2\n") == "5.2"
+
+    def test_valeur_brute(self):
+        assert parse_version("5.2\n") == "5.2"
+
+    def test_vide(self):
+        assert parse_version("") == ""

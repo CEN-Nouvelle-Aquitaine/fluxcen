@@ -22,7 +22,7 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt, QUrl
-from qgis.PyQt.QtGui import QFont, QDesktopServices, QStandardItemModel, QStandardItem, QIcon, QPixmap
+from qgis.PyQt.QtGui import QFont, QDesktopServices, QIcon, QPixmap
 from qgis.PyQt.QtWidgets import QAbstractItemView, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QAction, QMessageBox, QLabel, QDialog, QPushButton, QListWidget
 from qgis.utils import iface
 
@@ -222,16 +222,10 @@ class FluxCEN:
         """
         settings = QSettings()
 
-        # Obtenir la version actuelle du plugin depuis le fichier 'metadata.txt'
-        metadonnees_plugin = open(self.plugin_path + '/metadata.txt')
-        infos_metadonnees = metadonnees_plugin.readlines()
-        version_utilisateur = infos_metadonnees[8].strip()  # Version actuelle du plugin
-
-        # Charger la dernière version depuis l'URL (les erreurs remontent à
-        # l'appelant, qui les journalise sans bloquer le plugin)
-        _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
-        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, "version du plugin"))
-        num_last_version = derniere_version.readlines()[0].decode("utf-8").strip()  # Récupérer la dernière version disponible
+        # Versions locale et publiée (les erreurs remontent à l'appelant, qui
+        # les journalise sans bloquer le plugin)
+        version_utilisateur = self._local_version()
+        num_last_version = self._remote_version()
 
         # Obtenir la dernière version utilisée stockée dans les paramètres
         last_version = settings.value("FluxCEN/last_version", "", type=str)
@@ -413,17 +407,22 @@ class FluxCEN:
                 flux_csv_url, "catalogue des flux").decode('utf-8')
         return self._catalog_text
 
+    def _local_version(self):
+        """Version du plugin lue dans metadata.txt (clé version=, plus d'index en dur)."""
+        with open(os.path.join(self.plugin_path, 'metadata.txt'), encoding='utf-8') as metadata_file:
+            return catalog.parse_version(metadata_file.read())
+
+    def _remote_version(self):
+        """Dernière version publiée, lue depuis l'URL configurée."""
+        contenu = self._fetch_bytes(
+            self.load_urls('config/yaml/links.yaml')[1], "version du plugin")
+        return catalog.parse_version(contenu.decode("utf-8"))
+
     def _check_version(self):
         """Compare la version locale à la dernière version publiée (informatif)."""
-        _, last_version_url, _, _ = self.load_urls('config/yaml/links.yaml')
-        with open(os.path.join(self.plugin_path, 'metadata.txt'), encoding='utf-8') as metadata_file:
-            infos_metadonnees = metadata_file.readlines()
-        derniere_version = io.BytesIO(self._fetch_bytes(last_version_url, "version du plugin"))
-        num_last_version = derniere_version.readlines()[0].decode("utf-8")
-        version_utilisateur = infos_metadonnees[8].splitlines()
-
-        if infos_metadonnees[8].splitlines() == num_last_version.splitlines():
-            self.iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN %s est à jour !" % version_utilisateur, level=Qgis.Success, duration=5)
+        version_locale = self._local_version()
+        if version_locale == self._remote_version():
+            self.iface.messageBar().pushMessage("Plugin à jour", "Votre version de FluxCEN %s est à jour !" % version_locale, level=Qgis.Success, duration=5)
         else:
             self.iface.messageBar().pushMessage("Information :", "Une nouvelle version de FluxCEN est disponible, veuillez mettre à jour le plugin !", level=Qgis.Info, duration=120)
 
@@ -432,17 +431,25 @@ class FluxCEN:
 
         Chaque échec est signalé par famille (lien invalide / accès refusé /
         réseau / authentification) sans jamais empêcher l'utilisation du plugin.
+        Le catalogue est retenté à chaque ouverture tant qu'il n'a pas été
+        obtenu (échec réseau transitoire, flux OAuth annulé…) ; la vérification
+        de version et la popup de bienvenue ne sont tentées qu'une fois.
         """
+        premiere_ouverture = not self._startup_done
         self._startup_done = True
 
-        try:
-            categories = catalog.extract_categories(self._get_catalog_text())
-            self.dlg.comboBox.addItems(categories)
-            # Peuple le tableau pour la catégorie courante : ajouter des items
-            # sans changer l'index ne déclenche pas currentIndexChanged.
-            self.initialisation_flux()
-        except Exception as exc:  # pylint: disable=broad-exception-caught
-            self._notify_fetch_error(exc, "catalogue des flux")
+        if self._catalog_text is None:
+            try:
+                categories = catalog.extract_categories(self._get_catalog_text())
+                self.dlg.comboBox.addItems(categories)
+                # Peuple le tableau pour la catégorie courante : ajouter des items
+                # sans changer l'index ne déclenche pas currentIndexChanged.
+                self.initialisation_flux()
+            except Exception as exc:  # pylint: disable=broad-exception-caught
+                self._notify_fetch_error(exc, "catalogue des flux")
+
+        if not premiere_ouverture:
+            return
 
         try:
             self._check_version()
@@ -458,10 +465,10 @@ class FluxCEN:
     def run(self):
         """Run method that performs all the real work"""
 
-        # Premier affichage : déclenche les téléchargements différés (le flux
-        # OAuth interactif éventuel a lieu ici, sur action utilisateur).
-        if not self._startup_done:
-            self._deferred_startup()
+        # À chaque affichage : déclenche les téléchargements différés encore
+        # nécessaires (le flux OAuth interactif éventuel a lieu ici, sur
+        # action utilisateur).
+        self._deferred_startup()
 
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
@@ -540,15 +547,19 @@ class FluxCEN:
         uniquement vers le périmètre Microsoft (FR-004). Retourne les octets
         bruts de la ressource ; lève ``errors.FetchError`` classée par famille.
         """
-        if url.split(":", 1)[0].lower() == "http":
-            host = url.split("/")[2] if url.count("/") >= 2 else ""
-            raise IOError("URL refusée (%s) : les ressources doivent être en HTTPS." % host)
+        scheme = QUrl(url).scheme().lower()
+        if scheme not in ("https", "data"):
+            # QUrl.host() ne contient jamais le userinfo : rien de sensible
+            # ne peut fuir dans le message (FR-006 / FR-007)
+            raise IOError("URL refusée (%s) : seules les URL HTTPS (ou data:) sont acceptées."
+                          % (QUrl(url).host() or scheme or "URL invalide"))
         request_url = url
         if ms_urls.classify_url(url) is ms_urls.UrlClass.SHAREPOINT_SHARING_LINK:
             request_url = ms_urls.sharing_link_to_graph_url(url)
         request = QNetworkRequest(QUrl(request_url))
-        if request_url != url:
-            # Garantit l'accès au partage le temps de la requête (API Graph /shares)
+        if ms_urls.is_graph_shares_url(request_url):
+            # Garantit l'accès au partage le temps de la requête — y compris
+            # pour les URL /shares/ pré-construites (styles d'un dossier partagé)
             request.setRawHeader(b"Prefer", b"redeemSharingLinkIfNecessary")
         host = QUrl(request_url).host()
         authcfg = self._authcfg_id()
@@ -638,76 +649,37 @@ class FluxCEN:
         # on ne lit pas la première ligne correspondant aux noms des colonnes
         next(raw, None)
 
-        data = []
-        data2 = []
-        model = QStandardItemModel()
+        lignes = sorted(row for row in raw if any(cell.strip() for cell in row))
 
-
-        for row in raw:
-            data.append(row)
-            data2.append(row)
-            data = [k for k in data if self.dlg.comboBox.currentText() in k]
-            data.sort()
-            data2.sort()
-            items = [
-                QStandardItem(field)
-                for field in row]
-
-            model.appendRow(items)
-
-        if self.dlg.comboBox.currentText() == 'toutes les catégories':
-
-            nb_row = len(data2)
-            nb_col = len(data2[0])
-
-            self.dlg.tableWidget.setRowCount(nb_row)
-            self.dlg.tableWidget.setColumnCount(nb_col)
-            for row in range(nb_row):
-                for col in range(nb_col):
-                    item = QTableWidgetItem(str(data2[row][col]))
-                    # Access the value from the 4th column for the current row (style here)
-                    value_from_4th_column = str(data2[row][3])
-                    # Set tooltip for each row
-                    tooltip = f"Nom technique du flux: {value_from_4th_column}"
-                    item.setToolTip(tooltip)
-
-                    # Check if the current column is the "Résumé des métadonnées" column
-                    if col == 7:
-                        # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/icons/info_metadata.png'
-                        icon = QIcon(icon_path)
-                        item.setIcon(icon)
-                        # Store the URL in the item's data for later retrieval
-                        url_from_6th_column = str(data2[row][7])
-                        item.setData(Qt.UserRole, url_from_6th_column)
-
-                    self.dlg.tableWidget.setItem(row, col, item)
+        categorie_courante = self.dlg.comboBox.currentText()
+        if categorie_courante == 'toutes les catégories':
+            visibles = lignes
+            icon_path = self.plugin_path + '/icons/info_metadata.png'
         else:
-            nb_row = len(data)
-            nb_col = len(data[0])
-            self.dlg.tableWidget.setRowCount(nb_row)
-            self.dlg.tableWidget.setColumnCount(nb_col)
-            for row in range(nb_row):
-                for col in range(nb_col):
-                    item = QTableWidgetItem(str(data[row][col]))
-                    ## Problème ici car décalage d'une ligne :
-                    ##  Access the value from the 4th column for the current row (style here)
-                    # value_from_4th_column = str(data2[row][3])
-                    ##  Set tooltip for each row
-                    # tooltip = f"Nom technique du flux: {value_from_4th_column}"
-                    # item.setToolTip(tooltip)
+            # correspondance sur cellules normalisées : les catégories du menu
+            # sont issues de extract_categories(), qui les strip()e
+            visibles = [row for row in lignes
+                        if any(cell.strip() == categorie_courante for cell in row)]
+            icon_path = self.plugin_path + '/icons/metadata.png'
 
-                    # Check if the current column is the "Résumé des métadonnées" column
-                    if col == 7:
-                        # Set icon for the "Résumé des métadonnées" column
-                        icon_path = self.plugin_path + '/icons/metadata.png'
-                        icon = QIcon(icon_path)
-                        item.setIcon(icon)
-                        # Store the URL in the item's data for later retrieval
-                        url_from_6th_column = str(data2[row][7])
-                        item.setData(Qt.UserRole, url_from_6th_column)
+        self.dlg.tableWidget.setRowCount(len(visibles))
+        if not visibles:
+            # catégorie sans ligne ou catalogue vide : tableau vide, pas d'erreur
+            return
+        self.dlg.tableWidget.setColumnCount(len(visibles[0]))
 
-                    self.dlg.tableWidget.setItem(row, col, item)
+        icon = QIcon(icon_path)
+        for row_index, row in enumerate(visibles):
+            tooltip = f"Nom technique du flux: {row[3]}"
+            for col, value in enumerate(row):
+                item = QTableWidgetItem(str(value))
+                item.setToolTip(tooltip)
+                if col == 7:
+                    # Colonne "Résumé des métadonnées" : icône + URL de LA
+                    # ligne affichée (et plus du catalogue complet)
+                    item.setIcon(icon)
+                    item.setData(Qt.UserRole, str(row[7]))
+                self.dlg.tableWidget.setItem(row_index, col, item)
 
         self.dlg.tableWidget.setHorizontalHeaderLabels(["Service", "Catégorie", "Flux", "Nom technique", "Url d'accès", "Source", "Style", "Infos"])
 
@@ -833,41 +805,48 @@ class FluxCEN:
             QMessageBox.information(self.dlg, "Configuration sauvegardée", "La configuration d'authentification par défaut a été définie.")
 
 
-    def apply_authentication_if_needed(self, uri):
-        """
-        Applique une configuration d'authentification si nécessaire.
-        Charge automatiquement la configuration par défaut si elle est enregistrée dans QSettings.
+    def _select_service_authcfg(self):
+        """ID de configuration d'auth adaptée (non web) pour les connexions BDD
+        et les services sécurisés du CEN, ou None (FR-011 / FR-012).
+
+        Priorité : configuration par défaut mémorisée si adaptée, sinon unique
+        configuration adaptée, sinon choix utilisateur ; jamais la configuration
+        Microsoft (OAuth2).
         """
         settings = QSettings()
         default_auth_id = settings.value("FluxCEN/default_auth_id", None)
         auth_configs = self._database_auth_configs()
 
-        # Si une configuration par défaut existe ET reste utilisable pour une
-        # BDD, on l'applique automatiquement ; sinon elle est ignorée (FR-011 :
-        # jamais de configuration web/Microsoft sur une connexion PostGIS)
         if default_auth_id:
             if default_auth_id in auth_configs:
-                uri.setAuthConfigId(default_auth_id)
-                return True
+                return default_auth_id
             self._log(
-                "Configuration d'authentification par défaut ignorée pour la "
-                "connexion base de données : méthode web (ex. OAuth2 Microsoft) "
-                "inadaptée à PostGIS. Redéfinissez-la via l'icône 🛠️ du plugin.")
+                "Configuration d'authentification par défaut ignorée : méthode "
+                "web (ex. OAuth2 Microsoft) inadaptée aux connexions BDD/services "
+                "sécurisés. Redéfinissez-la via l'icône 🛠️ du plugin.")
 
         if len(auth_configs) == 1:
             # Si une seule configuration est disponible, on l'applique directement
-            auth_id = list(auth_configs.keys())[0]
-            uri.setAuthConfigId(auth_id)
-            return True
-        elif len(auth_configs) > 1:
+            return next(iter(auth_configs))
+        if len(auth_configs) > 1:
             # Si plusieurs configurations sont disponibles, on invite l'utilisateur à en choisir une
             dialog = AuthSelectionDialog(auth_configs)
-            result = dialog.exec_()
-            if result == QDialog.Accepted and dialog.selected_auth_id:
-                uri.setAuthConfigId(dialog.selected_auth_id)
-                return True
-        else:
-            QMessageBox.warning(iface.mainWindow(), "Attention", "Aucune configuration d'authentification n'a été trouvée dans votre QGIS. Veuillez ajouter la configuration d'authentification CEN-NA pour charger les flux sécurisés tels que la MFU .")
+            if dialog.exec_() == QDialog.Accepted and dialog.selected_auth_id:
+                return dialog.selected_auth_id
+            return None
+        QMessageBox.warning(iface.mainWindow(), "Attention", "Aucune configuration d'authentification n'a été trouvée dans votre QGIS. Veuillez ajouter la configuration d'authentification CEN-NA pour charger les flux sécurisés tels que la MFU .")
+        return None
+
+    def apply_authentication_if_needed(self, uri):
+        """
+        Applique une configuration d'authentification si nécessaire.
+        Charge automatiquement la configuration par défaut si elle est enregistrée dans QSettings.
+        """
+        auth_id = self._select_service_authcfg()
+        if auth_id:
+            uri.setAuthConfigId(auth_id)
+            return True
+        return None
 
 
 
@@ -940,10 +919,11 @@ class FluxCEN:
         """
         Handle WMS layer loading and apply authentication if necessary.
         """
-        # Aucune configuration d'authentification n'est attachée aux couches du
-        # catalogue : l'auth Microsoft est réservée au périmètre SharePoint/Graph
-        # (FR-010) et les flux du catalogue sont publics.
-        wms_layer_url = catalog.build_wms_uri(url, nom_technique)
+        # Les couches du catalogue sont chargées sans authentification (FR-010),
+        # sauf le service sécurisé du CEN qui reçoit une configuration adaptée
+        # non web — jamais la configuration Microsoft (FR-012).
+        authcfg_id = self._select_service_authcfg() if catalog.is_cen_secured_service(url) else None
+        wms_layer_url = catalog.build_wms_uri(url, nom_technique, authcfg=authcfg_id)
         wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
 
         if wms_layer.isValid():
@@ -961,12 +941,16 @@ class FluxCEN:
         """
         Handle WFS layer loading and apply authentication if necessary.
         """
-        # Aucune configuration d'authentification n'est attachée aux couches du
-        # catalogue : l'auth Microsoft est réservée au périmètre SharePoint/Graph
-        # (FR-010) et les flux du catalogue sont publics.
+        # Les couches du catalogue sont chargées sans authentification (FR-010),
+        # sauf le service sécurisé du CEN qui reçoit une configuration adaptée
+        # non web — jamais la configuration Microsoft (FR-012).
         uri = QgsDataSourceUri()
         for key, value in catalog.build_wfs_uri_params(url, nom_technique).items():
             uri.setParam(key, value)
+        if catalog.is_cen_secured_service(url):
+            authcfg_id = self._select_service_authcfg()
+            if authcfg_id:
+                uri.setAuthConfigId(authcfg_id)
         wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
 
         if wfs_layer.isValid():

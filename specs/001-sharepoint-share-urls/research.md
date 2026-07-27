@@ -79,6 +79,12 @@ spécifiée alors (YAGNI).
 - Restaurer l'ancien filtre « fonciercen / drone » du changelog v5.x : ces couches n'existent plus dans le
   CSV actuel sous cette forme ; à re-spécifier si le besoin revient.
 
+**Correctif 2026-07-27 (revue de code + confirmation utilisateur)** : la décision ci-dessus était trop
+large — le catalogue contient ~40 couches WFS `fonciercen` sur `opendata.cen-nouvelle-aquitaine.org`,
+geoserver **authentifié**. FR-012 restaure une authentification ciblée : uniquement pour ce domaine
+(`is_cen_secured_service()`, correspondance d'hôte exacte), avec une configuration **non web** choisie par
+le mécanisme filtré de FR-011 (`_select_service_authcfg()`). La config Microsoft reste exclue partout.
+
 ## R4bis — Couches PostGIS : filtrage des méthodes d'authentification (amendement 2026-07-27)
 
 **Decision**: `apply_authentication_if_needed()` (chemin PostGIS) et le dialogue de choix de la

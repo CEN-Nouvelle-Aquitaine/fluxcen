@@ -104,8 +104,15 @@ Microsoft portent l'auth ; ajout d'une couche WMS tierce → aucune authcfg dans
 - [X] T029 [US2] Écrire les tests **échouants** de FR-011 : test pur de `is_database_auth_method()` dans `tests/test_ms_urls.py` (`OAuth2` → False ; `Basic`, `PKI-Paths` → True) et tests d'intégration dans `tests/test_postgis_auth.py` — `apply_authentication_if_needed()` avec un gestionnaire d'auth factice : config OAuth2 seule → aucune authcfg sur l'URI ; config par défaut QSettings pointant vers OAuth2 → ignorée ; config Basic → appliquée
 - [X] T030 [US2] Implémenter FR-011 : `is_database_auth_method()` dans `core/ms_urls.py`, helper `_database_auth_configs()` dans `FluxCEN.py` filtrant `availableAuthMethodConfigs()` par méthode, utilisé par `apply_authentication_if_needed()` (défaut inadapté ignoré + log) et par `choose_default_authentication()` (le dialogue ne propose plus les configs web) ; jusqu'au vert de T029
 
+### Amendement revue de code 2026-07-27 — FR-012 et corrections
+
+- [X] T031 [US2] Écrire les tests **échouants** de FR-012 : `is_cen_secured_service()` dans `tests/test_catalog.py` (hôte `opendata.cen-nouvelle-aquitaine.org` → True ; geopf/évil/http → False) et `build_wms_uri(..., authcfg=)` (paramètre présent ssi fourni)
+- [X] T032 [US2] Implémenter FR-012 : `is_cen_secured_service()` + paramètre `authcfg` de `build_wms_uri()` dans `core/catalog.py` ; `_select_service_authcfg()` extrait de `apply_authentication_if_needed()` dans `FluxCEN.py` ; `handle_wms_layer`/`handle_wfs_layer` attachent la config sélectionnée uniquement pour le périmètre sécurisé CEN ; jusqu'au vert de T031
+- [X] T033 [US3] Écrire les tests **échouants** des corrections de la revue : nouvel essai du catalogue à l'ouverture suivante après échec (finding 1) ; `initialisation_flux` sans exception sur catégorie inexistante/catalogue vide et correspondance avec cellules non normalisées (finding 3) ; en-tête `Prefer` sur toute URL Graph `/shares/` y compris pré-convertie (finding 5) ; rejet `ftp://`/`file://` sans requête et sans userinfo dans le message (finding 6) ; `parse_version()` (finding 10)
+- [X] T034 [US3] Implémenter les corrections : retry du catalogue tant que non obtenu ; réécriture du peuplement du tableau (garde liste vide, correspondance strip, URL de métadonnées de la bonne ligne — finding 4, tooltip unifié) ; en-tête `Prefer` par détection d'URL `/shares/` ; garde de schéma via analyse d'URL (https/data uniquement, nom d'hôte sans userinfo) ; `parse_version()` dans `core/catalog.py` remplaçant l'index 8 en dur ; clarification du mode anonyme dans `links_example.yaml` (finding 7) ; jusqu'au vert de T033
+
 **Checkpoint**: US1 et US2 fonctionnent indépendamment — aucun jeton hors périmètre Microsoft, aucune
-config Microsoft sur les connexions base de données
+config Microsoft sur les connexions base de données, couches sécurisées CEN authentifiées (non web)
 
 ---
 

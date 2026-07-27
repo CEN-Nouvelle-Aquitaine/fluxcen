@@ -139,6 +139,39 @@ class TestFiltragePerimetreAuth:
         assert fake_network.last.authcfg is None
 
 
+class TestPreferSurUrlSharesPreConvertie:
+    """Finding 5 : l'en-tête Prefer accompagne toute URL Graph /shares/,
+    y compris celles pré-construites (styles issus d'un dossier partagé)."""
+
+    def test_url_de_style_dossier_partage(self, tmp_path, fake_network):
+        from fluxcen.core.ms_urls import build_style_url
+        plugin = make_plugin(tmp_path)
+        style_url = build_style_url("https://tenant.sharepoint.com/dossier", "style_znieff")
+        plugin._fetch_bytes(style_url, "style de couche")
+        assert prefer_header(fake_network) == b"redeemSharingLinkIfNecessary"
+
+
+class TestSchemasRefuses:
+    """Finding 6 : seuls https et data: sont acceptés ; message sans userinfo."""
+
+    @pytest.mark.parametrize("url", [
+        "ftp://exemple.org/flux.csv",
+        "file:///etc/passwd",
+        "http://exemple.org/flux.csv",
+    ])
+    def test_schema_refuse_sans_requete(self, tmp_path, fake_network, url):
+        plugin = make_plugin(tmp_path)
+        with pytest.raises(Exception):
+            plugin._fetch_bytes(url)
+        assert fake_network.last is None
+
+    def test_message_sans_userinfo(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path)
+        with pytest.raises(Exception) as excinfo:
+            plugin._fetch_bytes("ftp://utilisateur:motdepasse@exemple.org/x")
+        assert "motdepasse" not in str(excinfo.value)
+
+
 class TestAuthManquante:
     """T024 — US3 : périmètre Microsoft sans authcfg → erreur d'orientation, sans requête."""
 

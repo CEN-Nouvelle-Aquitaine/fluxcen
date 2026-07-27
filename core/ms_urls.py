@@ -26,7 +26,7 @@ class UrlClass(Enum):
     OTHER = "other"
 
 
-def _https_hostname(url):
+def https_hostname(url):
     """Retourne le nom d'hôte (minuscules) si l'URL est HTTPS, sinon None.
 
     Toute erreur d'analyse est absorbée : une URL malformée est simplement
@@ -49,7 +49,7 @@ def _https_hostname(url):
 
 def is_microsoft_url(url):
     """Vraie ssi l'URL appartient au périmètre d'authentification Microsoft."""
-    hostname = _https_hostname(url)
+    hostname = https_hostname(url)
     if hostname is None:
         return False
     return hostname == _GRAPH_HOST or hostname.endswith(_SHAREPOINT_SUFFIX)
@@ -57,7 +57,7 @@ def is_microsoft_url(url):
 
 def classify_url(url):
     """Classe une URL de ressource : lien de partage SharePoint, Graph, ou autre."""
-    hostname = _https_hostname(url)
+    hostname = https_hostname(url)
     if hostname is None:
         return UrlClass.OTHER
     if hostname.endswith(_SHAREPOINT_SUFFIX):
@@ -70,6 +70,21 @@ def classify_url(url):
 def is_sharepoint_sharing_link(url):
     """Vraie ssi l'URL est un lien SharePoint à résoudre via l'API Graph."""
     return classify_url(url) is UrlClass.SHAREPOINT_SHARING_LINK
+
+
+def is_graph_shares_url(url):
+    """Vraie ssi l'URL est un appel Graph ``/shares/`` (lien de partage résolu).
+
+    Ces appels reçoivent l'en-tête ``Prefer: redeemSharingLinkIfNecessary``,
+    que l'URL ait été convertie à la volée ou pré-construite (styles).
+    """
+    if https_hostname(url) != _GRAPH_HOST:
+        return False
+    try:
+        path = urlsplit(url).path
+    except ValueError:
+        return False
+    return path.startswith("/v1.0/shares/")
 
 
 def _share_token(url):

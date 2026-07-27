@@ -25,6 +25,9 @@ depot_plugins_url:
 # gestionnaire d'authentification QGIS (Préférences > Authentification), typiquement de type OAuth2
 # pointant vers Microsoft Entra ID (app "public client/native", redirect http://localhost:7070,
 # permission déléguée Files.Read.All / Sites.Read.All).
-# Laisser vide ("") pour un accès anonyme (comportement historique, dépôt public).
+# Laisser vide ("") pour un accès anonyme : valable uniquement pour des URL publiques
+# hors Microsoft (hébergement public type GitHub). Une URL SharePoint ou Microsoft Graph
+# exige toujours une authcfg — l'API Microsoft n'accepte pas d'accès anonyme en tenant
+# d'entreprise ; sans authcfg le plugin refuse la requête avec un message explicite.
 auth:
   authcfg: ""
