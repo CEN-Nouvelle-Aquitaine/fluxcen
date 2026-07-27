@@ -21,6 +21,14 @@ pytest tests/test_ms_urls.py tests/test_catalog.py tests/test_errors.py
 # Suite complète (nécessite QGIS ≥ 3.44 installé, ou l'image Docker) :
 pip install pytest pytest-qgis
 pytest tests/
+
+# macOS avec QGIS-LTR.app : utiliser le Python embarqué de QGIS
+APP=/Applications/QGIS-LTR.app
+export PYTHONHOME=$APP/Contents/Frameworks
+export QGIS_PREFIX_PATH=$APP/Contents/MacOS
+export QT_QPA_PLATFORM=offscreen
+$APP/Contents/MacOS/python3.12 -m pip install --user pytest pytest-qgis  # une seule fois
+$APP/Contents/MacOS/python3.12 -m pytest tests/
 docker run --rm -v "$PWD":/src -w /src qgis/qgis:release-3_44 sh -c \
   "pip3 install pytest pytest-qgis && pytest tests/"
 ```

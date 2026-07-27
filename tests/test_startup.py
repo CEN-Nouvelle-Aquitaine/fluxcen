@@ -40,6 +40,7 @@ class TestEchecReseauNonFatal:
             lambda self, url, resource_name="ressource": (_ for _ in ()).throw(IOError("réseau coupé")),
         )
         iface_mock = MagicMock()
+        iface_mock.mainWindow.return_value = None  # parent Qt valide pour QAction
         plugin = plugin_mod.FluxCEN(iface_mock)   # aucune exception
         plugin.iface = iface_mock
         plugin.initGui()                          # aucune exception, aucun réseau
