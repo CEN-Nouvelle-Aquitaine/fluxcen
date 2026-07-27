@@ -5,4 +5,5 @@ __pycache__/
 .vscode/
 .claude
 config_db.yaml
-links.yaml.qgis-settings/
+links.yaml
+.qgis-settings/
