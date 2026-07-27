@@ -29,8 +29,8 @@ Toute URL de ressource est classée avant émission de la requête. Classificati
 | `OTHER` | tout le reste (y compris http, `data:`, domaines trompeurs) | **non** | aucune |
 
 **Transitions** : `SHAREPOINT_SHARING_LINK → GRAPH` (conversion pure, sans réseau) — pour un fichier,
-conversion directe ; pour le dossier des styles, conversion « lien de dossier + nom de fichier »
-(`sharing_link_to_graph_item_url`). Les classes `GRAPH` et `OTHER` sont terminales. Une URL de partage de
+conversion directe ; pour le dossier des styles, résolution en deux étapes
+(`sharing_link_to_graph_metadata_url` puis `drive_item_child_content_url`, cf. research R1). Les classes `GRAPH` et `OTHER` sont terminales. Une URL de partage de
 dossier n'est pas distinguable syntaxiquement d'une URL de fichier : c'est le site d'usage
 (`styles_couches`) qui détermine la conversion appliquée.
 

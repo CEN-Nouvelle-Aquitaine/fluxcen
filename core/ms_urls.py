@@ -10,6 +10,7 @@ vers ces destinations peuvent porter la configuration d'authentification
 Microsoft (jamais d'expansion du jeton hors de ce périmètre).
 """
 import base64
+import json
 from enum import Enum
 from urllib.parse import quote, urlsplit
 
@@ -100,19 +101,53 @@ def sharing_link_to_graph_url(url):
     return _GRAPH_SHARES_PREFIX + _share_token(url) + "/driveItem/content"
 
 
-def sharing_link_to_graph_item_url(folder_share_url, filename):
-    """Résout un fichier à l'intérieur d'un dossier partagé (adressage par chemin).
-
-    ``filename`` provient du catalogue distant : tout séparateur de chemin ou
-    séquence ``..`` est rejeté pour empêcher de sortir du dossier partagé.
-    """
-    if not is_sharepoint_sharing_link(folder_share_url):
-        raise ValueError("Pas un lien de partage SharePoint HTTPS")
+def _validate_child_filename(filename):
+    """Nom de fichier issu du catalogue distant : séparateurs et ``..`` rejetés."""
     if (not filename or not isinstance(filename, str)
             or "/" in filename or "\\" in filename or ".." in filename):
         raise ValueError("Nom de fichier de style invalide")
+
+
+def sharing_link_to_graph_metadata_url(folder_share_url):
+    """URL Graph résolvant un lien de partage de dossier en (driveId, itemId).
+
+    L'adressage par chemin n'est pas supporté sous ``/shares`` (vérifié contre
+    le tenant réel le 2026-07-27 : 400 « Resource not found for the segment
+    'driveItem:' ») : la résolution se fait en deux étapes, celle-ci puis
+    ``drive_item_child_content_url``.
+    """
+    if not is_sharepoint_sharing_link(folder_share_url):
+        raise ValueError("Pas un lien de partage SharePoint HTTPS")
     return (_GRAPH_SHARES_PREFIX + _share_token(folder_share_url)
-            + "/driveItem:/" + quote(filename) + ":/content")
+            + "/driveItem?$select=id,parentReference")
+
+
+def parse_drive_item_ref(json_text):
+    """Extrait ``(driveId, itemId)`` de la réponse driveItem de Graph.
+
+    Toute réponse inattendue (JSON invalide, champs absents ou vides) lève
+    ``ValueError`` : le contenu vient du réseau et n'est jamais présumé sûr.
+    """
+    try:
+        data = json.loads(json_text)
+        drive_id = data["parentReference"]["driveId"]
+        item_id = data["id"]
+    except (ValueError, KeyError, TypeError) as exc:
+        raise ValueError("Réponse driveItem inattendue") from exc
+    if not (isinstance(drive_id, str) and drive_id
+            and isinstance(item_id, str) and item_id):
+        raise ValueError("Identifiants driveItem vides ou invalides")
+    return drive_id, item_id
+
+
+def drive_item_child_content_url(drive_id, item_id, filename):
+    """URL de téléchargement d'un fichier par chemin sous ``/drives/{id}/items``."""
+    _validate_child_filename(filename)
+    for value in (drive_id, item_id):
+        if not value or not isinstance(value, str) or quote(value, safe="!") != value:
+            raise ValueError("Identifiant driveItem invalide")
+    return (f"https://graph.microsoft.com/v1.0/drives/{drive_id}"
+            f"/items/{item_id}:/{quote(filename)}:/content")
 
 
 _DATABASE_EXCLUDED_AUTH_METHODS = frozenset({"OAuth2"})
@@ -130,12 +165,14 @@ def is_database_auth_method(method):
 
 
 def build_style_url(styles_base, style_name):
-    """URL de téléchargement d'un style ``<style_name>.qml``.
+    """URL de téléchargement d'un style ``<style_name>.qml`` (URL directe).
 
-    ``styles_base`` est soit une URL directe (concaténation historique), soit un
-    lien de partage de dossier SharePoint (résolution par chemin via Graph).
+    Un lien de partage de dossier SharePoint exige une résolution réseau en
+    deux étapes : elle est portée par le contrôleur, jamais par cette fonction
+    pure — un lien de partage en entrée est donc refusé.
     """
-    filename = style_name + ".qml"
     if is_sharepoint_sharing_link(styles_base):
-        return sharing_link_to_graph_item_url(styles_base, filename)
+        raise ValueError("Lien de partage : résolution réseau requise (contrôleur)")
+    filename = style_name + ".qml"
+    _validate_child_filename(filename)
     return styles_base + filename

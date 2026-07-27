@@ -15,10 +15,14 @@ Ajouter l'en-tête `Prefer: redeemSharingLinkIfNecessary` pour garantir l'accès
 conversion est une fonction pure (chaîne → chaîne), sans réseau, donc testable unitairement sans QGIS.
 L'appel reste sur `graph.microsoft.com` → l'auth Microsoft reste dans le périmètre autorisé.
 
-**Extension dossiers (styles)** : pour un lien de partage vers un **dossier**, un fichier est adressé par
-chemin sous la ressource partagée : `GET /shares/{token}/driveItem:/{nom-fichier}:/content` (adressage par
-chemin des driveItems, documenté par l'API Graph). Le nom de fichier est encodé (percent-encoding) et
-validé en amont (pas de `/`, `\` ni `..` — il provient du catalogue distant).
+**Extension dossiers (styles)** — *corrigé le 2026-07-27 après validation contre le tenant réel* :
+l'adressage par chemin **n'est pas supporté sous `/shares`** (Graph répond 400 « Resource not found for
+the segment 'driveItem:' »). La résolution se fait en deux étapes : (1)
+`GET /shares/{token}/driveItem?$select=id,parentReference` → `(driveId, itemId)` du dossier, mis en cache
+pour la session ; (2) `GET /drives/{driveId}/items/{itemId}:/{nom-fichier}:/content` (l'adressage par
+chemin est supporté sous `/drives`). Le nom de fichier est percent-encodé et validé en amont (pas de `/`,
+`\` ni `..` — il provient du catalogue distant) ; la réponse de l'étape 1 est parsée défensivement
+(`parse_drive_item_ref`, ValueError sur toute réponse inattendue).
 
 **Alternatives considered**:
 - Ajouter `?download=1` au lien de partage : non documenté pour les tenants d'entreprise avec

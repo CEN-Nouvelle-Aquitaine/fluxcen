@@ -111,6 +111,11 @@ Microsoft portent l'auth ; ajout d'une couche WMS tierce → aucune authcfg dans
 - [X] T033 [US3] Écrire les tests **échouants** des corrections de la revue : nouvel essai du catalogue à l'ouverture suivante après échec (finding 1) ; `initialisation_flux` sans exception sur catégorie inexistante/catalogue vide et correspondance avec cellules non normalisées (finding 3) ; en-tête `Prefer` sur toute URL Graph `/shares/` y compris pré-convertie (finding 5) ; rejet `ftp://`/`file://` sans requête et sans userinfo dans le message (finding 6) ; `parse_version()` (finding 10)
 - [X] T034 [US3] Implémenter les corrections : retry du catalogue tant que non obtenu ; réécriture du peuplement du tableau (garde liste vide, correspondance strip, URL de métadonnées de la bonne ligne — finding 4, tooltip unifié) ; en-tête `Prefer` par détection d'URL `/shares/` ; garde de schéma via analyse d'URL (https/data uniquement, nom d'hôte sans userinfo) ; `parse_version()` dans `core/catalog.py` remplaçant l'index 8 en dur ; clarification du mode anonyme dans `links_example.yaml` (finding 7) ; jusqu'au vert de T033
 
+### Amendement 2026-07-27 (validation T028) — résolution des dossiers partagés en 2 étapes
+
+- [X] T035 [US1] Écrire les tests **échouants** de la résolution 2 étapes (l'adressage par chemin sous `/shares` est rejeté par Graph, constaté sur le tenant réel) : `sharing_link_to_graph_metadata_url`/`parse_drive_item_ref`/`drive_item_child_content_url` dans `tests/test_ms_urls.py` (dont nom à espace « RPG _2024.qml » et réponses JSON hostiles), `_style_url` dans `tests/test_fetch.py` (deux étapes, cache de session, URL directe sans réseau)
+- [X] T036 [US1] Implémenter : les trois fonctions pures dans `core/ms_urls.py` (remplacent `sharing_link_to_graph_item_url`), `FluxCEN._style_url()` avec cache `(driveId, itemId)`, échec de résolution non bloquant (couche chargée sans style + log) ; jusqu'au vert de T035
+
 **Checkpoint**: US1 et US2 fonctionnent indépendamment — aucun jeton hors périmètre Microsoft, aucune
 config Microsoft sur les connexions base de données, couches sécurisées CEN authentifiées (non web)
 

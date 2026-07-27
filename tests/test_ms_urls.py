@@ -10,10 +10,12 @@ from core.ms_urls import (
     UrlClass,
     build_style_url,
     classify_url,
+    drive_item_child_content_url,
     is_database_auth_method,
     is_microsoft_url,
     is_sharepoint_sharing_link,
-    sharing_link_to_graph_item_url,
+    parse_drive_item_ref,
+    sharing_link_to_graph_metadata_url,
     sharing_link_to_graph_url,
 )
 
@@ -126,28 +128,57 @@ class TestSharingLinkToGraphUrl:
             sharing_link_to_graph_url(url)
 
 
-class TestSharingLinkToGraphItemUrl:
+class TestResolutionDossierPartage:
+    """Résolution en 2 étapes, validée contre le tenant réel le 2026-07-27 :
+    l'adressage par chemin sous /shares est rejeté par Graph (400,
+    "Resource not found for the segment 'driveItem:'")."""
+
     FOLDER = "https://tenant.sharepoint.com/x"
+    META_JSON = ('{"id": "ITEM123", "name": "styles_couches", '
+                 '"parentReference": {"driveId": "b!DRIVE456"}, "folder": {"childCount": 22}}')
 
-    def test_adressage_par_chemin(self):
-        assert (sharing_link_to_graph_item_url(self.FOLDER, "style_znieff.qml")
-                == GRAPH_SHARES + TOKEN_SIMPLE + "/driveItem:/style_znieff.qml:/content")
+    def test_metadata_url(self):
+        assert (sharing_link_to_graph_metadata_url(self.FOLDER)
+                == GRAPH_SHARES + TOKEN_SIMPLE + "/driveItem?$select=id,parentReference")
 
-    def test_percent_encoding_du_nom(self):
-        url = sharing_link_to_graph_item_url(self.FOLDER, "zones humides été.qml")
-        assert url == GRAPH_SHARES + TOKEN_SIMPLE + "/driveItem:/zones%20humides%20%C3%A9t%C3%A9.qml:/content"
-
-    def test_retour_dans_le_perimetre_microsoft(self):
-        assert is_microsoft_url(sharing_link_to_graph_item_url(self.FOLDER, "a.qml")) is True
-
-    @pytest.mark.parametrize("filename", ["", "a/b.qml", "a\\b.qml", "../secret.qml", "a..b.qml"])
-    def test_valueerror_nom_invalide(self, filename):
+    def test_metadata_url_hors_sharepoint(self):
         with pytest.raises(ValueError):
-            sharing_link_to_graph_item_url(self.FOLDER, filename)
+            sharing_link_to_graph_metadata_url("https://exemple.org/dossier")
 
-    def test_valueerror_hors_sharepoint(self):
+    def test_parse_drive_item_ref(self):
+        assert parse_drive_item_ref(self.META_JSON) == ("b!DRIVE456", "ITEM123")
+
+    @pytest.mark.parametrize("payload", [
+        "", "pas du json", "{}", '{"id": "X"}',
+        '{"id": "", "parentReference": {"driveId": "D"}}',
+        '{"id": "X", "parentReference": {}}',
+    ])
+    def test_parse_drive_item_ref_invalide(self, payload):
         with pytest.raises(ValueError):
-            sharing_link_to_graph_item_url("https://exemple.org/dossier", "a.qml")
+            parse_drive_item_ref(payload)
+
+    def test_child_content_url(self):
+        assert (drive_item_child_content_url("b!DRIVE456", "ITEM123", "RPG.qml")
+                == "https://graph.microsoft.com/v1.0/drives/b!DRIVE456/items/ITEM123:/RPG.qml:/content")
+
+    def test_child_content_url_percent_encoding(self):
+        # cas réel du dossier CEN : "RPG _2024.qml" (espace dans le nom)
+        url = drive_item_child_content_url("b!DRIVE456", "ITEM123", "RPG _2024.qml")
+        assert url.endswith("/items/ITEM123:/RPG%20_2024.qml:/content")
+
+    @pytest.mark.parametrize("filename", ["", "a/b.qml", "a\\b.qml", "../x.qml", "a..b.qml"])
+    def test_child_content_url_nom_invalide(self, filename):
+        with pytest.raises(ValueError):
+            drive_item_child_content_url("b!DRIVE456", "ITEM123", filename)
+
+    @pytest.mark.parametrize("drive_id,item_id", [("", "I"), ("D", ""), ("D/../x", "I"), ("D", "I?x=1")])
+    def test_child_content_url_ids_invalides(self, drive_id, item_id):
+        with pytest.raises(ValueError):
+            drive_item_child_content_url(drive_id, item_id, "a.qml")
+
+    def test_urls_dans_le_perimetre_microsoft(self):
+        assert is_microsoft_url(sharing_link_to_graph_metadata_url(self.FOLDER)) is True
+        assert is_microsoft_url(drive_item_child_content_url("D", "I", "a.qml")) is True
 
 
 class TestIsDatabaseAuthMethod:
@@ -166,6 +197,8 @@ class TestBuildStyleUrl:
         base = "https://raw.githubusercontent.com/x/styles_couches/"
         assert build_style_url(base, "style_znieff") == base + "style_znieff.qml"
 
-    def test_lien_de_partage_de_dossier(self):
-        assert (build_style_url("https://tenant.sharepoint.com/x", "style_znieff")
-                == GRAPH_SHARES + TOKEN_SIMPLE + "/driveItem:/style_znieff.qml:/content")
+    def test_lien_de_partage_refuse(self):
+        # la résolution d'un dossier partagé exige le réseau : c'est le
+        # contrôleur qui la porte, jamais cette fonction pure
+        with pytest.raises(ValueError):
+            build_style_url("https://tenant.sharepoint.com/x", "style_znieff")

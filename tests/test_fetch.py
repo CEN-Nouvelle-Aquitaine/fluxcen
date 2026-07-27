@@ -23,15 +23,24 @@ GRAPH_URL = "https://graph.microsoft.com/v1.0/sites/abc/drive/root:/flux.csv:/co
 
 
 class FakeReply:
+    def __init__(self, data=b"payload"):
+        self._data = data
+
     def content(self):
-        return b"payload"
+        return self._data
 
 
 class FakeBlocking:
-    """Double de QgsBlockingNetworkRequest : capture la requête émise."""
+    """Double de QgsBlockingNetworkRequest : capture les requêtes émises.
+
+    `responses` associe un fragment d'URL au contenu à retourner (défaut
+    b"payload") ; `requests` accumule toutes les QNetworkRequest émises.
+    """
 
     NoError = 0
     last = None
+    requests = []
+    responses = {}
 
     def __init__(self):
         self.authcfg = None
@@ -43,12 +52,17 @@ class FakeBlocking:
 
     def get(self, request):
         self.request = request
+        FakeBlocking.requests.append(request)
         return FakeBlocking.NoError
 
     def errorMessage(self):
         return ""
 
     def reply(self):
+        url = self.request.url().toString()
+        for fragment, data in FakeBlocking.responses.items():
+            if fragment in url:
+                return FakeReply(data)
         return FakeReply()
 
 
@@ -61,6 +75,7 @@ def make_plugin(tmp_path, authcfg="abc1234"):
     )
     obj = plugin_mod.FluxCEN.__new__(plugin_mod.FluxCEN)
     obj.plugin_path = str(tmp_path)
+    obj._styles_folder_ref = None
     return obj
 
 
@@ -68,6 +83,8 @@ def make_plugin(tmp_path, authcfg="abc1234"):
 def fake_network(monkeypatch):
     monkeypatch.setattr(plugin_mod, "QgsBlockingNetworkRequest", FakeBlocking)
     FakeBlocking.last = None
+    FakeBlocking.requests = []
+    FakeBlocking.responses = {}
     return FakeBlocking
 
 
@@ -141,14 +158,46 @@ class TestFiltragePerimetreAuth:
 
 class TestPreferSurUrlSharesPreConvertie:
     """Finding 5 : l'en-tête Prefer accompagne toute URL Graph /shares/,
-    y compris celles pré-construites (styles issus d'un dossier partagé)."""
+    y compris celles pré-construites (résolution du dossier des styles)."""
 
-    def test_url_de_style_dossier_partage(self, tmp_path, fake_network):
-        from fluxcen.core.ms_urls import build_style_url
+    def test_url_metadata_dossier_partage(self, tmp_path, fake_network):
+        from fluxcen.core.ms_urls import sharing_link_to_graph_metadata_url
         plugin = make_plugin(tmp_path)
-        style_url = build_style_url("https://tenant.sharepoint.com/dossier", "style_znieff")
-        plugin._fetch_bytes(style_url, "style de couche")
+        meta_url = sharing_link_to_graph_metadata_url("https://tenant.sharepoint.com/dossier")
+        plugin._fetch_bytes(meta_url, "dossier des styles")
         assert prefer_header(fake_network) == b"redeemSharingLinkIfNecessary"
+
+
+FOLDER_LINK = "https://tenant.sharepoint.com/:f:/r/sites/x/styles_couches?csf=1&web=1&e=Z"
+META_JSON = b'{"id": "ITEM123", "parentReference": {"driveId": "b!DRIVE456"}}'
+
+
+class TestResolutionStyleDossierPartage:
+    """Deux étapes validées contre le tenant réel (2026-07-27) : Graph rejette
+    l'adressage par chemin sous /shares — résolution driveId/itemId d'abord."""
+
+    def test_deux_requetes_puis_url_drives(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path)
+        fake_network.responses["$select=id,parentReference"] = META_JSON
+        style_url = plugin._style_url(FOLDER_LINK, "RPG")
+        assert style_url == ("https://graph.microsoft.com/v1.0/drives/b!DRIVE456"
+                             "/items/ITEM123:/RPG.qml:/content")
+        urls = [r.url().toString() for r in fake_network.requests]
+        assert len(urls) == 1  # une seule requête réseau : la résolution
+        assert "/shares/u!" in urls[0] and "$select=id,parentReference" in urls[0]
+
+    def test_resolution_en_cache_pour_la_session(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path)
+        fake_network.responses["$select=id,parentReference"] = META_JSON
+        plugin._style_url(FOLDER_LINK, "RPG")
+        plugin._style_url(FOLDER_LINK, "znieff2")
+        assert len(fake_network.requests) == 1  # le dossier n'est résolu qu'une fois
+
+    def test_url_directe_sans_reseau(self, tmp_path, fake_network):
+        plugin = make_plugin(tmp_path)
+        base = "https://raw.githubusercontent.com/x/styles_couches/"
+        assert plugin._style_url(base, "RPG") == base + "RPG.qml"
+        assert fake_network.requests == []
 
 
 class TestSchemasRefuses:

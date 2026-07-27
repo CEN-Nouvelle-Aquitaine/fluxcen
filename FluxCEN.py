@@ -128,6 +128,9 @@ class FluxCEN:
         # pour la session.
         self._catalog_text = None
         self._startup_done = False
+        # Résolution (driveId, itemId) du dossier de styles partagé, une fois
+        # par session (l'adressage par chemin n'existe pas sous /shares)
+        self._styles_folder_ref = None
 
         self.dlg = FluxCENDialog()
 
@@ -317,6 +320,27 @@ class FluxCEN:
             message = "Échec du chargement de « %s » : %s" % (resource_name, exc)
         log(message, Qgis.MessageLevel.Critical)
         self.iface.messageBar().pushMessage("FluxCEN", message, level=Qgis.Critical, duration=10)
+
+    def _style_url(self, styles_couches, style_name):
+        """URL de téléchargement du style ``<style_name>.qml``.
+
+        URL directe : concaténation historique, sans réseau. Lien de partage
+        de dossier SharePoint : résolution en deux étapes — (driveId, itemId)
+        du dossier via ``/shares`` (une seule fois par session), puis adressage
+        par chemin sous ``/drives`` (l'adressage par chemin est rejeté par
+        Graph directement sous ``/shares``).
+        """
+        if not ms_urls.is_sharepoint_sharing_link(styles_couches):
+            return ms_urls.build_style_url(styles_couches, style_name)
+        if self._styles_folder_ref is None:
+            metadata = self._fetch_bytes(
+                ms_urls.sharing_link_to_graph_metadata_url(styles_couches),
+                "dossier des styles")
+            self._styles_folder_ref = ms_urls.parse_drive_item_ref(
+                metadata.decode("utf-8"))
+        drive_id, item_id = self._styles_folder_ref
+        return ms_urls.drive_item_child_content_url(
+            drive_id, item_id, style_name + ".qml")
 
     def _get_catalog_text(self):
         """Texte du catalogue de flux, téléchargé une seule fois par session."""
@@ -834,8 +858,15 @@ class FluxCEN:
             return None
 
         # URL du style si disponible : URL directe (concaténation) ou lien de
-        # partage de dossier SharePoint (résolution par chemin via Graph)
-        style_url = ms_urls.build_style_url(styles_couches, flux.style) if flux.style else None
+        # partage de dossier SharePoint (résolution en deux étapes via Graph).
+        # Un échec de résolution ne bloque pas la couche : elle charge sans style.
+        style_url = None
+        if flux.style:
+            try:
+                style_url = self._style_url(styles_couches, flux.style)
+            except Exception as exc:  # pylint: disable=broad-exception-caught
+                log("Résolution du style « %s » impossible : %s" % (flux.style, exc),
+                    Qgis.MessageLevel.Warning)
 
         return flux.service, flux.nom_couche, flux.nom_technique, flux.url, style_url
 

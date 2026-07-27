@@ -28,15 +28,27 @@ Convertit un lien de partage en URL Graph de téléchargement.
 - Précondition : `is_sharepoint_sharing_link(url)` vraie ; sinon `ValueError`.
 - Propriété : le retour satisfait toujours `is_microsoft_url`.
 
-## `sharing_link_to_graph_item_url(folder_share_url: str, filename: str) -> str`
+## Résolution d'un dossier partagé (cas `styles_couches`) — 2 étapes
 
-Résout un fichier **à l'intérieur d'un dossier partagé** (cas `styles_couches`).
+*(Corrigé le 2026-07-27 : l'adressage par chemin sous `/shares` est rejeté par Graph — validé contre le
+tenant réel.)*
 
-- Retour : `https://graph.microsoft.com/v1.0/shares/u!<token>/driveItem:/<filename encodé>:/content`
-  (adressage par chemin, `filename` percent-encodé).
-- Préconditions : `is_sharepoint_sharing_link(folder_share_url)` vraie, sinon `ValueError` ;
-  `filename` non vide et sans `/`, `\` ni `..`, sinon `ValueError` (le nom provient du catalogue distant).
-- Propriété : le retour satisfait toujours `is_microsoft_url`.
+### `sharing_link_to_graph_metadata_url(folder_share_url: str) -> str`
+- Retour : `…/shares/u!<token>/driveItem?$select=id,parentReference`.
+- Précondition : `is_sharepoint_sharing_link(folder_share_url)` vraie, sinon `ValueError`.
+
+### `parse_drive_item_ref(json_text: str) -> tuple[str, str]`
+- Extrait `(driveId, itemId)` de la réponse driveItem ; `ValueError` sur JSON invalide, champs absents ou
+  vides (réponse réseau, jamais présumée sûre).
+
+### `drive_item_child_content_url(drive_id: str, item_id: str, filename: str) -> str`
+- Retour : `https://graph.microsoft.com/v1.0/drives/<driveId>/items/<itemId>:/<filename encodé>:/content`.
+- `filename` non vide, sans `/`, `\` ni `..`, sinon `ValueError` ; identifiants validés (percent-encoding
+  strict). Le retour satisfait toujours `is_microsoft_url`.
+
+Côté contrôleur : `FluxCEN._style_url()` porte la résolution (métadonnées via `_fetch_bytes`, cache
+`(driveId, itemId)` par session) ; `build_style_url()` refuse un lien de partage en entrée (URL directes
+uniquement).
 
 ## `classify_url(url: str) -> UrlClass`
 
