@@ -8,9 +8,7 @@ import pathlib
 
 from core.catalog import (
     FluxRow,
-    build_wms_uri,
     extract_categories,
-    is_cen_secured_service,
     parse_catalog,
     parse_table_row,
 )
@@ -102,33 +100,4 @@ class TestExtractCategories:
     def test_categories_uniques_triees(self):
         text = (DATA_DIR / "flux_minimal.csv").read_text(encoding="utf-8")
         assert extract_categories(text) == ["Cartographie", "Foncier", "Zonages"]
-
-
-class TestIsCenSecuredService:
-    """FR-012 : périmètre du service cartographique sécurisé du CEN."""
-
-    def test_geoserver_cen(self):
-        assert is_cen_secured_service(
-            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs") is True
-
-    def test_hors_perimetre(self):
-        for url in (
-            "https://data.geopf.fr/wfs/ows?SERVICE=WFS",
-            "https://opendata.cen-nouvelle-aquitaine.org.evil.tld/wfs",
-            "http://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs",  # http
-            "",
-        ):
-            assert is_cen_secured_service(url) is False
-
-
-class TestBuildWmsUriAuthcfg:
-    """FR-012 : authcfg optionnelle dans l'URI WMS, uniquement si fournie."""
-
-    URL = "https://opendata.cen-nouvelle-aquitaine.org/geoserver/ows?VERSION=1.3.0&REQUEST=GetCapabilities"
-
-    def test_avec_authcfg(self):
-        assert build_wms_uri(self.URL, "couche", authcfg="abc1234").endswith("&authcfg=abc1234")
-
-    def test_sans_authcfg(self):
-        assert "authcfg" not in build_wms_uri(self.URL, "couche")
 

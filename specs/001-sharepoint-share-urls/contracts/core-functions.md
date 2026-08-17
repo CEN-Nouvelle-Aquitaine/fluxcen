@@ -96,6 +96,11 @@ lien de partage (résolution réseau portée par le contrôleur) et sur un nom d
 
 Catégories uniques du catalogue, normalisées (`strip`) et triées — alimente le menu déroulant.
 
+# Contrat : `core/layer_builder.py`
+
+Construction des URI de couches et périmètre sécurisé du CEN — extrait de
+`core/catalog.py` en revue de PR (issue #52), contrats inchangés.
+
 ## `extract_service_version(url: str) -> str`
 
 Version du service extraite de l'URL (motif historique `VERSION=…&REQUEST`), `"1.0.0"` à défaut.

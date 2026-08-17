@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
-"""Tests des URI de couches WMS/WFS (T014 — US2, FR-010).
+"""Tests des URI de couches WMS/WFS (T014 — US2, FR-010 / FR-012).
 
-Les URI sont construites par des fonctions pures de core.catalog : aucune
-configuration d'authentification ne doit y figurer pour un domaine hors
-périmètre Microsoft. Un test de garde vérifie en outre que l'attachement
-indiscriminé de la première authcfg a bien disparu de FluxCEN.py.
+Les URI sont construites par des fonctions pures de core.layer_builder :
+aucune configuration d'authentification ne doit y figurer pour un domaine
+hors périmètre Microsoft ; le périmètre sécurisé du CEN est le seul à
+recevoir une authcfg explicite. Un test de garde vérifie en outre que
+l'attachement indiscriminé de la première authcfg a bien disparu de
+FluxCEN.py.
 """
 # pylint: disable=missing-class-docstring,missing-function-docstring,too-few-public-methods,redefined-outer-name,protected-access,wrong-import-position,wrong-import-order,unused-argument
 import pathlib
 
-from core.catalog import build_wfs_uri_params, build_wms_uri, extract_service_version
+from core.layer_builder import (
+    build_wfs_uri_params,
+    build_wms_uri,
+    extract_service_version,
+    is_cen_secured_service,
+)
 
 WMS_URL = "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
 WFS_URL = "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities"
@@ -42,6 +49,35 @@ class TestBuildWfsUriParams:
 
     def test_jamais_d_authcfg(self):
         assert "authcfg" not in build_wfs_uri_params(WFS_URL, "znieff1")
+
+
+class TestIsCenSecuredService:
+    """FR-012 : périmètre du service cartographique sécurisé du CEN."""
+
+    def test_geoserver_cen(self):
+        assert is_cen_secured_service(
+            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs") is True
+
+    def test_hors_perimetre(self):
+        for url in (
+            "https://data.geopf.fr/wfs/ows?SERVICE=WFS",
+            "https://opendata.cen-nouvelle-aquitaine.org.evil.tld/wfs",
+            "http://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs",  # http
+            "",
+        ):
+            assert is_cen_secured_service(url) is False
+
+
+class TestBuildWmsUriAuthcfg:
+    """FR-012 : authcfg optionnelle dans l'URI WMS, uniquement si fournie."""
+
+    URL = "https://opendata.cen-nouvelle-aquitaine.org/geoserver/ows?VERSION=1.3.0&REQUEST=GetCapabilities"
+
+    def test_avec_authcfg(self):
+        assert build_wms_uri(self.URL, "couche", authcfg="abc1234").endswith("&authcfg=abc1234")
+
+    def test_sans_authcfg(self):
+        assert "authcfg" not in build_wms_uri(self.URL, "couche")
 
 
 class TestGardeAttachementIndiscrimine:

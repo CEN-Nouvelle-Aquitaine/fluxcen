@@ -37,7 +37,7 @@ from .resources import *
 from .FluxCEN_dialog import FluxCENDialog
 # Logique pure (sans qgis) : URL Microsoft, catalogue de flux, URI de couches,
 # familles d'erreurs de téléchargement
-from .core import catalog, errors, ms_urls
+from .core import catalog, errors, layer_builder, ms_urls
 # Journalisation et popups centralisées (main #46)
 from .core.logger import log, alert
 
@@ -888,8 +888,8 @@ class FluxCEN:
         # Les couches du catalogue sont chargées sans authentification (FR-010),
         # sauf le service sécurisé du CEN qui reçoit une configuration adaptée
         # non web — jamais la configuration Microsoft (FR-012).
-        authcfg_id = self._select_service_authcfg() if catalog.is_cen_secured_service(url) else None
-        wms_layer_url = catalog.build_wms_uri(url, nom_technique, authcfg=authcfg_id)
+        authcfg_id = self._select_service_authcfg() if layer_builder.is_cen_secured_service(url) else None
+        wms_layer_url = layer_builder.build_wms_uri(url, nom_technique, authcfg=authcfg_id)
         wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
 
         if wms_layer.isValid():
@@ -909,9 +909,9 @@ class FluxCEN:
         # sauf le service sécurisé du CEN qui reçoit une configuration adaptée
         # non web — jamais la configuration Microsoft (FR-012).
         uri = QgsDataSourceUri()
-        for key, value in catalog.build_wfs_uri_params(url, nom_technique).items():
+        for key, value in layer_builder.build_wfs_uri_params(url, nom_technique).items():
             uri.setParam(key, value)
-        if catalog.is_cen_secured_service(url):
+        if layer_builder.is_cen_secured_service(url):
             authcfg_id = self._select_service_authcfg()
             if authcfg_id:
                 uri.setAuthConfigId(authcfg_id)
