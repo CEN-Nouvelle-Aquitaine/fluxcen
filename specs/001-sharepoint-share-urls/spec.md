@@ -169,11 +169,13 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   (WMS/WFS) : une configuration d'authentification Microsoft NE DOIT être attachée à une couche que si sa
   destination appartient au périmètre Microsoft ; l'attachement indiscriminé de la première configuration
   d'authentification disponible à toute couche est supprimé.
-- **FR-011** *(amendement 2026-07-27)*: Une configuration d'authentification de type web (OAuth2, dont
-  Microsoft Entra ID) NE DOIT jamais être appliquée à une connexion base de données (PostGIS). Le choix
-  d'une authentification pour une connexion base de données (sélection automatique, dialogue de choix,
-  configuration par défaut mémorisée) NE DOIT proposer ou appliquer que des méthodes adaptées aux bases de
-  données ; une configuration par défaut mémorisée devenue inadaptée est ignorée avec un message journalisé.
+- **FR-011** *(amendements 2026-07-27 et 2026-08-17, revue de PR)*: Une configuration d'authentification
+  de type web (OAuth2, dont Microsoft Entra ID) NE DOIT jamais être appliquée à une connexion base de
+  données (PostGIS). Le choix d'une authentification pour une connexion base de données (sélection
+  automatique, dialogue de choix) NE DOIT proposer ou appliquer que des méthodes adaptées aux bases de
+  données. La sélection est une recherche vivante dans le gestionnaire d'authentification QGIS, avec un
+  choix utilisateur mémorisé pour la session uniquement — aucun défaut persistant entre sessions, aucune
+  interface de choix par défaut.
 - **FR-012** *(amendement 2026-07-27, revue de code)*: Les couches du catalogue dont la destination est le
   service cartographique sécurisé du CEN (`opendata.cen-nouvelle-aquitaine.org`) DOIVENT recevoir une
   configuration d'authentification adaptée (méthode non web : identifiant/mot de passe ou certificat),

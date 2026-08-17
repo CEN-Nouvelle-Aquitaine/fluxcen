@@ -15,7 +15,7 @@ pytest.importorskip("qgis.core")
 pytestmark = pytest.mark.integration
 
 from qgis.core import QgsDataSourceUri  # noqa: E402
-from qgis.PyQt.QtCore import QSettings  # noqa: E402
+from qgis.PyQt.QtWidgets import QDialog  # noqa: E402
 
 import fluxcen.FluxCEN as plugin_mod  # noqa: E402
 
@@ -49,9 +49,9 @@ def plugin(qgis_app, monkeypatch):
     monkeypatch.setattr(plugin_mod, "iface", MagicMock())
     monkeypatch.setattr(plugin_mod, "QMessageBox", MagicMock())
     monkeypatch.setattr(plugin_mod, "alert", MagicMock())  # popups centralisées (#46)
-    QSettings().remove("FluxCEN/default_auth_id")
-    yield plugin_mod.FluxCEN.__new__(plugin_mod.FluxCEN)
-    QSettings().remove("FluxCEN/default_auth_id")
+    instance = plugin_mod.FluxCEN.__new__(plugin_mod.FluxCEN)
+    instance._selected_service_authcfg = None  # cache de session (revue de PR)
+    yield instance
 
 
 def set_auth_manager(monkeypatch, configs):
@@ -68,14 +68,6 @@ class TestFr011PostgisSansAuthMicrosoft:
         assert uri.authConfigId() == ""
         assert not result
 
-    def test_default_qsettings_oauth2_ignoree(self, plugin, monkeypatch):
-        set_auth_manager(monkeypatch, {OAUTH_ID: FakeAuthConfig("OAuth2", "Entra CEN")})
-        QSettings().setValue("FluxCEN/default_auth_id", OAUTH_ID)
-        uri = QgsDataSourceUri()
-        result = plugin.apply_authentication_if_needed(uri)
-        assert uri.authConfigId() == ""
-        assert not result
-
     def test_config_basic_appliquee(self, plugin, monkeypatch):
         set_auth_manager(monkeypatch, {
             OAUTH_ID: FakeAuthConfig("OAuth2", "Entra CEN"),
@@ -86,13 +78,84 @@ class TestFr011PostgisSansAuthMicrosoft:
         assert uri.authConfigId() == BASIC_ID
         assert result is True
 
-    def test_default_qsettings_basic_appliquee(self, plugin, monkeypatch):
+
+class TestCacheDeSession:
+    """Revue de PR : plus de défaut persistant en QSettings — recherche vivante
+    dans le gestionnaire + choix mémorisé pour la session (même modèle que
+    ``_styles_folder_ref``)."""
+
+    def test_choix_unique_memorise_pour_la_session(self, plugin, monkeypatch):
+        set_auth_manager(monkeypatch, {BASIC_ID: FakeAuthConfig("Basic", "BDD CEN")})
+        plugin.apply_authentication_if_needed(QgsDataSourceUri())
+        assert plugin._selected_service_authcfg == BASIC_ID
+
+    def test_cache_evite_le_dialogue(self, plugin, monkeypatch):
+        # Deux configs adaptées mais un choix déjà fait cette session :
+        # aucun dialogue ne doit s'ouvrir
         set_auth_manager(monkeypatch, {
-            OAUTH_ID: FakeAuthConfig("OAuth2", "Entra CEN"),
             BASIC_ID: FakeAuthConfig("Basic", "BDD CEN"),
+            "basic02": FakeAuthConfig("Basic", "Autre"),
         })
-        QSettings().setValue("FluxCEN/default_auth_id", BASIC_ID)
+        monkeypatch.setattr(plugin_mod, "AuthSelectionDialog", _raise_if_instantiated)
+        plugin._selected_service_authcfg = BASIC_ID
         uri = QgsDataSourceUri()
-        result = plugin.apply_authentication_if_needed(uri)
+        assert plugin.apply_authentication_if_needed(uri) is True
         assert uri.authConfigId() == BASIC_ID
-        assert result is True
+
+    def test_plusieurs_configs_dialogue_une_seule_fois(self, plugin, monkeypatch):
+        set_auth_manager(monkeypatch, {
+            BASIC_ID: FakeAuthConfig("Basic", "BDD CEN"),
+            "basic02": FakeAuthConfig("Basic", "Autre"),
+        })
+        calls = []
+
+        class FakeDialog:
+            def __init__(self, configs):
+                calls.append(1)
+                self.selected_auth_id = BASIC_ID
+
+            def exec_(self):
+                return QDialog.Accepted
+
+        monkeypatch.setattr(plugin_mod, "AuthSelectionDialog", FakeDialog)
+        plugin.apply_authentication_if_needed(QgsDataSourceUri())
+        plugin.apply_authentication_if_needed(QgsDataSourceUri())
+        assert calls == [1]
+
+    def test_annulation_du_dialogue_non_memorisee(self, plugin, monkeypatch):
+        set_auth_manager(monkeypatch, {
+            BASIC_ID: FakeAuthConfig("Basic", "BDD CEN"),
+            "basic02": FakeAuthConfig("Basic", "Autre"),
+        })
+
+        class CancelDialog:
+            def __init__(self, configs):
+                self.selected_auth_id = None
+
+            def exec_(self):
+                return 0  # QDialog.Rejected
+
+        monkeypatch.setattr(plugin_mod, "AuthSelectionDialog", CancelDialog)
+        assert plugin.apply_authentication_if_needed(QgsDataSourceUri()) is None
+        assert plugin._selected_service_authcfg is None
+
+    def test_cache_invalide_apres_suppression_de_la_config(self, plugin, monkeypatch):
+        # La config choisie a disparu du gestionnaire : re-résolution vivante
+        set_auth_manager(monkeypatch, {BASIC_ID: FakeAuthConfig("Basic", "BDD CEN")})
+        plugin._selected_service_authcfg = "gone123"
+        uri = QgsDataSourceUri()
+        assert plugin.apply_authentication_if_needed(uri) is True
+        assert uri.authConfigId() == BASIC_ID
+
+    def test_garde_defaut_qsettings_supprime(self):
+        # Garde sur le motif de code : plus aucun défaut persistant ni bouton
+        # de choix par défaut (revue de PR)
+        import pathlib
+        source = (pathlib.Path(__file__).resolve().parents[1] / "FluxCEN.py").read_text(encoding="utf-8")
+        assert "default_auth_id" not in source
+        assert "choose_default_authentication" not in source
+        assert "commandLinkButton_5" not in source
+
+
+def _raise_if_instantiated(*_args, **_kwargs):
+    raise AssertionError("AuthSelectionDialog ne doit pas s'ouvrir : choix déjà en cache")

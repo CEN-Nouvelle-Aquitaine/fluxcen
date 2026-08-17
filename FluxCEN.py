@@ -133,6 +133,10 @@ class FluxCEN:
         # par session (l'adressage par chemin n'existe pas sous /shares)
         self._styles_folder_ref = None
 
+        # Config d'auth Basic choisie par l'utilisateur (BDD / services
+        # sécurisés CEN), mémorisée en mémoire pour la session
+        self._selected_service_authcfg = None
+
         self.dlg = FluxCENDialog()
 
         self.plugin_path = os.path.dirname(__file__)
@@ -153,8 +157,6 @@ class FluxCEN:
         self.dlg.comboBox.addItem("toutes les catégories")
         self.dlg.commandLinkButton_3.clicked.connect(self.option_OSM)
         self.dlg.commandLinkButton_4.clicked.connect(self.option_google_maps)
-
-        self.dlg.commandLinkButton_5.clicked.connect(self.choose_default_authentication)
 
         layout = QVBoxLayout()
         self.dlg.lineEdit.textChanged.connect(self.filtre_dynamique)
@@ -745,61 +747,32 @@ class FluxCEN:
             if ms_urls.is_database_auth_method(config.method())
         }
 
-    def choose_default_authentication(self):
-        # Seules les configurations utilisables pour une BDD sont proposées :
-        # ce choix par défaut ne sert qu'aux connexions PostGIS (FR-011)
-        auth_configs = self._database_auth_configs()
-
-        if not auth_configs:
-            alert(
-                "Aucune configuration d'authentification disponible. "\
-                "Veuillez créer une configuration d'authentification.",
-                Qgis.MessageLevel.Warning,
-                parent=self.dlg
-            )
-            return
-
-        dialog = AuthSelectionDialog(auth_configs)
-        if dialog.exec_() == QDialog.Accepted:
-            selected_auth_id = dialog.selected_auth_id
-            # Enregistrer la configuration par défaut dans QSettings
-            settings = QSettings()
-            settings.setValue("FluxCEN/default_auth_id", selected_auth_id)
-            log(
-                f"Configuration d'authentification par défaut définie: {selected_auth_id}",
-                Qgis.MessageLevel.Success,
-                True
-            )
-
     def _select_service_authcfg(self):
         """ID de configuration d'auth adaptée (non web) pour les connexions BDD
         et les services sécurisés du CEN, ou None (FR-011 / FR-012).
 
-        Priorité : configuration par défaut mémorisée si adaptée, sinon unique
-        configuration adaptée, sinon choix utilisateur ; jamais la configuration
-        Microsoft (OAuth2).
+        Recherche vivante dans le gestionnaire d'authentification QGIS : unique
+        configuration adaptée disponible, sinon choix utilisateur ; jamais la
+        configuration Microsoft (OAuth2). Le choix est mémorisé pour la session
+        (``self._selected_service_authcfg``) afin de ne pas redemander à
+        l'utilisateur à chaque couche chargée.
         """
-        settings = QSettings()
-        default_auth_id = settings.value("FluxCEN/default_auth_id", None)
         auth_configs = self._database_auth_configs()
 
-        if default_auth_id:
-            if default_auth_id in auth_configs:
-                return default_auth_id
-            log(
-                "Configuration d'authentification par défaut ignorée : méthode "
-                "web (ex. OAuth2 Microsoft) inadaptée aux connexions BDD/services "
-                "sécurisés. Redéfinissez-la via l'icône 🛠️ du plugin.",
-                Qgis.MessageLevel.Warning)
+        if self._selected_service_authcfg in auth_configs:
+            # Choix déjà résolu cette session et toujours valide
+            return self._selected_service_authcfg
 
         if len(auth_configs) == 1:
             # Si une seule configuration est disponible, on l'applique directement
-            return next(iter(auth_configs))
+            self._selected_service_authcfg = next(iter(auth_configs))
+            return self._selected_service_authcfg
         if len(auth_configs) > 1:
             # Si plusieurs configurations sont disponibles, on invite l'utilisateur à en choisir une
             dialog = AuthSelectionDialog(auth_configs)
             if dialog.exec_() == QDialog.Accepted and dialog.selected_auth_id:
-                return dialog.selected_auth_id
+                self._selected_service_authcfg = dialog.selected_auth_id
+                return self._selected_service_authcfg
             return None
         alert(
             "Aucune configuration d'authentification adaptée (identifiant/mot de "
@@ -810,8 +783,8 @@ class FluxCEN:
 
     def apply_authentication_if_needed(self, uri):
         """
-        Applique une configuration d'authentification si nécessaire.
-        Charge automatiquement la configuration par défaut si elle est enregistrée dans QSettings.
+        Applique une configuration d'authentification adaptée (non web) si
+        disponible — sélection vivante avec cache de session (FR-011).
         """
         auth_id = self._select_service_authcfg()
         if auth_id:
