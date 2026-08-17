@@ -91,9 +91,10 @@ le mécanisme filtré de FR-011 (`_select_service_authcfg()`). La config Microso
 
 ## R4bis — Couches PostGIS : filtrage des méthodes d'authentification (amendement 2026-07-27)
 
-**Decision**: `apply_authentication_if_needed()` (chemin PostGIS) ne considère que les configurations
-dont la méthode (`QgsAuthMethodConfig.method()`) est adaptée à une connexion base de données — la
-méthode `OAuth2` (Microsoft Entra ID) est exclue. *Amendement 2026-08-17 (revue de PR)* : le défaut
+**Decision**: la sélection d'authentification du chemin PostGIS (`_select_service_authcfg()`, appelée
+directement dans `handle_postgis_layer()` comme pour les couches WMS/WFS) ne considère que les
+configurations dont la méthode (`QgsAuthMethodConfig.method()`) est adaptée à une connexion base de
+données — la méthode `OAuth2` (Microsoft Entra ID) est exclue. *Amendement 2026-08-17 (revue de PR)* : le défaut
 persistant en QSettings et son bouton de choix dans l'UI sont supprimés ; la sélection est une recherche
 vivante dans le gestionnaire, avec choix utilisateur mémorisé pour la session seulement
 (`_selected_service_authcfg`, même modèle que `_styles_folder_ref`).

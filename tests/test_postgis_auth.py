@@ -14,7 +14,6 @@ import pytest
 pytest.importorskip("qgis.core")
 pytestmark = pytest.mark.integration
 
-from qgis.core import QgsDataSourceUri  # noqa: E402
 from qgis.PyQt.QtWidgets import QDialog  # noqa: E402
 
 import fluxcen.FluxCEN as plugin_mod  # noqa: E402
@@ -63,20 +62,22 @@ def set_auth_manager(monkeypatch, configs):
 class TestFr011PostgisSansAuthMicrosoft:
     def test_config_oauth2_seule_jamais_appliquee(self, plugin, monkeypatch):
         set_auth_manager(monkeypatch, {OAUTH_ID: FakeAuthConfig("OAuth2", "Entra CEN")})
-        uri = QgsDataSourceUri()
-        result = plugin.apply_authentication_if_needed(uri)
-        assert uri.authConfigId() == ""
-        assert not result
+        assert plugin._select_service_authcfg() is None
 
     def test_config_basic_appliquee(self, plugin, monkeypatch):
         set_auth_manager(monkeypatch, {
             OAUTH_ID: FakeAuthConfig("OAuth2", "Entra CEN"),
             BASIC_ID: FakeAuthConfig("Basic", "BDD CEN"),
         })
-        uri = QgsDataSourceUri()
-        result = plugin.apply_authentication_if_needed(uri)
-        assert uri.authConfigId() == BASIC_ID
-        assert result is True
+        assert plugin._select_service_authcfg() == BASIC_ID
+
+    def test_garde_wrapper_supprime(self):
+        # Revue de PR : apply_authentication_if_needed() n'avait plus qu'un
+        # appelant — _select_service_authcfg() est appelée directement dans
+        # handle_postgis_layer, comme pour les couches WMS/WFS
+        import pathlib
+        source = (pathlib.Path(__file__).resolve().parents[1] / "FluxCEN.py").read_text(encoding="utf-8")
+        assert "apply_authentication_if_needed" not in source
 
 
 class TestCacheDeSession:
@@ -86,7 +87,7 @@ class TestCacheDeSession:
 
     def test_choix_unique_memorise_pour_la_session(self, plugin, monkeypatch):
         set_auth_manager(monkeypatch, {BASIC_ID: FakeAuthConfig("Basic", "BDD CEN")})
-        plugin.apply_authentication_if_needed(QgsDataSourceUri())
+        plugin._select_service_authcfg()
         assert plugin._selected_service_authcfg == BASIC_ID
 
     def test_cache_evite_le_dialogue(self, plugin, monkeypatch):
@@ -98,9 +99,7 @@ class TestCacheDeSession:
         })
         monkeypatch.setattr(plugin_mod, "AuthSelectionDialog", _raise_if_instantiated)
         plugin._selected_service_authcfg = BASIC_ID
-        uri = QgsDataSourceUri()
-        assert plugin.apply_authentication_if_needed(uri) is True
-        assert uri.authConfigId() == BASIC_ID
+        assert plugin._select_service_authcfg() == BASIC_ID
 
     def test_plusieurs_configs_dialogue_une_seule_fois(self, plugin, monkeypatch):
         set_auth_manager(monkeypatch, {
@@ -118,8 +117,8 @@ class TestCacheDeSession:
                 return QDialog.Accepted
 
         monkeypatch.setattr(plugin_mod, "AuthSelectionDialog", FakeDialog)
-        plugin.apply_authentication_if_needed(QgsDataSourceUri())
-        plugin.apply_authentication_if_needed(QgsDataSourceUri())
+        plugin._select_service_authcfg()
+        plugin._select_service_authcfg()
         assert calls == [1]
 
     def test_annulation_du_dialogue_non_memorisee(self, plugin, monkeypatch):
@@ -136,16 +135,14 @@ class TestCacheDeSession:
                 return 0  # QDialog.Rejected
 
         monkeypatch.setattr(plugin_mod, "AuthSelectionDialog", CancelDialog)
-        assert plugin.apply_authentication_if_needed(QgsDataSourceUri()) is None
+        assert plugin._select_service_authcfg() is None
         assert plugin._selected_service_authcfg is None
 
     def test_cache_invalide_apres_suppression_de_la_config(self, plugin, monkeypatch):
         # La config choisie a disparu du gestionnaire : re-résolution vivante
         set_auth_manager(monkeypatch, {BASIC_ID: FakeAuthConfig("Basic", "BDD CEN")})
         plugin._selected_service_authcfg = "gone123"
-        uri = QgsDataSourceUri()
-        assert plugin.apply_authentication_if_needed(uri) is True
-        assert uri.authConfigId() == BASIC_ID
+        assert plugin._select_service_authcfg() == BASIC_ID
 
     def test_garde_defaut_qsettings_supprime(self):
         # Garde sur le motif de code : plus aucun défaut persistant ni bouton

@@ -781,20 +781,6 @@ class FluxCEN:
             Qgis.MessageLevel.Warning)
         return None
 
-    def apply_authentication_if_needed(self, uri):
-        """
-        Applique une configuration d'authentification adaptée (non web) si
-        disponible — sélection vivante avec cache de session (FR-011).
-        """
-        auth_id = self._select_service_authcfg()
-        if auth_id:
-            uri.setAuthConfigId(auth_id)
-            return True
-        return None
-
-
-
-
     def avertissement_pas_de_flux(self):
         """
         Affiche un QMessageBox pour indiquer qu'il n'y a pas de flux à charger si tableWidget_2 est vide.
@@ -951,8 +937,11 @@ class FluxCEN:
         uri = QgsDataSourceUri()
         uri.setConnection(db_host, db_port, db_name, None, None)
 
-        if not self.apply_authentication_if_needed(uri):
+        # Même mécanisme filtré que pour les couches WMS/WFS sécurisées (FR-011)
+        authcfg_id = self._select_service_authcfg()
+        if not authcfg_id:
             return  # Skip if authentication fails
+        uri.setAuthConfigId(authcfg_id)
 
         uri.setDataSource(schema_name, table_name, "geom")
 
