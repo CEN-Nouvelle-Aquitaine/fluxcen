@@ -4,7 +4,13 @@
 
 [general]
 name=FluxCEN
-qgisMinimumVersion=3.44
+# Plancher technique réel : le flux OAuth2 PKCE natif (accès SharePoint,
+# FR-013) n'existe qu'à partir de QGIS 3.34. La revue de PR #55 demandait 3.0
+# (postes du parc encore anciens), mais en dessous de 3.34 le plugin
+# s'installerait avec sa partie SharePoint morte. Écart assumé avec la
+# constitution du projet (Principe VI : 3.44 LTR) ; retour à 3.44 lors du
+# déploiement des profils QGIS.
+qgisMinimumVersion=3.34
 description=Centralisation des flux WFS/WMS les plus couramment utilisés au CEN-NA
 version=5.3.0
 author=Romain Montillet (CEN-NA)
@@ -19,7 +25,7 @@ repository=https://sig.dsi-cen.org/qgis/
 # Recommended items:
 
 hasProcessingProvider=no
-changelog=5.3 : support des liens de partage SharePoint (collage direct depuis « Copier le lien », fichiers et dossiers de styles) / sécurité : l'authentification Microsoft est restreinte aux domaines SharePoint et Microsoft Graph (plus aucun jeton envoyé aux services tiers, y compris pour les couches WMS/WFS) / robustesse : plus d'accès réseau au démarrage de QGIS, messages d'erreur explicites par famille, catalogue mis en cache / QGIS minimum 3.44 (LTR)
+changelog=5.3 : support des liens de partage SharePoint (collage direct depuis « Copier le lien », fichiers et dossiers de styles) / sécurité : l'authentification Microsoft est restreinte aux domaines SharePoint et Microsoft Graph (plus aucun jeton envoyé aux services tiers, y compris pour les couches WMS/WFS) / robustesse : plus d'accès réseau au démarrage de QGIS, messages d'erreur explicites par famille, catalogue mis en cache
 
 # Tags are comma separated with spaces allowed
 tags=python

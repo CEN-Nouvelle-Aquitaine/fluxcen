@@ -53,7 +53,7 @@ minima, 2 nouveaux modules purs, ~6 sites d'appel réseau existants à couvrir
 | III | Architecture en couches | ✅ | Logique pure extraite dans `core/` (sans import qgis) ; `FluxCEN.py` reste contrôleur/UI ; pas de logique dans les handlers de signaux |
 | IV | Sécurité & secrets | ✅ | Expansion authcfg déléguée à `QgsAuthManager` ; filtrage strict du périmètre Microsoft avant `setAuthCfg` ; HTTPS obligatoire ; messages d'erreur sans URL complète ni jeton |
 | V | YAGNI | ✅ | Pas de `QgsTask` (fichiers < 100 Ko au clic), pas de cache disque, pas de liste blanche configurable, pas de refonte globale de `FluxCEN.py` — justifications dans research.md (R3, R4, R5, R7) |
-| VI | Compatibilité 3.44 / SemVer | ✅ | APIs utilisées disponibles en 3.44 ; `metadata.txt` passera à `qgisMinimumVersion=3.44` (TODO constitutionnel repris ici) ; version plugin incrémentée en MINEUR |
+| VI | Compatibilité 3.44 / SemVer | ⚠️ | APIs utilisées disponibles en 3.44 ; **écart assumé (revue de PR #55)** : `qgisMinimumVersion=3.34`, plancher technique du flux OAuth2 PKCE natif (FR-013) — la revue demandait 3.0, refusé car la partie SharePoint serait morte en dessous de 3.34 ; retour à 3.44 lors du déploiement des profils QGIS ; version plugin incrémentée en MINEUR |
 | VII | Qualité & observabilité | ✅ | `QgsMessageLog` (onglet « FluxCEN ») remplace les `print()` sur les chemins touchés ; messages français par famille d'erreur ; pylint sans nouvelle violation |
 
 **Gate initiale : PASS** — aucune violation, tableau Complexity Tracking vide.
