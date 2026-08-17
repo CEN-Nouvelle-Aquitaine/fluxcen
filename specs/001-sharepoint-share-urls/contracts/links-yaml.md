@@ -12,8 +12,13 @@ github_urls:
   flux_csv: "<URL>"        # catalogue de flux (CSV ;)
   styles_couches: "<URL>"  # préfixe des styles .qml (URL directe ou lien de partage de dossier)
 auth:
-  authcfg: "abc1234"       # ID de config d'auth QGIS (7 car.), vide = jamais d'auth
+  authcfg: ""              # optionnel : surcharge de l'ID de config d'auth QGIS (7 car.)
 ```
+
+La clé `auth.authcfg` est **optionnelle** (revue de PR #55, issue #39) : la configuration Microsoft
+est découverte dans le gestionnaire d'authentification QGIS (unique configuration web/OAuth2 — la
+configuration distribuée au CEN conserve son ID à l'import). La clé reste une surcharge : prioritaire
+si renseignée, nécessaire seulement si plusieurs configurations web coexistent.
 
 ## Valeurs d'URL acceptées (évolution de cette feature)
 

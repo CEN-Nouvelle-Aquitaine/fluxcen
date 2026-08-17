@@ -69,6 +69,11 @@ Vraie ssi l'URL est un appel Graph `/v1.0/shares/…` — ces requêtes reçoive
 FR-011 : fausse pour les méthodes web (`OAuth2`, dont Microsoft Entra ID), vraie pour `Basic` et les
 méthodes par certificat — seules candidates pour les connexions BDD et le service sécurisé CEN.
 
+### `select_web_authcfg(configs: dict[str, str]) -> str`
+Découverte de la configuration Microsoft (revue de PR #55, issue #39) : ID de l'unique configuration
+web (OAuth2) parmi `{id: méthode}`, `""` sinon (aucune, ou plusieurs — choix ambigu jamais fait à
+l'aveugle ; la surcharge `auth.authcfg` de links.yaml reste possible).
+
 ### `build_style_url(styles_base: str, style_name: str) -> str`
 Concaténation `styles_base + style_name + ".qml"` pour les URL directes uniquement ; `ValueError` sur un
 lien de partage (résolution réseau portée par le contrôleur) et sur un nom de style invalide.

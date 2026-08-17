@@ -27,8 +27,7 @@ _MESSAGES = {
         "Accès refusé à « {resource} » ({host}) : vérifiez vos droits SharePoint.",
     ErrorFamily.AUTH_MANQUANTE:
         "« {resource} » nécessite une authentification Microsoft : configurez-la "
-        "dans QGIS (Préférences > Authentification) et renseignez auth.authcfg "
-        "dans links.yaml (voir documentation).",
+        "dans QGIS (Préférences > Authentification, voir documentation).",
     ErrorFamily.RESEAU:
         "« {resource} » inaccessible ({host}) : vérifiez votre connexion.",
 }

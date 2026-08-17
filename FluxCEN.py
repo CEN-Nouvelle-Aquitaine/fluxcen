@@ -429,17 +429,27 @@ class FluxCEN:
     def _authcfg_id(self):
         """Retourne l'identifiant de configuration d'authentification QGIS à utiliser pour
         télécharger les ressources (OAuth2 Microsoft Entra ID), ou une chaîne vide si aucune
-        n'est configurée (accès anonyme, comportement historique).
+        n'est trouvée (accès anonyme, comportement historique).
 
-        L'identifiant est lu depuis la clé `auth.authcfg` de `config/yaml/links.yaml`.
+        La configuration est découverte dans le gestionnaire d'authentification
+        QGIS : unique configuration web (OAuth2) disponible — la configuration
+        distribuée au CEN conserve son ID à l'import. La clé `auth.authcfg` de
+        `config/yaml/links.yaml` reste une surcharge optionnelle (rétrocompatibilité,
+        ou choix explicite si plusieurs configurations web existent).
         """
         try:
             config_path = os.path.join(self.plugin_path, 'config/yaml/links.yaml')
             with open(config_path, 'r') as file:
                 config = yaml.safe_load(file) or {}
-            return (config.get('auth', {}) or {}).get('authcfg', '') or ''
+            override = (config.get('auth', {}) or {}).get('authcfg', '') or ''
         except Exception:
-            return ''
+            override = ''
+        if override:
+            return override
+        managerAU = QgsApplication.authManager()
+        methods = {auth_id: config.method()
+                   for auth_id, config in managerAU.availableAuthMethodConfigs().items()}
+        return ms_urls.select_web_authcfg(methods)
 
     def _fetch_bytes(self, url, resource_name="ressource"):
         """Télécharge le contenu d'une URL via la pile réseau QGIS.

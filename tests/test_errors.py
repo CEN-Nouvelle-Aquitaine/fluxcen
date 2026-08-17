@@ -39,6 +39,10 @@ class TestFetchError:
         message = FetchError(ErrorFamily.AUTH_MANQUANTE, "catalogue des flux",
                              host="graph.microsoft.com").user_message()
         assert "authentification" in message.lower()
+        # Data-model (ErreurTelechargement) : la seule action proposée est la
+        # configuration dans QGIS — links.yaml n'est plus requis, la config
+        # est découverte dans le gestionnaire d'auth (revue de PR, issue #39)
+        assert "links.yaml" not in message
 
     def test_message_reseau(self):
         message = FetchError(ErrorFamily.RESEAU, "changelog",

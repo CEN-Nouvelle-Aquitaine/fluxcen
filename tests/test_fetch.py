@@ -67,16 +67,39 @@ class FakeBlocking:
 
 
 def make_plugin(tmp_path, authcfg="abc1234"):
-    """Instance minimale de FluxCEN sans GUI : uniquement plugin_path + config."""
+    """Instance minimale de FluxCEN sans GUI : uniquement plugin_path + config.
+
+    ``authcfg=None`` : links.yaml sans clé ``auth`` (découverte dans le
+    gestionnaire d'authentification QGIS).
+    """
     cfg_dir = tmp_path / "config" / "yaml"
     cfg_dir.mkdir(parents=True, exist_ok=True)
-    (cfg_dir / "links.yaml").write_text(
-        f"auth:\n  authcfg: \"{authcfg}\"\n", encoding="utf-8"
-    )
+    content = "" if authcfg is None else f"auth:\n  authcfg: \"{authcfg}\"\n"
+    (cfg_dir / "links.yaml").write_text(content, encoding="utf-8")
     obj = plugin_mod.FluxCEN.__new__(plugin_mod.FluxCEN)
     obj.plugin_path = str(tmp_path)
     obj._styles_folder_ref = None
     return obj
+
+
+class FakeAuthConfig:
+    def __init__(self, method):
+        self._method = method
+
+    def method(self):
+        return self._method
+
+
+def set_auth_manager(monkeypatch, methods):
+    """Remplace le gestionnaire d'auth QGIS par un factice ``{id: méthode}``."""
+    from unittest.mock import MagicMock
+    manager = MagicMock()
+    manager.availableAuthMethodConfigs.return_value = {
+        auth_id: FakeAuthConfig(method) for auth_id, method in methods.items()
+    }
+    fake_app = MagicMock()
+    fake_app.authManager.return_value = manager
+    monkeypatch.setattr(plugin_mod, "QgsApplication", fake_app)
 
 
 @pytest.fixture
@@ -224,9 +247,42 @@ class TestSchemasRefuses:
 class TestAuthManquante:
     """T024 — US3 : périmètre Microsoft sans authcfg → erreur d'orientation, sans requête."""
 
-    def test_url_microsoft_sans_authcfg(self, tmp_path, fake_network):
+    def test_url_microsoft_sans_authcfg(self, tmp_path, fake_network, monkeypatch):
+        set_auth_manager(monkeypatch, {})
         plugin = make_plugin(tmp_path, authcfg="")
         with pytest.raises(FetchError) as excinfo:
             plugin._fetch_bytes(SHARING_LINK, "catalogue des flux")
         assert excinfo.value.family is ErrorFamily.AUTH_MANQUANTE
         assert fake_network.last is None  # aucune requête émise
+
+
+class TestDecouverteAuthcfg:
+    """Revue de PR (issue #39) : la configuration Microsoft est découverte dans
+    le gestionnaire d'authentification QGIS ; links.yaml n'est plus requis
+    (``auth.authcfg`` reste une surcharge optionnelle)."""
+
+    def test_unique_config_web_decouverte(self, tmp_path, fake_network, monkeypatch):
+        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2", "basic01": "Basic"})
+        plugin = make_plugin(tmp_path, authcfg=None)
+        plugin._fetch_bytes(GRAPH_URL)
+        assert fake_network.last.authcfg == "g2b2197"
+
+    def test_surcharge_links_yaml_prioritaire(self, tmp_path, fake_network, monkeypatch):
+        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"})
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        plugin._fetch_bytes(GRAPH_URL)
+        assert fake_network.last.authcfg == "abc1234"
+
+    def test_plusieurs_configs_web_sans_surcharge_ambigu(self, tmp_path, fake_network, monkeypatch):
+        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2", "autre01": "OAuth2"})
+        plugin = make_plugin(tmp_path, authcfg=None)
+        with pytest.raises(FetchError) as excinfo:
+            plugin._fetch_bytes(GRAPH_URL, "catalogue des flux")
+        assert excinfo.value.family is ErrorFamily.AUTH_MANQUANTE
+        assert fake_network.last is None
+
+    def test_hors_perimetre_microsoft_sans_authcfg(self, tmp_path, fake_network, monkeypatch):
+        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"})
+        plugin = make_plugin(tmp_path, authcfg=None)
+        plugin._fetch_bytes("https://raw.githubusercontent.com/cen/flux.csv")
+        assert fake_network.last.authcfg is None  # jamais hors périmètre (FR-004)

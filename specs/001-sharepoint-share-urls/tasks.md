@@ -114,6 +114,7 @@ Microsoft portent l'auth ; ajout d'une couche WMS tierce → aucune authcfg dans
 ### Amendement revue de PR #55 (2026-08-17) — extraction `core/layer_builder.py`
 
 - [X] T037 Extraire la construction de couches de `core/catalog.py` vers `core/layer_builder.py` (`build_wms_uri`, `build_wfs_uri_params`, `extract_service_version`, `is_cen_secured_service`) : `catalog.py` reste limité au parsing du CSV (issue #52). Tests déplacés vers `tests/test_layers.py`, contrats et plan mis à jour, comportement inchangé
+- [X] T038 Découverte automatique de la configuration Microsoft dans le gestionnaire d'auth QGIS (issue #39) : `select_web_authcfg()` dans `core/ms_urls.py` (tests purs), `_authcfg_id()` interroge le gestionnaire au lieu d'exiger `auth.authcfg` dans links.yaml (la clé reste une surcharge optionnelle, tests d'intégration dans `tests/test_fetch.py`) ; message `AUTH_MANQUANTE` ramené à la seule action à portée de l'utilisateur (data-model) ; contrats et `links_example.yaml` mis à jour
 
 ### Amendement 2026-07-27 (validation T028) — résolution des dossiers partagés en 2 étapes
 
