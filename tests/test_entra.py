@@ -80,6 +80,20 @@ class TestConfigNeedsUpdate:
         assert config_needs_update("pas du json") is True
         assert config_needs_update("") is True
 
+    def test_reserialisation_qgis_nulls_equivalente_au_canon(self):
+        # QGIS resérialise les chaînes vides en null (dump réel du 2026-08-17) :
+        # ce n'est pas une divergence, sinon boucle de mise à jour infinie
+        config = json.loads(self.stored())
+        for key in ("apiKey", "clientSecret", "customHeader", "password", "username"):
+            config[key] = None
+        config["extraTokens"] = {}
+        assert config_needs_update(json.dumps(config)) is False
+
+    def test_null_ne_masque_pas_un_vrai_secret(self):
+        config = json.loads(self.stored())
+        config["clientSecret"] = "vrai-secret"
+        assert config_needs_update(json.dumps(config)) is True
+
 
 class TestPickFreePort:
     def test_premier_port_libre(self):

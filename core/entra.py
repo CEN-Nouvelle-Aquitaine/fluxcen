@@ -43,6 +43,7 @@ def canonical_oauth2_config(port: int) -> dict:
         "configType": 1,  # configuration personnalisée (non prédéfinie)
         "customHeader": "",
         "description": "",
+        "extraTokens": {},
         "grantFlow": 3,  # Authorization Code PKCE
         "id": "",
         "name": "",
@@ -83,12 +84,19 @@ _COMPARED_KEYS = frozenset({
 })
 
 
+def _norm(value):
+    """Normalise la sérialisation QGIS : une chaîne vide devient ``null``."""
+    return "" if value is None else value
+
+
 def config_needs_update(stored_json: str) -> bool:
     """Vraie ssi la config stockée diverge du canon.
 
     Le port de redirection est libre de varier dans ``REDIRECT_PORTS``
     (auto-réparation en cas de port occupé) ; toute autre divergence sur les
     clés fonctionnelles — dont un secret vestigial — déclenche la mise à jour.
+    QGIS resérialise les chaînes vides en ``null`` : équivalent, pas une
+    divergence (sinon boucle de mise à jour infinie).
     """
     try:
         stored = json.loads(stored_json)
@@ -100,7 +108,8 @@ def config_needs_update(stored_json: str) -> bool:
     if port not in REDIRECT_PORTS:
         return True
     reference = canonical_oauth2_config(port)
-    return any(stored.get(key) != reference[key] for key in _COMPARED_KEYS)
+    return any(_norm(stored.get(key)) != _norm(reference[key])
+               for key in _COMPARED_KEYS)
 
 
 def port_is_free(port: int) -> bool:
