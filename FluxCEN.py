@@ -274,32 +274,10 @@ class FluxCEN:
             callback=self.run,
             parent=self.iface.mainWindow())
 
-        # Appeler la fonction pour informer l'utilisateur s'il a plus d'une configuration d'authentification
-        self.check_authentication_configs()
-
-        # Autres configurations si nécessaire...
+        # Aucune vérification d'authentification ici : elle a lieu au chargement
+        # des couches, au moment où elle est utile (revue de PR #55).
         self.first_start = True
 
-
-    def check_authentication_configs(self):
-        """Vérifie le nombre de configurations d'authentification disponibles et affiche un message si nécessaire."""
-
-        managerAU = QgsApplication.authManager()
-        auth_configs = managerAU.availableAuthMethodConfigs()  # Récupérer toutes les configurations disponibles
-
-        # Vérifier si une authentification par défaut a été définie et l'appliquer
-        settings = QSettings()
-        default_auth_id = settings.value("FluxCEN/default_auth_id", None)
-
-        if default_auth_id:
-            self.apply_authentication_if_needed(QgsDataSourceUri())
-
-        elif len(auth_configs) > 1:
-            # Si plusieurs configurations sont disponibles et aucune par défaut n'est définie
-            alert(
-                "Plusieurs configurations d'authentification disponibles. " \
-                "Veuillez en sélectionner une.",
-            )
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""

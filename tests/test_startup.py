@@ -22,6 +22,19 @@ def _raise(*_args, **_kwargs):
     raise AssertionError("accès réseau interdit pendant l'import du module")
 
 
+class TestAucunPopupAuDemarrage:
+    def test_verification_des_configs_au_demarrage_supprimee(self):
+        # Revue de PR : check_authentication_configs() déclenchait des popups
+        # bloquants au lancement de QGIS, indépendamment de toute intention
+        # d'utiliser FluxCEN, et redondants avec la vérification faite au
+        # chargement des couches. Aggravé par FR-013 : le provisionnement
+        # garantit une config OAuth2 sur chaque poste, le seuil « plus d'une
+        # config » serait franchi partout. Garde sur le motif de code.
+        import pathlib
+        source = (pathlib.Path(__file__).resolve().parents[1] / "FluxCEN.py").read_text(encoding="utf-8")
+        assert "check_authentication_configs" not in source
+
+
 class TestAucunReseauALImport:
     def test_reload_sans_reseau_ni_socket(self, monkeypatch):
         # Toute requête via la pile QGIS pendant l'import ferait échouer le test.
