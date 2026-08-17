@@ -17,17 +17,14 @@ github_urls:
   flux_csv: "https://<tenant>.sharepoint.com/:x:/r/personal/<compte>/Documents/<chemin>/flux.csv?d=w…&csf=1&web=1&e=…"
   styles_couches: "https://<tenant>.sharepoint.com/:f:/r/personal/<compte>/Documents/<chemin>/styles_couches?csf=1&web=1&e=…"
 
-# Authentification pour l'accès aux ressources privées — clé OPTIONNELLE.
-# Le plugin découvre automatiquement la configuration Microsoft dans le gestionnaire
-# d'authentification QGIS (Préférences > Authentification) : l'unique configuration de type
-# web (OAuth2 — Microsoft Entra ID, app "public client/native", redirect http://localhost:7070,
-# permission déléguée Files.Read.All / Sites.Read.All). La configuration distribuée au CEN
-# conserve son identifiant à l'import : aucune saisie n'est nécessaire ici.
-# `authcfg` = surcharge explicite (identifiant 7 caractères) : prioritaire si renseignée,
-# utile seulement si plusieurs configurations web coexistent dans QGIS.
-# Sans aucune configuration web : accès anonyme, valable uniquement pour des URL publiques
-# hors Microsoft (hébergement public type GitHub). Une URL SharePoint ou Microsoft Graph
-# exige toujours une authentification — l'API Microsoft n'accepte pas d'accès anonyme en
-# tenant d'entreprise ; sans configuration le plugin refuse la requête avec un message explicite.
+# Authentification Microsoft — clé OPTIONNELLE, aucune action nécessaire.
+# Le plugin installe et maintient lui-même sa configuration OAuth2 (ID g2b2197,
+# Entra ID en client public + PKCE, aucun secret) dans le gestionnaire
+# d'authentification QGIS, au premier accès SharePoint/Graph. Une mise à jour de
+# l'authentification passe par une release du plugin. Le port de redirection est
+# choisi automatiquement parmi une liste en évitant les ports occupés par
+# d'autres logiciels (ex. AnyDesk sur 7070).
+# `authcfg` = surcharge de dépannage (identifiant 7 caractères) : prioritaire si
+# renseignée ET existante dans le gestionnaire ; un identifiant périmé est ignoré.
 auth:
   authcfg: ""

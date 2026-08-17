@@ -91,9 +91,11 @@ core/
 ├── ms_urls.py           # is_microsoft_url(), is_sharepoint_sharing_link(),
 │                        # sharing_link_to_graph_url()
 ├── catalog.py           # parsing/validation du CSV de flux (parse_table_row, catégories)
-└── layer_builder.py     # construction des URI de couches et périmètre sécurisé CEN
-                         # (build_wms_uri, build_wfs_uri_params, is_cen_secured_service) —
-                         # extrait de catalog.py en revue de PR (issue #52)
+├── layer_builder.py     # construction des URI de couches et périmètre sécurisé CEN
+│                        # (build_wms_uri, build_wfs_uri_params, is_cen_secured_service) —
+│                        # extrait de catalog.py en revue de PR (issue #52)
+└── entra.py             # configuration Microsoft canonique (FR-013) : PKCE sans secret,
+                         # ID fixe g2b2197, ports de redirection avec sonde d'occupation
 
 config/yaml/
 └── links_example.yaml   # documentation mise à jour : lien de partage accepté tel quel

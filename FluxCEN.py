@@ -27,7 +27,7 @@ from qgis.PyQt.QtWidgets import QAbstractItemView, QTableWidget, QTableWidgetIte
 from qgis.utils import iface
 
 from qgis.core import (
-    Qgis, QgsApplication, QgsRasterLayer, QgsVectorLayer,
+    Qgis, QgsApplication, QgsAuthMethodConfig, QgsRasterLayer, QgsVectorLayer,
     QgsProject, QgsDataSourceUri, QgsBlockingNetworkRequest)
 from qgis.PyQt.QtNetwork import QNetworkRequest
 
@@ -37,10 +37,11 @@ from .resources import *
 from .FluxCEN_dialog import FluxCENDialog
 # Logique pure (sans qgis) : URL Microsoft, catalogue de flux, URI de couches,
 # familles d'erreurs de téléchargement
-from .core import catalog, errors, layer_builder, ms_urls
+from .core import catalog, entra, errors, layer_builder, ms_urls
 # Journalisation et popups centralisées (main #46)
 from .core.logger import log, alert
 
+import json
 import yaml
 import os.path, os
 from qgis.PyQt.QtXml import QDomDocument
@@ -426,16 +427,13 @@ class FluxCEN:
 
         return flux_csv_url, styles_couches
     
-    def _authcfg_id(self):
-        """Retourne l'identifiant de configuration d'authentification QGIS à utiliser pour
-        télécharger les ressources (OAuth2 Microsoft Entra ID), ou une chaîne vide si aucune
-        n'est trouvée (accès anonyme, comportement historique).
+    def _authcfg_id(self, resource_name, host):
+        """Identifiant de configuration d'authentification Microsoft à utiliser.
 
-        La configuration est découverte dans le gestionnaire d'authentification
-        QGIS : unique configuration web (OAuth2) disponible — la configuration
-        distribuée au CEN conserve son ID à l'import. La clé `auth.authcfg` de
-        `config/yaml/links.yaml` reste une surcharge optionnelle (rétrocompatibilité,
-        ou choix explicite si plusieurs configurations web existent).
+        Surcharge `auth.authcfg` de `config/yaml/links.yaml` si elle existe
+        dans le gestionnaire (dépannage) ; sinon provisionnement de la
+        configuration canonique (FR-013). Lève ``errors.FetchError`` si le
+        provisionnement échoue.
         """
         try:
             config_path = os.path.join(self.plugin_path, 'config/yaml/links.yaml')
@@ -444,12 +442,47 @@ class FluxCEN:
             override = (config.get('auth', {}) or {}).get('authcfg', '') or ''
         except Exception:
             override = ''
-        if override:
+        manager = QgsApplication.authManager()
+        if override and override in manager.availableAuthMethodConfigs():
             return override
-        managerAU = QgsApplication.authManager()
-        methods = {auth_id: config.method()
-                   for auth_id, config in managerAU.availableAuthMethodConfigs().items()}
-        return ms_urls.select_web_authcfg(methods)
+        return self._ensure_microsoft_authcfg(manager, resource_name, host)
+
+    def _ensure_microsoft_authcfg(self, manager, resource_name, host):
+        """Provisionne la configuration Microsoft canonique (FR-013).
+
+        Absente : création sous l'ID fixe. Présente mais divergente du canon
+        (secret vestigial, port obsolète) ou port occupé par un autre
+        logiciel : mise à jour silencieuse avec un port libre de la liste
+        déclarée. La release est la source de vérité.
+        """
+        exists = entra.AUTHCFG_ID in manager.availableAuthMethodConfigs()
+        if exists:
+            loaded = QgsAuthMethodConfig()
+            manager.loadAuthenticationConfig(entra.AUTHCFG_ID, loaded, True)
+            stored_json = loaded.configMap().get("oauth2config", "")
+            stored_port = entra.stored_redirect_port(stored_json)
+            if (not entra.config_needs_update(stored_json)
+                    and stored_port is not None
+                    and entra.port_is_free(stored_port)):
+                return entra.AUTHCFG_ID
+        port = entra.pick_free_port(entra.port_is_free)
+        if port is None:
+            raise errors.FetchError(
+                errors.ErrorFamily.PORT_REDIRECTION, resource_name, host)
+        config = QgsAuthMethodConfig()
+        config.setId(entra.AUTHCFG_ID)
+        config.setName(entra.AUTHCFG_NAME)
+        config.setMethod("OAuth2")
+        config.setConfigMap(
+            {"oauth2config": json.dumps(entra.canonical_oauth2_config(port))})
+        stored = (manager.updateAuthenticationConfig(config) if exists
+                  else manager.storeAuthenticationConfig(config, True))
+        if not stored:
+            raise errors.FetchError(
+                errors.ErrorFamily.AUTH_PROVISIONNEMENT, resource_name, host)
+        log("Configuration d'authentification Microsoft provisionnée "
+            f"(port de redirection {port}).")
+        return entra.AUTHCFG_ID
 
     def _fetch_bytes(self, url, resource_name="ressource"):
         """Télécharge le contenu d'une URL via la pile réseau QGIS.
@@ -476,8 +509,8 @@ class FluxCEN:
             # pour les URL /shares/ pré-construites (styles d'un dossier partagé)
             request.setRawHeader(b"Prefer", b"redeemSharingLinkIfNecessary")
         host = QUrl(request_url).host()
-        authcfg = self._authcfg_id()
         perimetre_microsoft = ms_urls.is_microsoft_url(request_url)
+        authcfg = self._authcfg_id(resource_name, host) if perimetre_microsoft else ''
         if perimetre_microsoft and not authcfg:
             raise errors.FetchError(
                 errors.ErrorFamily.AUTH_MANQUANTE, resource_name, host)

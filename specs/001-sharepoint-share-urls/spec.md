@@ -179,6 +179,19 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   configuration d'authentification adaptée (méthode non web : identifiant/mot de passe ou certificat),
   choisie par le même mécanisme filtré que pour PostGIS (FR-011). Les couches vers toute autre destination
   restent sans authentification (FR-010) ; la configuration Microsoft n'est jamais candidate.
+- **FR-013** *(amendement 2026-08-17, revue de PR #55)*: Le plugin DOIT provisionner lui-même la
+  configuration d'authentification Microsoft dans le gestionnaire QGIS : identifiant fixe (`g2b2197`),
+  flux Authorization Code PKCE **sans aucun secret** (client public Entra ID), paramètres canoniques
+  embarqués dans le plugin — la release est la source de vérité, une mise à jour de l'authentification
+  passe par une release. Le provisionnement est déclenché au premier accès au périmètre Microsoft,
+  jamais au démarrage de QGIS (FR-009) : configuration absente → création ; configuration présente mais
+  différente du canon → mise à jour silencieuse (répare les postes existants, y compris un secret
+  vestigial ou un port obsolète). Le port de redirection est choisi dans une liste déclarée en évitant
+  les ports occupés par d'autres logiciels (les URI de loopback `127.0.0.1` d'Entra ignorent le port,
+  RFC 8252 — aucun changement côté portail). Un échec de provisionnement et l'occupation de tous les
+  ports déclarés produisent des messages d'erreur distincts et actionnables, jamais un faux
+  diagnostic réseau. La clé `auth.authcfg` de links.yaml reste une surcharge de dépannage, validée
+  contre le gestionnaire. L'utilisateur final n'a aucune action de configuration à réaliser.
 
 ### Key Entities
 
@@ -192,6 +205,10 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   l'authentification Microsoft (domaines SharePoint et Microsoft Graph), évalué à chaque requête.
 - **Configuration d'authentification** : référence (identifiant opaque) vers les identifiants Microsoft
   stockés de façon chiffrée par QGIS ; le plugin ne manipule jamais les secrets eux-mêmes.
+- **Configuration Microsoft canonique** (FR-013) : paramètres OAuth2 de référence embarqués dans le
+  plugin (identifiants publics uniquement : client ID, tenant, endpoints, portée, redirection loopback —
+  aucun secret) ; le plugin les installe et les maintient sous l'ID fixe `g2b2197` dans le gestionnaire
+  QGIS.
 
 ## Success Criteria *(mandatory)*
 

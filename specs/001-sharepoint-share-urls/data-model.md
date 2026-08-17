@@ -57,7 +57,19 @@ session → invalidé uniquement au rechargement du plugin.
 |---|---|---|
 | `LIEN_INVALIDE` | réponse 400/404 ou conversion impossible | « Le lien configuré pour <nom ressource> est invalide ou expiré » |
 | `ACCES_REFUSE` | 401/403 après auth | « Accès refusé à <nom ressource> : vérifiez vos droits SharePoint » |
-| `AUTH_MANQUANTE` | périmètre Microsoft sans authcfg configurée | « Configurez l'authentification Microsoft dans QGIS (voir documentation) » |
+| `AUTH_MANQUANTE` | périmètre Microsoft sans authcfg configurée (cas résiduel : provisionnement FR-013 indisponible) | « Configurez l'authentification Microsoft dans QGIS (voir documentation) » |
+| `AUTH_PROVISIONNEMENT` | échec d'écriture de la config canonique dans le gestionnaire QGIS (mot de passe principal refusé, système d'auth indisponible — FR-013) | « L'installation de la configuration d'authentification Microsoft dans QGIS a échoué » |
+| `PORT_REDIRECTION` | tous les ports de redirection déclarés occupés par d'autres logiciels (FR-013) | « Les ports de redirection de l'authentification Microsoft sont occupés par un autre logiciel » |
 | `RESEAU` | timeout, DNS, connexion | « <nom ressource> inaccessible : vérifiez votre connexion » |
 
 Chaque famille est journalisée dans `QgsMessageLog` (onglet « FluxCEN ») avec le nom d'hôte seul.
+
+### ConfigurationMicrosoftCanonique (FR-013, `core/entra.py`)
+
+Paramètres OAuth2 de référence, embarqués dans le plugin (identifiants publics, aucun secret) :
+ID `g2b2197`, nom « Microsoft CEN », flux Authorization Code PKCE (`grantFlow: 3`), client public
+Entra (`clientSecret` vide), endpoints v2.0 du tenant, portée Graph `Files.Read.All offline_access`,
+redirection `127.0.0.1:<port>/qgis-client` avec `<port>` choisi dans la liste déclarée
+(17070, 17071, 17072) en évitant les ports occupés (ex. AnyDesk sur 7070). **Cycle de vie** : vérifiée
+à chaque accès Microsoft ; absente → créée ; différente du canon (hors port valide et libre) → mise à
+jour ; jamais touchée au démarrage de QGIS.

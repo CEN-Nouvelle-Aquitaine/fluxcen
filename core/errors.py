@@ -17,6 +17,8 @@ class ErrorFamily(Enum):
     LIEN_INVALIDE = "lien_invalide"
     ACCES_REFUSE = "acces_refuse"
     AUTH_MANQUANTE = "auth_manquante"
+    AUTH_PROVISIONNEMENT = "auth_provisionnement"
+    PORT_REDIRECTION = "port_redirection"
     RESEAU = "reseau"
 
 
@@ -28,6 +30,14 @@ _MESSAGES = {
     ErrorFamily.AUTH_MANQUANTE:
         "« {resource} » nécessite une authentification Microsoft : configurez-la "
         "dans QGIS (Préférences > Authentification, voir documentation).",
+    ErrorFamily.AUTH_PROVISIONNEMENT:
+        "« {resource} » : l'installation de la configuration d'authentification "
+        "Microsoft dans QGIS a échoué (mot de passe principal refusé ou système "
+        "d'authentification indisponible).",
+    ErrorFamily.PORT_REDIRECTION:
+        "« {resource} » : les ports de redirection de l'authentification "
+        "Microsoft sont tous occupés par un autre logiciel (ex. outil de prise "
+        "en main à distance). Fermez-le puis réessayez.",
     ErrorFamily.RESEAU:
         "« {resource} » inaccessible ({host}) : vérifiez votre connexion.",
 }

@@ -15,10 +15,10 @@ auth:
   authcfg: ""              # optionnel : surcharge de l'ID de config d'auth QGIS (7 car.)
 ```
 
-La clé `auth.authcfg` est **optionnelle** (revue de PR #55, issue #39) : la configuration Microsoft
-est découverte dans le gestionnaire d'authentification QGIS (unique configuration web/OAuth2 — la
-configuration distribuée au CEN conserve son ID à l'import). La clé reste une surcharge : prioritaire
-si renseignée, nécessaire seulement si plusieurs configurations web coexistent.
+La clé `auth.authcfg` est **optionnelle** (FR-013) : le plugin provisionne lui-même la configuration
+Microsoft canonique (ID `g2b2197`) dans le gestionnaire d'authentification QGIS au premier accès —
+aucune action utilisateur. La clé reste une surcharge de **dépannage** : prioritaire si renseignée
+**et** présente dans le gestionnaire ; un ID périmé est ignoré (retour au provisionnement).
 
 ## Valeurs d'URL acceptées (évolution de cette feature)
 

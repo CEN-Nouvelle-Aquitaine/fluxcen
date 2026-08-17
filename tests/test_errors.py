@@ -49,6 +49,22 @@ class TestFetchError:
                              host="raw.githubusercontent.com").user_message()
         assert "connexion" in message
 
+    def test_message_provisionnement(self):
+        # FR-013 : échec d'écriture de la config canonique — jamais un faux
+        # diagnostic réseau
+        message = FetchError(ErrorFamily.AUTH_PROVISIONNEMENT, "catalogue des flux",
+                             host="graph.microsoft.com").user_message()
+        assert "installation" in message.lower() or "enregistr" in message.lower()
+        assert "connexion" not in message.lower()
+
+    def test_message_port_redirection(self):
+        # FR-013 : ports de redirection occupés (ex. AnyDesk sur 7070)
+        message = FetchError(ErrorFamily.PORT_REDIRECTION, "catalogue des flux",
+                             host="graph.microsoft.com").user_message()
+        assert "port" in message.lower()
+        assert "logiciel" in message.lower()
+        assert "connexion" not in message.lower()
+
     def test_jamais_d_url_complete_ni_de_jeton(self):
         # Le message ne contient que le nom d'hôte, jamais l'URL complète
         # (qui peut porter des paramètres sensibles) ni de jeton.

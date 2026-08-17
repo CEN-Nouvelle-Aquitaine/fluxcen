@@ -69,10 +69,24 @@ Vraie ssi l'URL est un appel Graph `/v1.0/shares/…` — ces requêtes reçoive
 FR-011 : fausse pour les méthodes web (`OAuth2`, dont Microsoft Entra ID), vraie pour `Basic` et les
 méthodes par certificat — seules candidates pour les connexions BDD et le service sécurisé CEN.
 
-### `select_web_authcfg(configs: dict[str, str]) -> str`
-Découverte de la configuration Microsoft (revue de PR #55, issue #39) : ID de l'unique configuration
-web (OAuth2) parmi `{id: méthode}`, `""` sinon (aucune, ou plusieurs — choix ambigu jamais fait à
-l'aveugle ; la surcharge `auth.authcfg` de links.yaml reste possible).
+# Contrat : `core/entra.py` (FR-013)
+
+Configuration Microsoft canonique embarquée — identifiants publics uniquement, aucun secret
+(client public Entra + PKCE). Le contrôleur (`_ensure_microsoft_authcfg`) provisionne cette
+configuration sous l'ID fixe `AUTHCFG_ID = "g2b2197"` au premier accès Microsoft.
+
+## `canonical_oauth2_config(port: int) -> dict`
+Paramètres OAuth2 de référence (`grantFlow` 3 = PKCE, `clientSecret` vide, redirection
+`127.0.0.1:<port>/qgis-client`). Calqués sur la configuration validée en réel le 2026-08-17.
+
+## `config_needs_update(stored_json: str) -> bool`
+Vraie ssi la config stockée diverge du canon sur les clés fonctionnelles (`_COMPARED_KEYS`) ou si son
+port sort de `REDIRECT_PORTS`. Les clés de présentation (id, name, …) ne déclenchent jamais de mise à
+jour (pas de boucle de resérialisation). JSON illisible → mise à jour.
+
+## `pick_free_port(is_free) -> int | None` / `port_is_free(port) -> bool`
+Premier port libre de `REDIRECT_PORTS` (7070 exclu : AnyDesk). `None` si tous occupés →
+famille d'erreur `PORT_REDIRECTION`. Le prédicat est injecté pour les tests.
 
 ### `build_style_url(styles_base: str, style_name: str) -> str`
 Concaténation `styles_base + style_name + ".qml"` pour les URL directes uniquement ; `ValueError` sur un

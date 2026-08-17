@@ -164,20 +164,6 @@ def is_database_auth_method(method):
     return method not in _DATABASE_EXCLUDED_AUTH_METHODS
 
 
-def select_web_authcfg(configs):
-    """ID de l'unique configuration web (OAuth2) parmi ``{id: méthode}``, sinon ``""``.
-
-    Découverte automatique de la configuration Microsoft : la configuration
-    distribuée au CEN conserve son ID à l'import dans QGIS, le plugin la
-    retrouve donc sans configuration manuelle. Plusieurs candidates : choix
-    ambigu, aucune n'est retenue (la surcharge ``auth.authcfg`` de links.yaml
-    reste possible).
-    """
-    web_ids = [auth_id for auth_id, method in configs.items()
-               if not is_database_auth_method(method)]
-    return web_ids[0] if len(web_ids) == 1 else ""
-
-
 def build_style_url(styles_base, style_name):
     """URL de téléchargement d'un style ``<style_name>.qml`` (URL directe).
 

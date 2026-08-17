@@ -15,7 +15,6 @@ from core.ms_urls import (
     is_microsoft_url,
     is_sharepoint_sharing_link,
     parse_drive_item_ref,
-    select_web_authcfg,
     sharing_link_to_graph_metadata_url,
     sharing_link_to_graph_url,
 )
@@ -191,30 +190,6 @@ class TestIsDatabaseAuthMethod:
     @pytest.mark.parametrize("method", ["Basic", "PKI-Paths", "PKI-PKCS#12", "Identity-Cert"])
     def test_methodes_bdd_acceptees(self, method):
         assert is_database_auth_method(method) is True
-
-
-class TestSelectWebAuthcfg:
-    """Découverte de la configuration Microsoft (OAuth2) dans le gestionnaire
-    d'authentification QGIS : la configuration distribuée au CEN garde son ID
-    à l'import, le plugin la trouve sans links.yaml (revue de PR, issue #39)."""
-
-    def test_unique_config_web_retenue(self):
-        assert select_web_authcfg({"g2b2197": "OAuth2"}) == "g2b2197"
-
-    def test_config_web_parmi_des_configs_bdd(self):
-        assert select_web_authcfg({
-            "basic01": "Basic",
-            "g2b2197": "OAuth2",
-            "pki0001": "PKI-Paths",
-        }) == "g2b2197"
-
-    def test_aucune_config_web(self):
-        assert select_web_authcfg({}) == ""
-        assert select_web_authcfg({"basic01": "Basic"}) == ""
-
-    def test_plusieurs_configs_web_ambigu(self):
-        # Deux OAuth2 : impossible de choisir à l'aveugle, aucune n'est retenue
-        assert select_web_authcfg({"g2b2197": "OAuth2", "autre01": "OAuth2"}) == ""
 
 
 class TestBuildStyleUrl:

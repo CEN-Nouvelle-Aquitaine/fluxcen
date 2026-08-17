@@ -90,16 +90,57 @@ class FakeAuthConfig:
         return self._method
 
 
-def set_auth_manager(monkeypatch, methods):
-    """Remplace le gestionnaire d'auth QGIS par un factice ``{id: méthode}``."""
+class FakeAuthManager:
+    """Double du gestionnaire d'auth QGIS : configs en mémoire + capture des écritures."""
+
+    def __init__(self, methods, oauth_json=None):
+        self.configs = {auth_id: FakeAuthConfig(m) for auth_id, m in methods.items()}
+        self.oauth_json = dict(oauth_json or {})
+        self.written = []  # IDs écrits (store ou update)
+        self.fail_write = False
+
+    def availableAuthMethodConfigs(self):
+        return dict(self.configs)
+
+    def loadAuthenticationConfig(self, auth_id, cfg, full=False):
+        cfg.setId(auth_id)
+        cfg.setMethod(self.configs[auth_id].method())
+        cfg.setConfigMap({"oauth2config": self.oauth_json.get(auth_id, "")})
+        return True
+
+    def storeAuthenticationConfig(self, cfg, overwrite=False):
+        return self._write(cfg)
+
+    def updateAuthenticationConfig(self, cfg):
+        return self._write(cfg)
+
+    def _write(self, cfg):
+        if self.fail_write:
+            return False
+        self.configs[cfg.id()] = FakeAuthConfig(cfg.method())
+        self.oauth_json[cfg.id()] = cfg.configMap().get("oauth2config", "")
+        self.written.append(cfg.id())
+        return True
+
+
+def set_auth_manager(monkeypatch, methods, oauth_json=None):
+    """Installe un FakeAuthManager et le retourne pour les assertions."""
     from unittest.mock import MagicMock
-    manager = MagicMock()
-    manager.availableAuthMethodConfigs.return_value = {
-        auth_id: FakeAuthConfig(method) for auth_id, method in methods.items()
-    }
+    manager = FakeAuthManager(methods, oauth_json)
     fake_app = MagicMock()
     fake_app.authManager.return_value = manager
     monkeypatch.setattr(plugin_mod, "QgsApplication", fake_app)
+    return manager
+
+
+@pytest.fixture(autouse=True)
+def default_auth_env(monkeypatch):
+    """Par défaut : la surcharge historique ``abc1234`` existe et tout port est libre.
+
+    Chaque test peut réinstaller son propre gestionnaire via set_auth_manager.
+    """
+    set_auth_manager(monkeypatch, {"abc1234": "OAuth2"})
+    monkeypatch.setattr(plugin_mod.entra, "port_is_free", lambda port: True)
 
 
 @pytest.fixture
@@ -244,45 +285,103 @@ class TestSchemasRefuses:
         assert "motdepasse" not in str(excinfo.value)
 
 
-class TestAuthManquante:
-    """T024 — US3 : périmètre Microsoft sans authcfg → erreur d'orientation, sans requête."""
+class TestProvisionnementAuthcfg:
+    """FR-013 : le plugin provisionne lui-même la config Microsoft canonique
+    (ID g2b2197, PKCE sans secret) — création, réparation, choix de port."""
 
-    def test_url_microsoft_sans_authcfg(self, tmp_path, fake_network, monkeypatch):
-        set_auth_manager(monkeypatch, {})
-        plugin = make_plugin(tmp_path, authcfg="")
-        with pytest.raises(FetchError) as excinfo:
-            plugin._fetch_bytes(SHARING_LINK, "catalogue des flux")
-        assert excinfo.value.family is ErrorFamily.AUTH_MANQUANTE
-        assert fake_network.last is None  # aucune requête émise
+    def canonical_json(self, port=None):
+        import json as _json
+        from fluxcen.core import entra
+        return _json.dumps(entra.canonical_oauth2_config(port or entra.REDIRECT_PORTS[0]))
 
-
-class TestDecouverteAuthcfg:
-    """Revue de PR (issue #39) : la configuration Microsoft est découverte dans
-    le gestionnaire d'authentification QGIS ; links.yaml n'est plus requis
-    (``auth.authcfg`` reste une surcharge optionnelle)."""
-
-    def test_unique_config_web_decouverte(self, tmp_path, fake_network, monkeypatch):
-        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2", "basic01": "Basic"})
+    def test_creation_a_la_premiere_utilisation(self, tmp_path, fake_network, monkeypatch):
+        import json as _json
+        manager = set_auth_manager(monkeypatch, {})
         plugin = make_plugin(tmp_path, authcfg=None)
         plugin._fetch_bytes(GRAPH_URL)
+        assert manager.written == ["g2b2197"]
+        stored = _json.loads(manager.oauth_json["g2b2197"])
+        assert stored["grantFlow"] == 3
+        assert stored["clientSecret"] == ""
         assert fake_network.last.authcfg == "g2b2197"
 
-    def test_surcharge_links_yaml_prioritaire(self, tmp_path, fake_network, monkeypatch):
-        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"})
-        plugin = make_plugin(tmp_path, authcfg="abc1234")
+    def test_config_canonique_intacte_aucune_ecriture(self, tmp_path, fake_network, monkeypatch):
+        manager = set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"},
+                                   {"g2b2197": self.canonical_json()})
+        plugin = make_plugin(tmp_path, authcfg=None)
         plugin._fetch_bytes(GRAPH_URL)
-        assert fake_network.last.authcfg == "abc1234"
+        assert manager.written == []
+        assert fake_network.last.authcfg == "g2b2197"
 
-    def test_plusieurs_configs_web_sans_surcharge_ambigu(self, tmp_path, fake_network, monkeypatch):
-        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2", "autre01": "OAuth2"})
+    def test_secret_vestigial_repare(self, tmp_path, fake_network, monkeypatch):
+        import json as _json
+        from fluxcen.core import entra
+        vestige = _json.loads(self.canonical_json())
+        vestige["clientSecret"] = "vieux-secret"
+        manager = set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"},
+                                   {"g2b2197": _json.dumps(vestige)})
+        plugin = make_plugin(tmp_path, authcfg=None)
+        plugin._fetch_bytes(GRAPH_URL)
+        assert manager.written == ["g2b2197"]
+        assert _json.loads(manager.oauth_json["g2b2197"])["clientSecret"] == ""
+
+    def test_port_obsolete_repare(self, tmp_path, fake_network, monkeypatch):
+        import json as _json
+        from fluxcen.core import entra
+        obsolete = _json.loads(self.canonical_json())
+        obsolete["redirectPort"] = 7070  # port volé par AnyDesk
+        manager = set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"},
+                                   {"g2b2197": _json.dumps(obsolete)})
+        plugin = make_plugin(tmp_path, authcfg=None)
+        plugin._fetch_bytes(GRAPH_URL)
+        assert _json.loads(manager.oauth_json["g2b2197"])["redirectPort"] in entra.REDIRECT_PORTS
+
+    def test_port_occupe_bascule_sur_le_suivant(self, tmp_path, fake_network, monkeypatch):
+        import json as _json
+        from fluxcen.core import entra
+        manager = set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"},
+                                   {"g2b2197": self.canonical_json(entra.REDIRECT_PORTS[0])})
+        monkeypatch.setattr(plugin_mod.entra, "port_is_free",
+                            lambda port: port != entra.REDIRECT_PORTS[0])
+        plugin = make_plugin(tmp_path, authcfg=None)
+        plugin._fetch_bytes(GRAPH_URL)
+        assert _json.loads(manager.oauth_json["g2b2197"])["redirectPort"] == entra.REDIRECT_PORTS[1]
+
+    def test_tous_ports_occupes(self, tmp_path, fake_network, monkeypatch):
+        set_auth_manager(monkeypatch, {})
+        monkeypatch.setattr(plugin_mod.entra, "port_is_free", lambda port: False)
         plugin = make_plugin(tmp_path, authcfg=None)
         with pytest.raises(FetchError) as excinfo:
             plugin._fetch_bytes(GRAPH_URL, "catalogue des flux")
-        assert excinfo.value.family is ErrorFamily.AUTH_MANQUANTE
+        assert excinfo.value.family is ErrorFamily.PORT_REDIRECTION
         assert fake_network.last is None
 
-    def test_hors_perimetre_microsoft_sans_authcfg(self, tmp_path, fake_network, monkeypatch):
-        set_auth_manager(monkeypatch, {"g2b2197": "OAuth2"})
+    def test_echec_d_enregistrement(self, tmp_path, fake_network, monkeypatch):
+        manager = set_auth_manager(monkeypatch, {})
+        manager.fail_write = True
+        plugin = make_plugin(tmp_path, authcfg=None)
+        with pytest.raises(FetchError) as excinfo:
+            plugin._fetch_bytes(GRAPH_URL, "catalogue des flux")
+        assert excinfo.value.family is ErrorFamily.AUTH_PROVISIONNEMENT
+        assert fake_network.last is None
+
+    def test_surcharge_valide_prioritaire(self, tmp_path, fake_network, monkeypatch):
+        manager = set_auth_manager(monkeypatch, {"abc1234": "OAuth2"})
+        plugin = make_plugin(tmp_path, authcfg="abc1234")
+        plugin._fetch_bytes(GRAPH_URL)
+        assert fake_network.last.authcfg == "abc1234"
+        assert manager.written == []  # pas de provisioning quand la surcharge est valide
+
+    def test_surcharge_perimee_ignoree(self, tmp_path, fake_network, monkeypatch):
+        manager = set_auth_manager(monkeypatch, {})
+        plugin = make_plugin(tmp_path, authcfg="zzz9999")  # ID absent du gestionnaire
+        plugin._fetch_bytes(GRAPH_URL)
+        assert fake_network.last.authcfg == "g2b2197"
+        assert manager.written == ["g2b2197"]
+
+    def test_hors_perimetre_microsoft_aucun_provisioning(self, tmp_path, fake_network, monkeypatch):
+        manager = set_auth_manager(monkeypatch, {})
         plugin = make_plugin(tmp_path, authcfg=None)
         plugin._fetch_bytes("https://raw.githubusercontent.com/cen/flux.csv")
         assert fake_network.last.authcfg is None  # jamais hors périmètre (FR-004)
+        assert manager.written == []
