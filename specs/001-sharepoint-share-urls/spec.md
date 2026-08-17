@@ -181,6 +181,9 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   configuration d'authentification adaptée (méthode non web : identifiant/mot de passe ou certificat),
   choisie par le même mécanisme filtré que pour PostGIS (FR-011). Les couches vers toute autre destination
   restent sans authentification (FR-010) ; la configuration Microsoft n'est jamais candidate.
+  *Clarification 2026-08-17 (revue de PR)* : sans configuration adaptée disponible, la couche sécurisée
+  n'est NI créée NI ajoutée au projet — un message critique est journalisé et affiché, plutôt qu'une
+  couche vide accompagnée de la fenêtre d'identification native de QGIS.
 - **FR-013** *(amendement 2026-08-17, revue de PR #55)*: Le plugin DOIT provisionner lui-même la
   configuration d'authentification Microsoft dans le gestionnaire QGIS : identifiant fixe (`g2b2197`),
   flux Authorization Code PKCE **sans aucun secret** (client public Entra ID), paramètres canoniques

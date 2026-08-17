@@ -867,7 +867,19 @@ class FluxCEN:
         # Les couches du catalogue sont chargées sans authentification (FR-010),
         # sauf le service sécurisé du CEN qui reçoit une configuration adaptée
         # non web — jamais la configuration Microsoft (FR-012).
-        authcfg_id = self._select_service_authcfg() if layer_builder.is_cen_secured_service(url) else None
+        authcfg_id = None
+        if layer_builder.is_cen_secured_service(url):
+            authcfg_id = self._select_service_authcfg()
+            if not authcfg_id:
+                # Pas de config adaptée : ne pas tenter la requête (couche vide
+                # + fenêtre d'identification native de QGIS sinon)
+                log(
+                    f"Impossible de charger la couche : {nom_couche} | {nom_technique} "
+                    "(authentification requise, aucune configuration adaptée).",
+                    Qgis.MessageLevel.Critical,
+                    True
+                )
+                return
         wms_layer_url = layer_builder.build_wms_uri(url, nom_technique, authcfg=authcfg_id)
         wms_layer = QgsRasterLayer(wms_layer_url, nom_couche, "wms")
 
@@ -892,8 +904,17 @@ class FluxCEN:
             uri.setParam(key, value)
         if layer_builder.is_cen_secured_service(url):
             authcfg_id = self._select_service_authcfg()
-            if authcfg_id:
-                uri.setAuthConfigId(authcfg_id)
+            if not authcfg_id:
+                # Pas de config adaptée : ne pas tenter la requête (couche vide
+                # + fenêtre d'identification native de QGIS sinon)
+                log(
+                    f"Impossible de charger la couche : {nom_couche} | {nom_technique} "
+                    "(authentification requise, aucune configuration adaptée).",
+                    Qgis.MessageLevel.Critical,
+                    True
+                )
+                return
+            uri.setAuthConfigId(authcfg_id)
         wfs_layer = QgsVectorLayer(uri.uri(False), nom_couche, "WFS")
 
         if wfs_layer.isValid():
