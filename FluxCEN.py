@@ -776,7 +776,7 @@ class FluxCEN:
             return None
         alert(
             "Aucune configuration d'authentification adaptée (identifiant/mot de "
-            "passe ou certificat) n'a été trouvée dans votre QGIS. Veuillez ajouter "
+            "passe) n'a été trouvée dans votre QGIS. Veuillez ajouter "
             "la configuration CEN-NA pour charger les flux sécurisés tels que la MFU.",
             Qgis.MessageLevel.Warning)
         return None
