@@ -318,8 +318,7 @@ class FluxCEN:
             message = exc.user_message()
         else:
             message = "Échec du chargement de « %s » : %s" % (resource_name, exc)
-        log(message, Qgis.MessageLevel.Critical)
-        self.iface.messageBar().pushMessage("FluxCEN", message, level=Qgis.Critical, duration=10)
+        log(message, Qgis.MessageLevel.Critical, True, 10)
 
     def _style_url(self, styles_couches, style_name):
         """URL de téléchargement du style ``<style_name>.qml``.
