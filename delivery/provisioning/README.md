@@ -13,7 +13,6 @@ sous macOS) :
 |---|---|
 | `startup.py` | exécuté par QGIS à chaque démarrage ; appelle `provision.py` |
 | `provision.py` | crée/répare l'authcfg « FluxCEN delivery » et enregistre les dépôts |
-| `fluxcen-beta.enabled` | optionnel : fichier vide, sa présence active le dépôt beta |
 
 Avant déploiement, ajuster `FLUXCEN_DELIVERY_URL` dans `startup.py`
 (URL de la Function, sortie du déploiement Bicep).
@@ -30,7 +29,9 @@ Avant déploiement, ajuster `FLUXCEN_DELIVERY_URL` dans `startup.py`
 ## Intune
 
 Déploiement en « platform script » / fichier géré : copie des fichiers
-ci-dessus, ré-exécution sans précaution (idempotent). Retrait : supprimer
+ci-dessus, ré-exécution sans précaution (idempotent). Beta-testeurs : aucune
+config dédiée, ils cochent « Afficher aussi les extensions expérimentales »
+dans QGIS. Retrait : supprimer
 `startup.py` et `provision.py` du profil (l'authcfg et les dépôts restent,
 les retirer via QGIS si nécessaire).
 

@@ -15,10 +15,6 @@ resource "azuread_application_registration" "qgis" {
   display_name     = "QGIS"
   sign_in_audience = "AzureADMyOrg"
 
-  # Émission du claim `groups` dans les jetons : la Function restreint le
-  # canal beta dessus.
-  group_membership_claims = ["SecurityGroup"]
-
   # App de production utilisée par tout le parc : un destroy la supprimerait
   # du tenant. Pour un cycle destroy/apply de POC : terraform state rm
   # (voir README).
@@ -52,6 +48,9 @@ resource "azuread_application_pre_authorized" "qgis_self" {
   permission_ids       = [azuread_application_permission_scope.plugins_read.scope_id]
 }
 
+# Liste de diffusion des beta-testeurs (communication uniquement : le dépôt
+# est unique et les préversions sont en opt-in via le flag experimental,
+# standard communautaire. Aucun contrôle d'accès ne repose sur ce groupe).
 resource "azuread_group" "beta" {
   display_name     = "FluxCEN-Beta"
   mail_nickname    = "fluxcen-beta"

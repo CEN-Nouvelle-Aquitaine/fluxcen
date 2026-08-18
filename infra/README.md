@@ -45,7 +45,7 @@ Créées : `rg-fluxcen-delivery-{env}` avec Storage privé (conteneur `plugins`,
 versioning), Function Flex Consumption Python 3.11 (managed identity, lecture
 du conteneur), Easy Auth (Bearer Entra, audience `api://80c3a908-…`) ; côté
 Entra : scope `plugins.read` + pré-autorisation sur l'app « QGIS », groupe
-`FluxCEN-Beta`, app CI `fluxcen-ci` avec federated credentials OIDC GitHub
+`FluxCEN-Beta` (liste de diffusion des testeurs), app CI `fluxcen-ci` avec federated credentials OIDC GitHub
 (environnements `release` et `infra`) et ses rôles.
 
 Code de la Function : `delivery/function/` (déployé par

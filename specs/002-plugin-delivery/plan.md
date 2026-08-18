@@ -6,7 +6,7 @@
 
 ## Summary
 
-Distribuer FluxCEN via un dépôt de plugins QGIS privé servi par une Azure Function derrière Easy Auth (Entra ID, Bearer). Deux canaux (interne, beta) ; la beta est restreinte par groupe Entra via le claim `groups`. Publication par tag depuis le dépôt GitHub privé (OIDC, zéro secret). Toute l'infrastructure est en IaC Terraform (standard des projets CEN récents ; le provider azuread absorbe aussi les objets Entra). Le provisioning des postes passe par un `startup.py` déployé par Intune. Un POC valide la chaîne complète (auth, catalogue, zip, restriction beta) avant industrialisation. Ce choix découle de la recherche (voir research.md) : le branchement direct SharePoint/Graph est écarté à cause du rejeu du header Bearer sur la redirection 302 et de l'absence de suivi des 302 en QGIS 3.34.
+Distribuer FluxCEN via un dépôt de plugins QGIS privé servi par une Azure Function derrière Easy Auth (Entra ID, Bearer). Dépôt unique ; les préversions sont des entrées « expérimentales » du catalogue, en opt-in côté client (standard communautaire, révisé au POC : rien de sensible dans les préversions). Publication par tag depuis le dépôt GitHub privé (OIDC, zéro secret). Toute l'infrastructure est en IaC Terraform (standard des projets CEN récents ; le provider azuread absorbe aussi les objets Entra). Le provisioning des postes passe par un `startup.py` déployé par Intune. Un POC valide la chaîne complète (auth, catalogue, zip, préversions) avant industrialisation. Ce choix découle de la recherche (voir research.md) : le branchement direct SharePoint/Graph est écarté à cause du rejeu du header Bearer sur la redirection 302 et de l'absence de suivi des 302 en QGIS 3.34.
 
 ## Technical Context
 
@@ -16,7 +16,7 @@ Distribuer FluxCEN via un dépôt de plugins QGIS privé servi par une Azure Fun
 
 **Storage**: Azure Blob Storage (conteneur privé : zips + `plugins.xml` par canal), lu par la Function via managed identity
 
-**Testing**: `pytest` pour la logique de la Function (autorisation par canal, parsing du principal, validation de chemin) ; `pytest` + `pytest-qgis` pour la logique du provisioning ; POC manuel scripté (quickstart.md)
+**Testing**: `pytest` pour la logique de la Function (validation de chemin, résolution de blob) ; `pytest` + `pytest-qgis` pour la logique du provisioning ; POC manuel scripté (quickstart.md)
 
 **Target Platform**: Azure Functions Flex Consumption, région `francecentral` ; clients QGIS ≥ 3.34 sous Windows/macOS/Linux ; postes gérés par Intune
 
@@ -26,7 +26,7 @@ Distribuer FluxCEN via un dépôt de plugins QGIS privé servi par une Azure Fun
 
 **Constraints**: une seule audience de jeton par authcfg (audience = API custom de l'app « QGIS » existante) ; réponses en 200 direct, jamais de redirection (QGIS 3.34 ne suit pas les 302 sur `plugins.xml`) ; pas de query string dans l'URL de dépôt (QGIS concatène `?qgis=x.y`) ; aucun secret de longue durée en CI (OIDC) ; la vérification des dépôts au démarrage de QGIS reste désactivée (défaut QGIS #64885)
 
-**Scale/Scope**: 2 canaux, 1 Function, 1 compte de stockage, 1 resource group ; ~150 postes à provisionner ; POC sur un resource group dédié détruit/recréé à volonté
+**Scale/Scope**: 1 dépôt (entrées stable + expérimentale), 1 Function, 1 compte de stockage, 1 resource group ; ~150 postes à provisionner ; POC sur un resource group dédié détruit/recréé à volonté
 
 ## Constitution Check
 
@@ -35,9 +35,9 @@ Distribuer FluxCEN via un dépôt de plugins QGIS privé servi par une Azure Fun
 | Principe | Verdict | Justification |
 |---|---|---|
 | I. Intégration native QGIS | PASS | `startup.py` n'utilise que PyQGIS (`QgsAuthMethodConfig`, `QgsSettings`, `QgsApplication.authManager()`). Le téléchargement des plugins est fait par le gestionnaire d'extensions de QGIS lui-même (`QgsNetworkAccessManager` + authcfg). Le code de la Function est hors périmètre QGIS (côté serveur) : le principe I ne lui impose rien. |
-| II. TDD | PASS | Logique de la Function (choix de canal, contrôle du groupe beta, validation des chemins) écrite en fonctions pures testées par pytest avant implémentation. Logique du provisioning (idempotence, sonde de port, construction de l'authcfg) testée avec pytest-qgis. Les tests tournent en CI sur l'image `qgis/qgis`. |
+| II. TDD | PASS | Logique de la Function (validation des chemins, résolution de blob) écrite en fonctions pures testées par pytest avant implémentation. Logique du provisioning (idempotence, sonde de port, construction de l'authcfg) testée avec pytest-qgis. Les tests tournent en CI sur l'image `qgis/qgis`. |
 | III. Architecture en couches | PASS | Function : logique pure séparée du handler HTTP. `startup.py` : logique pure séparée des appels QGIS. |
-| IV. Sécurité et secrets | PASS | Aucun secret : OIDC en CI, managed identity Function→Blob, PKCE côté client, authcfg géré par `QgsAuthManager`. HTTPS partout. Le contrôle beta est appliqué côté serveur (claim `groups` du jeton validé par Easy Auth). |
+| IV. Sécurité et secrets | PASS | Aucun secret : OIDC en CI, managed identity Function→Blob, PKCE côté client, authcfg géré par `QgsAuthManager`. HTTPS partout. L'accès au dépôt est réservé aux identités du tenant (Easy Auth) ; les préversions sont en opt-in client, décision révisée au POC. |
 | V. YAGNI | PASS | Une seule Function, pas d'APIM, pas de framework web, pas de base de données. Le catalogue est un fichier statique en blob. L'ajout d'un composant serveur est justifié dans Complexity Tracking. |
 | VI. Compatibilité | PASS | Constitution amendée en v1.2.0 (2026-08-18) : plancher transitoire 3.34 entériné (mise à niveau du parc vers 3.44 prévue mais non achevée). La conception (200 direct, pas de redirection) fonctionne dès 3.34. |
 | VII. Qualité et observabilité | PASS | Function : `logging` standard vers Application Insights (inclus Flex). `startup.py` : `QgsMessageLog` onglet FluxCEN. Messages utilisateur en français. |
@@ -66,14 +66,14 @@ infra/
 ├── versions.tf                 # providers azurerm/azuread/azapi, backend (standard CEN à brancher)
 ├── variables.tf / outputs.tf
 ├── main.tf                     # resource group, storage, Function Flex, Easy Auth (azapi), rôles
-├── entra.tf                    # app « QGIS » importée (granulaire : scope plugins.read, claim groups), groupe beta
+├── entra.tf                    # app « QGIS » importée (granulaire : scope plugins.read), groupe beta (diffusion)
 ├── ci.tf                       # app fluxcen-ci, federated credentials OIDC GitHub, rôles CI
 └── terraform.tfvars.example
 
 delivery/
 ├── function/
 │   ├── function_app.py         # handler HTTP unique GET /{channel}/{filename}
-│   ├── logic.py                # fonctions pures : autorisation canal, parsing principal, validation chemin
+│   ├── logic.py                # fonctions pures : validation chemin, résolution blob, content-type
 │   ├── host.json
 │   └── requirements.txt        # azure-functions, azure-storage-blob, azure-identity
 └── provisioning/
@@ -81,8 +81,8 @@ delivery/
     └── provision.py            # logique pure : authcfg delivery, enregistrement dépôts, sonde de port, idempotence
 
 .github/workflows/
-├── release.yml                 # tag → build zip (qgis-plugin-ci) → plugins.xml du canal → upload blob (OIDC)
-└── infra.yml                   # déploiement Bicep sur changement de infra/ (OIDC, environnement approuvé)
+├── release.yml                 # tag → build zip (qgis-plugin-ci) → fusion du catalogue → upload blob (OIDC)
+└── infra.yml                   # terraform apply sur changement de infra/ (OIDC, environnement approuvé)
 
 tests/
 ├── test_delivery_logic.py      # pytest pur (logique Function)

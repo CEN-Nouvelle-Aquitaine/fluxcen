@@ -28,8 +28,8 @@
 
 **Purpose**: socle Entra + Azure sans lequel aucune story ne fonctionne
 
-- [X] T005 Écrire `infra/entra.tf` (Terraform, provider azuread) : import déclaratif de l'app « QGIS » (`azuread_application_registration`, claim groups, `prevent_destroy`), scope `plugins.read` + identifier URI + pré-autorisation (ressources granulaires), groupe `FluxCEN-Beta`
-- [X] T006 Écrire `infra/main.tf` + `versions.tf` + `variables.tf` + `outputs.tf` : resource group `rg-fluxcen-delivery-{env}` (francecentral), Storage Account (conteneur privé `plugins`, versioning), Function App Flex Consumption Python 3.11 (managed identity + rôle `Storage Blob Data Reader`), Easy Auth `authsettingsV2` via azapi (audience `api://80c3a908-…`, `Return401`), app settings `BETA_GROUP_ID` et `STORAGE_ACCOUNT_URL` ; `terraform validate` vert
+- [X] T005 Écrire `infra/entra.tf` (Terraform, provider azuread) : import déclaratif de l'app « QGIS » (`azuread_application_registration`, `prevent_destroy`), scope `plugins.read` + identifier URI + pré-autorisation (ressources granulaires), groupe `FluxCEN-Beta`
+- [X] T006 Écrire `infra/main.tf` + `versions.tf` + `variables.tf` + `outputs.tf` : resource group `rg-fluxcen-delivery-{env}` (francecentral), Storage Account (conteneur privé `plugins`, versioning), Function App Flex Consumption Python 3.11 (managed identity + rôle `Storage Blob Data Reader`), Easy Auth `authsettingsV2` via azapi (audience `api://80c3a908-…`, `Return401`), app setting `STORAGE_ACCOUNT_URL` ; `terraform validate` vert
 - [X] T007 Déployer l'environnement POC : `terraform.tfvars` (object id de l'app QGIS), `terraform init && terraform apply` (env=poc) ; consigner l'URL de la Function dans `specs/002-plugin-delivery/quickstart.md`
 
 **Checkpoint**: `curl` sans jeton sur `https://<app>.azurewebsites.net/stable/plugins.xml` répond 401 (Easy Auth actif avant toute ligne de code)
@@ -54,18 +54,18 @@
 
 ---
 
-## Phase 4: User Story 3 - Accès beta restreint à un groupe (P2)
+## Phase 4: User Story 3 - Préversions en opt-in (P2, révisée 2026-08-18)
 
-**Goal**: le canal beta n'est accessible qu'aux membres du groupe Entra `FluxCEN-Beta`, contrôle côté serveur
+**Goal**: les préversions sont des entrées `experimental` du catalogue unique, visibles uniquement en opt-in (standard communautaire ; le contrôle serveur par groupe, validé au POC, a été retiré : rien de sensible)
 
-**Independent Test**: quickstart vérif 3 : deux comptes (membre / non-membre), 200 vs 403 sur `/beta/plugins.xml`
+**Independent Test**: sur un même poste, comparer les versions proposées avec et sans la case « extensions expérimentales »
 
 **Note**: passée avant US2 car elle complète le contrat HTTP que la CI (US2) publiera ; US2 et US3 restent indépendantes
 
-- [X] T015 [P] [US3] Écrire les tests rouges dans `tests/test_delivery_logic.py` : décodage du header `x-ms-client-principal`, extraction des claims `groups`, décision beta (membre → autorisé, non-membre → 403, claim absent → 403, canal stable → toujours autorisé)
-- [X] T016 [US3] Implémenter le contrôle beta dans `delivery/function/logic.py` + branchement dans `function_app.py` jusqu'au vert de T015
-- [X] T017 [US3] Déployer, publier un `beta/plugins.xml` d'essai (dernière beta seule), ajouter un compte de test au groupe `FluxCEN-Beta`
-- [ ] T018 [US3] Valider : membre → 200 sur `/api/beta/plugins.xml` et installation de la préversion dans QGIS (✅ 2026-08-18 : 403 non-membre, 200 membre, 5.4.0-beta.1 `upgradeable`) ; reste : retrait du groupe → 403 après renouvellement du jeton (data-model : effet ≤ 1 h)
+- [X] T015 [P] [US3] ~~Tests du contrôle beta par claim `groups`~~ écrits, validés en réel, puis retirés avec le design (révision opt-in) ; les tests restants couvrent le dépôt unique (préversions admises, ancien segment beta → 404)
+- [X] T016 [US3] ~~Contrôle beta serveur~~ implémenté, validé au POC (403/200), puis retiré : la Function sert le dépôt unique sans autorisation supplémentaire
+- [X] T017 [US3] Publier une préversion d'essai en entrée `experimental=True` du catalogue unique (fait au POC sous l'ancien design ; republication à valider avec release.yml en T022)
+- [ ] T018 [US3] Valider l'opt-in : case « extensions expérimentales » décochée → préversion invisible ; cochée → 5.4.0-beta.1 proposée et installable ; ancien segment `/api/beta/` → 404
 
 **Checkpoint**: protocole de POC point 4 vert → les 5 points du POC sont verts, critère d'arrêt atteint, industrialisation validée
 
@@ -78,9 +78,9 @@
 **Independent Test**: poser un tag de préversion et un tag final sur un commit de test ; vérifier le contenu des deux catalogues et la release GitHub miroir
 
 - [X] T019 [US2] Écrire `infra/ci.tf` : app `fluxcen-ci` + service principal, federated credentials GitHub OIDC pour les environnements `release` ET `infra`, rôle `Storage Blob Data Contributor` sur le conteneur `plugins`, rôle Owner sur le resource group (apply CI avec role assignments)
-- [X] T020 [US2] Écrire `.github/workflows/release.yml` : déclenchement sur tag `v*`, canal déduit du suffixe de version, injection de `config/yaml/links.yaml` depuis le secret `LINKS_YAML` + `asset_paths` qgis-plugin-ci (FR-016), `qgis-plugin-ci package` avec `--plugin-repo-url` du canal, un catalogue par canal (un seul candidat par plugin et par catalogue, contrainte du format vérifiée au POC ; repli beta→stable par fusion multi-dépôts QGIS), upload blob via `azure/login` OIDC (zip d'abord, XML ensuite : publication atomique), `concurrency: {group: release, cancel-in-progress: false}` pour sérialiser les tags rapprochés (edge case spec), release GitHub miroir (`--prerelease` pour les beta)
+- [X] T020 [US2] Écrire `.github/workflows/release.yml` : déclenchement sur tag `v*`, canal déduit du suffixe de version, injection de `config/yaml/links.yaml` depuis le secret `LINKS_YAML` + `asset_paths` qgis-plugin-ci (FR-016), `qgis-plugin-ci package` (préversions flaguées `experimental` automatiquement), fusion avec le catalogue existant (`qgis-plugin-repo merge` : paire stable/expérimentale du dépôt unique), upload blob via `azure/login` OIDC (zip d'abord, XML ensuite : publication atomique), `concurrency: {group: release, cancel-in-progress: false}` pour sérialiser les tags rapprochés (edge case spec), release GitHub miroir (`--prerelease` pour les beta)
 - [X] T021 [US2] Écrire `.github/workflows/infra.yml` : fmt/validate sur PR, `terraform apply` OIDC (ARM_USE_OIDC) sur main avec approbation (environnement `infra`), garde explicite tant que le backend d'état CEN n'est pas branché
-- [ ] T022 [US2] Valider en conteneur puis sur le POC : tag `v5.3.2-beta.1` → seul le catalogue beta bouge ; tag `v5.3.2` → stable et beta à jour ; vérifier l'absence de secret d'authentification dans les réglages du repo (SC-005) et le délai < 10 min (SC-004) ; vérifier que le zip contient `config/yaml/links.yaml` injecté (FR-016). Prérequis : créer le secret `LINKS_YAML` dans l'environnement GitHub `release` (contenu = le links.yaml de production)
+- [ ] T022 [US2] Valider en conteneur puis sur le POC : tag `v5.3.2-beta.1` → seule l'entrée `experimental` du catalogue bouge ; tag `v5.3.2` → seule l'entrée stable bouge ; vérifier l'absence de secret d'authentification dans les réglages du repo (SC-005) et le délai < 10 min (SC-004) ; vérifier que le zip contient `config/yaml/links.yaml` injecté (FR-016). Prérequis : créer le secret `LINKS_YAML` dans l'environnement GitHub `release` (contenu = le links.yaml de production)
 
 **Checkpoint**: publication de bout en bout sans intervention manuelle après le tag
 

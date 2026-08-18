@@ -10,16 +10,13 @@ import os
 import sys
 
 # URL de base du service de distribution, préfixe /api inclus (posée au
-# déploiement Intune).
+# déploiement Intune). Dépôt unique : les beta-testeurs cochent simplement
+# « Afficher aussi les extensions expérimentales » (standard communautaire).
 FLUXCEN_DELIVERY_URL = "https://func-fluxcen-delivery-poc.azurewebsites.net/api"
-
-# Canal beta : activé par fichier marqueur déposé par Intune à côté du script.
-_BETA_MARKER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "fluxcen-beta.enabled")
 
 try:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import provision
-    provision.provision(FLUXCEN_DELIVERY_URL, beta=os.path.exists(_BETA_MARKER))
+    provision.provision(FLUXCEN_DELIVERY_URL)
 except Exception:  # pylint: disable=broad-except
     pass  # jamais bloquer le démarrage de QGIS, provision journalise déjà

@@ -24,7 +24,7 @@ Recherche menée par trois agents parallèles (client QGIS, hébergement, CI/CD)
 **Rationale**:
 - Easy Auth accepte les Bearer tokens Entra de clients non-navigateur et valide audience et issuer sans code.
 - Réponse en 200 direct : supprime d'un coup les trois pièges de R1 (302, query string, rejeu du Bearer).
-- Restriction beta appliquée côté serveur via le claim `groups` du jeton (~30 lignes de logique pure).
+- (Historique : la restriction beta par claim `groups`, validée au POC, a été retirée le 2026-08-18 au profit de l'opt-in communautaire, voir R4.)
 - Coût ≈ 0 € à ce trafic (franchise Flex Consumption), Easy Auth gratuit.
 - Un authcfg ne porte qu'une audience : l'app « QGIS » expose un scope `api://…/plugins.read` et reste son propre client autorisé ; le flux PKCE, le port 17070 et l'app ne changent pas.
 
@@ -51,15 +51,15 @@ Recherche menée par trois agents parallèles (client QGIS, hébergement, CI/CD)
 
 ## R4. Canaux et versionnage
 
-**Decision** (corrigée au POC) : deux dépôts logiques servis par la même Function : `/api/stable/plugins.xml` (tout le tenant) et `/api/beta/plugins.xml` (groupe Entra beta). Chaque catalogue ne liste QUE la dernière version de son canal ; les beta-testeurs enregistrent les deux dépôts et la fusion multi-dépôts de QGIS propose la plus haute (vérifié en réel : le format de dépôt n'admet qu'une entrée par plugin et par catalogue, la seconde écrase la première). Versions SemVer avec suffixe pré-release (`5.4.0-beta.1`) ; le canal est déduit du tag (`v5.4.0` → stable, `v5.4.0-beta.1` → beta).
+**Decision** (révisée 2 fois au POC, état final 2026-08-18) : **dépôt unique** `/api/stable/plugins.xml`, standard communautaire : le catalogue porte une entrée stable et une entrée `experimental=True` (la préversion), qgis-plugin-ci flague automatiquement les suffixes pré-release. L'opt-in beta = la case « extensions expérimentales » de QGIS. Décision produit : rien de sensible dans les préversions, le contrôle d'accès serveur par groupe Entra (design initial, développé et validé au POC puis retiré) n'était pas justifié face à sa complexité (deux dépôts par poste, claim groups, purge de jetons au changement de groupe). Le groupe FluxCEN-Beta est conservé comme liste de diffusion. Versions SemVer avec suffixe pré-release (`5.4.0-beta.1`).
 
-**Rationale**: le flag `experimental` de QGIS est un filtre d'affichage global côté client, pas un contrôle d'accès : inutilisable pour restreindre la beta. `version_compare.py` de QGIS ordonne en PEP 440 : `5.4.0-beta.1 < 5.4.0`, donc un beta-testeur rebascule automatiquement sur la stable quand elle dépasse sa beta. Un seul dépôt à enregistrer pour les beta-testeurs.
+**Rationale**: c'est le mécanisme du dépôt officiel plugins.qgis.org (paire stable/expérimentale par plugin, prévue par le format). `version_compare.py` ordonne en PEP 440 : un beta-testeur rebascule automatiquement sur la stable quand elle dépasse sa beta. Un seul dépôt à enregistrer, aucune infrastructure d'autorisation. Enseignements POC conservés : une seule entrée par (plugin, nature) et par catalogue, la suivante écrase ; la fusion multi-dépôts QGIS prend la version la plus haute (utile si un second dépôt réapparaît un jour).
 
-**Alternatives considered**: un seul dépôt avec flag `experimental` (pas un contrôle d'accès, et impose une manip utilisateur) ; deux Function séparées (double infra sans bénéfice).
+**Alternatives considered**: deux dépôts dont un restreint par groupe Entra via claim `groups` (design initial : validé en réel au POC : 403 non-membre / 200 membre, puis retiré : complexité sans enjeu de confidentialité) ; deux Function séparées (double infra sans bénéfice).
 
 ## R5. Pipeline de publication
 
-**Decision**: un workflow `release.yml` déclenché par tag : `qgis-plugin-ci package` construit le zip et génère `plugins.xml` (`--plugin-repo-url`), `qgis-plugin-repo merge` maintient le catalogue multi-versions du canal beta, upload vers Blob via `azure/login` en OIDC (federated credential sur le repo), release GitHub privée en miroir. `infra.yml` déploie le Bicep sur changement de `infra/`.
+**Decision**: un workflow `release.yml` déclenché par tag : `qgis-plugin-ci package` construit le zip et génère `plugins.xml` (`--plugin-repo-url`), `qgis-plugin-repo merge` fusionne l'entrée produite avec le catalogue existant (paire stable/expérimentale), upload vers Blob via `azure/login` en OIDC (federated credential sur le repo), release GitHub privée en miroir. `infra.yml` applique le Terraform sur changement de `infra/`.
 
 **Rationale**: `qgis-plugin-ci` est l'outil officiel (génération de dépôt custom supportée, détection automatique des suffixes pré-release) ; OIDC supprime tout secret stocké (FR-010, SC-005) ; le miroir GitHub Releases conserve un historique gratuit des artefacts.
 

@@ -46,10 +46,12 @@ def test_url_derivee_reparee(settings):
     assert settings.value(REPO_PREFIX + "url") == f"{BASE_URL}/stable/plugins.xml"
 
 
-def test_beta_sur_demande(settings):
-    provision.ensure_repositories(settings, BASE_URL, "f2deliv", beta=True)
-    assert (settings.value("app/plugin_repositories/FluxCEN (beta)/url")
-            == f"{BASE_URL}/beta/plugins.xml")
+def test_depot_beta_obsolete_nettoye(settings):
+    # Postes provisionnés pendant le POC : l'ancien dépôt beta est retiré.
+    settings.setValue("app/plugin_repositories/FluxCEN (beta)/url",
+                      f"{BASE_URL}/beta/plugins.xml")
+    assert provision.ensure_repositories(settings, BASE_URL, "f2deliv") is True
+    assert not settings.value("app/plugin_repositories/FluxCEN (beta)/url")
 
 
 def test_check_on_start_desactive(settings):

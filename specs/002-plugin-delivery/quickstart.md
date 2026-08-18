@@ -14,7 +14,7 @@ Valide le mécanisme côté QGIS (authcfg appliqué au catalogue ET au zip, mise
 git archive --worktree-attributes --format=zip --prefix=FluxCEN/ \
   -o /tmp/FluxCEN.5.3.0.zip HEAD
 
-# 2. Lancer le dépôt simulé (contrat complet : 401/403/200)
+# 2. Lancer le dépôt simulé (contrat : 401/200, dépôt unique)
 python3 delivery/poc_local_repo.py --zip /tmp/FluxCEN.5.3.0.zip
 
 # 3. Rejouer le contrat
@@ -22,7 +22,7 @@ curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8787/api/stable/plugin
 curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer poc-interne" \
   "http://127.0.0.1:8787/api/stable/plugins.xml?qgis=3.44"                                                # 200
 curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer poc-interne" \
-  http://127.0.0.1:8787/api/beta/plugins.xml                                                              # 403
+  http://127.0.0.1:8787/api/beta/plugins.xml                                                              # 404 (segment retiré)
 ```
 
 Dans QGIS : créer un authcfg **API Header** avec la paire `Authorization` = `Bearer poc-interne`, ajouter le dépôt `http://127.0.0.1:8787/api/stable/plugins.xml` avec cet authcfg, vérifier que FluxCEN apparaît et s'installe. Relancer le serveur avec `--version 5.3.1` (même zip) pour vérifier la détection de mise à jour. Le serveur journalise chaque header `Authorization` reçu : preuve que QGIS l'envoie bien sur le XML et sur le zip.
@@ -33,7 +33,7 @@ La logique de la Function se teste sans Azure : `pytest tests/test_function_app.
 
 1. Souscription Azure active rattachée au tenant CEN (`az account show` la confirme). Si aucune n'existe : création au portail (hors IaC, prérequis de bootstrap).
 2. `terraform` ≥ 1.7 et `az` CLI connecté avec un compte pouvant créer un resource group, assigner des rôles et modifier les app registrations.
-3. `infra/terraform.tfvars` : renseigner `qgis_app_object_id` (voir `infra/README.md`). L'IaC gère aussi les objets Entra : scope `plugins.read`, claim groups, groupe `FluxCEN-Beta`, identité CI.
+3. `infra/terraform.tfvars` : renseigner `qgis_app_object_id` (voir `infra/README.md`). L'IaC gère aussi les objets Entra : scope `plugins.read`, groupe `FluxCEN-Beta` (diffusion), identité CI.
 
 ## Déploiement
 
@@ -57,7 +57,7 @@ curl -si https://<app>.azurewebsites.net/api/stable/plugins.xml | head -1
 # 2. Avec jeton, stable → 200 + XML
 curl -si -H "Authorization: Bearer $TOKEN" https://<app>.azurewebsites.net/api/stable/plugins.xml | head -1
 
-# 3. Beta, compte non-membre → 403 ; membre → 200
+# 3. L'ancien segment beta n'existe plus (design révisé : dépôt unique) → 404
 curl -si -H "Authorization: Bearer $TOKEN" https://<app>.azurewebsites.net/api/beta/plugins.xml | head -1
 ```
 
@@ -75,7 +75,7 @@ Dans QGIS (3.34 puis 3.44) :
 | 1. Catalogue authentifié dans QGIS | ✅ 3.44 (3.34 restant à faire, conteneur) |
 | 2. Installation et mise à jour du zip | ✅ mise à jour 5.3.0 → 5.3.1 en un clic |
 | 3. 401 sans jeton / hors tenant | ✅ curl |
-| 4. Beta : 403 non-membre / 200 membre | ✅ des deux côtés (ajout au groupe + purge des jetons) |
+| 4. Préversions | ✅ design initial (403/200 par groupe) validé puis remplacé par l'opt-in communautaire `experimental` (décision : rien de sensible) |
 | 5. Refresh silencieux | à confirmer à l'usage (~1 h) |
 
 Enseignements consignés : `azapi_update_resource` + `platform.enabled` pour l'Easy Auth ; préfixe `/api` gardé (standard Azure) ; artefact auto-suffisant requis (FR-016, injection de links.yaml) ; après modification d'appartenance au groupe beta, l'effet attend un jeton **neuf** (purge des jetons dans Options → Authentification → Utilitaires, sinon ~1 h) ; ne jamais mettre à jour un plugin installé en lien symbolique (l'installeur remplace l'entrée) ; **un seul candidat par plugin et par catalogue** (la 2e entrée d'un même plugins.xml écrase la 1re) : le repli beta→stable passe par la fusion multi-dépôts de QGIS, vérifiée en réel (la plus haute version des deux dépôts gagne).

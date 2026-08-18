@@ -72,16 +72,11 @@ class TestPorts:
 
 @pytest.mark.unit
 class TestDesiredRepositories:
-    def test_stable_seul_par_defaut(self):
+    def test_depot_unique(self):
         repos = provision.desired_repositories(BASE_URL)
         assert repos == {
             "FluxCEN (interne)": f"{BASE_URL}/stable/plugins.xml",
         }
-
-    def test_beta_sur_demande(self):
-        repos = provision.desired_repositories(BASE_URL, beta=True)
-        assert repos["FluxCEN (beta)"] == f"{BASE_URL}/beta/plugins.xml"
-        assert "FluxCEN (interne)" in repos
 
     def test_slash_final_normalise(self):
         repos = provision.desired_repositories(BASE_URL + "/")

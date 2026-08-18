@@ -9,7 +9,7 @@ output "storage_account_name" {
 }
 
 output "beta_group_id" {
-  description = "Groupe Entra FluxCEN-Beta"
+  description = "Groupe Entra FluxCEN-Beta (liste de diffusion des testeurs)"
   value       = azuread_group.beta.object_id
 }
 

@@ -29,7 +29,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Canal et version depuis le tag
+      - name: Version depuis le tag
         id: chan
         run: |
           V="${GITHUB_REF_NAME#v}"
@@ -40,11 +40,11 @@ jobs:
             exit 1
           fi
           case "$V" in
-            *-*) C=beta ;;
-            *)   C=stable ;;
+            *-*) P=true ;;
+            *)   P=false ;;
           esac
           echo "version=$V" >> "$GITHUB_OUTPUT"
-          echo "channel=$C" >> "$GITHUB_OUTPUT"
+          echo "prerelease=$P" >> "$GITHUB_OUTPUT"
 
       - name: Setup Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
@@ -61,11 +61,13 @@ jobs:
           fi
           printf '%s\n' "$LINKS_YAML" > config/yaml/links.yaml
 
-      - name: Build zip + plugins.xml du canal
+      - name: Build zip + entrée de catalogue
+        # qgis-plugin-ci flague automatiquement les versions à suffixe
+        # pré-release comme experimental dans le XML généré.
         run: |
-          pip install qgis-plugin-ci
+          pip install qgis-plugin-ci qgis-plugin-repo
           qgis-plugin-ci package "${{ steps.chan.outputs.version }}" \
-            --plugin-repo-url "$REPO_BASE_URL/${{ steps.chan.outputs.channel }}/"
+            --plugin-repo-url "$REPO_BASE_URL/stable/"
 
       - uses: azure/login@a457da9ea143d694b1b9c7c869ebda04916587c1 # v2.3.0
         with:
@@ -77,24 +79,33 @@ jobs:
         run: |
           az storage blob upload --auth-mode login \
             --account-name "$STORAGE_ACCOUNT" --container-name plugins \
-            --name "${{ steps.chan.outputs.channel }}/FluxCEN.${{ steps.chan.outputs.version }}.zip" \
+            --name "stable/FluxCEN.${{ steps.chan.outputs.version }}.zip" \
             --file FluxCEN.${{ steps.chan.outputs.version }}.zip
 
-      - name: Mettre à jour le catalogue du canal
-        # Un seul candidat par plugin et par catalogue (contrainte du format
-        # de dépôt QGIS, vérifiée au POC) : chaque tag n'écrit que le
-        # catalogue de son canal. Le repli beta→stable est assuré par la
-        # fusion multi-dépôts côté QGIS (les beta-testeurs ont les 2 dépôts).
+      - name: Mettre à jour le catalogue
+        # Dépôt unique, standard communautaire : le catalogue porte au plus
+        # deux entrées par plugin (une stable + une experimental). La fusion
+        # avec l'existant préserve l'entrée de l'autre nature ; l'opt-in beta
+        # se fait côté QGIS (case « extensions expérimentales »).
         run: |
+          az storage blob download --auth-mode login \
+            --account-name "$STORAGE_ACCOUNT" --container-name plugins \
+            --name stable/plugins.xml --file existing.xml 2>/dev/null || true
+          if [ -s existing.xml ]; then
+            qgis-plugin-repo merge plugins.xml existing.xml
+            mv existing.xml final.xml
+          else
+            cp plugins.xml final.xml
+          fi
           az storage blob upload --auth-mode login --overwrite \
             --account-name "$STORAGE_ACCOUNT" --container-name plugins \
-            --name "${{ steps.chan.outputs.channel }}/plugins.xml" --file plugins.xml
+            --name stable/plugins.xml --file final.xml
 
       - name: Release GitHub miroir
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           PRE=""
-          [ "${{ steps.chan.outputs.channel }}" = "beta" ] && PRE="--prerelease"
+          [ "${{ steps.chan.outputs.prerelease }}" = "true" ] && PRE="--prerelease"
           gh release create "$GITHUB_REF_NAME" $PRE \
             "FluxCEN.${{ steps.chan.outputs.version }}.zip" plugins.xml

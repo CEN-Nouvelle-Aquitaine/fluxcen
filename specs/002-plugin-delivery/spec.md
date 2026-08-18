@@ -10,7 +10,7 @@
 
 ## Contexte
 
-FluxCEN est aujourd'hui livré par une URL publique (`https://sig.dsi-cen.org/qgis/`). Le dépôt GitHub va passer en privé. La cible : une livraison réservée aux identités Microsoft du CEN, avec deux canaux (interne et beta), sans manipulation complexe côté utilisateur. Les postes sont gérés par Intune. L'organisation dispose d'Azure mais ne l'a jamais exploité au-delà d'Entra ID : la création du socle Azure fait partie du périmètre. Toute l'infrastructure est décrite en IaC. Un POC valide d'abord le service de distribution (la « function ») de bout en bout.
+FluxCEN est aujourd'hui livré par une URL publique (`https://sig.dsi-cen.org/qgis/`). Le dépôt GitHub va passer en privé. La cible : une livraison réservée aux identités Microsoft du CEN, avec les versions finales pour tous et les préversions en opt-in pour les testeurs, sans manipulation complexe côté utilisateur. Les postes sont gérés par Intune. L'organisation dispose d'Azure mais ne l'a jamais exploité au-delà d'Entra ID : la création du socle Azure fait partie du périmètre. Toute l'infrastructure est décrite en IaC. Un POC valide d'abord le service de distribution (la « function ») de bout en bout.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -32,33 +32,33 @@ Un agent du CEN ouvre QGIS. Le gestionnaire d'extensions lui signale une mise à
 
 ### User Story 2 - Publication automatique par les mainteneurs (Priority: P2)
 
-Un mainteneur pose un tag de version sur le dépôt GitHub privé. Le pipeline construit l'artefact, met à jour le catalogue du bon canal et publie. Une version de préversion part sur le canal beta, une version finale sur le canal interne. Aucune étape manuelle après le tag.
+Un mainteneur pose un tag de version sur le dépôt GitHub privé. Le pipeline construit l'artefact et met à jour le catalogue : une version finale remplace l'entrée stable, une préversion remplace l'entrée expérimentale. Aucune étape manuelle après le tag.
 
 **Why this priority**: Sans publication automatisée, chaque release exige des manipulations manuelles et le système n'est pas fiable dans la durée.
 
-**Independent Test**: Poser un tag de préversion et un tag final sur un commit de test, vérifier que chaque canal reçoit la bonne version.
+**Independent Test**: Poser un tag de préversion et un tag final sur un commit de test, vérifier que chaque entrée du catalogue reçoit la bonne version sans toucher l'autre.
 
 **Acceptance Scenarios**:
 
-1. **Given** le dépôt GitHub privé, **When** un mainteneur pose un tag de version finale, **Then** le canal interne expose cette version en moins de 10 minutes.
-2. **Given** le même dépôt, **When** un mainteneur pose un tag de préversion, **Then** seule la beta est mise à jour et le canal interne reste inchangé.
+1. **Given** le dépôt GitHub privé, **When** un mainteneur pose un tag de version finale, **Then** le dépôt expose cette version à tous en moins de 10 minutes.
+2. **Given** le même dépôt, **When** un mainteneur pose un tag de préversion, **Then** seule l'entrée expérimentale est mise à jour et l'entrée stable reste inchangée.
 3. **Given** le pipeline de publication, **When** il s'authentifie auprès du cloud, **Then** il n'utilise aucun secret stocké de longue durée.
 
 ---
 
-### User Story 3 - Accès beta restreint à un groupe (Priority: P2)
+### User Story 3 - Préversions en opt-in pour les beta-testeurs (Priority: P2)
 
-Une beta-testeuse, membre du groupe beta, dispose du dépôt beta dans son QGIS. Elle reçoit les préversions avant tout le monde. Un agent hors du groupe ne peut ni lister ni télécharger les préversions, même s'il connaît l'URL du dépôt beta.
+Une beta-testeuse coche une fois « Afficher aussi les extensions expérimentales » dans son gestionnaire d'extensions. Elle reçoit alors les préversions avant tout le monde. Un agent qui n'a rien coché ne voit que les versions finales.
 
-**Why this priority**: La distinction interne/beta est une exigence du produit. Elle repose sur un contrôle d'accès, pas sur de la discrétion.
+**Why this priority**: La distinction stable/beta est une exigence du produit. Révision 2026-08-18 : rien de sensible dans les préversions, l'opt-in communautaire remplace le contrôle d'accès (décision d'Antoine).
 
-**Independent Test**: Avec deux comptes (membre et non-membre du groupe beta), interroger le dépôt beta et comparer les réponses.
+**Independent Test**: Sur un même poste, comparer les versions proposées avec et sans la case « extensions expérimentales ».
 
 **Acceptance Scenarios**:
 
-1. **Given** un compte membre du groupe beta, **When** QGIS interroge le dépôt beta, **Then** la préversion apparaît et s'installe.
-2. **Given** un compte hors du groupe beta, **When** il interroge le dépôt beta, **Then** l'accès est refusé.
-3. **Given** une version finale plus récente que la préversion, **When** un membre beta consulte son dépôt, **Then** la version finale lui est proposée.
+1. **Given** la case « extensions expérimentales » cochée, **When** QGIS recharge le dépôt, **Then** la préversion apparaît et s'installe.
+2. **Given** la case décochée (défaut), **When** QGIS recharge le dépôt, **Then** seules les versions finales sont visibles.
+3. **Given** une version finale plus récente que la préversion, **When** un beta-testeur consulte le dépôt, **Then** la version finale lui est proposée.
 
 ---
 
@@ -96,7 +96,7 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 ### Edge Cases
 
 - Jeton de rafraîchissement expiré ou révoqué : QGIS doit relancer une authentification interactive. Ce cas ne doit jamais se déclencher pendant la vérification des dépôts au démarrage de QGIS (défaut connu de QGIS pouvant provoquer un plantage) : la vérification au démarrage reste désactivée et le provisioning garantit un jeton valide avant l'activation du dépôt.
-- Utilisateur retiré du groupe beta entre deux mises à jour : son dépôt beta répond en refus d'accès ; son canal interne continue de fonctionner.
+- Beta-testeur qui décoche la case « extensions expérimentales » : les préversions disparaissent de sa vue ; sa version installée reste en place jusqu'à la stable suivante.
 - Ancienne URL publique : les utilisateurs existants doivent être migrés. L'ancienne URL affiche une version finale de transition qui pointe vers la nouvelle procédure, puis est décommissionnée.
 - Coupure réseau ou service indisponible pendant une mise à jour : QGIS affiche l'erreur standard du gestionnaire d'extensions, sans corruption de l'installation existante.
 - Deux tags publiés à quelques secondes d'intervalle : le catalogue final reflète la version la plus récente, sans écrasement croisé.
@@ -109,12 +109,12 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 
 - **FR-001**: Le système MUST distribuer le plugin via le gestionnaire d'extensions standard de QGIS (détection de mise à jour et installation en un clic), sans outil tiers côté utilisateur.
 - **FR-002**: Tout accès au catalogue et aux artefacts MUST être authentifié par l'identité Microsoft Entra du CEN. Aucun accès anonyme.
-- **FR-003**: Le système MUST exposer deux canaux : interne (toutes les identités du tenant autorisées) et beta (membres d'un groupe Entra dédié uniquement).
-- **FR-004**: Le refus d'accès au canal beta MUST s'appliquer côté serveur. Un non-membre ne peut ni lister ni télécharger, même avec l'URL exacte.
+- **FR-003** (révisé 2026-08-18) : Le système MUST distribuer les versions finales à tous et les préversions en opt-in : un dépôt unique dont les préversions sont marquées « expérimentales » (standard communautaire QGIS) ; un utilisateur ne les voit que s'il l'a choisi.
+- **FR-004** (révisé 2026-08-18) : ABANDONNÉ : le contrôle d'accès serveur au canal beta est retiré (décision : rien de sensible dans les préversions). L'accès au dépôt reste réservé aux identités du tenant (FR-002) ; la limitation beta est comportementale (opt-in), le groupe FluxCEN-Beta devient une liste de diffusion des testeurs.
 - **FR-005**: L'utilisateur MUST pouvoir installer et mettre à jour le plugin sans saisir d'identifiants autres que son authentification Microsoft, et sans modifier de réglages QGIS.
 - **FR-006**: Le renouvellement de jeton MUST être silencieux tant qu'un jeton de rafraîchissement est valide.
 - **FR-007**: La publication MUST être déclenchée par un tag de version sur le dépôt GitHub privé, sans étape manuelle ultérieure. Le canal est déduit du format de version : préversion vers beta, version finale vers interne.
-- **FR-008**: Un beta-testeur MUST se voir proposer la version la plus récente entre la dernière préversion et la dernière version finale (via l'enregistrement des deux canaux sur son poste ; chaque canal ne publie que sa propre dernière version).
+- **FR-008** (révisé 2026-08-18) : Un beta-testeur MUST se voir proposer la version la plus récente entre la dernière préversion et la dernière version finale : le catalogue unique porte les deux entrées (stable + expérimentale), QGIS propose la plus haute visible selon l'opt-in.
 - **FR-009**: Les versions MUST suivre un format à trois composants avec préversions ordonnées correctement par QGIS.
 - **FR-010**: Le pipeline de publication MUST s'authentifier auprès du cloud par fédération d'identité, sans secret de longue durée stocké dans GitHub.
 - **FR-011**: Toute l'infrastructure de distribution (socle Azure, service, stockage, droits) MUST être décrite en IaC versionné dans le dépôt. Les seules étapes manuelles admises sont les prérequis de bootstrap, documentés.
@@ -138,7 +138,7 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 
 - **SC-001**: Un agent installe ou met à jour le plugin en moins de 2 minutes, sans saisir d'identifiants autres que son authentification Microsoft.
 - **SC-002**: 100 % des tentatives d'accès sans identité du tenant sont refusées (catalogue et artefacts, deux canaux).
-- **SC-003**: 100 % des tentatives d'accès au canal beta par un non-membre du groupe sont refusées.
+- **SC-003** (révisé 2026-08-18) : les préversions ne sont jamais proposées à un utilisateur qui n'a pas activé l'affichage des extensions expérimentales.
 - **SC-004**: Une version publiée par tag est disponible sur son canal en moins de 10 minutes, sans intervention manuelle.
 - **SC-005**: Aucun secret de longue durée n'existe dans la configuration CI (vérifiable par revue des réglages du dépôt).
 - **SC-006**: L'environnement de distribution est recréé depuis zéro, uniquement depuis le code versionné, en moins d'une heure, prérequis exclus.
@@ -152,7 +152,7 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 - Le parc des utilisateurs cibles est géré par Intune et peut recevoir un script de déploiement.
 - Les utilisateurs disposent de QGIS 3.34 minimum, conformément au plancher technique du plugin.
 - Les postes ont accès à Internet et aux services Microsoft du tenant.
-- Le canal beta liste aussi les versions finales : un beta-testeur n'a besoin que d'un seul dépôt.
-- La beta est une restriction d'accès, pas une obligation : le groupe beta peut être modifié à tout moment sans toucher aux postes.
+- Dépôt unique pour tous : le catalogue porte au plus une entrée stable et une entrée expérimentale par plugin (contrainte du format vérifiée au POC).
+- La beta est un opt-in volontaire, pas une restriction d'accès : rien de sensible dans les préversions. Le groupe Entra FluxCEN-Beta ne sert qu'à la communication avec les testeurs.
 - Le POC porte sur le service de distribution managé (la « function ») retenu à l'issue de la recherche préalable. Si le POC échoue, l'alternative documentée (distribution directe depuis l'espace documentaire Microsoft 365) est réévaluée.
 - La migration depuis l'ancienne URL publique se fait avec une période de transition annoncée ; la durée exacte sera fixée au plan.

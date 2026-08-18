@@ -4,13 +4,13 @@
 
 Aucune base de données. L'état du système vit dans quatre supports : le Blob Storage (catalogues et artefacts), Entra ID (identités et groupe), la configuration de la Function (Bicep), et le poste QGIS (authcfg + dépôts enregistrés).
 
-## Canal
+## Dépôt (unique, révisé 2026-08-18)
 
 | Champ | Type | Règles |
 |---|---|---|
-| nom | `stable` \| `beta` | Seules valeurs admises ; tout autre segment d'URL → 404. Le canal « interne » de la spec correspond au segment `stable` (nommage URL neutre, indépendant de l'organisation) |
-| préfixe blob | chemin | `stable/` ou `beta/` dans le conteneur `plugins` |
-| règle d'accès | politique | `stable` : toute identité du tenant validée par Easy Auth ; `beta` : en plus, claim `groups` contenant `BETA_GROUP_ID` |
+| segment d'URL | `stable` | Seule valeur admise (nom historique du canal unique) ; tout autre segment → 404 |
+| préfixe blob | chemin | `stable/` dans le conteneur `plugins` (catalogue + tous les zips, préversions incluses) |
+| règle d'accès | politique | toute identité du tenant validée par Easy Auth ; les préversions sont en opt-in client (flag `experimental`), aucun contrôle serveur supplémentaire |
 
 ## Catalogue (`plugins.xml`)
 
@@ -22,12 +22,12 @@ Un par canal, stocké en blob (`{canal}/plugins.xml`). Format : XML du dépôt d
 | `version` | SemVer `x.y.z` ou `x.y.z-beta.n` ; ordre PEP 440 respecté par QGIS |
 | `download_url` | URL absolue de la Function : `https://{host}/api/{canal}/FluxCEN.{version}.zip` (préfixe `/api` standard Azure Functions) ; jamais de query string |
 | `qgis_minimum_version` | `3.34` (aligné sur `metadata.txt`) |
-| `experimental` | `False` sur les deux canaux (la restriction beta est un contrôle d'accès serveur, pas un flag client) |
+| `experimental` | `False` pour les versions finales, `True` pour les préversions (posé automatiquement par qgis-plugin-ci sur les suffixes pré-release) |
 
 Invariants (corrigés au POC du 2026-08-18) :
-- **Un seul candidat par plugin et par catalogue** : le format de dépôt QGIS ne retient qu'une entrée par plugin (les entrées suivantes écrasent la première). Chaque catalogue ne liste que la dernière version de son canal.
-- Le repli beta→stable est assuré par la **fusion multi-dépôts de QGIS** : les beta-testeurs ont les deux dépôts enregistrés (provisioning `beta=True`) et QGIS propose la version la plus haute des deux catalogues (vérifié en réel).
-- Le catalogue `stable` ne liste jamais de pré-version.
+- Le catalogue porte **au plus deux entrées** pour FluxCEN : une stable (`experimental=False`) et une préversion (`experimental=True`, flaguée automatiquement par qgis-plugin-ci). C'est la paire prévue par le format de dépôt QGIS (standard communautaire).
+- Une release ne remplace que l'entrée de sa nature (fusion `qgis-plugin-repo merge` avec le catalogue existant).
+- QGIS propose la version la plus haute visible : les préversions n'apparaissent qu'avec l'option « extensions expérimentales » cochée.
 - Toute version listée a son zip présent dans le même préfixe (publication atomique : zip d'abord, XML ensuite).
 
 ## Artefact
@@ -39,14 +39,12 @@ Invariants (corrigés au POC du 2026-08-18) :
 | version | identique à `metadata.txt` du zip et au tag Git (`v` retiré) |
 | immuabilité | un zip publié n'est jamais réécrit ; republier une version = nouveau tag correctif |
 
-## Groupe d'accès
+## Groupe FluxCEN-Beta (liste de diffusion)
 
 | Champ | Règles |
 |---|---|
-| objet | groupe de sécurité Entra `FluxCEN-Beta` (créé par `bootstrap-entra.sh`) |
-| propagation | son `object id` est passé à la Function en app setting `BETA_GROUP_ID` (Bicep param) |
-| claim | l'app registration émet `groups` (`groupMembershipClaims: SecurityGroup`) |
-| retrait | effet au prochain renouvellement de jeton (≤ 1 h + refresh) ; accepté |
+| objet | groupe Entra `FluxCEN-Beta` (Terraform), **communication uniquement** : annonces aux testeurs |
+| rôle technique | aucun depuis la révision 2026-08-18 (plus de claim `groups`, plus de `BETA_GROUP_ID`) |
 
 ## Configuration de poste (provisioning)
 
@@ -55,7 +53,7 @@ Invariants (corrigés au POC du 2026-08-18) :
 | authcfg « FluxCEN delivery » | OAuth2 Authorization Code PKCE, app `80c3a908-…`, tenant CEN, scope `api://80c3a908-…/plugins.read offline_access`, secret vide, jeton persistant, redirect `127.0.0.1:{port}/qgis-client` |
 | port de redirect | 17070 par défaut ; si occupé (sonde bind), repli sur le premier libre d'une liste fixe ; Entra ignore le port des URI loopback (RFC 8252), aucun changement portail |
 | distinction | authcfg distinct de l'authcfg Graph du plugin (feature 001, scope `Files.Read.All`) : une audience par authcfg, même app registration |
-| dépôts enregistrés | `QgsSettings` `app/plugin_repositories/FluxCEN (interne)` → `https://{host}/api/stable/plugins.xml` + authcfg ; entrée beta ajoutée seulement si demandé (paramètre de déploiement Intune) |
+| dépôt enregistré | `QgsSettings` `app/plugin_repositories/FluxCEN (interne)` → `https://{host}/api/stable/plugins.xml` + authcfg ; l'ancien dépôt beta du POC est retiré s'il existe |
 | check au démarrage | `checkOnStart` laissé à `false` (défaut QGIS #64885) |
 | idempotence | ré-exécution sans effet si l'état est conforme ; répare authcfg ou dépôts dérivés ; ne touche à rien d'autre |
 
@@ -67,7 +65,7 @@ Invariants (corrigés au POC du 2026-08-18) :
 | Storage Account | conteneur privé `plugins` ; accès public désactivé ; versioning de blobs activé (retour arrière) |
 | Function App | Flex Consumption, Python 3.11 ; managed identity système avec rôle `Storage Blob Data Reader` sur le conteneur |
 | Easy Auth (`authsettingsV2`, via azapi) | provider Entra, `clientId` = app « QGIS », audience `api://80c3a908-…` ; `unauthenticatedClientAction: Return401` |
-| App settings | `BETA_GROUP_ID`, `STORAGE_ACCOUNT_URL` |
-| Objets Entra (azuread) | app « QGIS » importée (`prevent_destroy`) : scope `plugins.read`, claim groups, pré-autorisation ; groupe `FluxCEN-Beta` ; app CI `fluxcen-ci` |
+| App settings | `STORAGE_ACCOUNT_URL` |
+| Objets Entra (azuread) | app « QGIS » importée (`prevent_destroy`) : scope `plugins.read`, pré-autorisation ; groupe `FluxCEN-Beta` (diffusion) ; app CI `fluxcen-ci` |
 | Identité CI | federated credentials GitHub OIDC (environnements `release` et `infra`) ; `Storage Blob Data Contributor` sur le conteneur ; Owner sur le resource group |
 | Backend d'état | local pour le POC ; standard CEN (landing zones) à brancher avant industrialisation |

@@ -81,7 +81,6 @@ resource "azurerm_function_app_flex_consumption" "delivery" {
 
   app_settings = {
     STORAGE_ACCOUNT_URL = azurerm_storage_account.delivery.primary_blob_endpoint
-    BETA_GROUP_ID       = azuread_group.beta.object_id
   }
 
   site_config {}

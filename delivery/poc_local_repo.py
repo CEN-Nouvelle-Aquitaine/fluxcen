@@ -2,13 +2,13 @@
 """Simulateur local du dépôt de plugins FluxCEN (POC sans Azure).
 
 Rejoue le contrat http-delivery.md sur 127.0.0.1 : Bearer obligatoire (401),
-canal beta restreint (403), catalogue et zip servis en 200 direct. Permet de
+dépôt unique, catalogue et zip servis en 200 direct. Permet de
 valider dans un QGIS local le mécanisme clé (authcfg appliqué au plugins.xml
 ET au zip, détection de mise à jour) avant tout déploiement Azure.
 
 Usage :
     python3 delivery/poc_local_repo.py --zip FluxCEN.5.3.0.zip \
-        [--port 8787] [--token poc-interne] [--beta-token poc-beta]
+        [--port 8787] [--token poc-interne]
 
 Côté QGIS : authcfg « API Header » avec `Authorization: Bearer poc-interne`,
 dépôt http://127.0.0.1:8787/api/stable/plugins.xml (préfixe /api : parité
@@ -19,7 +19,7 @@ import http.server
 import pathlib
 import re
 
-CHANNELS = ("stable", "beta")
+CHANNELS = ("stable",)
 
 
 def build_catalogue(base_url: str, channel: str, version: str, qgis_min: str) -> bytes:
@@ -55,10 +55,8 @@ def make_handler(zip_path: pathlib.Path, version: str, tokens: dict, qgis_min: s
 
             auth = self.headers.get("Authorization", "")
             self.log_message("Authorization reçu : %r", auth or "(absent)")
-            if not auth.startswith("Bearer ") or auth[7:] not in tokens.values():
+            if not auth.startswith("Bearer ") or auth[7:] != tokens["stable"]:
                 return self._status(401)
-            if channel == "beta" and auth[7:] != tokens["beta"]:
-                return self._status(403)
 
             if match.group(2) == "plugins.xml":
                 base = f"http://127.0.0.1:{self.server.server_port}/api"
@@ -90,16 +88,14 @@ def main():
     parser.add_argument("--qgis-min", default="3.34")
     parser.add_argument("--port", type=int, default=8787)
     parser.add_argument("--token", default="poc-interne",
-                        help="Bearer attendu (canal stable)")
-    parser.add_argument("--beta-token", default="poc-beta",
-                        help="Bearer attendu pour le canal beta")
+                        help="Bearer attendu")
     args = parser.parse_args()
 
     version = args.version or re.sub(r"^FluxCEN\.|\.zip$", "", args.zip.name)
-    tokens = {"stable": args.token, "beta": args.beta_token}
+    tokens = {"stable": args.token}
     handler = make_handler(args.zip, version, tokens, args.qgis_min)
     print(f"Dépôt simulé : http://127.0.0.1:{args.port}/api/stable/plugins.xml "
-          f"(version {version}, Bearer {args.token} / beta {args.beta_token})")
+          f"(version {version}, Bearer {args.token})")
     http.server.HTTPServer(("127.0.0.1", args.port), handler).serve_forever()
 
 

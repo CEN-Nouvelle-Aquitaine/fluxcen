@@ -113,25 +113,26 @@ def pick_free_port(is_free: Callable[[int], bool]) -> Optional[int]:
     return None
 
 
-def desired_repositories(base_url: str, beta: bool = False) -> dict:
-    """Dépôts à enregistrer : nom → URL de catalogue (jamais de query string).
+def desired_repositories(base_url: str) -> dict:
+    """Dépôt à enregistrer : nom → URL de catalogue (jamais de query string).
 
-    ``base_url`` inclut le préfixe de routes du service : pour le déploiement
-    Azure, ``https://<function>.azurewebsites.net/api`` (contrat
-    http-delivery.md).
+    Dépôt unique (standard communautaire : les préversions sont des entrées
+    ``experimental`` du catalogue, opt-in côté client). ``base_url`` inclut
+    le préfixe de routes du service : pour le déploiement Azure,
+    ``https://<function>.azurewebsites.net/api`` (contrat http-delivery.md).
     """
     base = base_url.rstrip("/")
-    repos = {_STABLE_REPO: f"{base}/stable/plugins.xml"}
-    if beta:
-        repos[_BETA_REPO] = f"{base}/beta/plugins.xml"
-    return repos
+    return {_STABLE_REPO: f"{base}/stable/plugins.xml"}
 
 
-def ensure_repositories(settings, base_url: str, authcfg_id: str,
-                        beta: bool = False) -> bool:
-    """Enregistre/répare les dépôts dans QgsSettings. Renvoie True si modifié."""
+def ensure_repositories(settings, base_url: str, authcfg_id: str) -> bool:
+    """Enregistre/répare le dépôt dans QgsSettings. Renvoie True si modifié."""
     changed = False
-    for name, url in desired_repositories(base_url, beta).items():
+    # Nettoyage du dépôt beta du design abandonné (postes du POC).
+    if settings.value(f"{_REPO_GROUP}/{_BETA_REPO}/url"):
+        settings.remove(f"{_REPO_GROUP}/{_BETA_REPO}")
+        changed = True
+    for name, url in desired_repositories(base_url).items():
         prefix = f"{_REPO_GROUP}/{name}/"
         desired = {"url": url, "authcfg": authcfg_id, "enabled": True}
         for key, value in desired.items():
@@ -181,8 +182,8 @@ def ensure_authcfg(manager) -> Optional[str]:
     return AUTHCFG_ID if stored else None
 
 
-def provision(base_url: str, beta: bool = False) -> None:
-    """Point d'entrée du startup.py : authcfg + dépôts, journalisé, sans levée."""
+def provision(base_url: str) -> None:
+    """Point d'entrée du startup.py : authcfg + dépôt, journalisé, sans levée."""
     # pylint: disable-next=import-outside-toplevel
     from qgis.core import QgsApplication, QgsMessageLog, QgsSettings, Qgis
 
@@ -196,7 +197,7 @@ def provision(base_url: str, beta: bool = False) -> None:
             log("Provisioning delivery : aucun port de redirection libre, "
                 "configuration d'authentification non posée.", Qgis.Warning)
             return
-        if ensure_repositories(QgsSettings(), base_url, authcfg_id, beta):
+        if ensure_repositories(QgsSettings(), base_url, authcfg_id):
             log("Dépôt de plugins FluxCEN provisionné.")
     except Exception as exc:  # pylint: disable=broad-exception-caught
         # Innocuité (contrat) : ne jamais bloquer le démarrage de QGIS.

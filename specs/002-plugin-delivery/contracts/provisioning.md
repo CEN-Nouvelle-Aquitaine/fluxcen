@@ -7,13 +7,12 @@
 | Entrée | Source | Défaut |
 |---|---|---|
 | URL de base du service | constante dans le script (posée au déploiement) | requis |
-| activation du canal beta | fichier marqueur ou variable posée par Intune | désactivé |
 | liste des ports de repli | constante | `[17070, 17071, 17072]` (alignée sur `core/entra.py` du plugin, feature 001) |
 
 ## Postconditions (état garanti après exécution)
 
 1. Un authcfg « FluxCEN delivery » existe : OAuth2 PKCE, app `80c3a908-…`, scope `api://80c3a908-…/plugins.read offline_access`, secret vide, jeton persistant, redirect `127.0.0.1:{port}/qgis-client` avec `{port}` libre (sonde par bind).
-2. Le dépôt `FluxCEN (interne)` → `{base}/stable/plugins.xml` est enregistré avec cet authcfg (où `{base}` inclut le préfixe `/api` du service). Si beta activée : dépôt `FluxCEN (beta)` → `{base}/beta/plugins.xml`, même authcfg.
+2. Le dépôt `FluxCEN (interne)` → `{base}/stable/plugins.xml` est enregistré avec cet authcfg (où `{base}` inclut le préfixe `/api` du service). L'ancien dépôt `FluxCEN (beta)` (design POC abandonné) est retiré s'il existe. L'opt-in beta ne relève pas du provisioning : c'est la case « extensions expérimentales » de QGIS.
 3. `checkOnStart` des dépôts reste `false`.
 4. L'authcfg Graph du plugin (feature 001) n'est ni lu ni modifié.
 
