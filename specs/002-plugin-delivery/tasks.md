@@ -64,8 +64,8 @@
 
 - [X] T015 [P] [US3] Écrire les tests rouges dans `tests/test_delivery_logic.py` : décodage du header `x-ms-client-principal`, extraction des claims `groups`, décision beta (membre → autorisé, non-membre → 403, claim absent → 403, canal stable → toujours autorisé)
 - [X] T016 [US3] Implémenter le contrôle beta dans `delivery/function/logic.py` + branchement dans `function_app.py` jusqu'au vert de T015
-- [X] T017 [US3] Déployer, publier un `beta/plugins.xml` d'essai (beta + stable fusionnées), ajouter un compte de test au groupe `FluxCEN-Beta`
-- [ ] T018 [US3] Valider : membre → 200 sur `/beta/plugins.xml` et installation de la préversion dans QGIS ; non-membre → 403 ; retrait du groupe → 403 après renouvellement du jeton (data-model : effet ≤ 1 h)
+- [X] T017 [US3] Déployer, publier un `beta/plugins.xml` d'essai (dernière beta seule), ajouter un compte de test au groupe `FluxCEN-Beta`
+- [ ] T018 [US3] Valider : membre → 200 sur `/api/beta/plugins.xml` et installation de la préversion dans QGIS (✅ 2026-08-18 : 403 non-membre, 200 membre, 5.4.0-beta.1 `upgradeable`) ; reste : retrait du groupe → 403 après renouvellement du jeton (data-model : effet ≤ 1 h)
 
 **Checkpoint**: protocole de POC point 4 vert → les 5 points du POC sont verts, critère d'arrêt atteint, industrialisation validée
 
@@ -78,7 +78,7 @@
 **Independent Test**: poser un tag de préversion et un tag final sur un commit de test ; vérifier le contenu des deux catalogues et la release GitHub miroir
 
 - [X] T019 [US2] Écrire `infra/ci.tf` : app `fluxcen-ci` + service principal, federated credentials GitHub OIDC pour les environnements `release` ET `infra`, rôle `Storage Blob Data Contributor` sur le conteneur `plugins`, rôle Owner sur le resource group (apply CI avec role assignments)
-- [X] T020 [US2] Écrire `.github/workflows/release.yml` : déclenchement sur tag `v*`, canal déduit du suffixe de version, injection de `config/yaml/links.yaml` depuis le secret `LINKS_YAML` + `asset_paths` qgis-plugin-ci (FR-016), `qgis-plugin-ci package` avec `--plugin-repo-url` du canal, `qgis-plugin-repo merge` pour le catalogue beta (beta + stable), upload blob via `azure/login` OIDC (zip d'abord, XML ensuite : publication atomique), `concurrency: {group: release, cancel-in-progress: false}` pour sérialiser les tags rapprochés (edge case spec), release GitHub miroir (`--prerelease` pour les beta)
+- [X] T020 [US2] Écrire `.github/workflows/release.yml` : déclenchement sur tag `v*`, canal déduit du suffixe de version, injection de `config/yaml/links.yaml` depuis le secret `LINKS_YAML` + `asset_paths` qgis-plugin-ci (FR-016), `qgis-plugin-ci package` avec `--plugin-repo-url` du canal, un catalogue par canal (un seul candidat par plugin et par catalogue, contrainte du format vérifiée au POC ; repli beta→stable par fusion multi-dépôts QGIS), upload blob via `azure/login` OIDC (zip d'abord, XML ensuite : publication atomique), `concurrency: {group: release, cancel-in-progress: false}` pour sérialiser les tags rapprochés (edge case spec), release GitHub miroir (`--prerelease` pour les beta)
 - [X] T021 [US2] Écrire `.github/workflows/infra.yml` : fmt/validate sur PR, `terraform apply` OIDC (ARM_USE_OIDC) sur main avec approbation (environnement `infra`), garde explicite tant que le backend d'état CEN n'est pas branché
 - [ ] T022 [US2] Valider en conteneur puis sur le POC : tag `v5.3.2-beta.1` → seul le catalogue beta bouge ; tag `v5.3.2` → stable et beta à jour ; vérifier l'absence de secret d'authentification dans les réglages du repo (SC-005) et le délai < 10 min (SC-004) ; vérifier que le zip contient `config/yaml/links.yaml` injecté (FR-016). Prérequis : créer le secret `LINKS_YAML` dans l'environnement GitHub `release` (contenu = le links.yaml de production)
 

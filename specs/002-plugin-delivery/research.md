@@ -51,7 +51,7 @@ Recherche menée par trois agents parallèles (client QGIS, hébergement, CI/CD)
 
 ## R4. Canaux et versionnage
 
-**Decision**: deux dépôts logiques servis par la même Function : `/stable/plugins.xml` (tout le tenant) et `/beta/plugins.xml` (groupe Entra beta). Le catalogue beta liste la beta ET la stable. Versions SemVer avec suffixe pré-release (`5.4.0-beta.1`) ; le canal est déduit du tag (`v5.4.0` → stable, `v5.4.0-beta.1` → beta).
+**Decision** (corrigée au POC) : deux dépôts logiques servis par la même Function : `/api/stable/plugins.xml` (tout le tenant) et `/api/beta/plugins.xml` (groupe Entra beta). Chaque catalogue ne liste QUE la dernière version de son canal ; les beta-testeurs enregistrent les deux dépôts et la fusion multi-dépôts de QGIS propose la plus haute (vérifié en réel : le format de dépôt n'admet qu'une entrée par plugin et par catalogue, la seconde écrase la première). Versions SemVer avec suffixe pré-release (`5.4.0-beta.1`) ; le canal est déduit du tag (`v5.4.0` → stable, `v5.4.0-beta.1` → beta).
 
 **Rationale**: le flag `experimental` de QGIS est un filtre d'affichage global côté client, pas un contrôle d'accès : inutilisable pour restreindre la beta. `version_compare.py` de QGIS ordonne en PEP 440 : `5.4.0-beta.1 < 5.4.0`, donc un beta-testeur rebascule automatiquement sur la stable quand elle dépasse sa beta. Un seul dépôt à enregistrer pour les beta-testeurs.
 

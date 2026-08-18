@@ -114,7 +114,7 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 - **FR-005**: L'utilisateur MUST pouvoir installer et mettre à jour le plugin sans saisir d'identifiants autres que son authentification Microsoft, et sans modifier de réglages QGIS.
 - **FR-006**: Le renouvellement de jeton MUST être silencieux tant qu'un jeton de rafraîchissement est valide.
 - **FR-007**: La publication MUST être déclenchée par un tag de version sur le dépôt GitHub privé, sans étape manuelle ultérieure. Le canal est déduit du format de version : préversion vers beta, version finale vers interne.
-- **FR-008**: Le canal beta MUST proposer la version la plus récente entre la dernière préversion et la dernière version finale.
+- **FR-008**: Un beta-testeur MUST se voir proposer la version la plus récente entre la dernière préversion et la dernière version finale (via l'enregistrement des deux canaux sur son poste ; chaque canal ne publie que sa propre dernière version).
 - **FR-009**: Les versions MUST suivre un format à trois composants avec préversions ordonnées correctement par QGIS.
 - **FR-010**: Le pipeline de publication MUST s'authentifier auprès du cloud par fédération d'identité, sans secret de longue durée stocké dans GitHub.
 - **FR-011**: Toute l'infrastructure de distribution (socle Azure, service, stockage, droits) MUST être décrite en IaC versionné dans le dépôt. Les seules étapes manuelles admises sont les prérequis de bootstrap, documentés.

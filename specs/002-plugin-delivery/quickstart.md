@@ -78,7 +78,7 @@ Dans QGIS (3.34 puis 3.44) :
 | 4. Beta : 403 non-membre / 200 membre | ✅ des deux côtés (ajout au groupe + purge des jetons) |
 | 5. Refresh silencieux | à confirmer à l'usage (~1 h) |
 
-Enseignements consignés : `azapi_update_resource` + `platform.enabled` pour l'Easy Auth ; préfixe `/api` gardé (standard Azure) ; artefact auto-suffisant requis (FR-016, injection de links.yaml) ; après modification d'appartenance au groupe beta, l'effet attend un jeton **neuf** (purge des jetons dans Options → Authentification → Utilitaires, sinon ~1 h) ; ne jamais mettre à jour un plugin installé en lien symbolique (l'installeur remplace l'entrée).
+Enseignements consignés : `azapi_update_resource` + `platform.enabled` pour l'Easy Auth ; préfixe `/api` gardé (standard Azure) ; artefact auto-suffisant requis (FR-016, injection de links.yaml) ; après modification d'appartenance au groupe beta, l'effet attend un jeton **neuf** (purge des jetons dans Options → Authentification → Utilitaires, sinon ~1 h) ; ne jamais mettre à jour un plugin installé en lien symbolique (l'installeur remplace l'entrée) ; **un seul candidat par plugin et par catalogue** (la 2e entrée d'un même plugins.xml écrase la 1re) : le repli beta→stable passe par la fusion multi-dépôts de QGIS, vérifiée en réel (la plus haute version des deux dépôts gagne).
 
 ## Critère d'arrêt
 

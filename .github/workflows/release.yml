@@ -63,7 +63,7 @@ jobs:
 
       - name: Build zip + plugins.xml du canal
         run: |
-          pip install qgis-plugin-ci qgis-plugin-repo
+          pip install qgis-plugin-ci
           qgis-plugin-ci package "${{ steps.chan.outputs.version }}" \
             --plugin-repo-url "$REPO_BASE_URL/${{ steps.chan.outputs.channel }}/"
 
@@ -80,30 +80,15 @@ jobs:
             --name "${{ steps.chan.outputs.channel }}/FluxCEN.${{ steps.chan.outputs.version }}.zip" \
             --file FluxCEN.${{ steps.chan.outputs.version }}.zip
 
-      - name: Mettre à jour les catalogues
+      - name: Mettre à jour le catalogue du canal
+        # Un seul candidat par plugin et par catalogue (contrainte du format
+        # de dépôt QGIS, vérifiée au POC) : chaque tag n'écrit que le
+        # catalogue de son canal. Le repli beta→stable est assuré par la
+        # fusion multi-dépôts côté QGIS (les beta-testeurs ont les 2 dépôts).
         run: |
-          C="${{ steps.chan.outputs.channel }}"
-          # Canal stable : la seule version courante.
-          if [ "$C" = "stable" ]; then
-            az storage blob upload --auth-mode login --overwrite \
-              --account-name "$STORAGE_ACCOUNT" --container-name plugins \
-              --name stable/plugins.xml --file plugins.xml
-          fi
-          # Canal beta : fusion avec le catalogue existant (beta + stable),
-          # mis à jour aussi sur release stable pour que les beta-testeurs
-          # rebasculent sur la stable quand elle dépasse la beta.
-          az storage blob download --auth-mode login \
-            --account-name "$STORAGE_ACCOUNT" --container-name plugins \
-            --name beta/plugins.xml --file beta-existing.xml 2>/dev/null || true
-          if [ -s beta-existing.xml ]; then
-            qgis-plugin-repo merge plugins.xml beta-existing.xml
-            mv beta-existing.xml beta-merged.xml
-          else
-            cp plugins.xml beta-merged.xml
-          fi
           az storage blob upload --auth-mode login --overwrite \
             --account-name "$STORAGE_ACCOUNT" --container-name plugins \
-            --name beta/plugins.xml --file beta-merged.xml
+            --name "${{ steps.chan.outputs.channel }}/plugins.xml" --file plugins.xml
 
       - name: Release GitHub miroir
         env:

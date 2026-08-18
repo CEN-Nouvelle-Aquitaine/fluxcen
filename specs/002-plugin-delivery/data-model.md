@@ -24,8 +24,9 @@ Un par canal, stocké en blob (`{canal}/plugins.xml`). Format : XML du dépôt d
 | `qgis_minimum_version` | `3.34` (aligné sur `metadata.txt`) |
 | `experimental` | `False` sur les deux canaux (la restriction beta est un contrôle d'accès serveur, pas un flag client) |
 
-Invariants :
-- Le catalogue `beta` liste la dernière beta ET la dernière stable (fusion `qgis-plugin-repo merge`).
+Invariants (corrigés au POC du 2026-08-18) :
+- **Un seul candidat par plugin et par catalogue** : le format de dépôt QGIS ne retient qu'une entrée par plugin (les entrées suivantes écrasent la première). Chaque catalogue ne liste que la dernière version de son canal.
+- Le repli beta→stable est assuré par la **fusion multi-dépôts de QGIS** : les beta-testeurs ont les deux dépôts enregistrés (provisioning `beta=True`) et QGIS propose la version la plus haute des deux catalogues (vérifié en réel).
 - Le catalogue `stable` ne liste jamais de pré-version.
 - Toute version listée a son zip présent dans le même préfixe (publication atomique : zip d'abord, XML ensuite).
 
