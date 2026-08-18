@@ -90,6 +90,14 @@ resource "azurerm_function_app_flex_consumption" "delivery" {
   }
 
   tags = local.tags
+
+  # L'Easy Auth (authsettingsV2) est géré par azapi_update_resource.easy_auth :
+  # sans ce garde-fou, azurerm supprime la config à chaque apply (constaté au
+  # POC le 2026-08-18). Le bloc natif ne peut pas la porter : allowed_audiences
+  # y est en lecture seule.
+  lifecycle {
+    ignore_changes = [auth_settings_v2]
+  }
 }
 
 # Lecture des plugins par le code de la Function (managed identity).
