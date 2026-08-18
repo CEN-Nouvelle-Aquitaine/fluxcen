@@ -7,7 +7,10 @@
 Valide le mécanisme côté QGIS (authcfg appliqué au catalogue ET au zip, mise à jour en un clic) et le contrat HTTP, sur le poste :
 
 ```bash
-# 1. Construire le zip (les exclusions export-ignore s'appliquent)
+# 1. Construire le zip (les exclusions export-ignore s'appliquent).
+#    Note FR-016 : ce zip de POC ne contient pas config/yaml/links.yaml
+#    (injecté par la CI en vrai) ; copier son links.yaml local dans le
+#    plugin installé pour tester le chargement du catalogue.
 git archive --worktree-attributes --format=zip --prefix=FluxCEN/ \
   -o /tmp/FluxCEN.5.3.0.zip HEAD
 

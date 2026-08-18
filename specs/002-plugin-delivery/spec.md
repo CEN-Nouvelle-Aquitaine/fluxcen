@@ -101,6 +101,7 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 - Coupure réseau ou service indisponible pendant une mise à jour : QGIS affiche l'erreur standard du gestionnaire d'extensions, sans corruption de l'installation existante.
 - Deux tags publiés à quelques secondes d'intervalle : le catalogue final reflète la version la plus récente, sans écrasement croisé.
 - Version de préversion comparée à une version finale : l'ordre des versions est respecté (une préversion de 5.3.0 précède 5.3.0).
+- Changement des liens du catalogue de flux : la configuration étant embarquée dans l'artefact (FR-016), le changement passe par une nouvelle release, jamais par une intervention sur les postes.
 
 ## Requirements *(mandatory)*
 
@@ -121,6 +122,7 @@ Un opérateur recrée l'ensemble de l'infrastructure de distribution depuis zér
 - **FR-013**: La vérification des dépôts au démarrage de QGIS MUST rester désactivée sur les postes provisionnés tant que le défaut QGIS associé au déclenchement d'une authentification interactive au démarrage n'est pas corrigé.
 - **FR-014**: Une phase de POC MUST valider la chaîne complète sur le service de distribution (authentification, catalogue, téléchargement, restriction beta) avant l'industrialisation du provisioning et de la migration.
 - **FR-015**: Le système MUST prévoir la migration des utilisateurs de l'ancienne URL publique : version de transition sur l'ancienne URL, puis décommissionnement.
+- **FR-016**: Le paquet distribué MUST être auto-suffisant : la configuration applicative nécessaire au fonctionnement (liens du catalogue de flux) est injectée dans l'artefact au moment de la publication, depuis la configuration du pipeline. Elle ne DOIT jamais être versionnée dans le dépôt de code (invariant existant, contrôlé par la CI). Constat du POC : sans elle, le plugin installé ne charge aucun catalogue.
 
 ### Key Entities
 

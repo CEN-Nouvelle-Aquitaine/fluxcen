@@ -6,3 +6,7 @@
 plugin_path: .
 github_organization_slug: CEN-Nouvelle-Aquitaine
 project_slug: fluxcen
+# FR-016 : links.yaml est injecté par la CI juste avant le packaging
+# (git archive n'embarque que le versionné, l'ajout doit être explicite).
+asset_paths:
+  - config/yaml/links.yaml

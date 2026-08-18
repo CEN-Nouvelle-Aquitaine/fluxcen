@@ -63,6 +63,8 @@ Recherche menée par trois agents parallèles (client QGIS, hébergement, CI/CD)
 
 **Rationale**: `qgis-plugin-ci` est l'outil officiel (génération de dépôt custom supportée, détection automatique des suffixes pré-release) ; OIDC supprime tout secret stocké (FR-010, SC-005) ; le miroir GitHub Releases conserve un historique gratuit des artefacts.
 
+**Ajout post-POC (FR-016)**: le POC a montré que le zip issu de `git archive` ne contient pas `config/yaml/links.yaml` (liens du catalogue, volontairement hors git : gitignore + contrôle CI) et que le plugin installé est alors sans catalogue. Décision : injection à la release : le workflow écrit le fichier depuis le secret d'environnement `LINKS_YAML` puis `asset_paths` de qgis-plugin-ci l'ajoute au zip. Alternatives rejetées : committer le fichier (casse l'invariant CI, expose les liens à tout lecteur du repo), dépôt par Intune (changer un lien = redéployer le parc), endpoint de config sur la Function (mécanisme de plus, YAGNI).
+
 **Alternatives considered**: script maison de génération XML (réinvention) ; publication vers SharePoint via Graph `Sites.Selected` (retenu dans la recherche comme viable, mais devenu inutile : la cible est le blob ; à ressusciter seulement si le plan B SharePoint est activé).
 
 ## R6. Provisioning des postes

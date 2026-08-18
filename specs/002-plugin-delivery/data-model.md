@@ -34,7 +34,7 @@ Invariants :
 | Champ | Règles |
 |---|---|
 | nom de blob | `{canal}/FluxCEN.{version}.zip` |
-| contenu | zip du plugin, sans `__pycache__`, `tests/`, `infra/`, `delivery/`, `.specify/`, `.claude/` |
+| contenu | zip du plugin, sans `__pycache__`, `tests/`, `infra/`, `delivery/`, `.specify/`, `.claude/` ; AVEC `config/yaml/links.yaml` injecté par la CI à la publication (FR-016 : artefact auto-suffisant, fichier jamais versionné) |
 | version | identique à `metadata.txt` du zip et au tag Git (`v` retiré) |
 | immuabilité | un zip publié n'est jamais réécrit ; republier une version = nouveau tag correctif |
 

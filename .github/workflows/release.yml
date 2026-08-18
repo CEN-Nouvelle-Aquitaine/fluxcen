@@ -51,6 +51,16 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Injecter la configuration applicative (FR-016)
+        env:
+          LINKS_YAML: ${{ secrets.LINKS_YAML }}
+        run: |
+          if [ -z "$LINKS_YAML" ]; then
+            echo "Secret LINKS_YAML absent (environnement release) : le zip serait inutilisable (FR-016)." >&2
+            exit 1
+          fi
+          printf '%s\n' "$LINKS_YAML" > config/yaml/links.yaml
+
       - name: Build zip + plugins.xml du canal
         run: |
           pip install qgis-plugin-ci qgis-plugin-repo

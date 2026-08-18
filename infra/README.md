@@ -59,6 +59,9 @@ Auth 100 % OIDC, aucun secret. Variables GitHub (`Settings → Variables`) :
 `STORAGE_ACCOUNT`, `REPO_BASE_URL`, et pour l'apply en CI :
 `TF_STATE_RG`/`TF_STATE_SA`/`TF_STATE_CONTAINER`. Environnements GitHub :
 `release` (publication par tag) et `infra` (apply avec approbation).
+Secret d'environnement `release` : `LINKS_YAML` (contenu du
+`config/yaml/links.yaml` de production, injecté dans le zip à la release,
+FR-016 ; ce n'est pas un secret d'authentification, SC-005 reste tenu).
 
 Note : les IDs ci-dessus sont des identifiants publics (adressage), pas des
 secrets ; l'authentification est portée par le trust OIDC (federated
