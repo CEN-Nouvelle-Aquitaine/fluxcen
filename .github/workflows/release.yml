@@ -1,0 +1,105 @@
+name: Release
+
+# Publication par tag (spec 002, T020) : v5.4.0 → canal stable, v5.4.0-beta.1 → canal beta.
+# Zéro secret : OIDC via l'identité fédérée fluxcen-ci (infra/bootstrap-ci.sh).
+
+on:
+  push:
+    tags: ['v*']
+
+# Sérialise les publications : deux tags rapprochés ne s'entrelacent pas
+# (le catalogue beta est lu-modifié-écrit).
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  id-token: write   # OIDC Azure
+  contents: write   # release GitHub miroir
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: release
+    env:
+      STORAGE_ACCOUNT: ${{ vars.STORAGE_ACCOUNT }}          # sortie du déploiement Bicep
+      REPO_BASE_URL: ${{ vars.REPO_BASE_URL }}              # https://<function>.azurewebsites.net
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Canal et version depuis le tag
+        id: chan
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          # Garde anti-injection : la version est interpolée dans les steps
+          # suivants, seul un SemVer strict est admis.
+          if ! [[ "$V" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z]+(\.[0-9A-Za-z]+)*)?$ ]]; then
+            echo "Tag invalide : $GITHUB_REF_NAME (attendu vX.Y.Z[-pre.N])" >&2
+            exit 1
+          fi
+          case "$V" in
+            *-*) C=beta ;;
+            *)   C=stable ;;
+          esac
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "channel=$C" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+
+      - name: Build zip + plugins.xml du canal
+        run: |
+          pip install qgis-plugin-ci qgis-plugin-repo
+          qgis-plugin-ci package "${{ steps.chan.outputs.version }}" \
+            --plugin-repo-url "$REPO_BASE_URL/${{ steps.chan.outputs.channel }}/"
+
+      - uses: azure/login@a457da9ea143d694b1b9c7c869ebda04916587c1 # v2.3.0
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Publier le zip (avant le XML — publication atomique)
+        run: |
+          az storage blob upload --auth-mode login \
+            --account-name "$STORAGE_ACCOUNT" --container-name plugins \
+            --name "${{ steps.chan.outputs.channel }}/FluxCEN.${{ steps.chan.outputs.version }}.zip" \
+            --file FluxCEN.${{ steps.chan.outputs.version }}.zip
+
+      - name: Mettre à jour les catalogues
+        run: |
+          C="${{ steps.chan.outputs.channel }}"
+          # Canal stable : la seule version courante.
+          if [ "$C" = "stable" ]; then
+            az storage blob upload --auth-mode login --overwrite \
+              --account-name "$STORAGE_ACCOUNT" --container-name plugins \
+              --name stable/plugins.xml --file plugins.xml
+          fi
+          # Canal beta : fusion avec le catalogue existant (beta + stable),
+          # mis à jour aussi sur release stable pour que les beta-testeurs
+          # rebasculent sur la stable quand elle dépasse la beta.
+          az storage blob download --auth-mode login \
+            --account-name "$STORAGE_ACCOUNT" --container-name plugins \
+            --name beta/plugins.xml --file beta-existing.xml 2>/dev/null || true
+          if [ -s beta-existing.xml ]; then
+            qgis-plugin-repo merge plugins.xml beta-existing.xml
+            mv beta-existing.xml beta-merged.xml
+          else
+            cp plugins.xml beta-merged.xml
+          fi
+          az storage blob upload --auth-mode login --overwrite \
+            --account-name "$STORAGE_ACCOUNT" --container-name plugins \
+            --name beta/plugins.xml --file beta-merged.xml
+
+      - name: Release GitHub miroir
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRE=""
+          [ "${{ steps.chan.outputs.channel }}" = "beta" ] && PRE="--prerelease"
+          gh release create "$GITHUB_REF_NAME" $PRE \
+            "FluxCEN.${{ steps.chan.outputs.version }}.zip" plugins.xml

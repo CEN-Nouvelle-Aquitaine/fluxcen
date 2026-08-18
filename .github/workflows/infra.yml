@@ -1,0 +1,68 @@
+name: Infra
+
+# IaC Terraform (spec 002, T021). Auth Azure par OIDC (ARM_USE_OIDC), aucun
+# secret : l'app fluxcen-ci porte une federated credential pour
+# l'environnement GitHub `infra` (infra/ci.tf).
+
+on:
+  pull_request:
+    paths: ['infra/**']
+  push:
+    branches: [main]
+    paths: ['infra/**']
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: infra
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+      - run: terraform -chdir=infra fmt -check
+      - run: terraform -chdir=infra init -backend=false -input=false
+      - run: terraform -chdir=infra validate
+
+  deploy:
+    # Apply uniquement sur main, avec approbation (environnement `infra`).
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: infra
+    env:
+      ARM_USE_OIDC: 'true'
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+
+      - name: Backend d'état requis
+        run: |
+          if [ -z "${{ vars.TF_STATE_SA }}" ]; then
+            echo "Backend d'état non configuré (vars TF_STATE_RG/TF_STATE_SA/TF_STATE_CONTAINER)." >&2
+            echo "Brancher le backend standard CEN avant d'activer l'apply en CI (infra/README.md)." >&2
+            exit 1
+          fi
+
+      - name: Terraform init (backend azurerm)
+        run: |
+          terraform -chdir=infra init -input=false \
+            -backend-config="resource_group_name=${{ vars.TF_STATE_RG }}" \
+            -backend-config="storage_account_name=${{ vars.TF_STATE_SA }}" \
+            -backend-config="container_name=${{ vars.TF_STATE_CONTAINER }}" \
+            -backend-config="key=fluxcen-delivery-${{ vars.DELIVERY_ENV }}.tfstate"
+
+      - name: Terraform apply
+        run: |
+          terraform -chdir=infra apply -input=false -auto-approve \
+            -var "env=${{ vars.DELIVERY_ENV }}" \
+            -var "qgis_app_object_id=${{ vars.QGIS_APP_OBJECT_ID }}"
