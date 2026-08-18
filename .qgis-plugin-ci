@@ -1,0 +1,8 @@
+# Configuration qgis-plugin-ci (T003, spec 002-plugin-delivery).
+# Le zip est produit par `git archive` : les exclusions vivent dans
+# .gitattributes (export-ignore).
+# NOTE T022 : layout « plugin à la racine » (plugin_path: .) à valider en CI ;
+# si qgis-plugin-ci le refuse, déplacer le plugin dans un sous-dossier fluxcen/.
+plugin_path: .
+github_organization_slug: CEN-Nouvelle-Aquitaine
+project_slug: fluxcen

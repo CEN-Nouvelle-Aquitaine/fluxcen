@@ -7,3 +7,13 @@ __pycache__/
 config_db.yaml
 links.yaml
 .qgis-settings/
+# Azure Functions local (peut contenir des secrets)
+local.settings.json
+.python_packages/
+.azurite/
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+*.tfplan
