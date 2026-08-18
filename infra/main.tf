@@ -139,6 +139,12 @@ resource "azapi_update_resource" "easy_auth" {
             # Les deux formes d'audience : jetons v1 (api://...) et v2 (GUID nu),
             # selon requestedAccessTokenVersion de l'app.
             allowedAudiences = ["api://${var.qgis_client_id}", var.qgis_client_id]
+            # Toujours explicite : une liste vide (posée par un strip azurerm,
+            # constaté au POC) signifie « personne » et met tout le monde en 403.
+            # Seuls les jetons émis via l'app cliente « QGIS » passent.
+            defaultAuthorizationPolicy = {
+              allowedApplications = [var.qgis_client_id]
+            }
           }
         }
       }
