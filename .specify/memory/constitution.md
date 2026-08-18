@@ -1,20 +1,26 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.0.0 → 1.1.0
-Modified principles: aucun
-Added sections:
-  - Workflow de développement : règle « Commits » (interdiction des mentions
-    de co-auteur — Co-Authored-By ou équivalent — dans les messages de commit)
-Removed sections: aucun
+Version change: 1.1.0 → 1.2.0
+Modified principles:
+  - VI. Compatibilité et versionnement : plancher QGIS abaissé de 3.44 à 3.34
+    (plancher technique transitoire, décision #55 entérinée : la mise à niveau
+    du parc CEN vers 3.44 LTR est prévue mais non achevée). Retour à 3.44 par
+    amendement dédié une fois la migration du parc terminée.
+Added sections: aucune
+Removed sections: aucune
 Templates:
-  - .specify/templates/plan-template.md ✅ compatible (gates dynamiques, aucun changement requis)
+  - .specify/templates/plan-template.md ✅ compatible
   - .specify/templates/spec-template.md ✅ compatible
   - .specify/templates/tasks-template.md ✅ compatible
   - .specify/templates/checklist-template.md ✅ compatible
 Follow-up TODOs:
-  - metadata.txt indique qgisMinimumVersion=3.0 : à passer à 3.44 lors de la
-    prochaine release conformément au Principe VI.
+  - Repasser le plancher à 3.44 (Principe VI) quand la mise à niveau du parc
+    est achevée ; aligner alors metadata.txt et l'image CI.
+  - CI : le Principe II exige les tests sur la version minimale supportée ;
+    l'image de référence devient qgis/qgis:3.34 (3.44 en complément).
+  - Contrainte « Distribution » : à amender vers l'URL du dépôt privé lors de
+    la migration (spec 002-plugin-delivery, tâche T033).
 -->
 
 # FluxCEN Constitution
@@ -108,10 +114,12 @@ indispensable est une dette.
 
 ### VI. Compatibilité et versionnement
 
-- Version QGIS minimale supportée : **3.44 (LTR)**. Le développement et les
-  tests ciblent QGIS ≥ 3.44.8 ; `metadata.txt` DOIT déclarer
-  `qgisMinimumVersion=3.44` (format majeur.mineur uniquement, sans patch).
-- Toute API PyQGIS utilisée DOIT exister en 3.44 ; les API dépréciées DOIVENT
+- Version QGIS minimale supportée : **3.34 (LTR)**, plancher technique
+  transitoire tant que la mise à niveau du parc CEN vers 3.44 n'est pas
+  achevée ; `metadata.txt` DOIT déclarer `qgisMinimumVersion=3.34` (format
+  majeur.mineur uniquement, sans patch). Le retour du plancher à 3.44 se fait
+  par amendement dédié à la fin de la migration du parc.
+- Toute API PyQGIS utilisée DOIT exister en 3.34 ; les API dépréciées DOIVENT
   être évitées pour préparer la migration Qt6/QGIS 4 (viser
   `qgisMaximumVersion=4.99` à terme).
 - Versionnement du plugin : SemVer `MAJEUR.MINEUR.CORRECTIF`, incrémenté et
@@ -119,8 +127,9 @@ indispensable est une dette.
 - Le plugin DOIT fonctionner à l'identique sous Windows, macOS et Linux
   (chemins via `os.path`/`pathlib`, encodage UTF-8 explicite).
 
-**Rationale** : 3.44 clôt la série Qt5 ; s'y ancrer maintenant minimise le
-coût de la bascule QGIS 4.
+**Rationale** : le parc réel impose 3.34 aujourd'hui ; viser les API communes
+à 3.34-3.44 minimise à la fois le support du parc actuel et le coût de la
+bascule Qt6/QGIS 4 une fois la mise à niveau achevée.
 
 ### VII. Qualité et observabilité
 
@@ -160,7 +169,8 @@ repose entièrement sur des logs exploitables.
 - Travail sur branche de fonctionnalité ; `main` reste toujours releasable ;
   merge via Pull Request avec revue.
 - Gates de CI avant merge : lint (`pylint`) + suite de tests
-  (`pytest` + `pytest-qgis`) verts sur QGIS 3.44.
+  (`pytest` + `pytest-qgis`) verts sur la version QGIS minimale supportée
+  (3.34 ; 3.44 en complément recommandé).
 - Une release = tag Git + incrément SemVer + changelog dans `metadata.txt` +
   zip publié sur le dépôt CEN.
 - **Commits** : les messages de commit ne DOIVENT contenir aucune mention de
@@ -184,4 +194,4 @@ les templates `.specify/templates/`.
 Revue de conformité : à chaque exécution de `/speckit-plan` (gate
 « Constitution Check ») et à chaque revue de PR.
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-27 | **Last Amended**: 2026-07-27
+**Version**: 1.2.0 | **Ratified**: 2026-07-27 | **Last Amended**: 2026-08-18
