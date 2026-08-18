@@ -11,7 +11,8 @@ Usage :
         [--port 8787] [--token poc-interne] [--beta-token poc-beta]
 
 Côté QGIS : authcfg « API Header » avec `Authorization: Bearer poc-interne`,
-dépôt http://127.0.0.1:8787/stable/plugins.xml. Stdlib uniquement, usage POC.
+dépôt http://127.0.0.1:8787/api/stable/plugins.xml (préfixe /api : parité
+avec le contrat Azure Functions). Stdlib uniquement, usage POC.
 """
 import argparse
 import http.server
@@ -47,7 +48,7 @@ def make_handler(zip_path: pathlib.Path, version: str, tokens: dict, qgis_min: s
         def do_GET(self):  # pylint: disable=invalid-name
             """Applique le contrat puis sert le catalogue ou le zip."""
             path = self.path.split("?", 1)[0]  # QGIS ajoute ?qgis=x.y : ignoré
-            match = re.fullmatch(r"/(\w+)/(plugins\.xml|FluxCEN\.[\w.\-]+\.zip)", path)
+            match = re.fullmatch(r"/api/(\w+)/(plugins\.xml|FluxCEN\.[\w.\-]+\.zip)", path)
             if not match or match.group(1) not in CHANNELS:
                 return self._status(404)
             channel = match.group(1)
@@ -60,7 +61,7 @@ def make_handler(zip_path: pathlib.Path, version: str, tokens: dict, qgis_min: s
                 return self._status(403)
 
             if match.group(2) == "plugins.xml":
-                base = f"http://127.0.0.1:{self.server.server_port}"
+                base = f"http://127.0.0.1:{self.server.server_port}/api"
                 return self._payload(build_catalogue(base, channel, version, qgis_min),
                                      "text/xml")
             return self._payload(zip_path.read_bytes(), "application/zip")
@@ -97,7 +98,7 @@ def main():
     version = args.version or re.sub(r"^FluxCEN\.|\.zip$", "", args.zip.name)
     tokens = {"stable": args.token, "beta": args.beta_token}
     handler = make_handler(args.zip, version, tokens, args.qgis_min)
-    print(f"Dépôt simulé : http://127.0.0.1:{args.port}/stable/plugins.xml "
+    print(f"Dépôt simulé : http://127.0.0.1:{args.port}/api/stable/plugins.xml "
           f"(version {version}, Bearer {args.token} / beta {args.beta_token})")
     http.server.HTTPServer(("127.0.0.1", args.port), handler).serve_forever()
 

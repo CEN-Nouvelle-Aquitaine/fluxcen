@@ -4,12 +4,13 @@
 
 ## Règles transverses
 
+- Toutes les routes sont préfixées par **`/api`** (préfixe standard Azure Functions, conservé par décision du 2026-08-18) : l'URL de dépôt est `https://{host}/api/{channel}/plugins.xml`.
 - HTTPS uniquement. Toute réponse de contenu est un **200 direct** : jamais de 3xx.
 - Authentification : header `Authorization: Bearer <jeton>` d'audience `api://80c3a908-…`. Validée par Easy Auth avant le code de la Function.
 - Les URLs ne comportent aucune query string obligatoire. QGIS ajoute `?qgis=x.y` au fetch du catalogue : le paramètre est ignoré par le serveur.
 - `{channel}` ∈ {`stable`, `beta`}. `{filename}` ∈ {`plugins.xml`, `FluxCEN.<version>.zip`} ; tout autre motif → 404 (validation stricte, pas de traversée de chemin).
 
-## GET /{channel}/plugins.xml
+## GET /api/{channel}/plugins.xml
 
 | Cas | Réponse |
 |---|---|
@@ -19,7 +20,7 @@
 | Jeton absent / invalide / mauvaise audience | 401 (émis par Easy Auth) |
 | Canal inconnu | 404 |
 
-## GET /{channel}/FluxCEN.{version}.zip
+## GET /api/{channel}/FluxCEN.{version}.zip
 
 | Cas | Réponse |
 |---|---|
@@ -36,5 +37,5 @@
 
 ## Engagements de compatibilité
 
-- Les chemins `/{channel}/plugins.xml` et le schéma des `download_url` sont stables : les postes provisionnés ne sont jamais reconfigurés pour un changement interne du service.
+- Les chemins `/api/{channel}/plugins.xml` et le schéma des `download_url` sont stables : les postes provisionnés ne sont jamais reconfigurés pour un changement interne du service. Le préfixe `/api` fait partie du contrat.
 - Un zip publié est immuable (même URL = même contenu).

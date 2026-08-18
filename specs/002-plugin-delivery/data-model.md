@@ -20,7 +20,7 @@ Un par canal, stocké en blob (`{canal}/plugins.xml`). Format : XML du dépôt d
 |---|---|
 | `name` | `FluxCEN` (constant) |
 | `version` | SemVer `x.y.z` ou `x.y.z-beta.n` ; ordre PEP 440 respecté par QGIS |
-| `download_url` | URL absolue de la Function : `https://{host}/{canal}/FluxCEN.{version}.zip` ; jamais de query string |
+| `download_url` | URL absolue de la Function : `https://{host}/api/{canal}/FluxCEN.{version}.zip` (préfixe `/api` standard Azure Functions) ; jamais de query string |
 | `qgis_minimum_version` | `3.34` (aligné sur `metadata.txt`) |
 | `experimental` | `False` sur les deux canaux (la restriction beta est un contrôle d'accès serveur, pas un flag client) |
 
@@ -54,7 +54,7 @@ Invariants :
 | authcfg « FluxCEN delivery » | OAuth2 Authorization Code PKCE, app `80c3a908-…`, tenant CEN, scope `api://80c3a908-…/plugins.read offline_access`, secret vide, jeton persistant, redirect `127.0.0.1:{port}/qgis-client` |
 | port de redirect | 17070 par défaut ; si occupé (sonde bind), repli sur le premier libre d'une liste fixe ; Entra ignore le port des URI loopback (RFC 8252), aucun changement portail |
 | distinction | authcfg distinct de l'authcfg Graph du plugin (feature 001, scope `Files.Read.All`) : une audience par authcfg, même app registration |
-| dépôts enregistrés | `QgsSettings` `app/plugin_repositories/FluxCEN (interne)` → `https://{host}/stable/plugins.xml` + authcfg ; entrée beta ajoutée seulement si demandé (paramètre de déploiement Intune) |
+| dépôts enregistrés | `QgsSettings` `app/plugin_repositories/FluxCEN (interne)` → `https://{host}/api/stable/plugins.xml` + authcfg ; entrée beta ajoutée seulement si demandé (paramètre de déploiement Intune) |
 | check au démarrage | `checkOnStart` laissé à `false` (défaut QGIS #64885) |
 | idempotence | ré-exécution sans effet si l'état est conforme ; répare authcfg ou dépôts dérivés ; ne touche à rien d'autre |
 

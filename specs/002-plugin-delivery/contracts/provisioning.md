@@ -13,7 +13,7 @@
 ## Postconditions (état garanti après exécution)
 
 1. Un authcfg « FluxCEN delivery » existe : OAuth2 PKCE, app `80c3a908-…`, scope `api://80c3a908-…/plugins.read offline_access`, secret vide, jeton persistant, redirect `127.0.0.1:{port}/qgis-client` avec `{port}` libre (sonde par bind).
-2. Le dépôt `FluxCEN (interne)` → `…/stable/plugins.xml` est enregistré avec cet authcfg. Si beta activée : dépôt `FluxCEN (beta)` → `…/beta/plugins.xml`, même authcfg.
+2. Le dépôt `FluxCEN (interne)` → `{base}/stable/plugins.xml` est enregistré avec cet authcfg (où `{base}` inclut le préfixe `/api` du service). Si beta activée : dépôt `FluxCEN (beta)` → `{base}/beta/plugins.xml`, même authcfg.
 3. `checkOnStart` des dépôts reste `false`.
 4. L'authcfg Graph du plugin (feature 001) n'est ni lu ni modifié.
 

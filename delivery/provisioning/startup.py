@@ -9,8 +9,9 @@ déployé à côté de ce fichier.
 import os
 import sys
 
-# URL du service de distribution (posée au déploiement Intune).
-FLUXCEN_DELIVERY_URL = "https://func-fluxcen-delivery-poc.azurewebsites.net"
+# URL de base du service de distribution, préfixe /api inclus (posée au
+# déploiement Intune).
+FLUXCEN_DELIVERY_URL = "https://func-fluxcen-delivery-poc.azurewebsites.net/api"
 
 # Canal beta : activé par fichier marqueur déposé par Intune à côté du script.
 _BETA_MARKER = os.path.join(os.path.dirname(os.path.abspath(__file__)),

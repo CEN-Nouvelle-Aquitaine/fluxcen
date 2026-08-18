@@ -105,13 +105,18 @@ resource "azurerm_role_assignment" "function_read_plugins" {
 # ressource Flex Consumption. Payload identique à la config App Service
 # authsettingsV2 documentée.
 
-resource "azapi_resource" "easy_auth" {
+# azapi_update_resource, pas azapi_resource : authsettingsV2 existe
+# implicitement sur tout site, on le modifie au lieu de le créer.
+resource "azapi_update_resource" "easy_auth" {
   type      = "Microsoft.Web/sites/config@2024-04-01"
   name      = "authsettingsV2"
   parent_id = azurerm_function_app_flex_consumption.delivery.id
 
   body = {
     properties = {
+      platform = {
+        enabled = true # sans ce bloc, Easy Auth reste désactivé
+      }
       globalValidation = {
         requireAuthentication       = true
         unauthenticatedClientAction = "Return401"

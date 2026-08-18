@@ -15,14 +15,14 @@ git archive --worktree-attributes --format=zip --prefix=FluxCEN/ \
 python3 delivery/poc_local_repo.py --zip /tmp/FluxCEN.5.3.0.zip
 
 # 3. Rejouer le contrat
-curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8787/stable/plugins.xml                     # 401
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8787/api/stable/plugins.xml                 # 401
 curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer poc-interne" \
-  "http://127.0.0.1:8787/stable/plugins.xml?qgis=3.44"                                                # 200
+  "http://127.0.0.1:8787/api/stable/plugins.xml?qgis=3.44"                                                # 200
 curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer poc-interne" \
-  http://127.0.0.1:8787/beta/plugins.xml                                                              # 403
+  http://127.0.0.1:8787/api/beta/plugins.xml                                                              # 403
 ```
 
-Dans QGIS : créer un authcfg **API Header** avec la paire `Authorization` = `Bearer poc-interne`, ajouter le dépôt `http://127.0.0.1:8787/stable/plugins.xml` avec cet authcfg, vérifier que FluxCEN apparaît et s'installe. Relancer le serveur avec `--version 5.3.1` (même zip) pour vérifier la détection de mise à jour. Le serveur journalise chaque header `Authorization` reçu : preuve que QGIS l'envoie bien sur le XML et sur le zip.
+Dans QGIS : créer un authcfg **API Header** avec la paire `Authorization` = `Bearer poc-interne`, ajouter le dépôt `http://127.0.0.1:8787/api/stable/plugins.xml` avec cet authcfg, vérifier que FluxCEN apparaît et s'installe. Relancer le serveur avec `--version 5.3.1` (même zip) pour vérifier la détection de mise à jour. Le serveur journalise chaque header `Authorization` reçu : preuve que QGIS l'envoie bien sur le XML et sur le zip.
 
 La logique de la Function se teste sans Azure : `pytest tests/test_function_app.py` (SDK requis : `pip install azure-functions azure-storage-blob azure-identity`). Et `terraform plan` dans `infra/` simule la création des ressources sans rien créer (requiert `az login`).
 
@@ -49,19 +49,19 @@ Terminal (jeton obtenu via le flow device code ou copié depuis la base d'auth Q
 
 ```bash
 # 1. Sans jeton → 401
-curl -si https://<app>.azurewebsites.net/stable/plugins.xml | head -1
+curl -si https://<app>.azurewebsites.net/api/stable/plugins.xml | head -1
 
 # 2. Avec jeton, stable → 200 + XML
-curl -si -H "Authorization: Bearer $TOKEN" https://<app>.azurewebsites.net/stable/plugins.xml | head -1
+curl -si -H "Authorization: Bearer $TOKEN" https://<app>.azurewebsites.net/api/stable/plugins.xml | head -1
 
 # 3. Beta, compte non-membre → 403 ; membre → 200
-curl -si -H "Authorization: Bearer $TOKEN" https://<app>.azurewebsites.net/beta/plugins.xml | head -1
+curl -si -H "Authorization: Bearer $TOKEN" https://<app>.azurewebsites.net/api/beta/plugins.xml | head -1
 ```
 
 Dans QGIS (3.34 puis 3.44) :
 
 1. Créer l'authcfg « FluxCEN delivery » (PKCE, scope `api://…/plugins.read offline_access`, port 17070) : mêmes réglages que la config validée g2b2197, seul le scope change.
-2. Extensions → Paramètres → Ajouter le dépôt `https://<app>.azurewebsites.net/stable/plugins.xml` avec cet authcfg.
+2. Extensions → Paramètres → Ajouter le dépôt `https://<app>.azurewebsites.net/api/stable/plugins.xml` avec cet authcfg.
 3. Vérifier : la liste se charge, FluxCEN apparaît, l'installation aboutit, puis publier une version supérieure et vérifier la détection et la mise à jour en un clic.
 4. Laisser expirer le jeton d'accès (~1 h) et refaire une mise à jour : aucun prompt (refresh silencieux).
 

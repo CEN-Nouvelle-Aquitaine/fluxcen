@@ -114,7 +114,12 @@ def pick_free_port(is_free: Callable[[int], bool]) -> Optional[int]:
 
 
 def desired_repositories(base_url: str, beta: bool = False) -> dict:
-    """Dépôts à enregistrer : nom → URL de catalogue (jamais de query string)."""
+    """Dépôts à enregistrer : nom → URL de catalogue (jamais de query string).
+
+    ``base_url`` inclut le préfixe de routes du service : pour le déploiement
+    Azure, ``https://<function>.azurewebsites.net/api`` (contrat
+    http-delivery.md).
+    """
     base = base_url.rstrip("/")
     repos = {_STABLE_REPO: f"{base}/stable/plugins.xml"}
     if beta:
