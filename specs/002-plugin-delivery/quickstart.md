@@ -68,6 +68,18 @@ Dans QGIS (3.34 puis 3.44) :
 3. Vérifier : la liste se charge, FluxCEN apparaît, l'installation aboutit, puis publier une version supérieure et vérifier la détection et la mise à jour en un clic.
 4. Laisser expirer le jeton d'accès (~1 h) et refaire une mise à jour : aucun prompt (refresh silencieux).
 
+## Résultats du POC (2026-08-18, env poc réel)
+
+| Point | Résultat |
+|---|---|
+| 1. Catalogue authentifié dans QGIS | ✅ 3.44 (3.34 restant à faire, conteneur) |
+| 2. Installation et mise à jour du zip | ✅ mise à jour 5.3.0 → 5.3.1 en un clic |
+| 3. 401 sans jeton / hors tenant | ✅ curl |
+| 4. Beta : 403 non-membre / 200 membre | ✅ des deux côtés (ajout au groupe + purge des jetons) |
+| 5. Refresh silencieux | à confirmer à l'usage (~1 h) |
+
+Enseignements consignés : `azapi_update_resource` + `platform.enabled` pour l'Easy Auth ; préfixe `/api` gardé (standard Azure) ; artefact auto-suffisant requis (FR-016, injection de links.yaml) ; après modification d'appartenance au groupe beta, l'effet attend un jeton **neuf** (purge des jetons dans Options → Authentification → Utilitaires, sinon ~1 h) ; ne jamais mettre à jour un plugin installé en lien symbolique (l'installeur remplace l'entrée).
+
 ## Critère d'arrêt
 
 - **5/5 verts** : industrialisation (provisioning Intune, workflow release, migration).

@@ -30,7 +30,7 @@
 
 - [X] T005 Écrire `infra/entra.tf` (Terraform, provider azuread) : import déclaratif de l'app « QGIS » (`azuread_application_registration`, claim groups, `prevent_destroy`), scope `plugins.read` + identifier URI + pré-autorisation (ressources granulaires), groupe `FluxCEN-Beta`
 - [X] T006 Écrire `infra/main.tf` + `versions.tf` + `variables.tf` + `outputs.tf` : resource group `rg-fluxcen-delivery-{env}` (francecentral), Storage Account (conteneur privé `plugins`, versioning), Function App Flex Consumption Python 3.11 (managed identity + rôle `Storage Blob Data Reader`), Easy Auth `authsettingsV2` via azapi (audience `api://80c3a908-…`, `Return401`), app settings `BETA_GROUP_ID` et `STORAGE_ACCOUNT_URL` ; `terraform validate` vert
-- [ ] T007 Déployer l'environnement POC : `terraform.tfvars` (object id de l'app QGIS), `terraform init && terraform apply` (env=poc) ; consigner l'URL de la Function dans `specs/002-plugin-delivery/quickstart.md`
+- [X] T007 Déployer l'environnement POC : `terraform.tfvars` (object id de l'app QGIS), `terraform init && terraform apply` (env=poc) ; consigner l'URL de la Function dans `specs/002-plugin-delivery/quickstart.md`
 
 **Checkpoint**: `curl` sans jeton sur `https://<app>.azurewebsites.net/stable/plugins.xml` répond 401 (Easy Auth actif avant toute ligne de code)
 
@@ -45,8 +45,8 @@
 - [X] T008 [P] [US1] Écrire les tests rouges de la logique de service dans `tests/test_delivery_logic.py` : validation stricte de `{channel}`/`{filename}` (contrat http-delivery.md : motifs admis, 404 sinon, aucune traversée de chemin), mapping canal→préfixe blob, content-type par extension
 - [X] T009 [US1] Implémenter `delivery/function/logic.py` (fonctions pures) jusqu'au vert des tests T008
 - [X] T010 [US1] Implémenter `delivery/function/function_app.py` : route unique `GET /{channel}/{filename}`, appel de la logique, lecture du blob via managed identity, réponses 200/404 en direct (jamais de 3xx), logs `logging` standard
-- [ ] T011 [US1] Déployer la Function sur le POC et publier un jeu d'essai dans le blob (`stable/plugins.xml` + un zip FluxCEN 5.3.0) via `az storage blob upload`
-- [ ] T012 [US1] Valider au terminal : 401 sans jeton, 200 + XML avec jeton (quickstart vérifs 1-2), 404 sur chemin invalide
+- [X] T011 [US1] Déployer la Function sur le POC et publier un jeu d'essai dans le blob (`stable/plugins.xml` + un zip FluxCEN 5.3.0) via `az storage blob upload`
+- [X] T012 [US1] Valider au terminal : 401 sans jeton, 200 + XML avec jeton (quickstart vérifs 1-2), 404 sur chemin invalide
 - [ ] T013 [US1] Valider dans QGIS 3.44 (poste local) puis 3.34 (conteneur `qgis/qgis:3.34` ou installeur LTR archivé, plancher du parc) : authcfg delivery (scope `api://…/plugins.read`), ajout du dépôt stable, chargement de la liste, installation, publication d'une 5.3.1 d'essai, détection et mise à jour en un clic (quickstart parcours QGIS 1-3)
 - [ ] T014 [US1] Valider le refresh silencieux : jeton d'accès expiré (~1 h), mise à jour sans prompt (quickstart parcours 4) ; consigner les résultats du POC dans `specs/002-plugin-delivery/quickstart.md`
 
@@ -64,7 +64,7 @@
 
 - [X] T015 [P] [US3] Écrire les tests rouges dans `tests/test_delivery_logic.py` : décodage du header `x-ms-client-principal`, extraction des claims `groups`, décision beta (membre → autorisé, non-membre → 403, claim absent → 403, canal stable → toujours autorisé)
 - [X] T016 [US3] Implémenter le contrôle beta dans `delivery/function/logic.py` + branchement dans `function_app.py` jusqu'au vert de T015
-- [ ] T017 [US3] Déployer, publier un `beta/plugins.xml` d'essai (beta + stable fusionnées), ajouter un compte de test au groupe `FluxCEN-Beta`
+- [X] T017 [US3] Déployer, publier un `beta/plugins.xml` d'essai (beta + stable fusionnées), ajouter un compte de test au groupe `FluxCEN-Beta`
 - [ ] T018 [US3] Valider : membre → 200 sur `/beta/plugins.xml` et installation de la préversion dans QGIS ; non-membre → 403 ; retrait du groupe → 403 après renouvellement du jeton (data-model : effet ≤ 1 h)
 
 **Checkpoint**: protocole de POC point 4 vert → les 5 points du POC sont verts, critère d'arrêt atteint, industrialisation validée
