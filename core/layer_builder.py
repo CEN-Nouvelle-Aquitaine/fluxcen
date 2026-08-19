@@ -6,14 +6,24 @@ couches (issue #52). Le parsing du catalogue reste dans ``core/catalog.py``.
 """
 import re
 from typing import Optional
+from urllib.parse import urlsplit
 
 from .ms_urls import https_hostname
 
 _DEFAULT_SERVICE_VERSION = "1.0.0"
 
-# Services cartographiques du CEN nécessitant une authentification (FR-012) —
-# jamais la configuration Microsoft, uniquement une méthode non web (FR-011).
-_CEN_SECURED_HOSTS = frozenset({"opendata.cen-nouvelle-aquitaine.org"})
+# Geoserver du CEN : la majorité de ses espaces de travail est publique.
+_CEN_GEOSERVER_HOST = "opendata.cen-nouvelle-aquitaine.org"
+
+# Seuls ces espaces de travail exigent une authentification (FR-012, liste
+# exhaustive confirmée par le CEN en revue de PR) : jamais la configuration
+# Microsoft, uniquement une méthode non web (FR-011). Les autres espaces
+# restent accessibles sans authentification.
+_CEN_SECURED_WORKSPACES = frozenset({
+    "fonciercen",
+    "chirokollect",
+    "data_gods_dsne",
+})
 
 
 def extract_service_version(url: str) -> str:
@@ -22,9 +32,23 @@ def extract_service_version(url: str) -> str:
     return match.group(1) if match else _DEFAULT_SERVICE_VERSION
 
 
+def cen_workspace(url: str) -> Optional[str]:
+    """Espace de travail geoserver ciblé par l'URL, None hors du geoserver CEN.
+
+    Les deux formes du catalogue sont acceptées : ``/geoserver/<workspace>/…``
+    et ``/<workspace>/…``.
+    """
+    if https_hostname(url) != _CEN_GEOSERVER_HOST:
+        return None
+    segments = [part for part in urlsplit(url).path.split("/") if part]
+    if segments and segments[0] == "geoserver":
+        segments = segments[1:]
+    return segments[0] if len(segments) > 1 else None
+
+
 def is_cen_secured_service(url: str) -> bool:
-    """Vraie ssi l'URL cible un service cartographique sécurisé du CEN (FR-012)."""
-    return https_hostname(url) in _CEN_SECURED_HOSTS
+    """Vraie ssi l'URL cible un espace de travail sécurisé du geoserver CEN (FR-012)."""
+    return cen_workspace(url) in _CEN_SECURED_WORKSPACES
 
 
 def build_wms_uri(url: str, nom_technique: str, version: Optional[str] = None,

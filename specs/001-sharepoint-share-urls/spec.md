@@ -184,6 +184,10 @@ couper le réseau ; vérifier que chaque cas produit un message distinct et que 
   *Clarification 2026-08-17 (revue de PR)* : sans configuration adaptée disponible, la couche sécurisée
   n'est NI créée NI ajoutée au projet — un message critique est journalisé et affiché, plutôt qu'une
   couche vide accompagnée de la fenêtre d'identification native de QGIS.
+  *Clarification 2026-08-19 (revue de PR, liste confirmée par le CEN)* : le périmètre sécurisé est
+  l'espace de travail geoserver, pas le domaine entier. Seuls `fonciercen`, `chirokollect` et
+  `data_gods_dsne` sont sécurisés ; tous les autres espaces de travail du même geoserver sont publics
+  et DOIVENT être chargés sans authentification.
 - **FR-013** *(amendement 2026-08-17, revue de PR #55)*: Le plugin DOIT provisionner lui-même la
   configuration d'authentification Microsoft dans le gestionnaire QGIS : identifiant fixe (`g2b2197`),
   flux Authorization Code PKCE **sans aucun secret** (client public Entra ID), paramètres canoniques

@@ -124,10 +124,18 @@ Construction des URI de couches et périmètre sécurisé du CEN — extrait de
 
 Version du service extraite de l'URL (motif historique `VERSION=…&REQUEST`), `"1.0.0"` à défaut.
 
+## `cen_workspace(url: str) -> Optional[str]`
+
+Espace de travail geoserver ciblé par l'URL HTTPS, `None` hors de `opendata.cen-nouvelle-aquitaine.org`
+(correspondance d'hôte exacte). Les deux formes du catalogue sont acceptées : `/geoserver/<workspace>/…`
+et `/<workspace>/…`.
+
 ## `is_cen_secured_service(url: str) -> bool`
 
-FR-012 : vraie ssi l'URL HTTPS cible `opendata.cen-nouvelle-aquitaine.org` (correspondance d'hôte
-exacte) — seules ces couches reçoivent une configuration d'authentification (non web).
+FR-012 : vraie ssi `cen_workspace(url)` fait partie des espaces de travail sécurisés
+(`fonciercen`, `chirokollect`, `data_gods_dsne` : liste exhaustive confirmée par le CEN en revue de PR).
+Seules ces couches reçoivent une configuration d'authentification (non web) ; le reste du geoserver
+est public et reste chargé sans authentification.
 
 ## `build_wms_uri(url, nom_technique, version=None, authcfg=None) -> str` / `build_wfs_uri_params(url, typename, version=None) -> dict`
 

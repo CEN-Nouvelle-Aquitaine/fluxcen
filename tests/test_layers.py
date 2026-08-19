@@ -52,16 +52,32 @@ class TestBuildWfsUriParams:
 
 
 class TestIsCenSecuredService:
-    """FR-012 : périmètre du service cartographique sécurisé du CEN."""
+    """FR-012 : espaces de travail sécurisés du geoserver CEN."""
 
-    def test_geoserver_cen(self):
-        assert is_cen_secured_service(
-            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs") is True
+    def test_espaces_securises(self):
+        for url in (
+            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs",
+            "https://opendata.cen-nouvelle-aquitaine.org/fonciercen/wfs",
+            "https://opendata.cen-nouvelle-aquitaine.org/chirokollect/wfs",
+            "https://opendata.cen-nouvelle-aquitaine.org/data_gods_dsne/wfs",
+        ):
+            assert is_cen_secured_service(url) is True
+
+    def test_espaces_publics_du_meme_geoserver(self):
+        """Le reste du geoserver est public : aucune authentification (revue de PR)."""
+        for url in (
+            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs",
+            "https://opendata.cen-nouvelle-aquitaine.org/administratif/wms",
+            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fond_carto/wms",
+            "https://opendata.cen-nouvelle-aquitaine.org/geoserver/ows?SERVICE=WMS",
+            "https://opendata.cen-nouvelle-aquitaine.org/",
+        ):
+            assert is_cen_secured_service(url) is False
 
     def test_hors_perimetre(self):
         for url in (
             "https://data.geopf.fr/wfs/ows?SERVICE=WFS",
-            "https://opendata.cen-nouvelle-aquitaine.org.evil.tld/wfs",
+            "https://opendata.cen-nouvelle-aquitaine.org.evil.tld/fonciercen/wfs",
             "http://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/wfs",  # http
             "",
         ):

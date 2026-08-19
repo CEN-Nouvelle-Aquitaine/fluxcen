@@ -19,6 +19,8 @@ import fluxcen.FluxCEN as plugin_mod  # noqa: E402
 
 SECURED_URL = "https://opendata.cen-nouvelle-aquitaine.org/geoserver/fonciercen/ows?VERSION=1.3.0&REQUEST=GetCapabilities"
 PUBLIC_URL = "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
+PUBLIC_CEN_URL = ("https://opendata.cen-nouvelle-aquitaine.org/geoserver/agriculture/wfs"
+                  "?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities")
 
 
 class FakeLayer:
@@ -79,6 +81,13 @@ class TestCouchePubliqueSansConfig:
         # Hors périmètre sécurisé : jamais de sélection d'authcfg (FR-010)
         monkeypatch.setattr(plugin, "_select_service_authcfg", _raise_if_called)
         plugin.handle_wms_layer(0, "Orthos", "ORTHOIMAGERY.ORTHOPHOTOS", PUBLIC_URL, None)
+        assert len(FakeLayer.calls) == 1
+        assert "authcfg" not in FakeLayer.calls[0][0]
+
+    def test_wfs_espace_public_du_geoserver_cen(self, plugin, monkeypatch):
+        # Espace de travail public du geoserver CEN : chargé sans authentification
+        monkeypatch.setattr(plugin, "_select_service_authcfg", _raise_if_called)
+        plugin.handle_wfs_layer(0, "RPG 2023", "agriculture:rpg_2023_16", PUBLIC_CEN_URL, None)
         assert len(FakeLayer.calls) == 1
         assert "authcfg" not in FakeLayer.calls[0][0]
 

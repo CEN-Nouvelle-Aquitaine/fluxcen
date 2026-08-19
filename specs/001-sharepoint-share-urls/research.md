@@ -89,6 +89,13 @@ geoserver **authentifié**. FR-012 restaure une authentification ciblée : uniqu
 (`is_cen_secured_service()`, correspondance d'hôte exacte), avec une configuration **non web** choisie par
 le mécanisme filtré de FR-011 (`_select_service_authcfg()`). La config Microsoft reste exclue partout.
 
+**Correctif 2026-08-19 (revue de PR #55, liste confirmée par le CEN)** : le domaine entier restait trop
+large. La majorité des espaces de travail du geoserver est publique ; les exiger authentifiés empêchait
+leur chargement pour un agent sans identifiants. La détection descend donc au niveau de l'espace de
+travail (`cen_workspace()`, chemin `/geoserver/<workspace>/…` ou `/<workspace>/…`) et la liste sécurisée
+se limite à `fonciercen`, `chirokollect` et `data_gods_dsne`. Cette liste est exhaustive à ce jour :
+l'ajout d'un espace sécurisé côté geoserver demandera une mise à jour du plugin.
+
 ## R4bis — Couches PostGIS : filtrage des méthodes d'authentification (amendement 2026-07-27)
 
 **Decision**: la sélection d'authentification du chemin PostGIS (`_select_service_authcfg()`, appelée
